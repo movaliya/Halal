@@ -1292,6 +1292,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HalalMeatDelivery",
+					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalSDK",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1326,6 +1327,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HalalMeatDelivery",
+					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalSDK",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
