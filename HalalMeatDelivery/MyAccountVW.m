@@ -1,0 +1,110 @@
+//
+//  MyAccountVW.m
+//  HalalMeatDelivery
+//
+//  Created by Mango SW on 29/04/2017.
+//  Copyright © 2017 kaushik. All rights reserved.
+//
+
+#import "MyAccountVW.h"
+#import "ProfileView.h"
+#import "OrderHistoryView.h"
+#import "SavePaymentMethod.h"
+@interface MyAccountVW ()
+
+@end
+
+@implementation MyAccountVW
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.rootNav = (CCKFNavDrawer *)self.navigationController;
+    [self.rootNav setCCKFNavDrawerDelegate:self];
+    [self.rootNav CheckLoginArr];
+    [self.rootNav.pan_gr setEnabled:YES];
+}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+}
+- (IBAction)MyDetailsBtn_Action:(id)sender
+{
+    ProfileView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ProfileView"];
+    [self.navigationController pushViewController:vcr animated:YES];
+}
+- (IBAction)MyOrderBtn_Action:(id)sender
+{
+    OrderHistoryView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"OrderHistoryView"];
+    [self.navigationController pushViewController:vcr animated:YES];
+}
+
+- (IBAction)PaymentMethodBtn_action:(id)sender
+{
+    SavePaymentMethod *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SavePaymentMethod"];
+    [self.navigationController pushViewController:vcr animated:YES];
+    
+}
+- (IBAction)DeliveryAddressBtn_action:(id)sender
+{
+    
+}
+
+- (IBAction)LogoutBtn_action:(id)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                    message:@"Are you sure want to Logout?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"Logout",nil];
+    alert.tag=55;
+    [alert show];
+}
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    // the user clicked Logout
+    if (alertView.tag==55)
+    {
+        if (buttonIndex == 1)
+        {
+            [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"LoginUserDic"];
+            [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"Email"];
+            [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"Password"];
+            [[FBSession activeSession] closeAndClearTokenInformation];
+            
+            [self.navigationController popToRootViewControllerAnimated:NO];
+        }
+    }
+}
+
+- (IBAction)MenuBtn_action:(id)sender
+{
+     [self.rootNav drawerToggle];
+}
+
+#pragma mark - photoShotSavedDelegate
+
+-(void)CCKFNavDrawerSelection:(NSInteger)selectionIndex
+{
+    NSLog(@"CCKFNavDrawerSelection = %li", (long)selectionIndex);
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

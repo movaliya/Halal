@@ -17,6 +17,7 @@
 #import "ShoppingCartView.h"
 #import "ProfileView.h"
 #import "LoginView.h"
+#import "MyAccountVW.h"
 
 #define SHAWDOW_ALPHA 0.5
 #define MENU_DURATION 0.3
@@ -59,11 +60,11 @@
     
     if ([self.appDelegate isUserLoggedIn] == NO)
     {
-        TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Search Near Places",@"Search By Shop",@"Shopping Cart",@"Order History",@"Profile",@"Login & Signup", nil];
+        TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Search Near Places",@"Search By Shop",@"Shopping Cart",@"Order History",@"My Account",@"Login & Signup", nil];
     }
     else
     {
-        TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Search Near Places",@"Search By Shop",@"Shopping Cart",@"Order History",@"Profile",@"Logout", nil];
+        TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Search Near Places",@"Search By Shop",@"Shopping Cart",@"Order History",@"My Account",@"Logout", nil];
     }
     
     
@@ -97,13 +98,12 @@
     
     if ([self.appDelegate isUserLoggedIn] == NO)
     {
-        TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Search Near Places",@"Search By Shop",@"Shopping Cart",@"Order History",@"Profile",@"Login & Signup", nil];
+        TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Search Near Places",@"Search By Shop",@"Shopping Cart",@"Order History",@"My Account",@"Login & Signup", nil];
     }
     else
     {
-        TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Search Near Places",@"Search By Shop",@"Shopping Cart",@"Order History",@"Profile",@"Logout", nil];
+        TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Search Near Places",@"Search By Shop",@"Shopping Cart",@"Order History",@"My Account",@"Logout", nil];
     }
-    
     
     ImgArr=[[NSMutableArray alloc] initWithObjects:@"HomeRed",@"SearchnearPlaceRed",@"SearchByCatRed",@"shoppingCartRed",@"OrderHistoryRed",@"ProfileRed",@"LogoutRed", nil];
     
@@ -467,8 +467,12 @@
         }
         else
         {
-            ProfileView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ProfileView"];
+            
+            MyAccountVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MyAccountVW"];
             [super pushViewController:vcr animated:YES];
+            
+            //ProfileView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ProfileView"];
+            //[super pushViewController:vcr animated:YES];
         }
        
     }

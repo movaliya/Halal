@@ -75,6 +75,8 @@
 		530B1F721D89779700F1F894 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 530B1F711D89779700F1F894 /* MessageUI.framework */; };
 		530B1F741D8977C000F1F894 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 530B1F731D8977C000F1F894 /* SafariServices.framework */; };
 		5310F86B1D7854DE007744A1 /* myAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5310F86A1D7854DE007744A1 /* myAnnotation.m */; };
+		5356CB331EB4765000E0A422 /* MyAccountVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 5356CB321EB4765000E0A422 /* MyAccountVW.m */; };
+		5356CB361EB484B700E0A422 /* SavePaymentMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 5356CB351EB484B700E0A422 /* SavePaymentMethod.m */; };
 		5357A5461D7ADF80008B4D2E /* checkOutBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 5357A5451D7ADF80008B4D2E /* checkOutBtn.png */; };
 		5357A54A1D7AE118008B4D2E /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5357A5481D7AE118008B4D2E /* AlertView.m */; };
 		535FF4CD1D7330A8001355CD /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 535FF4CA1D7330A8001355CD /* LoginView.m */; };
@@ -281,6 +283,10 @@
 		530B1F731D8977C000F1F894 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		5310F8691D7854DE007744A1 /* myAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myAnnotation.h; sourceTree = "<group>"; };
 		5310F86A1D7854DE007744A1 /* myAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myAnnotation.m; sourceTree = "<group>"; };
+		5356CB311EB4765000E0A422 /* MyAccountVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccountVW.h; sourceTree = "<group>"; };
+		5356CB321EB4765000E0A422 /* MyAccountVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccountVW.m; sourceTree = "<group>"; };
+		5356CB341EB484B700E0A422 /* SavePaymentMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavePaymentMethod.h; sourceTree = "<group>"; };
+		5356CB351EB484B700E0A422 /* SavePaymentMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavePaymentMethod.m; sourceTree = "<group>"; };
 		5357A5451D7ADF80008B4D2E /* checkOutBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkOutBtn.png; sourceTree = "<group>"; };
 		5357A5471D7AE118008B4D2E /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
 		5357A5481D7AE118008B4D2E /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
@@ -684,6 +690,10 @@
 				B10B98061D91B43E00228F33 /* PaymentView.m */,
 				B10B97FE1D91B15700228F33 /* DeliveryView.h */,
 				B10B97FF1D91B15700228F33 /* DeliveryView.m */,
+				5356CB311EB4765000E0A422 /* MyAccountVW.h */,
+				5356CB321EB4765000E0A422 /* MyAccountVW.m */,
+				5356CB341EB484B700E0A422 /* SavePaymentMethod.h */,
+				5356CB351EB484B700E0A422 /* SavePaymentMethod.m */,
 				B1FC793B1D7DE5D800DA38DC /* ProfileView.h */,
 				B1FC793C1D7DE5D800DA38DC /* ProfileView.m */,
 				5309C4C61D83F3CE00C146AC /* RateView.h */,
@@ -1098,6 +1108,7 @@
 				53FE84A71D7FF2A7005AF059 /* MapNearbyPlace.m in Sources */,
 				5301AF4C1D76A83C00F16656 /* AFURLSessionManager.m in Sources */,
 				5301AF2F1D76A80300F16656 /* UIImage+KVNEmpty.m in Sources */,
+				5356CB361EB484B700E0A422 /* SavePaymentMethod.m in Sources */,
 				5357A54A1D7AE118008B4D2E /* AlertView.m in Sources */,
 				B1BE54D91D6E1A030012A152 /* IQPreviousNextView.m in Sources */,
 				B1BE54D11D6E1A030012A152 /* IQUITextFieldView+Additions.m in Sources */,
@@ -1154,6 +1165,7 @@
 				535FF4CE1D7330A8001355CD /* RegisterView.m in Sources */,
 				535FF4CD1D7330A8001355CD /* LoginView.m in Sources */,
 				B10605BA1D76014A00D0501F /* MapCellView.m in Sources */,
+				5356CB331EB4765000E0A422 /* MyAccountVW.m in Sources */,
 				5309C4C81D83F3CF00C146AC /* RateView.m in Sources */,
 				B109C6551D6C9FC9000936A2 /* main.m in Sources */,
 				5301AF671D76A85600F16656 /* UIImageView+AFNetworking.m in Sources */,
@@ -1292,7 +1304,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HalalMeatDelivery",
-
+					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalMobile",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1327,7 +1339,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HalalMeatDelivery",
-
+					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalMobile",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
