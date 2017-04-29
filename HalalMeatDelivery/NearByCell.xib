@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -12,17 +15,20 @@
             <rect key="frame" x="0.0" y="0.0" width="363" height="128"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="363" height="128"/>
+                <rect key="frame" x="0.0" y="0.0" width="363" height="127"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CellShadow" translatesAutoresizingMaskIntoConstraints="NO" id="aOx-c5-dH3"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CellShadow" translatesAutoresizingMaskIntoConstraints="NO" id="aOx-c5-dH3">
+                        <rect key="frame" x="0.0" y="0.0" width="363" height="128"/>
+                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Food.png" translatesAutoresizingMaskIntoConstraints="NO" id="wxr-mI-and">
+                        <rect key="frame" x="6" y="6" width="102" height="116"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="102" id="yQd-My-zoC"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="Restaurant Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbn-cD-fn4">
-                        <frame key="frameInset" minX="116" minY="10" width="210" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Restaurant Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbn-cD-fn4">
+                        <rect key="frame" x="116" y="10" width="203" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="RnC-aP-UVs"/>
                         </constraints>
@@ -30,14 +36,14 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="(authentic) beef,chicken" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snP-IB-eh6">
-                        <frame key="frameInset" minX="116" minY="61" width="234" height="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(authentic) beef,chicken" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snP-IB-eh6">
+                        <rect key="frame" x="116" y="61" width="234" height="13"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10.5"/>
                         <color key="textColor" red="0.52549019610000003" green="0.4941176471" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="(36 Review)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3L-eF-QGk">
-                        <frame key="frameInset" minX="213" minY="35" width="58" height="12"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(36 Review)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3L-eF-QGk">
+                        <rect key="frame" x="213" y="35" width="55" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="iuV-dx-GtA"/>
                         </constraints>
@@ -46,6 +52,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="World Vision UK ,5th Floor, 11 Belgrave Road London, SW1V 1RB" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPy-bj-i5h">
+                        <rect key="frame" x="116" y="84" width="234" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="BK9-0r-HaN"/>
                         </constraints>
@@ -54,36 +61,42 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FullStar" translatesAutoresizingMaskIntoConstraints="NO" id="AKV-Vx-AAl">
+                        <rect key="frame" x="116" y="33" width="16" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="Dnj-IO-Zru"/>
                             <constraint firstAttribute="width" constant="16" id="ogm-eo-viJ"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FullStar" translatesAutoresizingMaskIntoConstraints="NO" id="jv0-95-StX">
+                        <rect key="frame" x="134" y="33" width="16" height="15"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="RMv-Qi-A5R"/>
                             <constraint firstAttribute="height" constant="15" id="Sz8-dt-Yul"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FullStar" translatesAutoresizingMaskIntoConstraints="NO" id="Uy1-kQ-aee">
+                        <rect key="frame" x="152" y="33" width="16" height="15"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="60f-HQ-CF8"/>
                             <constraint firstAttribute="height" constant="15" id="djd-Fw-LCR"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FullStar" translatesAutoresizingMaskIntoConstraints="NO" id="wo2-sE-yhU">
+                        <rect key="frame" x="170" y="33" width="16" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="rQ2-tZ-4Wo"/>
                             <constraint firstAttribute="width" constant="16" id="yL6-Il-UdU"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FullStar" translatesAutoresizingMaskIntoConstraints="NO" id="t3H-7L-PKN">
+                        <rect key="frame" x="188" y="33" width="16" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="I6W-eq-ReX"/>
                             <constraint firstAttribute="width" constant="16" id="OMI-HX-YKh"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JB0-GJ-hno">
+                        <rect key="frame" x="327" y="15" width="24" height="11"/>
                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                         <color key="textColor" red="0.87843137250000003" green="0.25882352939999997" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
