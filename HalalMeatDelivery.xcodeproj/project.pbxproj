@@ -144,6 +144,20 @@
 		B11658021D7760A7005AF0D1 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B11657F31D7760A7005AF0D1 /* UIImageView+WebCache.m */; };
 		B11658031D7760A7005AF0D1 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B11657F51D7760A7005AF0D1 /* UIView+WebCacheOperation.m */; };
 		B120439C1D789BE800095219 /* RestaurantHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B120439B1D789BE800095219 /* RestaurantHeaderView.m */; };
+		B13984101EB6432800A32E36 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B139840E1EB6432800A32E36 /* CategoryCell.m */; };
+		B13984111EB6432800A32E36 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B139840F1EB6432800A32E36 /* CategoryCell.xib */; };
+		B14400D21EB48A6A00D4047E /* button_secondary.png in Resources */ = {isa = PBXBuildFile; fileRef = B14400BF1EB48A6A00D4047E /* button_secondary.png */; };
+		B14400D31EB48A6A00D4047E /* button_secondary@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B14400C01EB48A6A00D4047E /* button_secondary@2x.png */; };
+		B14400D41EB48A6A00D4047E /* button_secondary_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = B14400C11EB48A6A00D4047E /* button_secondary_selected.png */; };
+		B14400D51EB48A6A00D4047E /* button_secondary_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B14400C21EB48A6A00D4047E /* button_secondary_selected@2x.png */; };
+		B14400D61EB48A6A00D4047E /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = B14400C31EB48A6A00D4047E /* check.png */; };
+		B14400D71EB48A6A00D4047E /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B14400C41EB48A6A00D4047E /* check@2x.png */; };
+		B14400D81EB48A6A00D4047E /* ios_sample_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B14400C51EB48A6A00D4047E /* ios_sample_icon.png */; };
+		B14400D91EB48A6A00D4047E /* ios_sample_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B14400C61EB48A6A00D4047E /* ios_sample_icon@2x.png */; };
+		B14400DA1EB48A6A00D4047E /* libCardIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B14400C71EB48A6A00D4047E /* libCardIO.a */; };
+		B14400DB1EB48A6A00D4047E /* libopencv_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B14400C81EB48A6A00D4047E /* libopencv_core.a */; };
+		B14400DC1EB48A6A00D4047E /* libopencv_imgproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B14400C91EB48A6A00D4047E /* libopencv_imgproc.a */; };
+		B14400DD1EB48A6A00D4047E /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B14400CA1EB48A6A00D4047E /* libPayPalMobile.a */; };
 		B1BE545B1D6E134B0012A152 /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BE545A1D6E134B0012A152 /* HomeView.m */; };
 		B1BE54CF1D6E1A030012A152 /* IQNSArray+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BE54AD1D6E1A030012A152 /* IQNSArray+Sort.m */; };
 		B1BE54D01D6E1A030012A152 /* IQUIScrollView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BE54AF1D6E1A030012A152 /* IQUIScrollView+Additions.m */; };
@@ -399,6 +413,28 @@
 		B11657F51D7760A7005AF0D1 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		B120439A1D789BE800095219 /* RestaurantHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantHeaderView.h; sourceTree = "<group>"; };
 		B120439B1D789BE800095219 /* RestaurantHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantHeaderView.m; sourceTree = "<group>"; };
+		B139840D1EB6432800A32E36 /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
+		B139840E1EB6432800A32E36 /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
+		B139840F1EB6432800A32E36 /* CategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
+		B14400BF1EB48A6A00D4047E /* button_secondary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_secondary.png; sourceTree = "<group>"; };
+		B14400C01EB48A6A00D4047E /* button_secondary@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_secondary@2x.png"; sourceTree = "<group>"; };
+		B14400C11EB48A6A00D4047E /* button_secondary_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_secondary_selected.png; sourceTree = "<group>"; };
+		B14400C21EB48A6A00D4047E /* button_secondary_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_secondary_selected@2x.png"; sourceTree = "<group>"; };
+		B14400C31EB48A6A00D4047E /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		B14400C41EB48A6A00D4047E /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
+		B14400C51EB48A6A00D4047E /* ios_sample_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios_sample_icon.png; sourceTree = "<group>"; };
+		B14400C61EB48A6A00D4047E /* ios_sample_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios_sample_icon@2x.png"; sourceTree = "<group>"; };
+		B14400C71EB48A6A00D4047E /* libCardIO.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCardIO.a; sourceTree = "<group>"; };
+		B14400C81EB48A6A00D4047E /* libopencv_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_core.a; sourceTree = "<group>"; };
+		B14400C91EB48A6A00D4047E /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_imgproc.a; sourceTree = "<group>"; };
+		B14400CA1EB48A6A00D4047E /* libPayPalMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPayPalMobile.a; sourceTree = "<group>"; };
+		B14400CB1EB48A6A00D4047E /* PayPalConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalConfiguration.h; sourceTree = "<group>"; };
+		B14400CC1EB48A6A00D4047E /* PayPalFuturePaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalFuturePaymentViewController.h; sourceTree = "<group>"; };
+		B14400CD1EB48A6A00D4047E /* PayPalMobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalMobile.h; sourceTree = "<group>"; };
+		B14400CE1EB48A6A00D4047E /* PayPalOAuthScopes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalOAuthScopes.h; sourceTree = "<group>"; };
+		B14400CF1EB48A6A00D4047E /* PayPalPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPayment.h; sourceTree = "<group>"; };
+		B14400D01EB48A6A00D4047E /* PayPalPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPaymentViewController.h; sourceTree = "<group>"; };
+		B14400D11EB48A6A00D4047E /* PayPalProfileSharingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalProfileSharingViewController.h; sourceTree = "<group>"; };
 		B1BE54591D6E134B0012A152 /* HomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeView.h; sourceTree = "<group>"; };
 		B1BE545A1D6E134B0012A152 /* HomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeView.m; sourceTree = "<group>"; };
 		B1BE54AC1D6E1A030012A152 /* IQNSArray+Sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQNSArray+Sort.h"; sourceTree = "<group>"; };
@@ -462,11 +498,15 @@
 				530B1F6C1D89773F00F1F894 /* Accelerate.framework in Frameworks */,
 				5301AF7D1D76AAA400F16656 /* AVFoundation.framework in Frameworks */,
 				5301AF7B1D76AA9C00F16656 /* CFNetwork.framework in Frameworks */,
+				B14400DA1EB48A6A00D4047E /* libCardIO.a in Frameworks */,
+				B14400DD1EB48A6A00D4047E /* libPayPalMobile.a in Frameworks */,
 				5301AF791D76AA9400F16656 /* SystemConfiguration.framework in Frameworks */,
 				5301AF771D76AA8C00F16656 /* Security.framework in Frameworks */,
 				5301AF751D76AA7D00F16656 /* GLKit.framework in Frameworks */,
+				B14400DB1EB48A6A00D4047E /* libopencv_core.a in Frameworks */,
 				5301AF731D76AA6100F16656 /* Social.framework in Frameworks */,
 				5301AF711D76AA5200F16656 /* MobileCoreServices.framework in Frameworks */,
+				B14400DC1EB48A6A00D4047E /* libopencv_imgproc.a in Frameworks */,
 				B1F47D4D1D6F6047000D5C0A /* ImageIO.framework in Frameworks */,
 				B10B1BD81D6EFC1A005C9D87 /* CoreGraphics.framework in Frameworks */,
 				53080A991D85870700ADA06C /* HCSStarRatingView.framework in Frameworks */,
@@ -652,6 +692,7 @@
 		B109C6521D6C9FC9000936A2 /* HalalMeatDelivery */ = {
 			isa = PBXGroup;
 			children = (
+				B14400BE1EB48A6A00D4047E /* PayPalSDK */,
 				530A20E01E5C099200452FF2 /* ios */,
 				B1F47D3C1D6F54A4000D5C0A /* DTTableView */,
 				B10B1BDD1D6EFCE0005C9D87 /* MapFile */,
@@ -801,6 +842,32 @@
 			name = WEBIMG;
 			sourceTree = "<group>";
 		};
+		B14400BE1EB48A6A00D4047E /* PayPalSDK */ = {
+			isa = PBXGroup;
+			children = (
+				B14400BF1EB48A6A00D4047E /* button_secondary.png */,
+				B14400C01EB48A6A00D4047E /* button_secondary@2x.png */,
+				B14400C11EB48A6A00D4047E /* button_secondary_selected.png */,
+				B14400C21EB48A6A00D4047E /* button_secondary_selected@2x.png */,
+				B14400C31EB48A6A00D4047E /* check.png */,
+				B14400C41EB48A6A00D4047E /* check@2x.png */,
+				B14400C51EB48A6A00D4047E /* ios_sample_icon.png */,
+				B14400C61EB48A6A00D4047E /* ios_sample_icon@2x.png */,
+				B14400C71EB48A6A00D4047E /* libCardIO.a */,
+				B14400C81EB48A6A00D4047E /* libopencv_core.a */,
+				B14400C91EB48A6A00D4047E /* libopencv_imgproc.a */,
+				B14400CA1EB48A6A00D4047E /* libPayPalMobile.a */,
+				B14400CB1EB48A6A00D4047E /* PayPalConfiguration.h */,
+				B14400CC1EB48A6A00D4047E /* PayPalFuturePaymentViewController.h */,
+				B14400CD1EB48A6A00D4047E /* PayPalMobile.h */,
+				B14400CE1EB48A6A00D4047E /* PayPalOAuthScopes.h */,
+				B14400CF1EB48A6A00D4047E /* PayPalPayment.h */,
+				B14400D01EB48A6A00D4047E /* PayPalPaymentViewController.h */,
+				B14400D11EB48A6A00D4047E /* PayPalProfileSharingViewController.h */,
+			);
+			path = PayPalSDK;
+			sourceTree = "<group>";
+		};
 		B1BE54571D6E12E70012A152 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -872,6 +939,9 @@
 				B1F9A0511D842B62001ED014 /* RetViewCell.xib */,
 				53080A941D85840300ADA06C /* HCSStarRatingView.h */,
 				53080A951D85840300ADA06C /* HCSStarRatingView.m */,
+				B139840D1EB6432800A32E36 /* CategoryCell.h */,
+				B139840E1EB6432800A32E36 /* CategoryCell.m */,
+				B139840F1EB6432800A32E36 /* CategoryCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1036,31 +1106,38 @@
 				530793251D706FB40028BF53 /* userTxt.png in Resources */,
 				B109C6631D6C9FC9000936A2 /* LaunchScreen.storyboard in Resources */,
 				530793331D7097E50028BF53 /* AddressTxt.png in Resources */,
+				B14400D91EB48A6A00D4047E /* ios_sample_icon@2x.png in Resources */,
 				B1F47D4B1D6F5C33000D5C0A /* WhiteStat.png in Resources */,
 				B109C67B1D6CBE1A000936A2 /* Food.png in Resources */,
 				B10B97F41D91AFEB00228F33 /* TakeawayThaxView.xib in Resources */,
+				B13984111EB6432800A32E36 /* CategoryCell.xib in Resources */,
 				5301AF381D76A81900F16656 /* KVNProgressView.xib in Resources */,
 				535FF4D51D741877001355CD /* NearByCell.xib in Resources */,
+				B14400D71EB48A6A00D4047E /* check@2x.png in Resources */,
 				B10B1BC51D6EC3CA005C9D87 /* login_back_xhdpi.png in Resources */,
 				B1F9A0521D842B63001ED014 /* RetViewCell.xib in Resources */,
 				B10B1BEA1D6EFEF4005C9D87 /* WhiteMenuIcon.png in Resources */,
+				B14400D41EB48A6A00D4047E /* button_secondary_selected.png in Resources */,
 				530793371D7098010028BF53 /* PincodeTxt.png in Resources */,
 				B109C6601D6C9FC9000936A2 /* Assets.xcassets in Resources */,
 				B10B1BD31D6EEC44005C9D87 /* MenuCell.xib in Resources */,
 				B10B98021D91B25700228F33 /* SimpleTXT.png in Resources */,
 				530793231D706FB40028BF53 /* loginBtn.png in Resources */,
 				B1FFE4B41D80870800A40684 /* ThankYouView.xib in Resources */,
+				B14400D31EB48A6A00D4047E /* button_secondary@2x.png in Resources */,
 				B111C7391D93049500DE70B6 /* HostoryDetailCell.xib in Resources */,
 				B111C73E1D93093A00DE70B6 /* DateAlert.xib in Resources */,
 				530793301D7097AD0028BF53 /* pin_pop_Red.png in Resources */,
 				535FF4DA1D7418A0001355CD /* ProductDetailCell.xib in Resources */,
 				53080A901D85610700ADA06C /* RestaurantDetailTabView.xib in Resources */,
+				B14400D61EB48A6A00D4047E /* check.png in Resources */,
 				B111C7371D93046A00DE70B6 /* phonereceiver.png in Resources */,
 				B1FC79421D7DEDF900DA38DC /* PasswordView.xib in Resources */,
 				5309350E1D9E29FF00F9DBEE /* Main.storyboard in Resources */,
 				530824931D829B8000948547 /* EmailTxt.png in Resources */,
 				530824951D82A0F800948547 /* userNameTxtSquare.png in Resources */,
 				5307932B1D7086AE0028BF53 /* SplashScreen1.png in Resources */,
+				B14400D51EB48A6A00D4047E /* button_secondary_selected@2x.png in Resources */,
 				530793241D706FB40028BF53 /* passwordTxt.png in Resources */,
 				B1BE54DD1D6E1A030012A152 /* IQKeyboardManager.bundle in Resources */,
 				530824A31D82A45400948547 /* citytxtQuare.png in Resources */,
@@ -1074,9 +1151,11 @@
 				B10B1BCD1D6ED119005C9D87 /* DrawerView.xib in Resources */,
 				5357A5461D7ADF80008B4D2E /* checkOutBtn.png in Resources */,
 				B10605B71D75FDFE00D0501F /* myView.xib in Resources */,
+				B14400D81EB48A6A00D4047E /* ios_sample_icon.png in Resources */,
 				530793291D7079FF0028BF53 /* searchnearbyBtn.png in Resources */,
 				53080A921D857D0F00ADA06C /* AddReviewBtn.png in Resources */,
 				530A20E11E5C099200452FF2 /* ios in Resources */,
+				B14400D21EB48A6A00D4047E /* button_secondary.png in Resources */,
 				5308249B1D82A25C00948547 /* PhoneTxtQuare.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1154,6 +1233,7 @@
 				B11658011D7760A7005AF0D1 /* UIImageView+HighlightedWebCache.m in Sources */,
 				B11657FE1D7760A7005AF0D1 /* UIButton+WebCache.m in Sources */,
 				5301AF691D76A85600F16656 /* UIRefreshControl+AFNetworking.m in Sources */,
+				B13984101EB6432800A32E36 /* CategoryCell.m in Sources */,
 				B11657FA1D7760A7005AF0D1 /* SDWebImageDownloader.m in Sources */,
 				B110D5D31D72F041008D8655 /* OrderHistoryDetailView.m in Sources */,
 				B10B98041D91B30E00228F33 /* OrderHistoryView.m in Sources */,
@@ -1305,6 +1385,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HalalMeatDelivery",
 					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalMobile",
+					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalSDK",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1340,6 +1421,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HalalMeatDelivery",
 					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalMobile",
+					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalSDK",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

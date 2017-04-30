@@ -20,5 +20,22 @@
 @property (strong, nonatomic) IBOutlet UIButton *Searc_BTN;
 @property (strong, nonatomic) IBOutlet UISearchBar *SearchBar;
 - (IBAction)Menu_Click:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *Filter_BTN;
+- (IBAction)Filter_click:(id)sender;
+
+
+@property (strong, nonatomic) IBOutlet UIView *FilterView;
+- (IBAction)FilterBack_Ckick:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *SearchByCatBTN;
+@property (strong, nonatomic) IBOutlet UIButton *SearchByPriceBTN;
+@property (strong, nonatomic) IBOutlet UIButton *SearchByRatBTN;
+@property (strong, nonatomic) IBOutlet UIButton *SearchByDistBTN;
+@property (strong, nonatomic) IBOutlet UIButton *FreeDelevBTN;
+
+@property (strong, nonatomic) IBOutlet UIView *PriceView;
+
+- (IBAction)AllCatBTN_Click:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UITableView *CatTBL;
 
 @end

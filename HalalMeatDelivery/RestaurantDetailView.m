@@ -26,6 +26,7 @@
     NSMutableArray *Cat_Arr,*LoadArr;
     NSMutableDictionary *ItemDic;
     
+    NSMutableArray *MainCountArr;
     
     UIImageView *ImgVW;
     CGFloat screenWidth;
@@ -444,12 +445,22 @@
         }
     }
     [self scrollToPage:sender.tag];
+    
 }
 
 -(void)scrollToPage:(NSInteger)aPage
 {
     float myPageWidth = [TableScroll frame].size.width;
     [TableScroll setContentOffset:CGPointMake(aPage*myPageWidth,0) animated:YES];
+    
+    NSArray* subviews = [[NSArray alloc] initWithArray: TableScroll.subviews];
+    for (UITableView* view in subviews)
+    {
+        if ([view isKindOfClass:[UITableView class]])
+        {
+            [view reloadData];
+        }
+    }
 }
 
 
@@ -557,11 +568,32 @@
     if (Cat_Arr.count>0)
     {
         ItemDic=[[RestraorntDic valueForKey:@"products"] valueForKey:[Cat_Arr objectAtIndex:0]];
+        MainCount=[[NSMutableArray alloc]init];
         NSString *CatStr=[[NSString alloc]init];
         arrData=[[NSMutableArray alloc] init];
         for (int i=0; i<Cat_Arr.count; i++)
         {
             arr=[[RestraorntDic valueForKey:@"products"] valueForKey:[Cat_Arr objectAtIndex:i]];
+            NSMutableArray *countArr=[[NSMutableArray alloc]init];
+            for (int j=0; j<arr.count; j++)
+            {
+                [countArr addObject:@"1"];
+            }
+            [MainCount addObject:countArr];
+           
+            //***************** static array or Dic *****************************
+//            dic=[[NSMutableDictionary alloc]init];
+//            MainDic=[[NSMutableDictionary alloc]init];
+//            arr=[[NSMutableArray alloc]init];
+//            MainCount=[[NSMutableArray alloc]init];
+//            for (int i = 0; i<[arr count]; i++)
+//            {
+//                [arr addObject:@"1"];
+//                [MainCount addObject:@"1"];
+//            }
+//            [dic setObject:arr forKey:@"Count"];
+//            [MainDic setObject:MainCount forKey:@"MainCount"];
+            //***************** static array or Dic *****************************
             [arrData addObject:arr];
             if (i==0)
             {
@@ -595,19 +627,7 @@
         width+=screenWidth;
     }
     
-    //***************** static array or Dic *****************************
-    dic=[[NSMutableDictionary alloc]init];
-    MainDic=[[NSMutableDictionary alloc]init];
-    arr=[[NSMutableArray alloc]init];
-    MainCount=[[NSMutableArray alloc]init];
-    for (int i = 0; i<[arrData count]; i++)
-    {
-        [arr addObject:@"1"];
-        [MainCount addObject:@"1"];
-    }
-    [dic setObject:arr forKey:@"Count"];
-    [MainDic setObject:MainCount forKey:@"MainCount"];
-    //***************** static array or Dic *****************************
+    
     
     
     [TableScroll setContentSize:CGSizeMake(([arrData count])*screenWidth, TableScroll.frame.size.height)];
@@ -646,18 +666,22 @@
         cell.Plush_BTN.tag=indexPath.row;
         cell.Minush_BTN.tag=indexPath.row;
         
-        NSInteger *Main=[[[MainDic valueForKey:@"MainCount"] objectAtIndex:indexPath.row] integerValue];
         
-        NSInteger *Second=[[[dic valueForKey:@"Count"] objectAtIndex:indexPath.row] integerValue];
+        cell.RestQuatityLBL.text=[[MainCount objectAtIndex:tableView.tag] objectAtIndex:indexPath.row];
         
-        if (Main==Second)
-        {
-            cell.RestQuatityLBL.text=[NSString stringWithFormat:@"%ld",Main];
-        }
-        else
-        {
-            cell.RestQuatityLBL.text=[NSString stringWithFormat:@"%ld",Second];
-        }
+        
+//        NSInteger *Main=[[[MainDic valueForKey:@"MainCount"] objectAtIndex:indexPath.row] integerValue];
+//        
+//        NSInteger *Second=[[[dic valueForKey:@"Count"] objectAtIndex:indexPath.row] integerValue];
+//        
+//        if (Main==Second)
+//        {
+//            cell.RestQuatityLBL.text=[NSString stringWithFormat:@"%ld",Main];
+//        }
+//        else
+//        {
+//            cell.RestQuatityLBL.text=[NSString stringWithFormat:@"%ld",Second];
+//        }
         
         [cell.AddCart_BTN addTarget:self action:@selector(AddToCardClick:) forControlEvents:UIControlEventTouchUpInside];
         cell.AddCart_BTN.tag=indexPath.row;
@@ -714,6 +738,7 @@
 {
         cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.0f);
 }
+
 -(void)PlushClick:(id)sender
 {
     UIButton *senderButton = (UIButton *)sender;
@@ -725,16 +750,26 @@
     ProductDetailCell *cell = (ProductDetailCell *)[DataTable cellForRowAtIndexPath:pathOfTheCell];
     NSLog(@"senderButton.tag=%ld",(long)senderButton.tag);
     
-    NSInteger count = [cell.RestQuatityLBL.text integerValue];
+    NSLog(@"Array===%@",[[MainCount objectAtIndex:pageTable] objectAtIndex:senderButton.tag]);
+    
+    NSInteger count = [[[MainCount objectAtIndex:pageTable] objectAtIndex:senderButton.tag] integerValue];
     count = count + 1;
     cell.RestQuatityLBL.text = [NSString stringWithFormat:@"%ld",count];
     
-    [arr replaceObjectAtIndex:senderButton.tag withObject:[NSString stringWithFormat:@"%ld",count]];
+    [[MainCount objectAtIndex:pageTable] replaceObjectAtIndex:senderButton.tag withObject:[NSString stringWithFormat:@"%ld",count]];
     [dic setObject:arr forKey:@"Count"];
     
     ButtonTag=senderButton.tag;
     chechPlusMinus=1;
-    //[TableView reloadData];
+    
+    NSArray* subviews = [[NSArray alloc] initWithArray: TableScroll.subviews];
+    for (UITableView* view in subviews)
+    {
+        if ([view isKindOfClass:[UITableView class]])
+        {
+            [view reloadData];
+        }
+    }    //[TableView reloadData];
     
 }
 
@@ -758,6 +793,14 @@
         ButtonTag=senderButton.tag;
         chechPlusMinus=0;
        
+    }
+    NSArray* subviews = [[NSArray alloc] initWithArray: TableScroll.subviews];
+    for (UITableView* view in subviews)
+    {
+        if ([view isKindOfClass:[UITableView class]])
+        {
+            [view reloadData];
+        }
     }
 }
 
