@@ -783,11 +783,12 @@
     //NSDictionary *item = sortedItems[sortedItems.allKeys[pathOfTheCell.row]];
     ProductDetailCell *cell = (ProductDetailCell *)[DataTable cellForRowAtIndexPath:pathOfTheCell];
     
-    NSInteger count = [cell.RestQuatityLBL.text integerValue];
+    NSInteger count = [[[MainCount objectAtIndex:pageTable] objectAtIndex:senderButton.tag] integerValue];
     count = count - 1;
     if (count!=0)
     {
         cell.RestQuatityLBL.text = [NSString stringWithFormat:@"%ld",count];
+        [[MainCount objectAtIndex:pageTable] replaceObjectAtIndex:senderButton.tag withObject:[NSString stringWithFormat:@"%ld",count]];
         [arr replaceObjectAtIndex:senderButton.tag withObject:[NSString stringWithFormat:@"%ld",count]];
         [dic setObject:arr forKey:@"Count"];
         ButtonTag=senderButton.tag;
