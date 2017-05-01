@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "HalalMeatDelivery.pch"
+#import "TTRangeSlider.h"
 
-@interface SearchByShop : UIViewController<CCKFNavDrawerDelegate>
+@interface SearchByShop : UIViewController<CCKFNavDrawerDelegate,TTRangeSliderDelegate>
 @property (strong, nonatomic) CCKFNavDrawer *rootNav;
 
 @property (strong, nonatomic) IBOutlet UITableView *Table;
@@ -37,5 +38,6 @@
 - (IBAction)AllCatBTN_Click:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UITableView *CatTBL;
+@property (weak, nonatomic) IBOutlet TTRangeSlider *rangeSliderCurrency;
 
 @end

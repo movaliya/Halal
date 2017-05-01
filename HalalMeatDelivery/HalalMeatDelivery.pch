@@ -21,9 +21,11 @@
 
 
 
-// URL Or Web Service Implement
-//#define BaseUrl @"http://bulkbox.in/halal/service/"
-#define BaseUrl @"http://feedmemeathalal.com/application/service/"
+
+// URL Or Web Service Implement  //@"http://bulkbox.in/halal/service/"
+
+#define BaseUrl @"http://bulkbox.in/feedmemeat/service/"
+//#define BaseUrl @"http://feedmemeathalal.com/application/service/"
 #define r_p @"1224"
 
 #define UserLogin @"service_login.php"
@@ -109,6 +111,11 @@
 #define GetRestorantRateServiceName @"get_restorant_rate"
 
 #define GeAddRestorantRateReviewServiceName @"add_restorant_rate_review"
+
+// Filter
+#define Filter_url @"service_general.php"
+#define getFilterServiceName @"get_filter"
+
 
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)

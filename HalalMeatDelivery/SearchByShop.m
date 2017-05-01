@@ -35,7 +35,9 @@ static dispatch_once_t predicate;
     NSMutableArray *CatArr,*CatselectedArr;
     NSMutableArray *DistanceArr,*DistanceSelectArr;
     NSMutableArray *FreeDelArr,*FreeDelSelectArr;
+    NSMutableArray *ReviewStarArr,*ReviewStarSelectArr;
     NSInteger SelectedShort;
+    NSMutableDictionary *FilterDict;
     
 }
 @property AppDelegate *appDelegate;
@@ -54,30 +56,7 @@ static dispatch_once_t predicate;
     CatTBL.hidden=NO;
     [SearchByCatBTN setBackgroundColor:SelectedButtonColor];
     [SearchByCatBTN setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    
-    // Search By Category.
-    CatArr=[[NSMutableArray alloc]initWithObjects:@"Chicken",@"Lamb",@"Mutton",@"Beef", nil];
-    CatselectedArr=[[NSMutableArray alloc]init];
-    for (int i= 0; i<CatArr.count; i++)
-    {
-        [CatselectedArr addObject:@"0"];
-    }
-    
-    // Search By Distance.
-    DistanceArr=[[NSMutableArray alloc]initWithObjects:@"All",@"<5 Miles",@"<2 Miles",@"<1 Miles", nil];
-    DistanceSelectArr=[[NSMutableArray alloc]init];
-    for (int i= 0; i<DistanceArr.count; i++)
-    {
-        [DistanceSelectArr addObject:@"0"];
-    }
-    
-    // Search By FreeDelivery.
-    FreeDelArr=[[NSMutableArray alloc]initWithObjects:@"Free Delivery", nil];
-    FreeDelSelectArr=[[NSMutableArray alloc]init];
-    for (int i= 0; i<FreeDelArr.count; i++)
-    {
-        [FreeDelSelectArr addObject:@"0"];
-    }
+   
     
     
     FilterView.hidden=YES;
@@ -109,10 +88,23 @@ static dispatch_once_t predicate;
     CatTBL.rowHeight = cell2.frame.size.height;
     [CatTBL registerNib:nib2 forCellReuseIdentifier:@"CategoryCell"];
     
+    //currency range slider
+    self.rangeSliderCurrency.delegate = self;
+    self.rangeSliderCurrency.minValue = 50;
+    self.rangeSliderCurrency.maxValue = 150;
+    self.rangeSliderCurrency.selectedMinimum = 50;
+    self.rangeSliderCurrency.selectedMaximum = 150;
+    self.rangeSliderCurrency.handleColor = [UIColor greenColor];
+    self.rangeSliderCurrency.handleDiameter = 30;
+    self.rangeSliderCurrency.selectedHandleDiameterMultiplier = 1.3;
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    self.rangeSliderCurrency.numberFormatterOverride = formatter;
     
     
     limit_only=0;
     // Do any additional setup after loading the view.
+    [self getFilterData];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -123,7 +115,79 @@ static dispatch_once_t predicate;
     [self.rootNav CheckLoginArr];
     [self.rootNav.pan_gr setEnabled:YES];
 }
-
+-(void)getFilterData
+{
+    
+    NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] init];
+    [dictParams setObject:r_p  forKey:@"r_p"];
+    [dictParams setObject:getFilterServiceName  forKey:@"service"];
+    
+    [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,Filter_url] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)
+     {
+         [self handleGetFilterResponse:response];
+     }];
+}
+- (void)handleGetFilterResponse:(NSDictionary*)response
+{
+    NSLog(@"GetFilterResponse ===%@",response);
+    if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
+    {
+        FilterDict=[response valueForKey:@"result"];
+        
+        for (NSArray *filtername in FilterDict)
+        {
+            if ([[filtername valueForKey:@"filter_name"] isEqualToString:@"Search By Category"])
+            {
+                // Search By Category.
+                CatArr=[[NSMutableArray alloc]init];
+                CatArr=[[filtername valueForKey:@"data"]valueForKey:@"filter_value_name"];
+                CatselectedArr=[[NSMutableArray alloc]init];
+                for (int i= 0; i<CatArr.count; i++)
+                {
+                    [CatselectedArr addObject:@"0"];
+                }
+            }
+            else if ([[filtername valueForKey:@"filter_name"] isEqualToString:@"Sort By Distance"])
+            {
+                // Search By Distance.
+                DistanceArr=[[NSMutableArray alloc]init];
+                DistanceArr=[[filtername valueForKey:@"data"]valueForKey:@"filter_value_name"];
+                DistanceSelectArr=[[NSMutableArray alloc]init];
+                for (int i= 0; i<DistanceArr.count; i++)
+                {
+                    [DistanceSelectArr addObject:@"0"];
+                }
+            }
+            else if ([[filtername valueForKey:@"filter_name"] isEqualToString:@"Free Delivery"])
+            {
+                // Search By FreeDelivery.
+                FreeDelArr=[[NSMutableArray alloc]init];
+                FreeDelArr=[[filtername valueForKey:@"data"]valueForKey:@"filter_value_name"];
+                FreeDelSelectArr=[[NSMutableArray alloc]init];
+                for (int i= 0; i<FreeDelArr.count; i++)
+                {
+                    [FreeDelSelectArr addObject:@"0"];
+                }
+            }
+            else if ([[filtername valueForKey:@"filter_name"] isEqualToString:@"Sort By Rating"])
+            {
+                // Search By FreeDelivery.
+                ReviewStarArr=[[NSMutableArray alloc]init];
+                ReviewStarArr=[[filtername valueForKey:@"data"]valueForKey:@"filter_value_name"];
+                ReviewStarSelectArr=[[NSMutableArray alloc]init];
+                for (int i= 0; i<ReviewStarArr.count; i++)
+                {
+                    [ReviewStarSelectArr addObject:@"0"];
+                }
+            }
+        }
+       [CatTBL reloadData];
+    }
+    else
+    {
+       
+    }
+}
 -(void)CallForSearchByShop
 {
     NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] init];
@@ -199,6 +263,10 @@ static dispatch_once_t predicate;
         {
             return CatArr.count;
         }
+        else if (SelectedShort==2)
+        {
+            return ReviewStarArr.count;
+        }
         else if (SelectedShort==3)
         {
             return DistanceArr.count;
@@ -227,6 +295,9 @@ static dispatch_once_t predicate;
         
         if (SelectedShort==0)
         {
+            [cell.StarView setHidden:YES];
+            [cell.CatTitle_LBL setHidden:NO];
+           
             if ([[CatselectedArr objectAtIndex:indexPath.row] isEqualToString:@"0"])
             {
                 cell.CatIMG.image=[UIImage imageNamed:@"UnselectChkBox"];
@@ -238,8 +309,64 @@ static dispatch_once_t predicate;
             
             cell.CatTitle_LBL.text=[CatArr objectAtIndex:indexPath.row];
         }
+        if (SelectedShort==2)
+        {
+             [cell.StarView setHidden:NO];
+             [cell.CatTitle_LBL setHidden:YES];
+            
+            if ([[ReviewStarSelectArr objectAtIndex:indexPath.row] isEqualToString:@"0"])
+            {
+                cell.CatIMG.image=[UIImage imageNamed:@"UnselectChkBox"];
+            }
+            else
+            {
+                cell.CatIMG.image=[UIImage imageNamed:@"SelectChkBox"];
+            }
+            if ([[ReviewStarArr objectAtIndex:indexPath.row] integerValue]<=5)
+            {
+                if ([[ReviewStarArr objectAtIndex:indexPath.row] integerValue]==5) {
+                    [cell.Start1 setHidden:NO];
+                    [cell.Start2 setHidden:NO];
+                    [cell.Start3 setHidden:NO];
+                    [cell.Start4 setHidden:NO];
+                    [cell.Start5 setHidden:NO];
+                   
+                }
+                if ([[ReviewStarArr objectAtIndex:indexPath.row] integerValue]==4) {
+                    [cell.Start1 setHidden:NO];
+                    [cell.Start2 setHidden:NO];
+                    [cell.Start3 setHidden:NO];
+                    [cell.Start4 setHidden:NO];
+                    [cell.Start5 setHidden:YES];
+                }
+                if ([[ReviewStarArr objectAtIndex:indexPath.row] integerValue]==3) {
+                    [cell.Start1 setHidden:NO];
+                    [cell.Start2 setHidden:NO];
+                    [cell.Start3 setHidden:NO];
+                    [cell.Start4 setHidden:YES];
+                    [cell.Start5 setHidden:YES];
+                }
+                if ([[ReviewStarArr objectAtIndex:indexPath.row] integerValue]==2) {
+                    [cell.Start1 setHidden:NO];
+                    [cell.Start2 setHidden:NO];
+                    [cell.Start3 setHidden:YES];
+                    [cell.Start4 setHidden:YES];
+                    [cell.Start5 setHidden:YES];
+                }
+                if ([[ReviewStarArr objectAtIndex:indexPath.row] integerValue]==1) {
+                    [cell.Start1 setHidden:NO];
+                    [cell.Start2 setHidden:YES];
+                    [cell.Start3 setHidden:YES];
+                    [cell.Start4 setHidden:YES];
+                    [cell.Start5 setHidden:YES];
+                }
+            }
+            
+        }
         else if (SelectedShort==3)
         {
+             [cell.StarView setHidden:YES];
+            [cell.CatTitle_LBL setHidden:NO];
             if ([[DistanceSelectArr objectAtIndex:indexPath.row] isEqualToString:@"0"])
             {
                 cell.CatIMG.image=[UIImage imageNamed:@"UnselectChkBox"];
@@ -253,6 +380,8 @@ static dispatch_once_t predicate;
         }
         else if (SelectedShort==4)
         {
+             [cell.StarView setHidden:YES];
+            [cell.CatTitle_LBL setHidden:NO];
             if ([[FreeDelSelectArr objectAtIndex:indexPath.row] isEqualToString:@"0"])
             {
                 cell.CatIMG.image=[UIImage imageNamed:@"UnselectChkBox"];
@@ -330,6 +459,18 @@ static dispatch_once_t predicate;
                 [CatselectedArr replaceObjectAtIndex:indexPath.row withObject:@"0"];
             }
 
+        }
+        else if (SelectedShort==2)
+        {
+            if ([[ReviewStarSelectArr objectAtIndex:indexPath.row] isEqualToString:@"0"])
+            {
+                [ReviewStarSelectArr replaceObjectAtIndex:indexPath.row withObject:@"1"];
+            }
+            else
+            {
+                [ReviewStarSelectArr replaceObjectAtIndex:indexPath.row withObject:@"0"];
+            }
+            
         }
         else if (SelectedShort==3)
         {
@@ -656,4 +797,13 @@ static dispatch_once_t predicate;
     }
     [CatTBL reloadData];
 }
+
+#pragma mark TTRangeSliderViewDelegate
+-(void)rangeSlider:(TTRangeSlider *)sender didChangeSelectedMinimumValue:(float)selectedMinimum andMaximumValue:(float)selectedMaximum
+{
+    if (sender == self.rangeSliderCurrency) {
+        NSLog(@"Currency slider updated. Min Value: %.0f Max Value: %.0f", selectedMinimum, selectedMaximum);
+    }
+}
+
 @end

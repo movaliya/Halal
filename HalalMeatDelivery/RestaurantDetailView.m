@@ -754,10 +754,9 @@
     
     NSInteger count = [[[MainCount objectAtIndex:pageTable] objectAtIndex:senderButton.tag] integerValue];
     count = count + 1;
-    cell.RestQuatityLBL.text = [NSString stringWithFormat:@"%ld",count];
+    cell.RestQuatityLBL.text = [NSString stringWithFormat:@"%ld",(long)count];
     
-    [[MainCount objectAtIndex:pageTable] replaceObjectAtIndex:senderButton.tag withObject:[NSString stringWithFormat:@"%ld",count]];
-    [dic setObject:arr forKey:@"Count"];
+    [[MainCount objectAtIndex:pageTable] replaceObjectAtIndex:senderButton.tag withObject:[NSString stringWithFormat:@"%ld",(long)count]];
     
     ButtonTag=senderButton.tag;
     chechPlusMinus=1;
@@ -787,10 +786,8 @@
     count = count - 1;
     if (count!=0)
     {
-        cell.RestQuatityLBL.text = [NSString stringWithFormat:@"%ld",count];
-        [[MainCount objectAtIndex:pageTable] replaceObjectAtIndex:senderButton.tag withObject:[NSString stringWithFormat:@"%ld",count]];
-        [arr replaceObjectAtIndex:senderButton.tag withObject:[NSString stringWithFormat:@"%ld",count]];
-        [dic setObject:arr forKey:@"Count"];
+        cell.RestQuatityLBL.text = [NSString stringWithFormat:@"%ld",(long)count];
+        [[MainCount objectAtIndex:pageTable] replaceObjectAtIndex:senderButton.tag withObject:[NSString stringWithFormat:@"%ld",(long)count]];
         ButtonTag=senderButton.tag;
         chechPlusMinus=0;
        
@@ -824,6 +821,8 @@
     NSLog(@"===%@",[LoadArr2 objectAtIndex: [sender tag]]);
      NSLog(@"ID===%@",[[LoadArr2 objectAtIndex: [sender tag]] valueForKey:@"id"]);
     
+    NSArray *QTYARR= [[MainCount objectAtIndex:pageTable] mutableCopy];
+    
     if ([self.appDelegate isUserLoggedIn] == NO)
     {
         [self performSelector:@selector(checkLoginAndPresentContainer) withObject:nil afterDelay:0.0];
@@ -843,8 +842,8 @@
             [dictParams setObject:[UserData valueForKey:@"u_id"] forKey:@"uid"];
             [dictParams setObject:[RestraorntDic valueForKey:@"id"]  forKey:@"rid"];
             [dictParams setObject:[[LoadArr2 objectAtIndex: [sender tag]] valueForKey:@"id"]  forKey:@"pid"];
-            [dictParams setObject:@"1"  forKey:@"qty"];
-            NSLog(@"dictParams=%@",dictParams);
+            [dictParams setObject:[QTYARR objectAtIndex: [sender tag]]  forKey:@"qty"];
+            NSLog(@"ADD ITEM dictParams=%@",dictParams);
             
             [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,AddToCard_url] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)
              {

@@ -513,6 +513,7 @@
             [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"LoginUserDic"];
             [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"Email"];
             [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"Password"];
+            [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"PAYMENTMETHOD"];
             [[FBSession activeSession] closeAndClearTokenInformation];
             
             [self CheckLoginArr];
