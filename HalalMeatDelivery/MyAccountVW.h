@@ -13,4 +13,6 @@
 
 @property (strong, nonatomic) CCKFNavDrawer *rootNav;
 
+@property (strong, nonatomic) IBOutlet UIView *KLogOutView;
+@property (strong, nonatomic) IBOutlet UIView *KLoginView;
 @end

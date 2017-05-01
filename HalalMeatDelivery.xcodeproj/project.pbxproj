@@ -1331,6 +1331,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HalalMeatDelivery",
 					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalMobile",
+					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalSDK",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1366,6 +1367,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HalalMeatDelivery",
 					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalMobile",
+					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalSDK",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

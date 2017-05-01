@@ -52,11 +52,11 @@ static dispatch_once_t predicate;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.rangeSliderCurrency.hidden=YES;
     SelectedShort=0;
     CatTBL.hidden=NO;
     [SearchByCatBTN setBackgroundColor:SelectedButtonColor];
     [SearchByCatBTN setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-   
     
     
     FilterView.hidden=YES;
@@ -88,20 +88,6 @@ static dispatch_once_t predicate;
     CatTBL.rowHeight = cell2.frame.size.height;
     [CatTBL registerNib:nib2 forCellReuseIdentifier:@"CategoryCell"];
     
-    //currency range slider
-    self.rangeSliderCurrency.delegate = self;
-    self.rangeSliderCurrency.minValue = 50;
-    self.rangeSliderCurrency.maxValue = 150;
-    self.rangeSliderCurrency.selectedMinimum = 50;
-    self.rangeSliderCurrency.selectedMaximum = 150;
-    self.rangeSliderCurrency.handleColor = [UIColor greenColor];
-    self.rangeSliderCurrency.handleDiameter = 30;
-    self.rangeSliderCurrency.selectedHandleDiameterMultiplier = 1.3;
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    formatter.numberStyle = NSNumberFormatterCurrencyStyle;
-    self.rangeSliderCurrency.numberFormatterOverride = formatter;
-    
-    
     limit_only=0;
     // Do any additional setup after loading the view.
     [self getFilterData];
@@ -113,7 +99,7 @@ static dispatch_once_t predicate;
     self.rootNav = (CCKFNavDrawer *)self.navigationController;
     [self.rootNav setCCKFNavDrawerDelegate:self];
     [self.rootNav CheckLoginArr];
-    [self.rootNav.pan_gr setEnabled:YES];
+    [self.rootNav.pan_gr setEnabled:NO];
 }
 -(void)getFilterData
 {
@@ -681,6 +667,7 @@ static dispatch_once_t predicate;
 {
     PriceView.hidden=YES;
     FilterView.hidden=NO;
+    self.rangeSliderCurrency.hidden=YES;
     
     CatTBL.hidden=NO;
     SelectedShort=0;
@@ -696,6 +683,21 @@ static dispatch_once_t predicate;
     [SearchByRatBTN setBackgroundColor:[UIColor clearColor]];
     [SearchByDistBTN setBackgroundColor:[UIColor clearColor]];
     [FreeDelevBTN setBackgroundColor:[UIColor clearColor]];
+    
+    //currency range slider
+    //currency range slider
+    self.rangeSliderCurrency.delegate = self;
+    self.rangeSliderCurrency.minValue = 50;
+    self.rangeSliderCurrency.maxValue = 500;
+    self.rangeSliderCurrency.selectedMinimum = 50;
+    self.rangeSliderCurrency.selectedMaximum = 500;
+    self.rangeSliderCurrency.handleColor = [UIColor greenColor];
+    self.rangeSliderCurrency.handleDiameter = 30;
+    self.rangeSliderCurrency.selectedHandleDiameterMultiplier = 1.3;
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    self.rangeSliderCurrency.numberFormatterOverride = formatter;
+    [self.rangeSliderCurrency bringSubviewToFront:self.view];
 }
 
 - (IBAction)FilterBack_Ckick:(id)sender
@@ -707,6 +709,7 @@ static dispatch_once_t predicate;
 {
     PriceView.hidden=YES;
     CatTBL.hidden=NO;
+    self.rangeSliderCurrency.hidden=YES;
     if (sender==SearchByCatBTN)
     {
         SelectedShort=0;
@@ -729,6 +732,7 @@ static dispatch_once_t predicate;
         SelectedShort=1;
         PriceView.hidden=NO;
         CatTBL.hidden=YES;
+        self.rangeSliderCurrency.hidden=NO;
         
         [SearchByPriceBTN setBackgroundColor:SelectedButtonColor];
         [SearchByPriceBTN setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -801,7 +805,8 @@ static dispatch_once_t predicate;
 #pragma mark TTRangeSliderViewDelegate
 -(void)rangeSlider:(TTRangeSlider *)sender didChangeSelectedMinimumValue:(float)selectedMinimum andMaximumValue:(float)selectedMaximum
 {
-    if (sender == self.rangeSliderCurrency) {
+    if (sender == self.rangeSliderCurrency)
+    {
         NSLog(@"Currency slider updated. Min Value: %.0f Max Value: %.0f", selectedMinimum, selectedMaximum);
     }
 }

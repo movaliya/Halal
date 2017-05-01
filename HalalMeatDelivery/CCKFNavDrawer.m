@@ -280,6 +280,7 @@
 
 -(void)moveDrawer:(UIPanGestureRecognizer *)recognizer
 {
+    
     CGPoint translation = [recognizer translationInView:self.view];
     CGPoint velocity = [(UIPanGestureRecognizer*)recognizer velocityInView:self.view];
 //    NSLog(@"velocity x=%f",velocity.x);

@@ -10,12 +10,16 @@
 #import "ProfileView.h"
 #import "OrderHistoryView.h"
 #import "SavePaymentMethod.h"
+#import "AppDelegate.h"
+#import "HalalMeatDelivery.pch"
 @interface MyAccountVW ()
+
+@property AppDelegate *appDelegate;
 
 @end
 
 @implementation MyAccountVW
-
+@synthesize KLoginView,KLogOutView;
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -28,7 +32,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+     self.appDelegate = [AppDelegate sharedInstance];
+    if ([self.appDelegate isUserLoggedIn] == NO)
+    {
+        KLoginView.hidden=NO;
+        KLogOutView.hidden =YES;
+    }
+    else
+    {
+        KLoginView.hidden=YES;
+        KLogOutView.hidden =NO;
+    }
+    
 }
 - (IBAction)MyDetailsBtn_Action:(id)sender
 {
