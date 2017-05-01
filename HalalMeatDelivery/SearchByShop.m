@@ -15,8 +15,12 @@
 #import "NearByCell.h"
 #import "RestaurantDetailView.h"
 #import <CoreLocation/CoreLocation.h>
+#import "CategoryCell.h"
+
 static dispatch_once_t predicate;
 
+#define SelectedButtonColor [UIColor colorWithRed:169.0f/255.0f green:32.0f/255.0f blue:40.0f/255.0f alpha:1.0f]
+#define UnSelectedButtonColor [UIColor colorWithRed:101.0f/255.0f green:100.0f/255.0f blue:98.0f/255.0f alpha:1.0f]
 
 @interface SearchByShop ()<CLLocationManagerDelegate,UIScrollViewDelegate,UISearchBarDelegate>
 {
@@ -27,19 +31,56 @@ static dispatch_once_t predicate;
     
     NSMutableArray *resultObjectsArray;
     NSMutableArray *SearchDictnory,*NewArr;
+    
+    NSMutableArray *CatArr,*CatselectedArr;
+    NSMutableArray *DistanceArr,*DistanceSelectArr;
+    NSMutableArray *FreeDelArr,*FreeDelSelectArr;
+    NSInteger SelectedShort;
+    
 }
 @property AppDelegate *appDelegate;
 @end
 
 @implementation SearchByShop
-@synthesize Table;
+@synthesize Table,Filter_BTN;
 @synthesize SearchBar,Search_IMG,Searc_BTN;
-
+@synthesize FilterView,SearchByCatBTN,SearchByRatBTN,SearchByDistBTN,SearchByPriceBTN,FreeDelevBTN;
+@synthesize CatTBL,PriceView;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    SelectedShort=0;
+    CatTBL.hidden=NO;
+    [SearchByCatBTN setBackgroundColor:SelectedButtonColor];
+    [SearchByCatBTN setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
+    // Search By Category.
+    CatArr=[[NSMutableArray alloc]initWithObjects:@"Chicken",@"Lamb",@"Mutton",@"Beef", nil];
+    CatselectedArr=[[NSMutableArray alloc]init];
+    for (int i= 0; i<CatArr.count; i++)
+    {
+        [CatselectedArr addObject:@"0"];
+    }
+    
+    // Search By Distance.
+    DistanceArr=[[NSMutableArray alloc]initWithObjects:@"All",@"<5 Miles",@"<2 Miles",@"<1 Miles", nil];
+    DistanceSelectArr=[[NSMutableArray alloc]init];
+    for (int i= 0; i<DistanceArr.count; i++)
+    {
+        [DistanceSelectArr addObject:@"0"];
+    }
+    
+    // Search By FreeDelivery.
+    FreeDelArr=[[NSMutableArray alloc]initWithObjects:@"Free Delivery", nil];
+    FreeDelSelectArr=[[NSMutableArray alloc]init];
+    for (int i= 0; i<FreeDelArr.count; i++)
+    {
+        [FreeDelSelectArr addObject:@"0"];
+    }
+    
+    
+    FilterView.hidden=YES;
     // Getting Lat Log
     SearchDictnory=[[NSMutableArray alloc]init];
     NewArr=[[NSMutableArray alloc]init];
@@ -62,6 +103,13 @@ static dispatch_once_t predicate;
     NearByCell *cell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
     Table.rowHeight = cell.frame.size.height;
     [Table registerNib:nib forCellReuseIdentifier:@"NearByCell"];
+    
+    UINib *nib2 = [UINib nibWithNibName:@"CategoryCell" bundle:nil];
+    CategoryCell *cell2 = [[nib2 instantiateWithOwner:nil options:nil] objectAtIndex:0];
+    CatTBL.rowHeight = cell2.frame.size.height;
+    [CatTBL registerNib:nib2 forCellReuseIdentifier:@"CategoryCell"];
+    
+    
     
     limit_only=0;
     // Do any additional setup after loading the view.
@@ -129,6 +177,7 @@ static dispatch_once_t predicate;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 #pragma mark - photoShotSavedDelegate
 
 -(void)CCKFNavDrawerSelection:(NSInteger)selectionIndex
@@ -144,58 +193,177 @@ static dispatch_once_t predicate;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (tableView==CatTBL)
+    {
+        if (SelectedShort==0)
+        {
+            return CatArr.count;
+        }
+        else if (SelectedShort==3)
+        {
+            return DistanceArr.count;
+        }
+        else if (SelectedShort==4)
+        {
+            return FreeDelArr.count;
+        }
+        
+    }
     return SearchDictnory.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"NearByCell";
-    NearByCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    cell=nil;
-    if (cell == nil)
+    if (tableView==CatTBL)
     {
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        static NSString *CellIdentifier = @"CategoryCell";
+        CategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cell=nil;
+        if (cell == nil)
+        {
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            
+        }
         
-    }
-    NSString *Urlstr=[[SearchDictnory valueForKey:@"image_path"] objectAtIndex:indexPath.row];
-    Urlstr = [Urlstr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    [cell.Rest_IMG sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
-    [cell.Rest_IMG setShowActivityIndicatorView:YES];
-    
-    cell.RestNAME_LBL.text=[[SearchDictnory valueForKey:@"name"] objectAtIndex:indexPath.row];
-    cell.Item_LBL.text=[[SearchDictnory valueForKey:@"serving_category"] objectAtIndex:indexPath.row];
-    
-    NSString *develveryOption=[[SearchDictnory valueForKey:@"delivery_option"] objectAtIndex:indexPath.row];
-    
-    if ([develveryOption isEqualToString:@"1"])
-    {
-        NSString *option=[[SearchDictnory valueForKey:@"min_delivery_amount"] objectAtIndex:indexPath.row];
-         cell.Desc_LBL.text=[NSString stringWithFormat:@"Deliver Min :£%@",option];
-        cell.Desc_LBL.textColor=[UIColor colorWithRed:(62/255.0) green:(124/255.0) blue:(77/255.0) alpha:1.0];
+        if (SelectedShort==0)
+        {
+            if ([[CatselectedArr objectAtIndex:indexPath.row] isEqualToString:@"0"])
+            {
+                cell.CatIMG.image=[UIImage imageNamed:@"UnselectChkBox"];
+            }
+            else
+            {
+                cell.CatIMG.image=[UIImage imageNamed:@"SelectChkBox"];
+            }
+            
+            cell.CatTitle_LBL.text=[CatArr objectAtIndex:indexPath.row];
+        }
+        else if (SelectedShort==3)
+        {
+            if ([[DistanceSelectArr objectAtIndex:indexPath.row] isEqualToString:@"0"])
+            {
+                cell.CatIMG.image=[UIImage imageNamed:@"UnselectChkBox"];
+            }
+            else
+            {
+                cell.CatIMG.image=[UIImage imageNamed:@"SelectChkBox"];
+            }
+            
+            cell.CatTitle_LBL.text=[DistanceArr objectAtIndex:indexPath.row];
+        }
+        else if (SelectedShort==4)
+        {
+            if ([[FreeDelSelectArr objectAtIndex:indexPath.row] isEqualToString:@"0"])
+            {
+                cell.CatIMG.image=[UIImage imageNamed:@"UnselectChkBox"];
+            }
+            else
+            {
+                cell.CatIMG.image=[UIImage imageNamed:@"SelectChkBox"];
+            }
+            
+            cell.CatTitle_LBL.text=[FreeDelArr objectAtIndex:indexPath.row];
+        }
+        
+        
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        return cell;
     }
     else
     {
-        cell.Desc_LBL.text=@"Take away";
-        cell.Desc_LBL.textColor=[UIColor colorWithRed:(204/255.0) green:(61/255.0) blue:(53/255.0) alpha:1.0];
+        static NSString *CellIdentifier = @"NearByCell";
+        NearByCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cell=nil;
+        if (cell == nil)
+        {
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            
+        }
+        NSString *Urlstr=[[SearchDictnory valueForKey:@"image_path"] objectAtIndex:indexPath.row];
+        Urlstr = [Urlstr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        [cell.Rest_IMG sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
+        [cell.Rest_IMG setShowActivityIndicatorView:YES];
+        
+        cell.RestNAME_LBL.text=[[SearchDictnory valueForKey:@"name"] objectAtIndex:indexPath.row];
+        cell.Item_LBL.text=[[SearchDictnory valueForKey:@"serving_category"] objectAtIndex:indexPath.row];
+        
+        NSString *develveryOption=[[SearchDictnory valueForKey:@"delivery_option"] objectAtIndex:indexPath.row];
+        
+        if ([develveryOption isEqualToString:@"1"])
+        {
+            NSString *option=[[SearchDictnory valueForKey:@"min_delivery_amount"] objectAtIndex:indexPath.row];
+            cell.Desc_LBL.text=[NSString stringWithFormat:@"Deliver Min :£%@",option];
+            cell.Desc_LBL.textColor=[UIColor colorWithRed:(62/255.0) green:(124/255.0) blue:(77/255.0) alpha:1.0];
+        }
+        else
+        {
+            cell.Desc_LBL.text=@"Take away";
+            cell.Desc_LBL.textColor=[UIColor colorWithRed:(204/255.0) green:(61/255.0) blue:(53/255.0) alpha:1.0];
+        }
+        
+        
+        cell.Review_LBL.text=[NSString stringWithFormat:@"(%@ Review)",[[SearchDictnory valueForKey:@"count_review"] objectAtIndex:indexPath.row]];
+        cell.Dist_LBL.text=[NSString stringWithFormat:@" %@ ",[[SearchDictnory valueForKey:@"distance"] objectAtIndex:indexPath.row]] ;
+        
+        [cell ReviewCount:[[SearchDictnory valueForKey:@"count_review"] objectAtIndex:indexPath.row]];
+        
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        return cell;
+
     }
-   
-    
-    cell.Review_LBL.text=[NSString stringWithFormat:@"(%@ Review)",[[SearchDictnory valueForKey:@"count_review"] objectAtIndex:indexPath.row]];
-    cell.Dist_LBL.text=[NSString stringWithFormat:@" %@ ",[[SearchDictnory valueForKey:@"distance"] objectAtIndex:indexPath.row]] ;
-    
-    [cell ReviewCount:[[SearchDictnory valueForKey:@"count_review"] objectAtIndex:indexPath.row]];
-    
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    return cell;
+    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RestaurantDetailView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RestaurantDetailView"];
-     vcr.R_ID=[[SearchDictnory valueForKey:@"id"]objectAtIndex:indexPath.row];
-    vcr.Pin=[[SearchDictnory valueForKey:@"pin"]objectAtIndex:indexPath.row];
-    [self.navigationController pushViewController:vcr animated:YES];
+    if (tableView==CatTBL)
+    {
+        if (SelectedShort==0)
+        {
+            if ([[CatselectedArr objectAtIndex:indexPath.row] isEqualToString:@"0"])
+            {
+                [CatselectedArr replaceObjectAtIndex:indexPath.row withObject:@"1"];
+            }
+            else
+            {
+                [CatselectedArr replaceObjectAtIndex:indexPath.row withObject:@"0"];
+            }
+
+        }
+        else if (SelectedShort==3)
+        {
+            if ([[DistanceSelectArr objectAtIndex:indexPath.row] isEqualToString:@"0"])
+            {
+                [DistanceSelectArr replaceObjectAtIndex:indexPath.row withObject:@"1"];
+            }
+            else
+            {
+                [DistanceSelectArr replaceObjectAtIndex:indexPath.row withObject:@"0"];
+            }
+
+        }
+        else if (SelectedShort==4)
+        {
+            if ([[FreeDelSelectArr objectAtIndex:indexPath.row] isEqualToString:@"0"])
+            {
+                [FreeDelSelectArr replaceObjectAtIndex:indexPath.row withObject:@"1"];
+            }
+            else
+            {
+                [FreeDelSelectArr replaceObjectAtIndex:indexPath.row withObject:@"0"];
+            }
+            
+        }
+        [CatTBL reloadData];
+    }
+    else
+    {
+        RestaurantDetailView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RestaurantDetailView"];
+        vcr.R_ID=[[SearchDictnory valueForKey:@"id"]objectAtIndex:indexPath.row];
+        vcr.Pin=[[SearchDictnory valueForKey:@"pin"]objectAtIndex:indexPath.row];
+        [self.navigationController pushViewController:vcr animated:YES];
+    }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
@@ -227,6 +395,7 @@ static dispatch_once_t predicate;
         Searc_BTN.selected=NO;
         [Search_IMG setImage:[UIImage imageNamed:@"SearchIcon.png"] forState:UIControlStateNormal];
         SearchBar.hidden=YES;
+        Filter_BTN.hidden=NO;
         [SearchBar resignFirstResponder];
         
         SearchDictnory=[NewArr mutableCopy];
@@ -237,6 +406,7 @@ static dispatch_once_t predicate;
         Searc_BTN.selected=YES;
         [Search_IMG setImage:[UIImage imageNamed:@"Cross"] forState:UIControlStateNormal];
         SearchBar.hidden=NO;
+        Filter_BTN.hidden=YES;
     }
 }
 
@@ -366,4 +536,124 @@ static dispatch_once_t predicate;
 }
 
 
+- (IBAction)Filter_click:(id)sender
+{
+    PriceView.hidden=YES;
+    FilterView.hidden=NO;
+    
+    CatTBL.hidden=NO;
+    SelectedShort=0;
+    [SearchByCatBTN setBackgroundColor:SelectedButtonColor];
+    [SearchByCatBTN setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    SearchByPriceBTN.titleLabel.textColor=UnSelectedButtonColor;
+    SearchByRatBTN.titleLabel.textColor=UnSelectedButtonColor;
+    SearchByDistBTN.titleLabel.textColor=UnSelectedButtonColor;
+    FreeDelevBTN.titleLabel.textColor=UnSelectedButtonColor;
+    
+    [SearchByPriceBTN setBackgroundColor:[UIColor clearColor]];
+    [SearchByRatBTN setBackgroundColor:[UIColor clearColor]];
+    [SearchByDistBTN setBackgroundColor:[UIColor clearColor]];
+    [FreeDelevBTN setBackgroundColor:[UIColor clearColor]];
+}
+
+- (IBAction)FilterBack_Ckick:(id)sender
+{
+    FilterView.hidden=YES;
+}
+
+- (IBAction)AllCatBTN_Click:(id)sender
+{
+    PriceView.hidden=YES;
+    CatTBL.hidden=NO;
+    if (sender==SearchByCatBTN)
+    {
+        SelectedShort=0;
+        [SearchByCatBTN setBackgroundColor:SelectedButtonColor];
+        [SearchByCatBTN setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        SearchByPriceBTN.titleLabel.textColor=UnSelectedButtonColor;
+        SearchByRatBTN.titleLabel.textColor=UnSelectedButtonColor;
+        SearchByDistBTN.titleLabel.textColor=UnSelectedButtonColor;
+        FreeDelevBTN.titleLabel.textColor=UnSelectedButtonColor;
+        
+        [SearchByPriceBTN setBackgroundColor:[UIColor clearColor]];
+        [SearchByRatBTN setBackgroundColor:[UIColor clearColor]];
+        [SearchByDistBTN setBackgroundColor:[UIColor clearColor]];
+        [FreeDelevBTN setBackgroundColor:[UIColor clearColor]];
+        
+    }
+    else if (sender==SearchByPriceBTN)
+    {
+        SelectedShort=1;
+        PriceView.hidden=NO;
+        CatTBL.hidden=YES;
+        
+        [SearchByPriceBTN setBackgroundColor:SelectedButtonColor];
+        [SearchByPriceBTN setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        SearchByCatBTN.titleLabel.textColor=UnSelectedButtonColor;
+        SearchByRatBTN.titleLabel.textColor=UnSelectedButtonColor;
+        SearchByDistBTN.titleLabel.textColor=UnSelectedButtonColor;
+        FreeDelevBTN.titleLabel.textColor=UnSelectedButtonColor;
+        
+        [SearchByCatBTN setBackgroundColor:[UIColor clearColor]];
+        [SearchByRatBTN setBackgroundColor:[UIColor clearColor]];
+        [SearchByDistBTN setBackgroundColor:[UIColor clearColor]];
+        [FreeDelevBTN setBackgroundColor:[UIColor clearColor]];
+        
+    }
+    else if (sender==SearchByRatBTN)
+    {
+        SelectedShort=2;
+        
+        [SearchByRatBTN setBackgroundColor:SelectedButtonColor];
+        [SearchByRatBTN setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        SearchByCatBTN.titleLabel.textColor=UnSelectedButtonColor;
+        SearchByPriceBTN.titleLabel.textColor=UnSelectedButtonColor;
+        SearchByDistBTN.titleLabel.textColor=UnSelectedButtonColor;
+        FreeDelevBTN.titleLabel.textColor=UnSelectedButtonColor;
+        
+        [SearchByCatBTN setBackgroundColor:[UIColor clearColor]];
+        [SearchByPriceBTN setBackgroundColor:[UIColor clearColor]];
+        [SearchByDistBTN setBackgroundColor:[UIColor clearColor]];
+        [FreeDelevBTN setBackgroundColor:[UIColor clearColor]];
+    }
+    else if (sender==SearchByDistBTN)
+    {
+        SelectedShort=3;
+        
+        [SearchByDistBTN setBackgroundColor:SelectedButtonColor];
+        [SearchByDistBTN setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        SearchByCatBTN.titleLabel.textColor=UnSelectedButtonColor;
+        SearchByPriceBTN.titleLabel.textColor=UnSelectedButtonColor;
+        SearchByRatBTN.titleLabel.textColor=UnSelectedButtonColor;
+        FreeDelevBTN.titleLabel.textColor=UnSelectedButtonColor;
+        
+        [SearchByCatBTN setBackgroundColor:[UIColor clearColor]];
+        [SearchByPriceBTN setBackgroundColor:[UIColor clearColor]];
+        [SearchByRatBTN setBackgroundColor:[UIColor clearColor]];
+        [FreeDelevBTN setBackgroundColor:[UIColor clearColor]];
+    }
+    else if (sender==FreeDelevBTN)
+    {
+        SelectedShort=4;
+        
+        [FreeDelevBTN setBackgroundColor:SelectedButtonColor];
+        [FreeDelevBTN setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        SearchByCatBTN.titleLabel.textColor=UnSelectedButtonColor;
+        SearchByPriceBTN.titleLabel.textColor=UnSelectedButtonColor;
+        SearchByRatBTN.titleLabel.textColor=UnSelectedButtonColor;
+        SearchByDistBTN.titleLabel.textColor=UnSelectedButtonColor;
+        
+        [SearchByCatBTN setBackgroundColor:[UIColor clearColor]];
+        [SearchByPriceBTN setBackgroundColor:[UIColor clearColor]];
+        [SearchByRatBTN setBackgroundColor:[UIColor clearColor]];
+        [SearchByDistBTN setBackgroundColor:[UIColor clearColor]];
+    }
+    [CatTBL reloadData];
+}
 @end
