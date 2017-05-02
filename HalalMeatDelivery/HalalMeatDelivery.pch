@@ -115,6 +115,12 @@
 // Filter
 #define Filter_url @"service_general.php"
 #define getFilterServiceName @"get_filter"
+//Get Filter Restaurant
+#define getFilterRestorantServiceName @"get_filtered_restorant"
+
+// check date and Time for delivery
+#define checkTakeAwayTimeServiceName @"place_order_part_1_1_take_away"
+#define checkDeliveryTimeServiceName @"place_order_part_1_1_delivery"
 
 
 

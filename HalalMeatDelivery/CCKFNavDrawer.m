@@ -462,20 +462,11 @@
     }
     else if (indexPath.row==5)
     {
-        if ([self.appDelegate isUserLoggedIn] == NO)
-        {
-            [self performSelector:@selector(checkLoginAndPresentContainer) withObject:nil afterDelay:0.0];
-        }
-        else
-        {
-            
-            MyAccountVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MyAccountVW"];
-            [super pushViewController:vcr animated:YES];
-            
-            //ProfileView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ProfileView"];
-            //[super pushViewController:vcr animated:YES];
-        }
-       
+        MyAccountVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MyAccountVW"];
+        [super pushViewController:vcr animated:YES];
+        
+        //ProfileView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ProfileView"];
+        //[super pushViewController:vcr animated:YES];
     }
     else if (indexPath.row==6)
     {

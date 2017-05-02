@@ -39,5 +39,7 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *CatTBL;
 @property (weak, nonatomic) IBOutlet TTRangeSlider *rangeSliderCurrency;
+- (IBAction)ConfrimFliterBtn_action:(id)sender;
+- (IBAction)ClearFliterBtn_action:(id)sender;
 
 @end

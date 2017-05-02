@@ -36,8 +36,17 @@ static dispatch_once_t predicate;
     NSMutableArray *DistanceArr,*DistanceSelectArr;
     NSMutableArray *FreeDelArr,*FreeDelSelectArr;
     NSMutableArray *ReviewStarArr,*ReviewStarSelectArr;
+    NSMutableArray *SortByPriceArr;
     NSInteger SelectedShort;
     NSMutableDictionary *FilterDict;
+    
+    NSMutableArray *filter_idArry;
+    
+    NSMutableArray *catParsingArr;
+    NSMutableArray *PriceParsingArr;
+    NSMutableArray *RatingParsingArr;
+    NSMutableArray *DistanceParsingArr;
+    NSMutableArray *FreDelParsingArr;
     
 }
 @property AppDelegate *appDelegate;
@@ -91,6 +100,13 @@ static dispatch_once_t predicate;
     limit_only=0;
     // Do any additional setup after loading the view.
     [self getFilterData];
+    
+    catParsingArr=[[NSMutableArray alloc]init];
+    PriceParsingArr=[[NSMutableArray alloc]init];
+    RatingParsingArr=[[NSMutableArray alloc]init];
+    DistanceParsingArr=[[NSMutableArray alloc]init];
+    FreDelParsingArr=[[NSMutableArray alloc]init];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -119,14 +135,15 @@ static dispatch_once_t predicate;
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
         FilterDict=[response valueForKey:@"result"];
-        
+        filter_idArry=[[NSMutableArray alloc]init];
+        filter_idArry=[FilterDict valueForKey:@"filter_id"];
         for (NSArray *filtername in FilterDict)
         {
             if ([[filtername valueForKey:@"filter_name"] isEqualToString:@"Search By Category"])
             {
                 // Search By Category.
                 CatArr=[[NSMutableArray alloc]init];
-                CatArr=[[filtername valueForKey:@"data"]valueForKey:@"filter_value_name"];
+                CatArr=[filtername valueForKey:@"data"];
                 CatselectedArr=[[NSMutableArray alloc]init];
                 for (int i= 0; i<CatArr.count; i++)
                 {
@@ -137,7 +154,7 @@ static dispatch_once_t predicate;
             {
                 // Search By Distance.
                 DistanceArr=[[NSMutableArray alloc]init];
-                DistanceArr=[[filtername valueForKey:@"data"]valueForKey:@"filter_value_name"];
+                DistanceArr=[filtername valueForKey:@"data"];
                 DistanceSelectArr=[[NSMutableArray alloc]init];
                 for (int i= 0; i<DistanceArr.count; i++)
                 {
@@ -148,7 +165,7 @@ static dispatch_once_t predicate;
             {
                 // Search By FreeDelivery.
                 FreeDelArr=[[NSMutableArray alloc]init];
-                FreeDelArr=[[filtername valueForKey:@"data"]valueForKey:@"filter_value_name"];
+                FreeDelArr=[filtername valueForKey:@"data"];
                 FreeDelSelectArr=[[NSMutableArray alloc]init];
                 for (int i= 0; i<FreeDelArr.count; i++)
                 {
@@ -159,12 +176,18 @@ static dispatch_once_t predicate;
             {
                 // Search By FreeDelivery.
                 ReviewStarArr=[[NSMutableArray alloc]init];
-                ReviewStarArr=[[filtername valueForKey:@"data"]valueForKey:@"filter_value_name"];
+                ReviewStarArr=[filtername valueForKey:@"data"];
                 ReviewStarSelectArr=[[NSMutableArray alloc]init];
                 for (int i= 0; i<ReviewStarArr.count; i++)
                 {
                     [ReviewStarSelectArr addObject:@"0"];
                 }
+            }
+            else if ([[filtername valueForKey:@"filter_name"] isEqualToString:@"Sort By Price"])
+            {
+                // Search By Range Bar.
+                SortByPriceArr=[[NSMutableArray alloc]init];
+                SortByPriceArr=[filtername valueForKey:@"data"];
             }
         }
        [CatTBL reloadData];
@@ -293,7 +316,7 @@ static dispatch_once_t predicate;
                 cell.CatIMG.image=[UIImage imageNamed:@"SelectChkBox"];
             }
             
-            cell.CatTitle_LBL.text=[CatArr objectAtIndex:indexPath.row];
+            cell.CatTitle_LBL.text=[[CatArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row];
         }
         if (SelectedShort==2)
         {
@@ -308,9 +331,11 @@ static dispatch_once_t predicate;
             {
                 cell.CatIMG.image=[UIImage imageNamed:@"SelectChkBox"];
             }
-            if ([[ReviewStarArr objectAtIndex:indexPath.row] integerValue]<=5)
+            if ([[[ReviewStarArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row] integerValue]<=5)
             {
-                if ([[ReviewStarArr objectAtIndex:indexPath.row] integerValue]==5) {
+                NSLog(@"reviewStar=%@",[[ReviewStarArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row]);
+                
+                if ([[[ReviewStarArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row] integerValue]==5) {
                     [cell.Start1 setHidden:NO];
                     [cell.Start2 setHidden:NO];
                     [cell.Start3 setHidden:NO];
@@ -318,28 +343,28 @@ static dispatch_once_t predicate;
                     [cell.Start5 setHidden:NO];
                    
                 }
-                if ([[ReviewStarArr objectAtIndex:indexPath.row] integerValue]==4) {
+                if ([[[ReviewStarArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row] integerValue]==4) {
                     [cell.Start1 setHidden:NO];
                     [cell.Start2 setHidden:NO];
                     [cell.Start3 setHidden:NO];
                     [cell.Start4 setHidden:NO];
                     [cell.Start5 setHidden:YES];
                 }
-                if ([[ReviewStarArr objectAtIndex:indexPath.row] integerValue]==3) {
+                if ([[[ReviewStarArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row] integerValue]==3) {
                     [cell.Start1 setHidden:NO];
                     [cell.Start2 setHidden:NO];
                     [cell.Start3 setHidden:NO];
                     [cell.Start4 setHidden:YES];
                     [cell.Start5 setHidden:YES];
                 }
-                if ([[ReviewStarArr objectAtIndex:indexPath.row] integerValue]==2) {
+                if ([[[ReviewStarArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row] integerValue]==2) {
                     [cell.Start1 setHidden:NO];
                     [cell.Start2 setHidden:NO];
                     [cell.Start3 setHidden:YES];
                     [cell.Start4 setHidden:YES];
                     [cell.Start5 setHidden:YES];
                 }
-                if ([[ReviewStarArr objectAtIndex:indexPath.row] integerValue]==1) {
+                if ([[[ReviewStarArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row] integerValue]==1) {
                     [cell.Start1 setHidden:NO];
                     [cell.Start2 setHidden:YES];
                     [cell.Start3 setHidden:YES];
@@ -362,7 +387,7 @@ static dispatch_once_t predicate;
                 cell.CatIMG.image=[UIImage imageNamed:@"SelectChkBox"];
             }
             
-            cell.CatTitle_LBL.text=[DistanceArr objectAtIndex:indexPath.row];
+            cell.CatTitle_LBL.text=[[DistanceArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row];
         }
         else if (SelectedShort==4)
         {
@@ -377,7 +402,7 @@ static dispatch_once_t predicate;
                 cell.CatIMG.image=[UIImage imageNamed:@"SelectChkBox"];
             }
             
-            cell.CatTitle_LBL.text=[FreeDelArr objectAtIndex:indexPath.row];
+            cell.CatTitle_LBL.text=[[FreeDelArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row];
         }
         
         
@@ -439,6 +464,14 @@ static dispatch_once_t predicate;
             if ([[CatselectedArr objectAtIndex:indexPath.row] isEqualToString:@"0"])
             {
                 [CatselectedArr replaceObjectAtIndex:indexPath.row withObject:@"1"];
+                
+                NSMutableDictionary *fliterdic = [[NSMutableDictionary alloc] init];
+                [fliterdic setObject:[[CatArr valueForKey:@"filter_value_id"] objectAtIndex:indexPath.row]  forKey:@"filter_value_id"];
+                [fliterdic setObject:[[CatArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row]  forKey:@"filter_value_name"];
+                [fliterdic setObject:[[CatArr valueForKey:@"filter_value"] objectAtIndex:indexPath.row]  forKey:@"filter_value"];
+                [fliterdic setObject:[filter_idArry objectAtIndex:0]  forKey:@"filter_id"];
+                [catParsingArr addObject:fliterdic];
+                
             }
             else
             {
@@ -451,6 +484,13 @@ static dispatch_once_t predicate;
             if ([[ReviewStarSelectArr objectAtIndex:indexPath.row] isEqualToString:@"0"])
             {
                 [ReviewStarSelectArr replaceObjectAtIndex:indexPath.row withObject:@"1"];
+                
+                NSMutableDictionary *fliterdic = [[NSMutableDictionary alloc] init];
+                [fliterdic setObject:[[ReviewStarArr valueForKey:@"filter_value_id"] objectAtIndex:indexPath.row]  forKey:@"filter_value_id"];
+                [fliterdic setObject:[[ReviewStarArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row]  forKey:@"filter_value_name"];
+                [fliterdic setObject:[[ReviewStarArr valueForKey:@"filter_value"] objectAtIndex:indexPath.row]  forKey:@"filter_value"];
+                [fliterdic setObject:[filter_idArry objectAtIndex:2]  forKey:@"filter_id"];
+                [RatingParsingArr addObject:fliterdic];
             }
             else
             {
@@ -463,6 +503,13 @@ static dispatch_once_t predicate;
             if ([[DistanceSelectArr objectAtIndex:indexPath.row] isEqualToString:@"0"])
             {
                 [DistanceSelectArr replaceObjectAtIndex:indexPath.row withObject:@"1"];
+                
+                NSMutableDictionary *fliterdic = [[NSMutableDictionary alloc] init];
+                [fliterdic setObject:[[DistanceArr valueForKey:@"filter_value_id"] objectAtIndex:indexPath.row]  forKey:@"filter_value_id"];
+                [fliterdic setObject:[[DistanceArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row]  forKey:@"filter_value_name"];
+                [fliterdic setObject:[[DistanceArr valueForKey:@"filter_value"] objectAtIndex:indexPath.row]  forKey:@"filter_value"];
+                [fliterdic setObject:[filter_idArry objectAtIndex:3]  forKey:@"filter_id"];
+                [DistanceParsingArr addObject:fliterdic];
             }
             else
             {
@@ -475,6 +522,13 @@ static dispatch_once_t predicate;
             if ([[FreeDelSelectArr objectAtIndex:indexPath.row] isEqualToString:@"0"])
             {
                 [FreeDelSelectArr replaceObjectAtIndex:indexPath.row withObject:@"1"];
+                
+                NSMutableDictionary *fliterdic = [[NSMutableDictionary alloc] init];
+                [fliterdic setObject:[[FreeDelArr valueForKey:@"filter_value_id"] objectAtIndex:indexPath.row]  forKey:@"filter_value_id"];
+                [fliterdic setObject:[[FreeDelArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row]  forKey:@"filter_value_name"];
+                [fliterdic setObject:[[FreeDelArr valueForKey:@"filter_value"] objectAtIndex:indexPath.row]  forKey:@"filter_value"];
+                [fliterdic setObject:[filter_idArry objectAtIndex:4]  forKey:@"filter_id"];
+                [FreDelParsingArr addObject:fliterdic];
             }
             else
             {
@@ -684,19 +738,21 @@ static dispatch_once_t predicate;
     [SearchByDistBTN setBackgroundColor:[UIColor clearColor]];
     [FreeDelevBTN setBackgroundColor:[UIColor clearColor]];
     
-    //currency range slider
+    
+    NSInteger MaxRang=[[[SortByPriceArr valueForKey:@"filter_value_name"] objectAtIndex:0] integerValue];
+    NSLog(@"MaxRang=%d",MaxRang);
     //currency range slider
     self.rangeSliderCurrency.delegate = self;
-    self.rangeSliderCurrency.minValue = 50;
-    self.rangeSliderCurrency.maxValue = 500;
-    self.rangeSliderCurrency.selectedMinimum = 50;
-    self.rangeSliderCurrency.selectedMaximum = 500;
-    self.rangeSliderCurrency.handleColor = [UIColor greenColor];
-    self.rangeSliderCurrency.handleDiameter = 30;
-    self.rangeSliderCurrency.selectedHandleDiameterMultiplier = 1.3;
+    self.rangeSliderCurrency.minValue = 0;
+    self.rangeSliderCurrency.maxValue = MaxRang;
+    self.rangeSliderCurrency.selectedMinimum = 0;
+    self.rangeSliderCurrency.selectedMaximum = MaxRang;
+    self.rangeSliderCurrency.handleColor = [UIColor colorWithRed:(185/255.0) green:(23/255.0) blue:(44/255.0) alpha:1.0];;
+    self.rangeSliderCurrency.handleDiameter = 20;
+    self.rangeSliderCurrency.selectedHandleDiameterMultiplier = 1;
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     formatter.numberStyle = NSNumberFormatterCurrencyStyle;
-    self.rangeSliderCurrency.numberFormatterOverride = formatter;
+   // self.rangeSliderCurrency.numberFormatterOverride = formatter;
     [self.rangeSliderCurrency bringSubviewToFront:self.view];
 }
 
@@ -808,7 +864,32 @@ static dispatch_once_t predicate;
     if (sender == self.rangeSliderCurrency)
     {
         NSLog(@"Currency slider updated. Min Value: %.0f Max Value: %.0f", selectedMinimum, selectedMaximum);
+        /*
+        NSString *maxval=[NSString stringWithFormat:@"%.0f",selectedMaximum];
+        NSMutableDictionary *fliterdic = [[NSMutableDictionary alloc] init];
+        [fliterdic setObject:[SortByPriceArr valueForKey:@"filter_value_id"]   forKey:@"filter_value_id"];
+        [fliterdic setObject:maxval   forKey:@"filter_value_name"];
+        [fliterdic setObject:[SortByPriceArr valueForKey:@"filter_value"]  forKey:@"filter_value"];
+        [fliterdic setObject:[filter_idArry objectAtIndex:1]  forKey:@"filter_id"];
+        [PriceParsingArr addObject:fliterdic];*/
+        
     }
 }
 
+- (IBAction)ConfrimFliterBtn_action:(id)sender
+{
+    
+    NSLog(@"filter_idArry=%@",filter_idArry);
+    NSLog(@"cat=%@",catParsingArr);
+    NSLog(@"RatingParsingArr=%@",RatingParsingArr);
+    NSLog(@"RatingParsingArr=%@",RatingParsingArr);
+    NSLog(@"FreDelParsingArr=%@",FreDelParsingArr);
+    NSLog(@"PriceParsingArr=%@",PriceParsingArr);
+    
+}
+
+- (IBAction)ClearFliterBtn_action:(id)sender
+{
+    
+}
 @end

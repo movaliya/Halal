@@ -91,6 +91,30 @@
     ThankPOPUp.frame =self.view.frame;
     [self.view addSubview:ThankPOPUp];
     ThankPOPUp.hidden=YES;
+    
+    
+    //********************* set Payment Method ***********************************
+    NSString *savedValue = [[NSUserDefaults standardUserDefaults]
+                            stringForKey:@"PAYMENTMETHOD"];
+    if (savedValue)
+    {
+        if ([savedValue isEqualToString:@"CashOnDelivery"])
+        {
+            [self.CashOnDeleveryRadio_Btn setBackgroundImage:[UIImage imageNamed:@"RadioEnable"] forState:UIControlStateNormal];
+            [self.PaymentRadio_btn setBackgroundImage:[UIImage imageNamed:@"RadioDisable"] forState:UIControlStateNormal];
+            Paymethod_Str=@"1";
+            
+        }
+        else
+        {
+            [self.CashOnDeleveryRadio_Btn setBackgroundImage:[UIImage imageNamed:@"RadioDisable"] forState:UIControlStateNormal];
+            [self.PaymentRadio_btn setBackgroundImage:[UIImage imageNamed:@"RadioEnable"] forState:UIControlStateNormal];
+            Paymethod_Str=@"2";
+        }
+    }
+    //********************* END *************************************************
+    
+    
 }
 -(void)Set_up_payPalConfig
 {
@@ -297,10 +321,11 @@
 
 - (void)handleBillProcessResponse:(NSDictionary*)response
 {
-    ScrollHight.constant=645;
-    
-    if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"0"])
+   
+    NSLog(@"respose bill process=%@",response);
+    if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
+         ScrollHight.constant=645;
         if (IS_IPHONE_4)
         {
             ScrollHight.constant=666;
@@ -338,7 +363,7 @@
         _ShippingCharge_LBL.text= [NSString stringWithFormat:@"+ £ %@",[response valueForKey:@"shipping_charge"]];
         _ShippingDiscount_LBL.text=[NSString stringWithFormat:@"- £ %@",[response valueForKey:@"shipping_discount"]];
         _Grand_Total_LBL.text=[NSString stringWithFormat:@"£ %@",[response valueForKey:@"final_total"]];
-        
+        _DileveryDateTimeLBL.text=[NSString stringWithFormat:@"%@ %@",self.theDateDilvery,self.theTimeDilvery];
         [self Scolltosecondpoint];
 
     }

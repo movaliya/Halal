@@ -126,8 +126,8 @@
     NSDateFormatter *timeFormat = [[NSDateFormatter alloc] init];
     [timeFormat setDateFormat:@"hh:mm a"];
     
-    theDate = [dateFormat1 stringFromDate:eventDate];
-    theTime = [timeFormat stringFromDate:eventDate];
+    //theDate = [dateFormat1 stringFromDate:eventDate];
+    //theTime = [timeFormat stringFromDate:eventDate];
     NSLog(@"theDate=%@",theDate);
     NSLog(@"theDate=%@",theTime);
     
@@ -136,17 +136,48 @@
     _Time_TXT.text = [NSString stringWithFormat:@"%@",dateString];
 }
 
+-(void)Scolltosecondpoint
+{
+    if (IS_IPHONE_4)
+    {
+        [self.myscrollview setContentOffset:CGPointMake(0,280) animated:YES];
+    }
+    if (IS_IPHONE_5)
+    {
+        [self.myscrollview setContentOffset:CGPointMake(0,200) animated:YES];
+    }
+    if (IS_IPHONE_6)
+    {
+        [self.myscrollview setContentOffset:CGPointMake(0,300) animated:YES];
+    }
+    if (IS_IPHONE_6P)
+    {
+        [self.myscrollview setContentOffset:CGPointMake(0,315) animated:YES];
+    }
+}
+
+-(void)ScolltoTherdpoint
+{
+    if (IS_IPHONE_4)
+    {
+        [self.myscrollview setContentOffset:CGPointMake(0,666) animated:YES];
+    }
+    if (IS_IPHONE_5)
+    {
+        [self.myscrollview setContentOffset:CGPointMake(0,470) animated:YES];
+    }
+    if (IS_IPHONE_6)
+    {
+        [self.myscrollview setContentOffset:CGPointMake(0,620) animated:YES];
+    }
+    if (IS_IPHONE_6P)
+    {
+        [self.myscrollview setContentOffset:CGPointMake(0,610) animated:YES];
+    }
+}
+
 -(void)SendBillDetail
 {
-    /*
-    http://bulkbox.in/feedmemeat/service/service_cart.php?
-    r_p=1224
-    &service=place_order_part_1_1_take_away
-    &cid=19
-    &uid=4
-    &take_away_time=13:05
-    &take_away_date=12-07-2012*/
-    
     
     NSMutableDictionary *UserData = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginUserDic"] mutableCopy];
     NSString *User_UID=[UserData valueForKey:@"u_id"];
@@ -174,50 +205,10 @@
      }];
 }
 
--(void)Scolltosecondpoint
-{
-    if (IS_IPHONE_4)
-    {
-        [self.myscrollview setContentOffset:CGPointMake(0,280) animated:YES];
-    }
-    if (IS_IPHONE_5)
-    {
-        [self.myscrollview setContentOffset:CGPointMake(0,200) animated:YES];
-    }
-    if (IS_IPHONE_6)
-    {
-        [self.myscrollview setContentOffset:CGPointMake(0,300) animated:YES];
-    }
-    if (IS_IPHONE_6P)
-    {
-        [self.myscrollview setContentOffset:CGPointMake(0,315) animated:YES];
-    }
-    
-}
-
--(void)ScolltoTherdpoint
-{
-    if (IS_IPHONE_4)
-    {
-        [self.myscrollview setContentOffset:CGPointMake(0,666) animated:YES];
-    }
-    if (IS_IPHONE_5)
-    {
-        [self.myscrollview setContentOffset:CGPointMake(0,470) animated:YES];
-    }
-    if (IS_IPHONE_6)
-    {
-        [self.myscrollview setContentOffset:CGPointMake(0,620) animated:YES];
-    }
-    if (IS_IPHONE_6P)
-    {
-        [self.myscrollview setContentOffset:CGPointMake(0,610) animated:YES];
-    }
-}
-
 - (void)handleBillProcessResponse:(NSDictionary*)response
 {
-    if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"0"])
+    NSLog(@"respose bill process=%@",response);
+    if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
         if (IS_IPHONE_4)
         {
@@ -241,6 +232,7 @@
         _ShippingCharge_LBL.text= [NSString stringWithFormat:@"+ £ %@",[response valueForKey:@"shipping_charge"]];
         _ShippingDiscount_LBL.text=[NSString stringWithFormat:@"- £ %@",[response valueForKey:@"shipping_discount"]];
         _Grand_Total_LBL.text=[NSString stringWithFormat:@"£ %@",[response valueForKey:@"final_total"]];
+        _TakeAwayDateTime.text=[NSString stringWithFormat:@"%@ %@",self.theDate,self.theTime];
         [Change_BTN setTitle:@"CHANGE" forState:UIControlStateNormal];
         
         _UserName_txt.enabled=NO;
@@ -259,15 +251,6 @@
     }
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
 
 - (IBAction)Change_Click:(id)sender
 {
@@ -315,50 +298,8 @@
             }
             else
                 [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
-            
         }
     }
-}
-
-- (IBAction)Back_Click:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:NO];
-
-}
-
-#pragma mark - pop AlertView;
-
--(void)ShowPOPUP
-{
-    [ThankPOPUp bringSubviewToFront:self.view];
-    ThankPOPUp.hidden=NO;
-    
-    ThanksOK= (UIButton *)[ThankPOPUp viewWithTag:23];
-    ThanksOK.layer.cornerRadius=3.5;
-    [ThanksOK addTarget:self action:@selector(ThanksOK_Click:) forControlEvents:UIControlEventTouchUpInside];
-    
-    NamePop= (UILabel *)[ThankPOPUp viewWithTag:100];
-    MobilePop= (UILabel *)[ThankPOPUp viewWithTag:101];
-    CityPop= (UILabel *)[ThankPOPUp viewWithTag:102];
-    AddressPop= (UILabel *)[ThankPOPUp viewWithTag:103];
-    
-    
-    AddressPop.numberOfLines = 0;
-    [AddressPop sizeToFit];
-    
-    NamePop.text=[take_away_address valueForKey:@"name"];
-    MobilePop.text=[take_away_address valueForKey:@"phone"];
-    CityPop.text=[take_away_address valueForKey:@"city"];
-    AddressPop.text=[take_away_address valueForKey:@"address"];
-   
-}
-
--(void)ThanksOK_Click:(id)sender
-{
-    ThankPOPUp.hidden=YES;
-    
-    ShoppingCartView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ShoppingCartView"];
-    [self.navigationController pushViewController:vcr animated:NO];
 }
 
 - (IBAction)DateConfrim_Action:(id)sender
@@ -378,6 +319,7 @@
             BOOL internet=[AppDelegate connectedToNetwork];
             if (internet)
             {
+                
                 NSMutableDictionary *UserData = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginUserDic"] mutableCopy];
                 NSString *User_UID=[UserData valueForKey:@"u_id"] ;
                 
@@ -386,8 +328,8 @@
                 [dictParams setObject:PlaceOrderTakeAway1_1DateServiceName  forKey:@"service"];
                 [dictParams setObject:User_UID  forKey:@"uid"];
                 [dictParams setObject:C_ID  forKey:@"cid"];
-                [dictParams setObject:theTime  forKey:@"take_away_time"];
-                [dictParams setObject:theDate  forKey:@"take_away_date"];
+                [dictParams setObject:self.theTime  forKey:@"take_away_time"];
+                [dictParams setObject:self.theDate  forKey:@"take_away_date"];
                 
                 NSLog(@"Date confrim Dic=%@",dictParams);
                 
@@ -444,7 +386,6 @@
 
 - (IBAction)PlaceOrder_Action:(id)sender
 {
-    
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
     {
@@ -482,5 +423,57 @@
     {
         [AppDelegate showErrorMessageWithTitle:AlertTitleError message:[response objectForKey:@"ack_msg"] delegate:nil];
     }
+}
+#pragma mark - pop AlertView;
+
+-(void)ShowPOPUP
+{
+    [ThankPOPUp bringSubviewToFront:self.view];
+    ThankPOPUp.hidden=NO;
+    
+    ThanksOK= (UIButton *)[ThankPOPUp viewWithTag:23];
+    ThanksOK.layer.cornerRadius=3.5;
+    [ThanksOK addTarget:self action:@selector(ThanksOK_Click:) forControlEvents:UIControlEventTouchUpInside];
+    
+    NamePop= (UILabel *)[ThankPOPUp viewWithTag:100];
+    MobilePop= (UILabel *)[ThankPOPUp viewWithTag:101];
+    CityPop= (UILabel *)[ThankPOPUp viewWithTag:102];
+    AddressPop= (UILabel *)[ThankPOPUp viewWithTag:103];
+    
+    
+    AddressPop.numberOfLines = 0;
+    [AddressPop sizeToFit];
+    
+    NamePop.text=[take_away_address valueForKey:@"name"];
+    MobilePop.text=[take_away_address valueForKey:@"phone"];
+    CityPop.text=[take_away_address valueForKey:@"city"];
+    AddressPop.text=[take_away_address valueForKey:@"address"];
+    
+}
+
+-(void)ThanksOK_Click:(id)sender
+{
+    ThankPOPUp.hidden=YES;
+    
+    ShoppingCartView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ShoppingCartView"];
+    [self.navigationController pushViewController:vcr animated:NO];
+}
+
+- (IBAction)Back_Click:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:NO];
+    
+}
+
+
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
 }
 @end

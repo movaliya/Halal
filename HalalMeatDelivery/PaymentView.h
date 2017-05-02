@@ -17,10 +17,13 @@
     NSMutableDictionary *take_away_address;
     
 }
+@property (strong, nonatomic) NSString *theDate;
+@property (strong, nonatomic) NSString *theTime;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *SecondViewGap;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *TherdViewGap;
 @property (weak, nonatomic) IBOutlet UIScrollView *myscrollview;
 @property (weak, nonatomic) IBOutlet UIButton *confrom_btn;
+@property (weak, nonatomic) IBOutlet UILabel *TakeAwayDateTime;
 
 @property (strong, nonatomic) IBOutlet UIButton *PlaceOrder_BTN;
 @property (strong, nonatomic) NSString *C_ID;

@@ -667,22 +667,102 @@
         }
         else
         {
-            if ([Paymethod_Str isEqualToString:@"Delivery"])
+            BOOL internet=[AppDelegate connectedToNetwork];
+            if (internet)
             {
-                DeliveryView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DeliveryView"];
-                vcr.C_ID_Delivery=[CardDicnory valueForKey:@"cart_id"];
-                [self.navigationController pushViewController:vcr animated:NO];
+                if ([Paymethod_Str isEqualToString:@"Delivery"])
+                {
+                    [self performSelector:@selector(checkDeliveryTime) withObject:nil afterDelay:0.1];
+                }
+                else
+                {
+                    [self performSelector:@selector(checkTakeAwayTime) withObject:nil afterDelay:0.1];
+                }
+                
             }
             else
-            {
-                PaymentView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentView"];
-                vcr.C_ID=[CardDicnory valueForKey:@"cart_id"];
-                [self.navigationController pushViewController:vcr animated:NO];
-            }
+                [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
         }
          //[self ShowPOPUP];
         
     }
+}
+
+-(void)checkTakeAwayTime
+{
+    NSMutableDictionary *UserData = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginUserDic"] mutableCopy];
+    NSString *User_UID=[UserData valueForKey:@"u_id"];
+    
+    NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] init];
+    [dictParams setObject:r_p  forKey:@"r_p"];
+    [dictParams setObject:checkTakeAwayTimeServiceName  forKey:@"service"];
+    [dictParams setObject:User_UID  forKey:@"uid"];
+    [dictParams setObject:[CardDicnory valueForKey:@"cart_id"]  forKey:@"cid"];
+    [dictParams setObject:theTime  forKey:@"take_away_time"];
+    [dictParams setObject:theDate  forKey:@"take_away_date"];
+    
+    
+    [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,CardService_url] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)
+     {
+         [self handleCheckTakeAwayTimeResponse:response];
+     }];
+}
+- (void)handleCheckTakeAwayTimeResponse:(NSDictionary*)response
+{
+    
+    NSLog(@"check takeway Response=%@",response);
+    if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
+    {
+        PaymentView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentView"];
+        vcr.C_ID=[CardDicnory valueForKey:@"cart_id"];
+        vcr.theDate=theDate;
+        vcr.theTime=theTime;
+        [self.navigationController pushViewController:vcr animated:NO];
+    }
+    else
+    {
+        [AppDelegate showErrorMessageWithTitle:AlertTitleError message:[response objectForKey:@"ack_msg"] delegate:nil];
+    }
+    
+    
+}
+-(void)checkDeliveryTime
+{
+    NSMutableDictionary *UserData = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginUserDic"] mutableCopy];
+    NSString *User_UID=[UserData valueForKey:@"u_id"];
+    
+    NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] init];
+    [dictParams setObject:r_p  forKey:@"r_p"];
+    [dictParams setObject:checkDeliveryTimeServiceName  forKey:@"service"];
+    [dictParams setObject:User_UID  forKey:@"uid"];
+    [dictParams setObject:[CardDicnory valueForKey:@"cart_id"]  forKey:@"cid"];
+    [dictParams setObject:theTime  forKey:@"take_away_time"];
+    [dictParams setObject:theDate  forKey:@"take_away_date"];
+    
+    
+    [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,CardService_url] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)
+     {
+         [self handleCheckDilveryTimeResponse:response];
+     }];
+}
+- (void)handleCheckDilveryTimeResponse:(NSDictionary*)response
+{
+    
+    NSLog(@"check delvery Response=%@",response);
+    if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
+    {
+        DeliveryView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DeliveryView"];
+        vcr.C_ID_Delivery=[CardDicnory valueForKey:@"cart_id"];
+        vcr.theDateDilvery=theDate;
+        vcr.theTimeDilvery=theTime;
+        [self.navigationController pushViewController:vcr animated:NO];
+    }
+    else
+    {
+        [AppDelegate showErrorMessageWithTitle:AlertTitleError message:[response objectForKey:@"ack_msg"] delegate:nil];
+    }
+    
+    
 }
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
    //  POPView.hidden=YES;// this will do the trick

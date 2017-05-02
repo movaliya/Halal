@@ -28,11 +28,8 @@
     [self.rootNav setCCKFNavDrawerDelegate:self];
     [self.rootNav CheckLoginArr];
     [self.rootNav.pan_gr setEnabled:YES];
-}
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-     self.appDelegate = [AppDelegate sharedInstance];
+    
+    self.appDelegate = [AppDelegate sharedInstance];
     if ([self.appDelegate isUserLoggedIn] == NO)
     {
         KLoginView.hidden=NO;
@@ -43,6 +40,10 @@
         KLoginView.hidden=YES;
         KLogOutView.hidden =NO;
     }
+}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
     
 }
 - (IBAction)MyDetailsBtn_Action:(id)sender
@@ -92,6 +93,11 @@
             [self.navigationController popToRootViewControllerAnimated:NO];
         }
     }
+}
+- (IBAction)LoginBtn_action:(id)sender
+{
+    LoginView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginView"];
+    [self.navigationController  pushViewController:vcr animated:YES];
 }
 
 - (IBAction)MenuBtn_action:(id)sender

@@ -19,6 +19,9 @@
     NSMutableDictionary *paypalInfoDic;
     
 }
+@property (strong, nonatomic) NSString *theDateDilvery;
+@property (strong, nonatomic) NSString *theTimeDilvery;
+
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *SecondViewGap;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *TherdviewGap;
 
@@ -45,6 +48,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *CashOnDeleveryRadio_Btn;
 @property (weak, nonatomic) IBOutlet UIButton *PaymentRadio_btn;
 
+@property (weak, nonatomic) IBOutlet UILabel *DileveryDateTimeLBL;
 
 @property (weak, nonatomic) IBOutlet UILabel *SubTotal_LBL;
 @property (weak, nonatomic) IBOutlet UILabel *ShippingCharge_LBL;
