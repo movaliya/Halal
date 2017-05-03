@@ -7,15 +7,123 @@
 //
 
 #import "DeliveryView2.h"
-
+#import "HalalMeatDelivery.pch"
+#import "DeliveryView3.h"
 @interface DeliveryView2 ()
 
 @end
 
 @implementation DeliveryView2
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
+    //********************* set Payment Method ***********************************
+    NSString *savedValue = [[NSUserDefaults standardUserDefaults]
+                            stringForKey:@"PAYMENTMETHOD"];
+    if (savedValue)
+    {
+        if ([savedValue isEqualToString:@"CashOnDelivery"])
+        {
+            [self.CashOnDeleveryRadio_Btn setBackgroundImage:[UIImage imageNamed:@"RadioEnable"] forState:UIControlStateNormal];
+            [self.PaymentRadio_btn setBackgroundImage:[UIImage imageNamed:@"RadioDisable"] forState:UIControlStateNormal];
+            Paymethod_Str=@"1";
+            
+        }
+        else
+        {
+            [self.CashOnDeleveryRadio_Btn setBackgroundImage:[UIImage imageNamed:@"RadioDisable"] forState:UIControlStateNormal];
+            [self.PaymentRadio_btn setBackgroundImage:[UIImage imageNamed:@"RadioEnable"] forState:UIControlStateNormal];
+            Paymethod_Str=@"2";
+        }
+    }
+    //********************* END *************************************************
+}
+- (IBAction)COD_Btn_action:(id)sender
+{
+    [self.CashOnDeleveryRadio_Btn setBackgroundImage:[UIImage imageNamed:@"RadioEnable"] forState:UIControlStateNormal];
+    [self.PaymentRadio_btn setBackgroundImage:[UIImage imageNamed:@"RadioDisable"] forState:UIControlStateNormal];
+    Paymethod_Str=@"1";
+}
+- (IBAction)OnlinePaymentBtn_action:(id)sender
+{
+    [self.CashOnDeleveryRadio_Btn setBackgroundImage:[UIImage imageNamed:@"RadioDisable"] forState:UIControlStateNormal];
+    [self.PaymentRadio_btn setBackgroundImage:[UIImage imageNamed:@"RadioEnable"] forState:UIControlStateNormal];
+    Paymethod_Str=@"2";
+}
+- (IBAction)NextBtn_action:(id)sender
+{
+    
+    if(Paymethod_Str.length==0)
+    {
+         [AppDelegate showErrorMessageWithTitle:@"ERROR..!" message:@"Please Select Payment Method." delegate:nil];
+    }
+    else
+    {
+        BOOL internet=[AppDelegate connectedToNetwork];
+        if (internet)
+        {
+            [self SendPayMethod];
+        }
+        else
+            [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+    }
+}
+
+-(void)SendPayMethod
+{
+    
+    NSMutableDictionary *UserData = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginUserDic"] mutableCopy];
+    NSString *User_UID=[UserData valueForKey:@"u_id"];
+    
+    NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] init];
+    [dictParams setObject:r_p  forKey:@"r_p"];
+    [dictParams setObject:place_order_part_2_deliveryServiceName  forKey:@"service"];
+    [dictParams setObject:User_UID  forKey:@"uid"];
+    [dictParams setObject:self.CartID_DEL2  forKey:@"cid"];
+    [dictParams setObject:Paymethod_Str  forKey:@"payment_mode"];
+    
+    [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,CardService_url] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)
+     {
+         [self handlePayMethodResponse:response];
+     }];
+}
+
+- (void)handlePayMethodResponse:(NSDictionary*)response
+{
+    if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
+    {
+        
+        DeliveryView3 *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DeliveryView3"];
+        vcr.PAYMENT_STR=Paymethod_Str;
+        vcr.ChargesDICNORY3=self.ChargesDICNORY;
+        vcr.DateNTimeSTR=self.dateNtime2;
+        vcr.CartID_DEL3=self.self.CartID_DEL2;
+        
+        [self.navigationController pushViewController:vcr animated:NO];
+        [AppDelegate showErrorMessageWithTitle:AlertTitleError message:[response objectForKey:@"ack_msg"] delegate:nil];
+    }
+    else
+    {
+        [AppDelegate showErrorMessageWithTitle:AlertTitleError message:[response objectForKey:@"ack_msg"] delegate:nil];
+    }
+}
+
+
+
+- (IBAction)BackBtn_action:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)PreviousBtn_action:(id)sender
+{
+     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -653,6 +653,48 @@
 			name = Button;
 			sourceTree = "<group>";
 		};
+		5359251D1EB9C58000872F0D /* NEWTakeAway */ = {
+			isa = PBXGroup;
+			children = (
+				B15330A31EB8FD5200E96C28 /* PaymentView1.h */,
+				B15330A41EB8FD5200E96C28 /* PaymentView1.m */,
+				B15330A61EB9025300E96C28 /* PaymentView2.h */,
+				B15330A71EB9025300E96C28 /* PaymentView2.m */,
+			);
+			name = NEWTakeAway;
+			sourceTree = "<group>";
+		};
+		5359251E1EB9C59100872F0D /* NEWDilveryMethod */ = {
+			isa = PBXGroup;
+			children = (
+				B15330A91EB9060100E96C28 /* DeliveryView1.h */,
+				B15330AA1EB9060100E96C28 /* DeliveryView1.m */,
+				B15330AC1EB9066100E96C28 /* DeliveryView2.h */,
+				B15330AD1EB9066100E96C28 /* DeliveryView2.m */,
+				B15330AF1EB9067500E96C28 /* DeliveryView3.h */,
+				B15330B01EB9067500E96C28 /* DeliveryView3.m */,
+			);
+			name = NEWDilveryMethod;
+			sourceTree = "<group>";
+		};
+		5359251F1EB9CCD500872F0D /* OldTakeAway */ = {
+			isa = PBXGroup;
+			children = (
+				B10B98051D91B43E00228F33 /* PaymentView.h */,
+				B10B98061D91B43E00228F33 /* PaymentView.m */,
+			);
+			name = OldTakeAway;
+			sourceTree = "<group>";
+		};
+		535925201EB9CCED00872F0D /* OldDilvery */ = {
+			isa = PBXGroup;
+			children = (
+				B10B97FE1D91B15700228F33 /* DeliveryView.h */,
+				B10B97FF1D91B15700228F33 /* DeliveryView.m */,
+			);
+			name = OldDilvery;
+			sourceTree = "<group>";
+		};
 		53FBF0C61D96B57500E47FE3 /* Rechability */ = {
 			isa = PBXGroup;
 			children = (
@@ -721,20 +763,10 @@
 				B110D5D21D72F041008D8655 /* OrderHistoryDetailView.m */,
 				535FF4E01D741931001355CD /* ShoppingCartView.h */,
 				535FF4E11D741931001355CD /* ShoppingCartView.m */,
-				B10B98051D91B43E00228F33 /* PaymentView.h */,
-				B10B98061D91B43E00228F33 /* PaymentView.m */,
-				B15330A31EB8FD5200E96C28 /* PaymentView1.h */,
-				B15330A41EB8FD5200E96C28 /* PaymentView1.m */,
-				B15330A61EB9025300E96C28 /* PaymentView2.h */,
-				B15330A71EB9025300E96C28 /* PaymentView2.m */,
-				B10B97FE1D91B15700228F33 /* DeliveryView.h */,
-				B10B97FF1D91B15700228F33 /* DeliveryView.m */,
-				B15330A91EB9060100E96C28 /* DeliveryView1.h */,
-				B15330AA1EB9060100E96C28 /* DeliveryView1.m */,
-				B15330AC1EB9066100E96C28 /* DeliveryView2.h */,
-				B15330AD1EB9066100E96C28 /* DeliveryView2.m */,
-				B15330AF1EB9067500E96C28 /* DeliveryView3.h */,
-				B15330B01EB9067500E96C28 /* DeliveryView3.m */,
+				5359251F1EB9CCD500872F0D /* OldTakeAway */,
+				535925201EB9CCED00872F0D /* OldDilvery */,
+				5359251D1EB9C58000872F0D /* NEWTakeAway */,
+				5359251E1EB9C59100872F0D /* NEWDilveryMethod */,
 				5356CB311EB4765000E0A422 /* MyAccountVW.h */,
 				5356CB321EB4765000E0A422 /* MyAccountVW.m */,
 				5356CB341EB484B700E0A422 /* SavePaymentMethod.h */,

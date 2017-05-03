@@ -9,5 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @interface DeliveryView2 : UIViewController
+{
+    NSString *Paymethod_Str;
+    NSString *final_total;
+    NSMutableDictionary *paypalInfoDic;
+}
+@property (strong, nonatomic) NSDictionary *ChargesDICNORY;
+@property (strong, nonatomic) NSString *CartID_DEL2;
+@property (strong, nonatomic) NSString *dateNtime2;
+@property (weak, nonatomic) IBOutlet UIButton *CashOnDeleveryRadio_Btn;
+@property (weak, nonatomic) IBOutlet UIButton *PaymentRadio_btn;
 
 @end

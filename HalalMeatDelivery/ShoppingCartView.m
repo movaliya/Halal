@@ -12,6 +12,10 @@
 #import "PaymentView.h"
 #import "DeliveryView.h"
 
+//New Implement file
+#import "PaymentView1.h"
+#import "DeliveryView1.h"
+
 @interface ShoppingCartView ()
 
 @property AppDelegate *appDelegate;
@@ -713,11 +717,16 @@
     NSLog(@"check takeway Response=%@",response);
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
+        PaymentView1 *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentView1"];
+        vcr.C_ID=[CardDicnory valueForKey:@"cart_id"];
+        vcr.PassDateNTime=[NSString stringWithFormat:@"%@ %@",theDate,theTime];
+        [self.navigationController pushViewController:vcr animated:NO];
+        /*
         PaymentView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentView"];
         vcr.C_ID=[CardDicnory valueForKey:@"cart_id"];
         vcr.theDate=theDate;
         vcr.theTime=theTime;
-        [self.navigationController pushViewController:vcr animated:NO];
+        [self.navigationController pushViewController:vcr animated:NO];*/
     }
     else
     {
@@ -736,8 +745,8 @@
     [dictParams setObject:checkDeliveryTimeServiceName  forKey:@"service"];
     [dictParams setObject:User_UID  forKey:@"uid"];
     [dictParams setObject:[CardDicnory valueForKey:@"cart_id"]  forKey:@"cid"];
-    [dictParams setObject:theTime  forKey:@"take_away_time"];
-    [dictParams setObject:theDate  forKey:@"take_away_date"];
+    [dictParams setObject:theTime  forKey:@"delivery_time"];
+    [dictParams setObject:theDate  forKey:@"delivery_date"];
     
     
     [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,CardService_url] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)
@@ -751,11 +760,16 @@
     NSLog(@"check delvery Response=%@",response);
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
+        DeliveryView1 *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DeliveryView1"];
+        vcr.C_ID_Delivery1=[CardDicnory valueForKey:@"cart_id"];
+        vcr.theDateNTimeDilvery=[NSString stringWithFormat:@"%@ %@",theDate,theTime];
+        [self.navigationController pushViewController:vcr animated:NO];
+        /*
         DeliveryView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DeliveryView"];
         vcr.C_ID_Delivery=[CardDicnory valueForKey:@"cart_id"];
         vcr.theDateDilvery=theDate;
         vcr.theTimeDilvery=theTime;
-        [self.navigationController pushViewController:vcr animated:NO];
+        [self.navigationController pushViewController:vcr animated:NO];*/
     }
     else
     {

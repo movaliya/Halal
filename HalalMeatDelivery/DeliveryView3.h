@@ -7,7 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PayPalMobile.h"
+#import "HalalMeatDelivery.pch"
 
-@interface DeliveryView3 : UIViewController
+@interface DeliveryView3 : UIViewController<PayPalPaymentDelegate, PayPalFuturePaymentDelegate, PayPalProfileSharingDelegate>
+{
+    NSString *final_total;
+    NSMutableDictionary *paypalInfoDic;
+}
+@property (weak, nonatomic) IBOutlet UILabel *DileveryDateTimeLBL;
+@property (weak, nonatomic) IBOutlet UILabel *SubTotal_LBL;
+@property (weak, nonatomic) IBOutlet UILabel *ShippingCharge_LBL;
+@property (weak, nonatomic) IBOutlet UILabel *ShippingDiscount_LBL;
+@property (weak, nonatomic) IBOutlet UILabel *Grand_Total_LBL;
 
+@property (strong, nonatomic) NSDictionary *ChargesDICNORY3;
+@property (strong, nonatomic) NSString *DateNTimeSTR;
+@property (strong, nonatomic) NSString *CartID_DEL3;
+@property (strong, nonatomic) NSString *PAYMENT_STR;
+
+@property(nonatomic, strong, readwrite) NSString *environment;
+@property(nonatomic, strong, readwrite) NSString *resultText;
 @end

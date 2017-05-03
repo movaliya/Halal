@@ -9,5 +9,18 @@
 #import <UIKit/UIKit.h>
 
 @interface PaymentView2 : UIViewController
+{
+     NSMutableDictionary *take_away_address;
+}
 
+
+@property (strong, nonatomic) NSDictionary *ChargesDIC;
+@property (strong, nonatomic) NSString *DateNTime;
+@property (strong, nonatomic) NSString *Cart_ID;
+
+@property (weak, nonatomic) IBOutlet UILabel *TakeAwayDateTime;
+@property (weak, nonatomic) IBOutlet UILabel *SubTotal_LBL;
+@property (weak, nonatomic) IBOutlet UILabel *ShippingCharge_LBL;
+@property (weak, nonatomic) IBOutlet UILabel *ShippingDiscount_LBL;
+@property (weak, nonatomic) IBOutlet UILabel *Grand_Total_LBL;
 @end
