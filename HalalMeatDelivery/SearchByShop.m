@@ -750,6 +750,7 @@ static dispatch_once_t predicate;
     formatter.numberStyle = NSNumberFormatterCurrencyStyle;
    // self.rangeSliderCurrency.numberFormatterOverride = formatter;
     [self.rangeSliderCurrency bringSubviewToFront:self.view];
+    [CatTBL reloadData];
 }
 
 - (IBAction)FilterBack_Ckick:(id)sender
@@ -873,8 +874,8 @@ static dispatch_once_t predicate;
 }
 
 - (IBAction)ConfrimFliterBtn_action:(id)sender
-{NSMutableArray *Arr=[[NSMutableArray alloc]init];
-    
+{
+    NSMutableArray *Arr=[[NSMutableArray alloc]init];
     for (int i=0; i<filter_idArry.count; i++)
     {
         
@@ -912,21 +913,115 @@ static dispatch_once_t predicate;
     NSString *trimmedString = [json stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
     trimmedString = [trimmedString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     trimmedString = [trimmedString stringByReplacingOccurrencesOfString:@" " withString:@""];
+   
     
+    NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] init];
+    [dictParams setObject:r_p  forKey:@"r_p"];
+    [dictParams setObject:getFilterRestorantServiceName  forKey:@"service"];
+    [dictParams setObject:trimmedString  forKey:@"filter"];
     
+    NSLog(@"filter dictParams===%@",dictParams);
     
+    FilterView.hidden=YES;
     
-    NSLog(@"filter_idArry=%@",filter_idArry);
-    NSLog(@"cat=%@",catParsingArr);
-    NSLog(@"RatingParsingArr=%@",RatingParsingArr);
-    NSLog(@"RatingParsingArr=%@",RatingParsingArr);
-    NSLog(@"FreDelParsingArr=%@",FreDelParsingArr);
-    NSLog(@"PriceParsingArr=%@",PriceParsingArr);
+    [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,Filter_url] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)
+     {
+         [self handleFilterResponse:response];
+     }];
+}
+
+- (void)handleFilterResponse:(NSDictionary*)response
+{
+    NSLog(@"filter data response ===%@",response);
+    if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
+    {
+        SearchDictnory=[[NSMutableArray alloc]init];
+        NSMutableDictionary *filterData=[response valueForKey:@"result"];
+        for (NSDictionary *dic in filterData)
+        {
+            //NSLog(@"===%@",dic);
+            [SearchDictnory addObject:dic];
+            
+        }
+        NewArr=[[NSMutableArray alloc]initWithArray:SearchDictnory];
+        [Table reloadData];
+        NoResponseInt=0;
+    }
+    else
+    {
+         SearchDictnory=[[NSMutableArray alloc]init];
+        NewArr=[[NSMutableArray alloc]initWithArray:SearchDictnory];
+        [Table reloadData];
+        NoResponseInt=0;
+    }
     
 }
 
+
 - (IBAction)ClearFliterBtn_action:(id)sender
 {
+    for (NSArray *filtername in FilterDict)
+    {
+        if ([[filtername valueForKey:@"filter_name"] isEqualToString:@"Search By Category"])
+        {
+            // Search By Category.
+            NSMutableArray *tempCatArr=[[NSMutableArray alloc]init];
+            tempCatArr=[filtername valueForKey:@"data"];
+            CatselectedArr=[[NSMutableArray alloc]init];
+            for (int i= 0; i<tempCatArr.count; i++)
+            {
+                [CatselectedArr addObject:@"0"];
+            }
+        }
+        else if ([[filtername valueForKey:@"filter_name"] isEqualToString:@"Sort By Distance"])
+        {
+            // Search By Distance.
+            NSMutableArray *tempDistanceArr=[[NSMutableArray alloc]init];
+            tempDistanceArr=[filtername valueForKey:@"data"];
+            DistanceSelectArr=[[NSMutableArray alloc]init];
+            for (int i= 0; i<tempDistanceArr.count; i++)
+            {
+                [DistanceSelectArr addObject:@"0"];
+            }
+        }
+        else if ([[filtername valueForKey:@"filter_name"] isEqualToString:@"Free Delivery"])
+        {
+            // Search By FreeDelivery.
+            NSMutableArray *tempFreeDelArr=[[NSMutableArray alloc]init];
+            tempFreeDelArr=[filtername valueForKey:@"data"];
+            FreeDelSelectArr=[[NSMutableArray alloc]init];
+            for (int i= 0; i<tempFreeDelArr.count; i++)
+            {
+                [FreeDelSelectArr addObject:@"0"];
+            }
+        }
+        else if ([[filtername valueForKey:@"filter_name"] isEqualToString:@"Sort By Rating"])
+        {
+            // Search By FreeDelivery.
+            NSMutableArray *tempReviewStarArr=[[NSMutableArray alloc]init];
+            tempReviewStarArr=[filtername valueForKey:@"data"];
+            ReviewStarSelectArr=[[NSMutableArray alloc]init];
+            for (int i= 0; i<tempReviewStarArr.count; i++)
+            {
+                [ReviewStarSelectArr addObject:@"0"];
+            }
+        }
+        else if ([[filtername valueForKey:@"filter_name"] isEqualToString:@"Sort By Price"])
+        {
+            // Search By Range Bar.
+           // SortByPriceArr=[[NSMutableArray alloc]init];
+           // SortByPriceArr=[filtername valueForKey:@"data"];
+        }
+    }
+    catParsingArr=[[NSMutableArray alloc]init];
+    PriceParsingArr=[[NSMutableArray alloc]init];
+    RatingParsingArr=[[NSMutableArray alloc]init];
+    DistanceParsingArr=[[NSMutableArray alloc]init];
+    FreDelParsingArr=[[NSMutableArray alloc]init];
     
+    [CatTBL reloadData];
+    limit_only=0;
+    [self CallForSearchByShop];
+    FilterView.hidden=YES;
 }
 @end
