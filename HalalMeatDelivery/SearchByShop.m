@@ -469,7 +469,6 @@ static dispatch_once_t predicate;
                 [fliterdic setObject:[[CatArr valueForKey:@"filter_value_id"] objectAtIndex:indexPath.row]  forKey:@"filter_value_id"];
                 [fliterdic setObject:[[CatArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row]  forKey:@"filter_value_name"];
                 [fliterdic setObject:[[CatArr valueForKey:@"filter_value"] objectAtIndex:indexPath.row]  forKey:@"filter_value"];
-                [fliterdic setObject:[filter_idArry objectAtIndex:0]  forKey:@"filter_id"];
                 [catParsingArr addObject:fliterdic];
                 
             }
@@ -489,8 +488,7 @@ static dispatch_once_t predicate;
                 [fliterdic setObject:[[ReviewStarArr valueForKey:@"filter_value_id"] objectAtIndex:indexPath.row]  forKey:@"filter_value_id"];
                 [fliterdic setObject:[[ReviewStarArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row]  forKey:@"filter_value_name"];
                 [fliterdic setObject:[[ReviewStarArr valueForKey:@"filter_value"] objectAtIndex:indexPath.row]  forKey:@"filter_value"];
-                [fliterdic setObject:[filter_idArry objectAtIndex:2]  forKey:@"filter_id"];
-                [catParsingArr addObject:fliterdic];
+                [RatingParsingArr addObject:fliterdic];
             }
             else
             {
@@ -508,7 +506,6 @@ static dispatch_once_t predicate;
                 [fliterdic setObject:[[DistanceArr valueForKey:@"filter_value_id"] objectAtIndex:indexPath.row]  forKey:@"filter_value_id"];
                 [fliterdic setObject:[[DistanceArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row]  forKey:@"filter_value_name"];
                 [fliterdic setObject:[[DistanceArr valueForKey:@"filter_value"] objectAtIndex:indexPath.row]  forKey:@"filter_value"];
-                [fliterdic setObject:[filter_idArry objectAtIndex:3]  forKey:@"filter_id"];
                 [DistanceParsingArr addObject:fliterdic];
             }
             else
@@ -527,7 +524,6 @@ static dispatch_once_t predicate;
                 [fliterdic setObject:[[FreeDelArr valueForKey:@"filter_value_id"] objectAtIndex:indexPath.row]  forKey:@"filter_value_id"];
                 [fliterdic setObject:[[FreeDelArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row]  forKey:@"filter_value_name"];
                 [fliterdic setObject:[[FreeDelArr valueForKey:@"filter_value"] objectAtIndex:indexPath.row]  forKey:@"filter_value"];
-                [fliterdic setObject:[filter_idArry objectAtIndex:4]  forKey:@"filter_id"];
                 [FreDelParsingArr addObject:fliterdic];
             }
             else
@@ -877,30 +873,45 @@ static dispatch_once_t predicate;
 }
 
 - (IBAction)ConfrimFliterBtn_action:(id)sender
-{
-    
-    NSArray *array = [NSArray arrayWithObject:[NSMutableDictionary dictionaryWithObject:[filter_idArry objectAtIndex:0] forKey:@"filter_id"]];   // you can also do same for Name key...
-    NSArray *filteredarray = [array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(filter_id == %@)", [filter_idArry objectAtIndex:0]]];
-    
-    NSMutableArray *Arr=[[NSMutableArray alloc]init];
+{NSMutableArray *Arr=[[NSMutableArray alloc]init];
     
     for (int i=0; i<filter_idArry.count; i++)
     {
+        
         NSMutableDictionary *Catdic=[[NSMutableDictionary alloc]init];
-        [Catdic setValue:catParsingArr forKey:@"data"];
-        [Catdic setValue:[filter_idArry objectAtIndex:i] forKey:@"filter_idDic"];
+        if (i==0)
+        {
+            [Catdic setValue:catParsingArr forKey:@"data"];
+        }
+        if (i==1)
+        {
+            //[Catdic setValue:RatingParsingArr forKey:@"data"];
+        }
+        if (i==2)
+        {
+            [Catdic setValue:RatingParsingArr forKey:@"data"];
+        }
+        if (i==3)
+        {
+            [Catdic setValue:DistanceParsingArr forKey:@"data"];
+        }
+        if (i==4)
+        {
+            [Catdic setValue:FreDelParsingArr forKey:@"data"];
+        }
+        
+        [Catdic setValue:[filter_idArry objectAtIndex:i] forKey:@"filter_id"];
         [Arr addObject:Catdic];
     }
     
     NSError* error = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:Arr options:NSJSONWritingPrettyPrinted error:&error];
     
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers  error:&error];
+    NSString *json = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
     
-    NSMutableDictionary *Pricedic=[[NSMutableDictionary alloc]init];
-    [Pricedic setValue:catParsingArr forKey:@"data"];
-    [Pricedic setValue:@"100" forKey:@"filter_idDic"];
-    [Arr addObject:Pricedic];
+    NSString *trimmedString = [json stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+    trimmedString = [trimmedString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    trimmedString = [trimmedString stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     
     

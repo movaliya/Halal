@@ -12,6 +12,8 @@
 #import "SavePaymentMethod.h"
 #import "AppDelegate.h"
 #import "HalalMeatDelivery.pch"
+#import "AddressListView.h"
+
 @interface MyAccountVW ()
 
 @property AppDelegate *appDelegate;
@@ -41,16 +43,24 @@
         KLogOutView.hidden =NO;
     }
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
 }
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 - (IBAction)MyDetailsBtn_Action:(id)sender
 {
     ProfileView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ProfileView"];
     [self.navigationController pushViewController:vcr animated:YES];
 }
+
 - (IBAction)MyOrderBtn_Action:(id)sender
 {
     OrderHistoryView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"OrderHistoryView"];
@@ -65,7 +75,8 @@
 }
 - (IBAction)DeliveryAddressBtn_action:(id)sender
 {
-    
+    AddressListView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AddressListView"];
+    [self.navigationController pushViewController:vcr animated:YES];
 }
 
 - (IBAction)LogoutBtn_action:(id)sender
@@ -102,7 +113,7 @@
 
 - (IBAction)MenuBtn_action:(id)sender
 {
-     [self.rootNav drawerToggle];
+    [self.rootNav drawerToggle];
 }
 
 #pragma mark - photoShotSavedDelegate
@@ -118,14 +129,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -88,7 +88,9 @@
 
 #define change_forget_passwordServiceName @"change_forget_password"
 
-
+//Address
+#define GetDeleveryHistory @"get_delivery_address"
+#define SetDefautAddress @"set_default_delivery_address"
 
 // CheckOut TakeAway Services
 

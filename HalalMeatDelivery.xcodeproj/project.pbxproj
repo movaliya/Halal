@@ -152,6 +152,10 @@
 		B15330AB1EB9060100E96C28 /* DeliveryView1.m in Sources */ = {isa = PBXBuildFile; fileRef = B15330AA1EB9060100E96C28 /* DeliveryView1.m */; };
 		B15330AE1EB9066100E96C28 /* DeliveryView2.m in Sources */ = {isa = PBXBuildFile; fileRef = B15330AD1EB9066100E96C28 /* DeliveryView2.m */; };
 		B15330B11EB9067500E96C28 /* DeliveryView3.m in Sources */ = {isa = PBXBuildFile; fileRef = B15330B01EB9067500E96C28 /* DeliveryView3.m */; };
+		B15662F11EB9F03D005791FE /* AddressListView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15662EB1EB9F03D005791FE /* AddressListView.m */; };
+		B15662F21EB9F03D005791FE /* CreateNewAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15662ED1EB9F03D005791FE /* CreateNewAddressView.m */; };
+		B15662F31EB9F03D005791FE /* AddressListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B15662EF1EB9F03D005791FE /* AddressListCell.m */; };
+		B15662F41EB9F03D005791FE /* AddressListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B15662F01EB9F03D005791FE /* AddressListCell.xib */; };
 		B1BE545B1D6E134B0012A152 /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BE545A1D6E134B0012A152 /* HomeView.m */; };
 		B1BE54CF1D6E1A030012A152 /* IQNSArray+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BE54AD1D6E1A030012A152 /* IQNSArray+Sort.m */; };
 		B1BE54D01D6E1A030012A152 /* IQUIScrollView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BE54AF1D6E1A030012A152 /* IQUIScrollView+Additions.m */; };
@@ -423,6 +427,13 @@
 		B15330AD1EB9066100E96C28 /* DeliveryView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeliveryView2.m; sourceTree = "<group>"; };
 		B15330AF1EB9067500E96C28 /* DeliveryView3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeliveryView3.h; sourceTree = "<group>"; };
 		B15330B01EB9067500E96C28 /* DeliveryView3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeliveryView3.m; sourceTree = "<group>"; };
+		B15662EA1EB9F03D005791FE /* AddressListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressListView.h; sourceTree = "<group>"; };
+		B15662EB1EB9F03D005791FE /* AddressListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressListView.m; sourceTree = "<group>"; };
+		B15662EC1EB9F03D005791FE /* CreateNewAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateNewAddressView.h; sourceTree = "<group>"; };
+		B15662ED1EB9F03D005791FE /* CreateNewAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateNewAddressView.m; sourceTree = "<group>"; };
+		B15662EE1EB9F03D005791FE /* AddressListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressListCell.h; sourceTree = "<group>"; };
+		B15662EF1EB9F03D005791FE /* AddressListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressListCell.m; sourceTree = "<group>"; };
+		B15662F01EB9F03D005791FE /* AddressListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressListCell.xib; sourceTree = "<group>"; };
 		B1BE54591D6E134B0012A152 /* HomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeView.h; sourceTree = "<group>"; };
 		B1BE545A1D6E134B0012A152 /* HomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeView.m; sourceTree = "<group>"; };
 		B1BE54AC1D6E1A030012A152 /* IQNSArray+Sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQNSArray+Sort.h"; sourceTree = "<group>"; };
@@ -769,6 +780,7 @@
 				5359251E1EB9C59100872F0D /* NEWDilveryMethod */,
 				5356CB311EB4765000E0A422 /* MyAccountVW.h */,
 				5356CB321EB4765000E0A422 /* MyAccountVW.m */,
+				B15662E91EB9F02D005791FE /* AddressView */,
 				5356CB341EB484B700E0A422 /* SavePaymentMethod.h */,
 				5356CB351EB484B700E0A422 /* SavePaymentMethod.m */,
 				B1FC793B1D7DE5D800DA38DC /* ProfileView.h */,
@@ -876,6 +888,20 @@
 				B11657F51D7760A7005AF0D1 /* UIView+WebCacheOperation.m */,
 			);
 			name = WEBIMG;
+			sourceTree = "<group>";
+		};
+		B15662E91EB9F02D005791FE /* AddressView */ = {
+			isa = PBXGroup;
+			children = (
+				B15662EA1EB9F03D005791FE /* AddressListView.h */,
+				B15662EB1EB9F03D005791FE /* AddressListView.m */,
+				B15662EC1EB9F03D005791FE /* CreateNewAddressView.h */,
+				B15662ED1EB9F03D005791FE /* CreateNewAddressView.m */,
+				B15662EE1EB9F03D005791FE /* AddressListCell.h */,
+				B15662EF1EB9F03D005791FE /* AddressListCell.m */,
+				B15662F01EB9F03D005791FE /* AddressListCell.xib */,
+			);
+			name = AddressView;
 			sourceTree = "<group>";
 		};
 		B1BE54571D6E12E70012A152 /* Images */ = {
@@ -1132,6 +1158,7 @@
 				530793231D706FB40028BF53 /* loginBtn.png in Resources */,
 				B1FFE4B41D80870800A40684 /* ThankYouView.xib in Resources */,
 				B111C7391D93049500DE70B6 /* HostoryDetailCell.xib in Resources */,
+				B15662F41EB9F03D005791FE /* AddressListCell.xib in Resources */,
 				B111C73E1D93093A00DE70B6 /* DateAlert.xib in Resources */,
 				530793301D7097AD0028BF53 /* pin_pop_Red.png in Resources */,
 				535FF4DA1D7418A0001355CD /* ProductDetailCell.xib in Resources */,
@@ -1193,6 +1220,7 @@
 				5356CB361EB484B700E0A422 /* SavePaymentMethod.m in Sources */,
 				5357A54A1D7AE118008B4D2E /* AlertView.m in Sources */,
 				B1BE54D91D6E1A030012A152 /* IQPreviousNextView.m in Sources */,
+				B15662F31EB9F03D005791FE /* AddressListCell.m in Sources */,
 				B1BE54D11D6E1A030012A152 /* IQUITextFieldView+Additions.m in Sources */,
 				B11658001D7760A7005AF0D1 /* UIImage+MultiFormat.m in Sources */,
 				B15330AB1EB9060100E96C28 /* DeliveryView1.m in Sources */,
@@ -1205,6 +1233,7 @@
 				B11657F81D7760A7005AF0D1 /* SDWebImageCompat.m in Sources */,
 				5307932E1D7088A90028BF53 /* SearchByShop.m in Sources */,
 				B11658031D7760A7005AF0D1 /* UIView+WebCacheOperation.m in Sources */,
+				B15662F21EB9F03D005791FE /* CreateNewAddressView.m in Sources */,
 				53080A961D85840300ADA06C /* HCSStarRatingView.m in Sources */,
 				B10B1BCE1D6ED119005C9D87 /* DrawerView.m in Sources */,
 				5301AF641D76A85600F16656 /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -1242,6 +1271,7 @@
 				5301AF691D76A85600F16656 /* UIRefreshControl+AFNetworking.m in Sources */,
 				B13984101EB6432800A32E36 /* CategoryCell.m in Sources */,
 				B11657FA1D7760A7005AF0D1 /* SDWebImageDownloader.m in Sources */,
+				B15662F11EB9F03D005791FE /* AddressListView.m in Sources */,
 				B110D5D31D72F041008D8655 /* OrderHistoryDetailView.m in Sources */,
 				B10B98041D91B30E00228F33 /* OrderHistoryView.m in Sources */,
 				B1BE54DC1D6E1A030012A152 /* IQUIView+IQKeyboardToolbar.m in Sources */,
