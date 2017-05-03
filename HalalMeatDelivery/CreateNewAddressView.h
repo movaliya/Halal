@@ -11,9 +11,11 @@
 @interface CreateNewAddressView : UIViewController
 {
     NSMutableDictionary *AddressDic;
+    BOOL *CheckAddresscount;
 }
 
 @property (strong, nonatomic) NSMutableDictionary *AddressDic;
+@property (nonatomic, assign) BOOL *CheckAddresscount;
 
 
 - (IBAction)Back_Click:(id)sender;

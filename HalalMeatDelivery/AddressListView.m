@@ -11,6 +11,9 @@
 #import "AddressListCell.h"
 #import "CreateNewAddressView.h"
 
+#define ButtonColor [UIColor colorWithRed:171.0/255.0 green:30.0/255.0 blue:40.0/255.0 alpha:1.0]
+#define DefaultBTNColor [UIColor colorWithRed:25.0/255.0 green:123.0/255.0 blue:48.0/255.0 alpha:1.0]
+
 @interface AddressListView ()
 {
     NSMutableArray *AddressArr;
@@ -28,7 +31,13 @@
     AddressListCell *cell2 = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
     TBL.rowHeight = cell2.frame.size.height;
     [TBL registerNib:nib forCellReuseIdentifier:@"AddressListCell"];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self getAddressData];
+    
 }
 
 -(void)getAddressData
@@ -39,7 +48,7 @@
     NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] init];
     [dictParams setObject:r_p  forKey:@"r_p"];
     [dictParams setObject:GetDeleveryHistory  forKey:@"service"];
-    [dictParams setObject:@"2"  forKey:@"uid"];
+    [dictParams setObject:User_UID  forKey:@"uid"];
     
     
     [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,Filter_url] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)
@@ -54,12 +63,47 @@
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
         AddressArr=[[response valueForKey:@"result"] mutableCopy];
-        [TBL reloadData];
     }
     else
     {
-        
+        [AppDelegate showErrorMessageWithTitle:nil message:[response objectForKey:@"ack_msg"] delegate:nil];
     }
+    [TBL reloadData];
+
+}
+
+-(void)DeleteAddress :(NSString *)DeliveryAddress_idStr
+{
+    //http://bulkbox.in/feedmemeat/service/service_general.php?r_p=1224&service=delete_delivery_address&uid=4&delivery_address_id=21 
+    
+    NSMutableDictionary *UserData = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginUserDic"] mutableCopy];
+    NSString *User_UID=[UserData valueForKey:@"u_id"];
+    
+    NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] init];
+    [dictParams setObject:r_p  forKey:@"r_p"];
+    [dictParams setObject:DeleteDeliveryAddress  forKey:@"service"];
+    [dictParams setObject:User_UID  forKey:@"uid"];
+    [dictParams setObject:DeliveryAddress_idStr  forKey:@"delivery_address_id"];
+    
+    
+    [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,Filter_url] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)
+     {
+         [self handleDeleteAddress:response];
+     }];
+}
+
+- (void)handleDeleteAddress:(NSDictionary*)response
+{
+    NSLog(@"GetFilterResponse ===%@",response);
+    if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
+    {
+        [AppDelegate showErrorMessageWithTitle:nil message:[response objectForKey:@"result"] delegate:nil];
+    }
+    else
+    {
+        [AppDelegate showErrorMessageWithTitle:nil message:[response objectForKey:@"ack_msg"] delegate:nil];
+    }
+    [self getAddressData];
 }
 
 -(void)SetDefaultAddress :(NSString *)DeliveryAddress_idStr
@@ -74,7 +118,6 @@
     [dictParams setObject:SetDefautAddress  forKey:@"service"];
     [dictParams setObject:User_UID  forKey:@"uid"];
     [dictParams setObject:DeliveryAddress_idStr  forKey:@"delivery_address_id"];
-    
     
     
     [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,Filter_url] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)
@@ -94,6 +137,7 @@
     {
         [AppDelegate showErrorMessageWithTitle:nil message:[response objectForKey:@"ack_msg"] delegate:nil];
     }
+    [self getAddressData];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle
@@ -145,6 +189,15 @@
         
     }
     
+    if ([[[AddressArr objectAtIndex:indexPath.section]valueForKey:@"isDefault"] isEqualToString:@"1"])
+    {
+        cell.DefailtBTN.backgroundColor=DefaultBTNColor;
+    }
+    else
+    {
+        cell.DefailtBTN.backgroundColor=ButtonColor;
+    }
+    
     cell.Name_LBL.text=[NSString stringWithFormat:@"Name : %@",[[AddressArr objectAtIndex:indexPath.section]valueForKey:@"name"]];
     cell.Address_LBL.text=[NSString stringWithFormat:@"Address : %@",[[AddressArr objectAtIndex:indexPath.section]valueForKey:@"address"]];
     cell.Email_LBL.text=[NSString stringWithFormat:@"Email : %@",[[AddressArr objectAtIndex:indexPath.section]valueForKey:@"email"]];
@@ -171,7 +224,7 @@
 -(void)DeleteBTN_Click:(id)sender
 {
     UIButton *btn=(UIButton *)sender;
-    NSLog(@"TAG==%ld",(long)btn.tag);
+    [self DeleteAddress:[[AddressArr objectAtIndex:btn.tag] valueForKey:@"id"]];
 }
 
 -(void)EditBTN_Click:(id)sender
@@ -179,6 +232,14 @@
     UIButton *btn=(UIButton *)sender;
     
     CreateNewAddressView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CreateNewAddressView"];
+    if (AddressArr.count>0)
+    {
+        vcr.CheckAddresscount=YES;
+    }
+    else
+    {
+        vcr.CheckAddresscount=NO;
+    }
     vcr.AddressDic=[AddressArr objectAtIndex:btn.tag];
     [self.navigationController pushViewController:vcr animated:YES];
 }
@@ -194,6 +255,14 @@
 - (IBAction)Plush_Click:(id)sender
 {
     CreateNewAddressView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CreateNewAddressView"];
+    if (AddressArr.count>0)
+    {
+        vcr.CheckAddresscount=YES;
+    }
+    else
+    {
+        vcr.CheckAddresscount=NO;
+    }
     [self.navigationController pushViewController:vcr animated:YES];
 }
 
