@@ -48,6 +48,8 @@ static dispatch_once_t predicate;
     NSMutableArray *DistanceParsingArr;
     NSMutableArray *FreDelParsingArr;
     
+    NSString *MaxPriceSTR;
+    
 }
 @property AppDelegate *appDelegate;
 @end
@@ -188,6 +190,22 @@ static dispatch_once_t predicate;
                 // Search By Range Bar.
                 SortByPriceArr=[[NSMutableArray alloc]init];
                 SortByPriceArr=[filtername valueForKey:@"data"];
+                
+                NSInteger MaxRang=[[[SortByPriceArr valueForKey:@"filter_value_name"] objectAtIndex:0] integerValue];
+                NSLog(@"MaxRang=%d",MaxRang);
+                //currency range slider
+                self.rangeSliderCurrency.delegate = self;
+                self.rangeSliderCurrency.minValue = 0;
+                self.rangeSliderCurrency.maxValue = MaxRang;
+                self.rangeSliderCurrency.selectedMinimum = 0;
+                self.rangeSliderCurrency.selectedMaximum = MaxRang;
+                self.rangeSliderCurrency.handleColor = [UIColor colorWithRed:(185/255.0) green:(23/255.0) blue:(44/255.0) alpha:1.0];;
+                self.rangeSliderCurrency.handleDiameter = 20;
+                self.rangeSliderCurrency.selectedHandleDiameterMultiplier = 1;
+                NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+                formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+                // self.rangeSliderCurrency.numberFormatterOverride = formatter;
+                [self.rangeSliderCurrency bringSubviewToFront:self.view];
             }
         }
        [CatTBL reloadData];
@@ -734,22 +752,6 @@ static dispatch_once_t predicate;
     [SearchByDistBTN setBackgroundColor:[UIColor clearColor]];
     [FreeDelevBTN setBackgroundColor:[UIColor clearColor]];
     
-    
-    NSInteger MaxRang=[[[SortByPriceArr valueForKey:@"filter_value_name"] objectAtIndex:0] integerValue];
-    NSLog(@"MaxRang=%d",MaxRang);
-    //currency range slider
-    self.rangeSliderCurrency.delegate = self;
-    self.rangeSliderCurrency.minValue = 0;
-    self.rangeSliderCurrency.maxValue = MaxRang;
-    self.rangeSliderCurrency.selectedMinimum = 0;
-    self.rangeSliderCurrency.selectedMaximum = MaxRang;
-    self.rangeSliderCurrency.handleColor = [UIColor colorWithRed:(185/255.0) green:(23/255.0) blue:(44/255.0) alpha:1.0];;
-    self.rangeSliderCurrency.handleDiameter = 20;
-    self.rangeSliderCurrency.selectedHandleDiameterMultiplier = 1;
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    formatter.numberStyle = NSNumberFormatterCurrencyStyle;
-   // self.rangeSliderCurrency.numberFormatterOverride = formatter;
-    [self.rangeSliderCurrency bringSubviewToFront:self.view];
     [CatTBL reloadData];
 }
 
@@ -861,6 +863,7 @@ static dispatch_once_t predicate;
     if (sender == self.rangeSliderCurrency)
     {
         NSLog(@"Currency slider updated. Min Value: %.0f Max Value: %.0f", selectedMinimum, selectedMaximum);
+        MaxPriceSTR=[NSString stringWithFormat:@"%.0f",selectedMaximum];
         /*
         NSString *maxval=[NSString stringWithFormat:@"%.0f",selectedMaximum];
         NSMutableDictionary *fliterdic = [[NSMutableDictionary alloc] init];
@@ -875,6 +878,18 @@ static dispatch_once_t predicate;
 
 - (IBAction)ConfrimFliterBtn_action:(id)sender
 {
+    if (MaxPriceSTR)
+    {
+        NSMutableDictionary *fliterdic = [[NSMutableDictionary alloc] init];
+        [fliterdic setObject:[SortByPriceArr valueForKey:@"filter_value_id"]  forKey:@"filter_value_id"];
+        [fliterdic setObject:MaxPriceSTR  forKey:@"filter_value_name"];
+        [fliterdic setObject:[SortByPriceArr valueForKey:@"filter_value"]  forKey:@"filter_value"];
+        [RatingParsingArr addObject:fliterdic];
+    }
+    
+    
+    
+    
     NSMutableArray *Arr=[[NSMutableArray alloc]init];
     for (int i=0; i<filter_idArry.count; i++)
     {
@@ -886,7 +901,7 @@ static dispatch_once_t predicate;
         }
         if (i==1)
         {
-            //[Catdic setValue:RatingParsingArr forKey:@"data"];
+            [Catdic setValue:RatingParsingArr forKey:@"data"];
         }
         if (i==2)
         {

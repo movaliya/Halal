@@ -232,6 +232,7 @@
 {
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
+        [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"QUANTITYCOUNT"];
         [self ShowPOPUP];
     }
     else
@@ -322,6 +323,7 @@
 {
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
+        [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"QUANTITYCOUNT"];
         [self ShowPOPUP];
     }
     else

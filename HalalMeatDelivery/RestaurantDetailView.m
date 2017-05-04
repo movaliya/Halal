@@ -51,6 +51,7 @@
 @synthesize MainScroll;
 @synthesize ImgScroll,ImgScrollWidth;
 @synthesize TabScroll,TableScroll,ScrollHight;
+@synthesize QTYICON_LBL;
 
 #pragma mark - photoShotSavedDelegate
 
@@ -91,6 +92,7 @@
         [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
     
     [self.view bringSubviewToFront:Back_BTN];
+    [self.view bringSubviewToFront:QTYICON_LBL];
     [self.view bringSubviewToFront:CartIMG];
     [self.view bringSubviewToFront:MapPlaceIMG];
     
@@ -110,6 +112,24 @@
     {
         ScrollHight.constant=1053;
     }
+    
+    QTYICON_LBL.layer.masksToBounds = YES;
+    QTYICON_LBL.layer.cornerRadius = 8.0;
+    
+    NSString *savedQTY = [[NSUserDefaults standardUserDefaults]
+                          stringForKey:@"QUANTITYCOUNT"];
+    if (savedQTY)
+    {
+        [QTYICON_LBL setHidden:NO];
+        QTYICON_LBL.text=savedQTY;
+    }
+    else
+    {
+        [QTYICON_LBL setHidden:YES];
+    }
+    
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -319,6 +339,7 @@
             if (y>780)
             {
                 Back_BTN.hidden=YES;
+                QTYICON_LBL.hidden=YES;
                 self.MapPlaceIMG.hidden=YES;
                 self.CartIMG.hidden=YES;
                 HeaderView.Desc_LBL.hidden=YES;
@@ -329,6 +350,7 @@
             else
             {
                 Back_BTN.hidden=NO;
+                QTYICON_LBL.hidden=NO;
                 self.MapPlaceIMG.hidden=NO;
                 self.CartIMG.hidden=NO;
                 HeaderView.Desc_LBL.hidden=NO;
@@ -342,6 +364,7 @@
             if (y>850)
             {
                 Back_BTN.hidden=YES;
+                QTYICON_LBL.hidden=YES;
                 self.MapPlaceIMG.hidden=YES;
                 self.CartIMG.hidden=YES;
                 HeaderView.Desc_LBL.hidden=YES;
@@ -352,6 +375,7 @@
             else
             {
                 Back_BTN.hidden=NO;
+                QTYICON_LBL.hidden=NO;
                 self.MapPlaceIMG.hidden=NO;
                 self.CartIMG.hidden=NO;
                 HeaderView.Desc_LBL.hidden=NO;
@@ -365,6 +389,7 @@
             if (y>978)
             {
                 Back_BTN.hidden=YES;
+                QTYICON_LBL.hidden=YES;
                 self.MapPlaceIMG.hidden=YES;
                 self.CartIMG.hidden=YES;
                 HeaderView.Desc_LBL.hidden=YES;
@@ -375,6 +400,7 @@
             else
             {
                 Back_BTN.hidden=NO;
+                QTYICON_LBL.hidden=NO;
                 self.MapPlaceIMG.hidden=NO;
                 self.CartIMG.hidden=NO;
                 HeaderView.Desc_LBL.hidden=NO;
@@ -388,6 +414,7 @@
             if (y>1048)
             {
                 Back_BTN.hidden=YES;
+                QTYICON_LBL.hidden=YES;
                 self.MapPlaceIMG.hidden=YES;
                 self.CartIMG.hidden=YES;
                 HeaderView.Desc_LBL.hidden=YES;
@@ -398,6 +425,7 @@
             else
             {
                 Back_BTN.hidden=NO;
+                QTYICON_LBL.hidden=NO;
                 self.MapPlaceIMG.hidden=NO;
                 self.CartIMG.hidden=NO;
                 HeaderView.Desc_LBL.hidden=NO;
@@ -843,7 +871,8 @@
             [dictParams setObject:[RestraorntDic valueForKey:@"id"]  forKey:@"rid"];
             [dictParams setObject:[[LoadArr2 objectAtIndex: [sender tag]] valueForKey:@"id"]  forKey:@"pid"];
             [dictParams setObject:[QTYARR objectAtIndex: [sender tag]]  forKey:@"qty"];
-            NSLog(@"ADD ITEM dictParams=%@",dictParams);
+            
+            QUANTITYCOUNT=[QTYARR objectAtIndex: [sender tag]];
             
             [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,AddToCard_url] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)
              {
@@ -860,7 +889,11 @@
 {
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
-        //[AppDelegate showErrorMessageWithTitle:AlertTitleError message:[response objectForKey:@"ack_msg"] delegate:nil];
+         NSString *TotalQTY=[self Quantity_Count:QUANTITYCOUNT];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:TotalQTY forKey:@"QUANTITYCOUNT"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
         NSString *message = [response objectForKey:@"ack_msg"];
         
         UIAlertView *toast = [[UIAlertView alloc] initWithTitle:AlertTitleError
@@ -875,6 +908,20 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [toast dismissWithClickedButtonIndex:0 animated:YES];
         });
+        
+        NSString *savedQTY = [[NSUserDefaults standardUserDefaults]
+                                stringForKey:@"QUANTITYCOUNT"];
+        NSLog(@"savedQTY=%@",savedQTY);
+        if (savedQTY)
+        {
+            [QTYICON_LBL setHidden:NO];
+            QTYICON_LBL.text=savedQTY;
+        }
+        else
+        {
+            [QTYICON_LBL setHidden:YES];
+        }
+        
     }
     else
     {
@@ -896,7 +943,24 @@
     }
     
 }
-
+-(NSString *)Quantity_Count:(NSString *)count
+{
+    NSString *savedValue = [[NSUserDefaults standardUserDefaults]
+                            stringForKey:@"QUANTITYCOUNT"];
+    NSInteger TempAdd=0;
+    NSString *finalVAL;
+    if (savedValue)
+    {
+        TempAdd=[savedValue integerValue]+[count integerValue];
+        finalVAL=[NSString stringWithFormat:@"%d",TempAdd];
+    }
+    else
+    {
+         finalVAL=[NSString stringWithFormat:@"%@",count];
+    }
+    
+    return finalVAL;
+}
 - (IBAction)Cart_Click:(id)sender
 {
     if ([self.appDelegate isUserLoggedIn] == NO)

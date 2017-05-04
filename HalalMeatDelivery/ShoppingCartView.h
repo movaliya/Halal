@@ -24,6 +24,8 @@
     NSString *theTime;
     
     NSString *Paymethod_Str;
+    
+    NSString *deleteQTY;
 }
 @property (weak, nonatomic) IBOutlet UIImageView *RestorantImage;
 @property (weak, nonatomic) IBOutlet UILabel *RestNameLBL;

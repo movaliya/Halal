@@ -16,9 +16,11 @@
     NSString *ResLat,*ResLog;
     NSInteger ButtonTag;
     NSUInteger chechPlusMinus;
+    NSString *QUANTITYCOUNT;
 
     
 }
+@property (weak, nonatomic) IBOutlet UILabel *QTYICON_LBL;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *ScrollHight;
 @property (strong, nonatomic) NSString *R_ID,*Pin;
 

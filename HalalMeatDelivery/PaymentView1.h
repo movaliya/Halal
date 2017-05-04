@@ -10,6 +10,9 @@
 #import "HalalMeatDelivery.pch"
 
 @interface PaymentView1 : UIViewController
+{
+    NSMutableArray *AddressArr;
+}
 @property (strong, nonatomic) NSString *C_ID;
 @property (strong, nonatomic) NSString *PassDateNTime;
 

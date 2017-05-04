@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "HalalMeatDelivery.pch"
 @interface DeliveryView1 : UIViewController
+{
+    NSMutableArray *AddressArr;
+}
 
 @property (strong, nonatomic) NSString *C_ID_Delivery1;
 @property (strong, nonatomic) NSString *theDateNTimeDilvery;

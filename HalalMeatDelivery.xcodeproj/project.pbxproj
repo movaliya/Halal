@@ -80,6 +80,12 @@
 		5356CB361EB484B700E0A422 /* SavePaymentMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 5356CB351EB484B700E0A422 /* SavePaymentMethod.m */; };
 		5357A5461D7ADF80008B4D2E /* checkOutBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 5357A5451D7ADF80008B4D2E /* checkOutBtn.png */; };
 		5357A54A1D7AE118008B4D2E /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5357A5481D7AE118008B4D2E /* AlertView.m */; };
+		535EA4A31EBB52FE00A1AA23 /* adress1.png in Resources */ = {isa = PBXBuildFile; fileRef = 535EA49E1EBB52FE00A1AA23 /* adress1.png */; };
+		535EA4A51EBB52FE00A1AA23 /* home1.png in Resources */ = {isa = PBXBuildFile; fileRef = 535EA4A01EBB52FE00A1AA23 /* home1.png */; };
+		535EA4A61EBB52FE00A1AA23 /* phone1.png in Resources */ = {isa = PBXBuildFile; fileRef = 535EA4A11EBB52FE00A1AA23 /* phone1.png */; };
+		535EA4A91EBB533700A1AA23 /* city.png in Resources */ = {isa = PBXBuildFile; fileRef = 535EA4A81EBB533700A1AA23 /* city.png */; };
+		535EA4AB1EBB54EC00A1AA23 /* email1.png in Resources */ = {isa = PBXBuildFile; fileRef = 535EA4AA1EBB54EC00A1AA23 /* email1.png */; };
+		535EA4AD1EBB551600A1AA23 /* user1.png in Resources */ = {isa = PBXBuildFile; fileRef = 535EA4AC1EBB551600A1AA23 /* user1.png */; };
 		535FF4CD1D7330A8001355CD /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 535FF4CA1D7330A8001355CD /* LoginView.m */; };
 		535FF4CE1D7330A8001355CD /* RegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 535FF4CC1D7330A8001355CD /* RegisterView.m */; };
 		535FF4D01D733262001355CD /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535FF4CF1D733262001355CD /* FacebookSDK.framework */; };
@@ -305,6 +311,12 @@
 		5357A5451D7ADF80008B4D2E /* checkOutBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkOutBtn.png; sourceTree = "<group>"; };
 		5357A5471D7AE118008B4D2E /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
 		5357A5481D7AE118008B4D2E /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
+		535EA49E1EBB52FE00A1AA23 /* adress1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adress1.png; sourceTree = "<group>"; };
+		535EA4A01EBB52FE00A1AA23 /* home1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home1.png; sourceTree = "<group>"; };
+		535EA4A11EBB52FE00A1AA23 /* phone1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone1.png; sourceTree = "<group>"; };
+		535EA4A81EBB533700A1AA23 /* city.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = city.png; sourceTree = "<group>"; };
+		535EA4AA1EBB54EC00A1AA23 /* email1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = email1.png; sourceTree = "<group>"; };
+		535EA4AC1EBB551600A1AA23 /* user1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user1.png; sourceTree = "<group>"; };
 		535FF4C91D7330A8001355CD /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		535FF4CA1D7330A8001355CD /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		535FF4CB1D7330A8001355CD /* RegisterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterView.h; sourceTree = "<group>"; };
@@ -706,6 +718,19 @@
 			name = OldDilvery;
 			sourceTree = "<group>";
 		};
+		535EA49D1EBB52D200A1AA23 /* AddressIcon */ = {
+			isa = PBXGroup;
+			children = (
+				535EA4AA1EBB54EC00A1AA23 /* email1.png */,
+				535EA4A81EBB533700A1AA23 /* city.png */,
+				535EA49E1EBB52FE00A1AA23 /* adress1.png */,
+				535EA4A01EBB52FE00A1AA23 /* home1.png */,
+				535EA4AC1EBB551600A1AA23 /* user1.png */,
+				535EA4A11EBB52FE00A1AA23 /* phone1.png */,
+			);
+			name = AddressIcon;
+			sourceTree = "<group>";
+		};
 		53FBF0C61D96B57500E47FE3 /* Rechability */ = {
 			isa = PBXGroup;
 			children = (
@@ -929,6 +954,7 @@
 				530824A01D82A3D800948547 /* AddressTxtQuare.png */,
 				530824A21D82A45400948547 /* citytxtQuare.png */,
 				53080A911D857D0F00ADA06C /* AddReviewBtn.png */,
+				535EA49D1EBB52D200A1AA23 /* AddressIcon */,
 				530793311D7097CF0028BF53 /* Button */,
 			);
 			name = Images;
@@ -1137,6 +1163,7 @@
 				530824991D82A1F400948547 /* emailTxtQuare.png in Resources */,
 				B1FAD78A1D6E0E1F00304CC0 /* MenuIcon.png in Resources */,
 				5308249D1D82A2C100948547 /* pincodeTxtQuare.png in Resources */,
+				535EA4A91EBB533700A1AA23 /* city.png in Resources */,
 				530793221D706FB40028BF53 /* FBLoginBtn@2x.png in Resources */,
 				B1F47D451D6F557C000D5C0A /* WhiteBackArrow.png in Resources */,
 				530793251D706FB40028BF53 /* userTxt.png in Resources */,
@@ -1151,16 +1178,19 @@
 				B10B1BC51D6EC3CA005C9D87 /* login_back_xhdpi.png in Resources */,
 				B1F9A0521D842B63001ED014 /* RetViewCell.xib in Resources */,
 				B10B1BEA1D6EFEF4005C9D87 /* WhiteMenuIcon.png in Resources */,
+				535EA4A51EBB52FE00A1AA23 /* home1.png in Resources */,
 				530793371D7098010028BF53 /* PincodeTxt.png in Resources */,
 				B109C6601D6C9FC9000936A2 /* Assets.xcassets in Resources */,
 				B10B1BD31D6EEC44005C9D87 /* MenuCell.xib in Resources */,
 				B10B98021D91B25700228F33 /* SimpleTXT.png in Resources */,
 				530793231D706FB40028BF53 /* loginBtn.png in Resources */,
+				535EA4A61EBB52FE00A1AA23 /* phone1.png in Resources */,
 				B1FFE4B41D80870800A40684 /* ThankYouView.xib in Resources */,
 				B111C7391D93049500DE70B6 /* HostoryDetailCell.xib in Resources */,
 				B15662F41EB9F03D005791FE /* AddressListCell.xib in Resources */,
 				B111C73E1D93093A00DE70B6 /* DateAlert.xib in Resources */,
 				530793301D7097AD0028BF53 /* pin_pop_Red.png in Resources */,
+				535EA4AD1EBB551600A1AA23 /* user1.png in Resources */,
 				535FF4DA1D7418A0001355CD /* ProductDetailCell.xib in Resources */,
 				53080A901D85610700ADA06C /* RestaurantDetailTabView.xib in Resources */,
 				B111C7371D93046A00DE70B6 /* phonereceiver.png in Resources */,
@@ -1172,6 +1202,7 @@
 				530793241D706FB40028BF53 /* passwordTxt.png in Resources */,
 				B1BE54DD1D6E1A030012A152 /* IQKeyboardManager.bundle in Resources */,
 				530824A31D82A45400948547 /* citytxtQuare.png in Resources */,
+				535EA4AB1EBB54EC00A1AA23 /* email1.png in Resources */,
 				B1FAD7881D6E0C5800304CC0 /* MaiinRedLogo.png in Resources */,
 				530824A11D82A3D800948547 /* AddressTxtQuare.png in Resources */,
 				530793391D7098110028BF53 /* signupBtn.png in Resources */,
@@ -1184,6 +1215,7 @@
 				B10605B71D75FDFE00D0501F /* myView.xib in Resources */,
 				530793291D7079FF0028BF53 /* searchnearbyBtn.png in Resources */,
 				53080A921D857D0F00ADA06C /* AddReviewBtn.png in Resources */,
+				535EA4A31EBB52FE00A1AA23 /* adress1.png in Resources */,
 				530A20E11E5C099200452FF2 /* ios in Resources */,
 				5308249B1D82A25C00948547 /* PhoneTxtQuare.png in Resources */,
 			);

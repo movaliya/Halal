@@ -73,6 +73,7 @@
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
         take_away_address=[[response objectForKey:@"result"] objectForKey:@"take_away_address"];
+        [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"QUANTITYCOUNT"];
         [self ShowPOPUP];
     }
     else

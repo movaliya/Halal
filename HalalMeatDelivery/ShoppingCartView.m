@@ -462,6 +462,10 @@
         {
             QTYTOTAL=QTYTOTAL+[[arr objectAtIndex:xx] integerValue];
         }
+        
+        NSString *FINALQTY=[NSString stringWithFormat:@"%d",QTYTOTAL];
+        [[NSUserDefaults standardUserDefaults] setObject:FINALQTY forKey:@"QUANTITYCOUNT"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         _upperOrderQTYLBL.text=[NSString stringWithFormat:@"Order Total (%d Items)",QTYTOTAL];
        
     }
@@ -491,7 +495,8 @@
         [dictParams setObject:RemoveCardItemServiceName  forKey:@"service"];
         [dictParams setObject:User_UID  forKey:@"uid"];
         [dictParams setObject:[[deleteproductDic valueForKey:@"id"] objectAtIndex:senderButton.tag]  forKey:@"cid"];
-        NSLog(@"remove Item Dic=%@",dictParams);
+        deleteQTY=[[deleteproductDic valueForKey:@"qty"] objectAtIndex:senderButton.tag];
+        NSLog(@"deleteproductDic=%@",deleteproductDic);
         
         [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,RemoveCardItem_url] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)
          {
@@ -507,6 +512,21 @@
 {
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
+        //*********************setup Quantity ********************************
+        NSString *savedQTY = [[NSUserDefaults standardUserDefaults]
+                              stringForKey:@"QUANTITYCOUNT"];
+        
+        if (savedQTY)
+        {
+            NSString *CalculateQTY=[NSString stringWithFormat:@"%d",[savedQTY integerValue]-[deleteQTY integerValue]];
+            [[NSUserDefaults standardUserDefaults] setObject:CalculateQTY forKey:@"QUANTITYCOUNT"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+        }
+        
+        
+        
+        //********************************************************************
         
         NSLog(@"ButtonTag delete=%d",ButtonTag);
         
