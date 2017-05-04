@@ -27,9 +27,12 @@
 @implementation ShoppingCartView
 @synthesize TableView,dic,arr,MainDic,MainCount;
 @synthesize SelectDate_TXT,upperDateGBLBL,upperView;
+@synthesize RestruntNameView;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.appDelegate = [AppDelegate sharedInstance];
         
     UINib *nib = [UINib nibWithNibName:@"ProductDetailCell" bundle:nil];
@@ -53,6 +56,7 @@
     upperView.layer.borderColor=[[UIColor colorWithRed:226.0f/255.0f green:226.0f/255.0f blue:226.0f/255.0f alpha:1.0] CGColor];
     upperView.layer.borderWidth=1;
 
+    RestruntNameView.hidden=YES;
     [upperView setHidden:YES];
     [_RestorantImage setHidden:YES];
     [_RestNameLBL setHidden:YES];
@@ -120,6 +124,7 @@
     NSString *dateString = [dateFormat stringFromDate:eventDate];
     SelectDate_TXT.text = [NSString stringWithFormat:@"%@",dateString];
 }
+
 -(void)GetCardDetail
 {
     NSMutableDictionary *UserData = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginUserDic"] mutableCopy];
@@ -140,8 +145,10 @@
 {
     NSLog(@"card respose respone=%@",response);
     
+    
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
+        RestruntNameView.hidden=NO;
         [_RestorantImage setHidden:NO];
         [_RestNameLBL setHidden:NO];
         [_RestAddressLBL setHidden:NO];
@@ -549,6 +556,7 @@
         
         if (itemDetailDic.count==0)
         {
+             RestruntNameView.hidden=YES;
             [upperView setHidden:YES];
             [_RestorantImage setHidden:YES];
             [_RestNameLBL setHidden:YES];
