@@ -45,6 +45,7 @@
 @property (strong, nonatomic) UIButton *POPDelivery55;
 @property (strong, nonatomic) UIButton *POPTakeAway66;
 
+@property (strong, nonatomic) IBOutlet UIView *RestruntNameView;
 
 @property (strong, nonatomic) UIButton *POPCancel;
 @property (strong, nonatomic) UIButton *POPProceed;

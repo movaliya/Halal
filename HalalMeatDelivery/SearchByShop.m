@@ -192,7 +192,6 @@ static dispatch_once_t predicate;
                 SortByPriceArr=[filtername valueForKey:@"data"];
                 
                 NSInteger MaxRang=[[[SortByPriceArr valueForKey:@"filter_value_name"] objectAtIndex:0] integerValue];
-                NSLog(@"MaxRang=%d",MaxRang);
                 //currency range slider
                 self.rangeSliderCurrency.delegate = self;
                 self.rangeSliderCurrency.minValue = 0;
@@ -493,6 +492,13 @@ static dispatch_once_t predicate;
             else
             {
                 [CatselectedArr replaceObjectAtIndex:indexPath.row withObject:@"0"];
+                for (int i=0; i<catParsingArr.count; i++)
+                {
+                    if ([[[catParsingArr objectAtIndex:i] valueForKey:@"filter_value_name"] isEqualToString:[[CatArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row]])
+                    {
+                        [catParsingArr removeObjectAtIndex:i];
+                    }
+                }
             }
 
         }
@@ -511,6 +517,13 @@ static dispatch_once_t predicate;
             else
             {
                 [ReviewStarSelectArr replaceObjectAtIndex:indexPath.row withObject:@"0"];
+                for (int i=0; i<RatingParsingArr.count; i++)
+                {
+                    if ([[[RatingParsingArr objectAtIndex:i] valueForKey:@"filter_value_name"] isEqualToString:[[ReviewStarArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row]])
+                    {
+                        [RatingParsingArr removeObjectAtIndex:i];
+                    }
+                }
             }
             
         }
@@ -529,6 +542,13 @@ static dispatch_once_t predicate;
             else
             {
                 [DistanceSelectArr replaceObjectAtIndex:indexPath.row withObject:@"0"];
+                for (int i=0; i<DistanceParsingArr.count; i++)
+                {
+                    if ([[[DistanceParsingArr objectAtIndex:i] valueForKey:@"filter_value_name"] isEqualToString:[[DistanceArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row]])
+                    {
+                        [DistanceParsingArr removeObjectAtIndex:i];
+                    }
+                }
             }
 
         }
@@ -547,9 +567,18 @@ static dispatch_once_t predicate;
             else
             {
                 [FreeDelSelectArr replaceObjectAtIndex:indexPath.row withObject:@"0"];
+                
+                for (int i=0; i<FreDelParsingArr.count; i++)
+                {
+                    if ([[[FreDelParsingArr objectAtIndex:i] valueForKey:@"filter_value_name"] isEqualToString:[[FreeDelArr valueForKey:@"filter_value_name"] objectAtIndex:indexPath.row]])
+                    {
+                        [FreDelParsingArr removeObjectAtIndex:i];
+                    }
+                }
             }
             
         }
+        
         [CatTBL reloadData];
     }
     else
@@ -742,10 +771,11 @@ static dispatch_once_t predicate;
     [SearchByCatBTN setBackgroundColor:SelectedButtonColor];
     [SearchByCatBTN setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
-    SearchByPriceBTN.titleLabel.textColor=UnSelectedButtonColor;
-    SearchByRatBTN.titleLabel.textColor=UnSelectedButtonColor;
-    SearchByDistBTN.titleLabel.textColor=UnSelectedButtonColor;
-    FreeDelevBTN.titleLabel.textColor=UnSelectedButtonColor;
+    
+    [SearchByPriceBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
+    [SearchByRatBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
+    [SearchByDistBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
+    [FreeDelevBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
     
     [SearchByPriceBTN setBackgroundColor:[UIColor clearColor]];
     [SearchByRatBTN setBackgroundColor:[UIColor clearColor]];
@@ -771,10 +801,10 @@ static dispatch_once_t predicate;
         [SearchByCatBTN setBackgroundColor:SelectedButtonColor];
         [SearchByCatBTN setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
-        SearchByPriceBTN.titleLabel.textColor=UnSelectedButtonColor;
-        SearchByRatBTN.titleLabel.textColor=UnSelectedButtonColor;
-        SearchByDistBTN.titleLabel.textColor=UnSelectedButtonColor;
-        FreeDelevBTN.titleLabel.textColor=UnSelectedButtonColor;
+        [SearchByPriceBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
+        [SearchByRatBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
+        [SearchByDistBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal]; 
+        [FreeDelevBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal]; 
         
         [SearchByPriceBTN setBackgroundColor:[UIColor clearColor]];
         [SearchByRatBTN setBackgroundColor:[UIColor clearColor]];
@@ -792,10 +822,10 @@ static dispatch_once_t predicate;
         [SearchByPriceBTN setBackgroundColor:SelectedButtonColor];
         [SearchByPriceBTN setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
-        SearchByCatBTN.titleLabel.textColor=UnSelectedButtonColor;
-        SearchByRatBTN.titleLabel.textColor=UnSelectedButtonColor;
-        SearchByDistBTN.titleLabel.textColor=UnSelectedButtonColor;
-        FreeDelevBTN.titleLabel.textColor=UnSelectedButtonColor;
+        [SearchByCatBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
+        [SearchByRatBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
+        [SearchByDistBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
+        [FreeDelevBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
         
         [SearchByCatBTN setBackgroundColor:[UIColor clearColor]];
         [SearchByRatBTN setBackgroundColor:[UIColor clearColor]];
@@ -810,10 +840,10 @@ static dispatch_once_t predicate;
         [SearchByRatBTN setBackgroundColor:SelectedButtonColor];
         [SearchByRatBTN setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
-        SearchByCatBTN.titleLabel.textColor=UnSelectedButtonColor;
-        SearchByPriceBTN.titleLabel.textColor=UnSelectedButtonColor;
-        SearchByDistBTN.titleLabel.textColor=UnSelectedButtonColor;
-        FreeDelevBTN.titleLabel.textColor=UnSelectedButtonColor;
+        [SearchByCatBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
+        [SearchByPriceBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
+        [SearchByDistBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal]; 
+        [FreeDelevBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
         
         [SearchByCatBTN setBackgroundColor:[UIColor clearColor]];
         [SearchByPriceBTN setBackgroundColor:[UIColor clearColor]];
@@ -827,10 +857,10 @@ static dispatch_once_t predicate;
         [SearchByDistBTN setBackgroundColor:SelectedButtonColor];
         [SearchByDistBTN setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
-        SearchByCatBTN.titleLabel.textColor=UnSelectedButtonColor;
-        SearchByPriceBTN.titleLabel.textColor=UnSelectedButtonColor;
-        SearchByRatBTN.titleLabel.textColor=UnSelectedButtonColor;
-        FreeDelevBTN.titleLabel.textColor=UnSelectedButtonColor;
+        [SearchByCatBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal]; 
+        [SearchByPriceBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal]; 
+        [SearchByRatBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal]; 
+        [FreeDelevBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal]; 
         
         [SearchByCatBTN setBackgroundColor:[UIColor clearColor]];
         [SearchByPriceBTN setBackgroundColor:[UIColor clearColor]];
@@ -844,10 +874,10 @@ static dispatch_once_t predicate;
         [FreeDelevBTN setBackgroundColor:SelectedButtonColor];
         [FreeDelevBTN setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
-        SearchByCatBTN.titleLabel.textColor=UnSelectedButtonColor;
-        SearchByPriceBTN.titleLabel.textColor=UnSelectedButtonColor;
-        SearchByRatBTN.titleLabel.textColor=UnSelectedButtonColor;
-        SearchByDistBTN.titleLabel.textColor=UnSelectedButtonColor;
+        [SearchByCatBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal]; 
+        [SearchByPriceBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal]; 
+        [SearchByRatBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal]; 
+        [SearchByDistBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal]; 
         
         [SearchByCatBTN setBackgroundColor:[UIColor clearColor]];
         [SearchByPriceBTN setBackgroundColor:[UIColor clearColor]];
@@ -964,12 +994,14 @@ static dispatch_once_t predicate;
     }
     else
     {
-         SearchDictnory=[[NSMutableArray alloc]init];
+        [AppDelegate showErrorMessageWithTitle:AlertTitleError message:[response objectForKey:@"ack_msg"] delegate:nil];
+        SearchDictnory=[[NSMutableArray alloc]init];
         NewArr=[[NSMutableArray alloc]initWithArray:SearchDictnory];
         [Table reloadData];
         NoResponseInt=0;
+        
+        [self ClearFliterBtn_action:self];
     }
-    
 }
 
 
