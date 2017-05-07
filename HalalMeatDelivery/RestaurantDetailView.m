@@ -121,7 +121,7 @@
     
     if (savedQTY)
     {
-        if ([savedQTY integerValue]==0)
+        if ([savedQTY integerValue]==0 && savedQTY == nil)
         {
             [QTYICON_LBL setHidden:YES];
             Back_BTN.hidden=YES;
@@ -136,6 +136,13 @@
             self.CartIMG.hidden=NO;
             QTYICON_LBL.text=savedQTY;
         }
+    }
+    else
+    {
+        Back_BTN.hidden=YES;
+        QTYICON_LBL.hidden=YES;
+        self.MapPlaceIMG.hidden=YES;
+        self.CartIMG.hidden=YES;
     }
     
     
@@ -380,6 +387,13 @@
                         QTYICON_LBL.text=savedQTY;
                     }
                 }
+                else
+                {
+                    Back_BTN.hidden=YES;
+                    QTYICON_LBL.hidden=YES;
+                    self.MapPlaceIMG.hidden=YES;
+                    self.CartIMG.hidden=YES;
+                }
             }
         }
         if (IS_IPHONE_5)
@@ -416,6 +430,13 @@
                         QTYICON_LBL.hidden=NO;
                         QTYICON_LBL.text=savedQTY;
                     }
+                }
+                else
+                {
+                    Back_BTN.hidden=YES;
+                    QTYICON_LBL.hidden=YES;
+                    self.MapPlaceIMG.hidden=YES;
+                    self.CartIMG.hidden=YES;
                 }
             }
         }
@@ -454,6 +475,13 @@
                         QTYICON_LBL.text=savedQTY;
                     }
                 }
+                else
+                {
+                    Back_BTN.hidden=YES;
+                    QTYICON_LBL.hidden=YES;
+                    self.MapPlaceIMG.hidden=YES;
+                    self.CartIMG.hidden=YES;
+                }
             }
         }
         if (IS_IPHONE_6P)
@@ -490,6 +518,13 @@
                         QTYICON_LBL.hidden=NO;
                         QTYICON_LBL.text=savedQTY;
                     }
+                }
+                else
+                {
+                    Back_BTN.hidden=YES;
+                    QTYICON_LBL.hidden=YES;
+                    self.MapPlaceIMG.hidden=YES;
+                    self.CartIMG.hidden=YES;
                 }
             }
         }
