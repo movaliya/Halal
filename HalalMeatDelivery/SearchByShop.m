@@ -894,6 +894,7 @@ static dispatch_once_t predicate;
     {
         NSLog(@"Currency slider updated. Min Value: %.0f Max Value: %.0f", selectedMinimum, selectedMaximum);
         MaxPriceSTR=[NSString stringWithFormat:@"%.0f",selectedMaximum];
+        
         /*
         NSString *maxval=[NSString stringWithFormat:@"%.0f",selectedMaximum];
         NSMutableDictionary *fliterdic = [[NSMutableDictionary alloc] init];
@@ -910,11 +911,12 @@ static dispatch_once_t predicate;
 {
     if (MaxPriceSTR)
     {
+        PriceParsingArr=[[NSMutableArray alloc]init];
         NSMutableDictionary *fliterdic = [[NSMutableDictionary alloc] init];
-        [fliterdic setObject:[SortByPriceArr valueForKey:@"filter_value_id"]  forKey:@"filter_value_id"];
+        [fliterdic setObject:[[SortByPriceArr objectAtIndex:0] valueForKey:@"filter_value_id"]  forKey:@"filter_value_id"];
         [fliterdic setObject:MaxPriceSTR  forKey:@"filter_value_name"];
-        [fliterdic setObject:[SortByPriceArr valueForKey:@"filter_value"]  forKey:@"filter_value"];
-        [RatingParsingArr addObject:fliterdic];
+        [fliterdic setObject:[[SortByPriceArr objectAtIndex:0] valueForKey:@"filter_value"]  forKey:@"filter_value"];
+        [PriceParsingArr addObject:fliterdic];
     }
     
     
@@ -931,7 +933,7 @@ static dispatch_once_t predicate;
         }
         if (i==1)
         {
-            [Catdic setValue:RatingParsingArr forKey:@"data"];
+            [Catdic setValue:PriceParsingArr forKey:@"data"];
         }
         if (i==2)
         {
@@ -1000,7 +1002,7 @@ static dispatch_once_t predicate;
         [Table reloadData];
         NoResponseInt=0;
         
-        [self ClearFliterBtn_action:self];
+       // [self ClearFliterBtn_action:self];
     }
 }
 
