@@ -162,6 +162,10 @@
         itemDetailDic=[[CardDicnory valueForKey:@"items"] valueForKey:@"product_detail"];
         deleteproductDic=[CardDicnory valueForKey:@"items"];
         
+        NSString *TotalQTY=[NSString stringWithFormat:@"%d",itemDetailDic.count];
+        [[NSUserDefaults standardUserDefaults] setObject:TotalQTY forKey:@"QUANTITYCOUNT"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
         dic=[[NSMutableDictionary alloc]init];
         MainDic=[[NSMutableDictionary alloc]init];
         
@@ -170,12 +174,8 @@
 
         [dic setObject:arr forKey:@"Count"];
         [MainDic setObject:MainCount forKey:@"MainCount"];
-        NSInteger QTYTOTAL = 0;
-        for (NSInteger xx=0; xx<arr.count; xx++)
-        {
-            QTYTOTAL=QTYTOTAL+[[arr objectAtIndex:xx] integerValue];
-        }
-        _upperOrderQTYLBL.text=[NSString stringWithFormat:@"Order Total (%d Items)",QTYTOTAL];
+        
+        _upperOrderQTYLBL.text=[NSString stringWithFormat:@"Order Total (%d Items)",itemDetailDic.count];
         self.Total_LBL.text=[NSString stringWithFormat:@"Total : £ %@",[[CardDicnory valueForKey:@"sub_total"] stringValue]];
         _upperTotalLBL.text=[NSString stringWithFormat:@"£ %@",[[CardDicnory valueForKey:@"sub_total"] stringValue]];
         
@@ -463,17 +463,6 @@
        [AppDelegate showErrorMessageWithTitle:AlertTitleError message:[response objectForKey:@"ack_msg"] delegate:nil];
         SubTotalValues=[[response objectForKey:@"total_price"] integerValue];
         OldSubTotalValues=[[response objectForKey:@"total_price"] integerValue];
-        
-        NSInteger QTYTOTAL = 0;
-        for (NSInteger xx=0; xx<arr.count; xx++)
-        {
-            QTYTOTAL=QTYTOTAL+[[arr objectAtIndex:xx] integerValue];
-        }
-        
-        NSString *FINALQTY=[NSString stringWithFormat:@"%d",QTYTOTAL];
-        [[NSUserDefaults standardUserDefaults] setObject:FINALQTY forKey:@"QUANTITYCOUNT"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        _upperOrderQTYLBL.text=[NSString stringWithFormat:@"Order Total (%d Items)",QTYTOTAL];
        
     }
     else
@@ -525,14 +514,11 @@
         
         if (savedQTY)
         {
-            NSString *CalculateQTY=[NSString stringWithFormat:@"%d",[savedQTY integerValue]-[deleteQTY integerValue]];
+            NSString *CalculateQTY=[NSString stringWithFormat:@"%d",[savedQTY integerValue]-1];
             [[NSUserDefaults standardUserDefaults] setObject:CalculateQTY forKey:@"QUANTITYCOUNT"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
         }
-        
-        
-        
         //********************************************************************
         
         NSLog(@"ButtonTag delete=%d",ButtonTag);
@@ -552,6 +538,7 @@
         
         self.Total_LBL.text=[NSString stringWithFormat:@"Total : £ %ld",(long)SubTotalValues];
         _upperTotalLBL.text=[NSString stringWithFormat:@"£ %ld",(long)SubTotalValues];
+         _upperOrderQTYLBL.text=[NSString stringWithFormat:@"Order Total (%d Items)",itemDetailDic.count];
         [TableView reloadData];
         
         if (itemDetailDic.count==0)

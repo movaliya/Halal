@@ -118,16 +118,25 @@
     
     NSString *savedQTY = [[NSUserDefaults standardUserDefaults]
                           stringForKey:@"QUANTITYCOUNT"];
+    
     if (savedQTY)
     {
-        [QTYICON_LBL setHidden:NO];
-        QTYICON_LBL.text=savedQTY;
+        if ([savedQTY integerValue]==0)
+        {
+            [QTYICON_LBL setHidden:YES];
+            Back_BTN.hidden=YES;
+            self.MapPlaceIMG.hidden=YES;
+            self.CartIMG.hidden=YES;
+        }
+        else
+        {
+            Back_BTN.hidden=NO;
+            QTYICON_LBL.hidden=NO;
+            self.MapPlaceIMG.hidden=NO;
+            self.CartIMG.hidden=NO;
+            QTYICON_LBL.text=savedQTY;
+        }
     }
-    else
-    {
-        [QTYICON_LBL setHidden:YES];
-    }
-    
     
     
 }
@@ -333,6 +342,8 @@
         UIEdgeInsets inset = MainScroll.contentInset;
         float y = offset.y + bounds.size.height - inset.bottom;
         // float h = size.height;
+        NSString *savedQTY = [[NSUserDefaults standardUserDefaults]
+                              stringForKey:@"QUANTITYCOUNT"];
         
         if (IS_IPHONE_4)
         {
@@ -350,13 +361,25 @@
             else
             {
                 Back_BTN.hidden=NO;
-                QTYICON_LBL.hidden=NO;
+               // QTYICON_LBL.hidden=NO;
                 self.MapPlaceIMG.hidden=NO;
                 self.CartIMG.hidden=NO;
                 HeaderView.Desc_LBL.hidden=NO;
                 _RestorantAddress_Lbl.hidden=NO;
                 self.Cart_BTN.hidden=NO;
                 self.Map_BTN.hidden=NO;
+                if (savedQTY)
+                {
+                    if ([savedQTY integerValue]==0)
+                    {
+                        [QTYICON_LBL setHidden:YES];
+                    }
+                    else
+                    {
+                        QTYICON_LBL.hidden=NO;
+                        QTYICON_LBL.text=savedQTY;
+                    }
+                }
             }
         }
         if (IS_IPHONE_5)
@@ -375,13 +398,25 @@
             else
             {
                 Back_BTN.hidden=NO;
-                QTYICON_LBL.hidden=NO;
+               // QTYICON_LBL.hidden=NO;
                 self.MapPlaceIMG.hidden=NO;
                 self.CartIMG.hidden=NO;
                 HeaderView.Desc_LBL.hidden=NO;
                 _RestorantAddress_Lbl.hidden=NO;
                 self.Cart_BTN.hidden=NO;
                 self.Map_BTN.hidden=NO;
+                if (savedQTY)
+                {
+                    if ([savedQTY integerValue]==0)
+                    {
+                        [QTYICON_LBL setHidden:YES];
+                    }
+                    else
+                    {
+                        QTYICON_LBL.hidden=NO;
+                        QTYICON_LBL.text=savedQTY;
+                    }
+                }
             }
         }
         if (IS_IPHONE_6)
@@ -400,13 +435,25 @@
             else
             {
                 Back_BTN.hidden=NO;
-                QTYICON_LBL.hidden=NO;
+               // QTYICON_LBL.hidden=NO;
                 self.MapPlaceIMG.hidden=NO;
                 self.CartIMG.hidden=NO;
                 HeaderView.Desc_LBL.hidden=NO;
                 _RestorantAddress_Lbl.hidden=NO;
                 self.Cart_BTN.hidden=NO;
                 self.Map_BTN.hidden=NO;
+                if (savedQTY)
+                {
+                    if ([savedQTY integerValue]==0)
+                    {
+                        [QTYICON_LBL setHidden:YES];
+                    }
+                    else
+                    {
+                        QTYICON_LBL.hidden=NO;
+                        QTYICON_LBL.text=savedQTY;
+                    }
+                }
             }
         }
         if (IS_IPHONE_6P)
@@ -425,13 +472,25 @@
             else
             {
                 Back_BTN.hidden=NO;
-                QTYICON_LBL.hidden=NO;
+               // QTYICON_LBL.hidden=NO;
                 self.MapPlaceIMG.hidden=NO;
                 self.CartIMG.hidden=NO;
                 HeaderView.Desc_LBL.hidden=NO;
                 _RestorantAddress_Lbl.hidden=NO;
                 self.Cart_BTN.hidden=NO;
                 self.Map_BTN.hidden=NO;
+                if (savedQTY)
+                {
+                    if ([savedQTY integerValue]==0)
+                    {
+                        [QTYICON_LBL setHidden:YES];
+                    }
+                    else
+                    {
+                        QTYICON_LBL.hidden=NO;
+                        QTYICON_LBL.text=savedQTY;
+                    }
+                }
             }
         }
         
@@ -887,9 +946,12 @@
 
 - (void)handleAddToCardResponse:(NSDictionary*)response
 {
+    
+    NSLog(@"add to cart Response=%@",response);
+    
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
-         NSString *TotalQTY=[self Quantity_Count:QUANTITYCOUNT];
+         NSString *TotalQTY=[response objectForKey:@"cart_item"];
         
         [[NSUserDefaults standardUserDefaults] setObject:TotalQTY forKey:@"QUANTITYCOUNT"];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -914,8 +976,21 @@
         NSLog(@"savedQTY=%@",savedQTY);
         if (savedQTY)
         {
-            [QTYICON_LBL setHidden:NO];
-            QTYICON_LBL.text=savedQTY;
+            if ([savedQTY integerValue]==0)
+            {
+                [QTYICON_LBL setHidden:YES];
+                Back_BTN.hidden=YES;
+                self.MapPlaceIMG.hidden=YES;
+                self.CartIMG.hidden=YES;
+            }
+            else
+            {
+                Back_BTN.hidden=NO;
+                QTYICON_LBL.hidden=NO;
+                self.MapPlaceIMG.hidden=NO;
+                self.CartIMG.hidden=NO;
+                QTYICON_LBL.text=savedQTY;
+            }
         }
         else
         {

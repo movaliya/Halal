@@ -111,7 +111,7 @@
     
     if (MainDic.count==0)
     {
-        [AppDelegate showErrorMessageWithTitle:@"" message:@"There is no Restorant near by you." delegate:nil];
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"THERE IS NO SHOPS NEAR BY YOU." delegate:nil];
     }
     
     for (int i=0; i<MainDic.count; i++)

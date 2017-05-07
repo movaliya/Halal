@@ -245,7 +245,7 @@ static dispatch_once_t predicate;
             
         }
         NewArr=[[NSMutableArray alloc]initWithArray:SearchDictnory];
-        limit_only=limit_only+5;
+        limit_only=limit_only+DataDic.count;
         NoResponseInt=1;
         [Table reloadData];
     }

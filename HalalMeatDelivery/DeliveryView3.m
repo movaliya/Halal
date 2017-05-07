@@ -10,6 +10,7 @@
 #import "ThankYouView.h"
 #import "ShoppingCartView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "HomeView.h"
 
 // Set the environment:
 // - For live charges, use PayPalEnvironmentProduction (default).
@@ -386,7 +387,7 @@
 {
     ThankPOPUp.hidden=YES;
     
-    ShoppingCartView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ShoppingCartView"];
+    HomeView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeView"];
     [self.navigationController pushViewController:vcr animated:NO];
 }
 

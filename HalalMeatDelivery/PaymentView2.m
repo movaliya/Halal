@@ -10,6 +10,7 @@
 #import "HalalMeatDelivery.pch"
 #import "ThankYouView.h"
 #import "ShoppingCartView.h"
+#import "HomeView.h"
 
 @interface PaymentView2 ()
 {
@@ -112,7 +113,7 @@
 {
     ThankPOPUp.hidden=YES;
     
-    ShoppingCartView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ShoppingCartView"];
+    HomeView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeView"];
     [self.navigationController pushViewController:vcr animated:NO];
 }
 - (IBAction)backBtn_action:(id)sender
