@@ -14,6 +14,13 @@
 
 @implementation DeliveryView1
 
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

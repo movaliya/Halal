@@ -16,6 +16,11 @@
 @synthesize UserCity_txt,UserName_txt,UserEmail_txt,UserAddress_txt,UserPhoneNo_txt,UserPincode_txt;
 @synthesize C_ID;
 
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

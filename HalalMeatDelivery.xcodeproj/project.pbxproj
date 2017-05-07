@@ -1456,6 +1456,7 @@
 					"$(PROJECT_DIR)/HalalMeatDelivery",
 					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalMobile",
 					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalSDK",
+					"$(PROJECT_DIR)/HalalMeatDelivery/PaypalSDK/PayPalMobile",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1492,6 +1493,7 @@
 					"$(PROJECT_DIR)/HalalMeatDelivery",
 					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalMobile",
 					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalSDK",
+					"$(PROJECT_DIR)/HalalMeatDelivery/PaypalSDK/PayPalMobile",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

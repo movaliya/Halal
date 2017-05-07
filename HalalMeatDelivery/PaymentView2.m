@@ -28,6 +28,12 @@
 @synthesize ThanksOK;
 @synthesize NamePop,MobilePop,CityPop,AddressPop;
 
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

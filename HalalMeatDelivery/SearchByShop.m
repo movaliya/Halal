@@ -1000,7 +1000,7 @@ static dispatch_once_t predicate;
         [Table reloadData];
         NoResponseInt=0;
         
-        [self ClearFliterBtn_action:self];
+       // [self ClearFliterBtn_action:self];
     }
 }
 
