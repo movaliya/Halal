@@ -153,6 +153,7 @@
 		B120439C1D789BE800095219 /* RestaurantHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B120439B1D789BE800095219 /* RestaurantHeaderView.m */; };
 		B13984101EB6432800A32E36 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B139840E1EB6432800A32E36 /* CategoryCell.m */; };
 		B13984111EB6432800A32E36 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B139840F1EB6432800A32E36 /* CategoryCell.xib */; };
+		B148B2151EBF62BD009E9346 /* BlankTxtFildwithframe.png in Resources */ = {isa = PBXBuildFile; fileRef = B148B2141EBF62BD009E9346 /* BlankTxtFildwithframe.png */; };
 		B15330A51EB8FD5200E96C28 /* PaymentView1.m in Sources */ = {isa = PBXBuildFile; fileRef = B15330A41EB8FD5200E96C28 /* PaymentView1.m */; };
 		B15330A81EB9025300E96C28 /* PaymentView2.m in Sources */ = {isa = PBXBuildFile; fileRef = B15330A71EB9025300E96C28 /* PaymentView2.m */; };
 		B15330AB1EB9060100E96C28 /* DeliveryView1.m in Sources */ = {isa = PBXBuildFile; fileRef = B15330AA1EB9060100E96C28 /* DeliveryView1.m */; };
@@ -429,6 +430,7 @@
 		B139840D1EB6432800A32E36 /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		B139840E1EB6432800A32E36 /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		B139840F1EB6432800A32E36 /* CategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
+		B148B2141EBF62BD009E9346 /* BlankTxtFildwithframe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlankTxtFildwithframe.png; sourceTree = "<group>"; };
 		B15330A31EB8FD5200E96C28 /* PaymentView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentView1.h; sourceTree = "<group>"; };
 		B15330A41EB8FD5200E96C28 /* PaymentView1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentView1.m; sourceTree = "<group>"; };
 		B15330A61EB9025300E96C28 /* PaymentView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentView2.h; sourceTree = "<group>"; };
@@ -932,6 +934,7 @@
 		B1BE54571D6E12E70012A152 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B148B2141EBF62BD009E9346 /* BlankTxtFildwithframe.png */,
 				B111C7361D93046A00DE70B6 /* phonereceiver.png */,
 				B10B98011D91B25700228F33 /* SimpleTXT.png */,
 				536552651EB308D1004E4598 /* SplashScreen.JPG */,
@@ -1185,6 +1188,7 @@
 				B10B98021D91B25700228F33 /* SimpleTXT.png in Resources */,
 				530793231D706FB40028BF53 /* loginBtn.png in Resources */,
 				535EA4A61EBB52FE00A1AA23 /* phone1.png in Resources */,
+				B148B2151EBF62BD009E9346 /* BlankTxtFildwithframe.png in Resources */,
 				B1FFE4B41D80870800A40684 /* ThankYouView.xib in Resources */,
 				B111C7391D93049500DE70B6 /* HostoryDetailCell.xib in Resources */,
 				B15662F41EB9F03D005791FE /* AddressListCell.xib in Resources */,
