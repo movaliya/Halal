@@ -59,7 +59,11 @@
 {
     NSLog(@"CCKFNavDrawerSelection = %li", (long)selectionIndex);
 }
-
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [QTYICON_LBL.layer removeAllAnimations];
+}
 
 - (void)viewDidLoad
 {
@@ -113,8 +117,8 @@
         ScrollHight.constant=1053;
     }
     
-    QTYICON_LBL.layer.masksToBounds = YES;
-    QTYICON_LBL.layer.cornerRadius = 8.0;
+    //QTYICON_LBL.layer.masksToBounds = YES;
+    //QTYICON_LBL.layer.cornerRadius = 8.0;
     
     NSString *savedQTY = [[NSUserDefaults standardUserDefaults]
                           stringForKey:@"QUANTITYCOUNT"];
@@ -135,6 +139,11 @@
             self.MapPlaceIMG.hidden=NO;
             self.CartIMG.hidden=NO;
             QTYICON_LBL.text=savedQTY;
+            
+            QTYICON_LBL.alpha = 0;
+            [UIView animateWithDuration:1.0 delay:0.5 options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse animations:^{
+                QTYICON_LBL.alpha = 1;
+            } completion:nil];
         }
     }
     else
@@ -158,6 +167,8 @@
     
     pageControl = [[UIPageControl alloc] init];
     [MainScroll addSubview:pageControl];
+    [MainScroll setContentOffset:CGPointMake(0,2) animated:YES];
+
 }
 
 -(void)viewWillLayoutSubviews
@@ -389,10 +400,7 @@
                 }
                 else
                 {
-                    Back_BTN.hidden=YES;
                     QTYICON_LBL.hidden=YES;
-                    self.MapPlaceIMG.hidden=YES;
-                    self.CartIMG.hidden=YES;
                 }
             }
         }
@@ -433,10 +441,7 @@
                 }
                 else
                 {
-                    Back_BTN.hidden=YES;
                     QTYICON_LBL.hidden=YES;
-                    self.MapPlaceIMG.hidden=YES;
-                    self.CartIMG.hidden=YES;
                 }
             }
         }
@@ -477,10 +482,7 @@
                 }
                 else
                 {
-                    Back_BTN.hidden=YES;
                     QTYICON_LBL.hidden=YES;
-                    self.MapPlaceIMG.hidden=YES;
-                    self.CartIMG.hidden=YES;
                 }
             }
         }
@@ -521,10 +523,7 @@
                 }
                 else
                 {
-                    Back_BTN.hidden=YES;
                     QTYICON_LBL.hidden=YES;
-                    self.MapPlaceIMG.hidden=YES;
-                    self.CartIMG.hidden=YES;
                 }
             }
         }
