@@ -22,7 +22,9 @@
  [self prefersStatusBarHidden];
     [[UIApplication sharedApplication] setStatusBarHidden:YES  withAnimation:UIStatusBarAnimationSlide];
     
-    [PayPalMobile initializeWithClientIdsForEnvironments:@{PayPalEnvironmentProduction : @"", PayPalEnvironmentSandbox : @"AQUjbRYq2t8ExCL0hxJ0Tyd20lOc_fS16qhEuweO8ojBdMNGfF2ZDRBtDV5yl2xyhz5dq59WLgv4X0-q"}];
+    [PayPalMobile initializeWithClientIdsForEnvironments:@{PayPalEnvironmentProduction : @"AaNSUyagndCI7EKZTypxYMqGR2w4lOF_d6RQXVvsG5OQr-1gLUxyQlfBUPHe0QIooHQEukBahn4IO2-z", PayPalEnvironmentSandbox : @""}];
+    
+//sandBoxKey: AQUjbRYq2t8ExCL0hxJ0Tyd20lOc_fS16qhEuweO8ojBdMNGfF2ZDRBtDV5yl2xyhz5dq59WLgv4X0-q
     
     // com.inertiasoftech6.halalMeat
     
