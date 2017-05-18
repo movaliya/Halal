@@ -150,6 +150,18 @@
 		B120439C1D789BE800095219 /* RestaurantHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B120439B1D789BE800095219 /* RestaurantHeaderView.m */; };
 		B13984101EB6432800A32E36 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B139840E1EB6432800A32E36 /* CategoryCell.m */; };
 		B13984111EB6432800A32E36 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B139840F1EB6432800A32E36 /* CategoryCell.xib */; };
+		B142C2891ECDF6BB00C61192 /* button_secondary.png in Resources */ = {isa = PBXBuildFile; fileRef = B142C2761ECDF6BB00C61192 /* button_secondary.png */; };
+		B142C28A1ECDF6BB00C61192 /* button_secondary@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B142C2771ECDF6BB00C61192 /* button_secondary@2x.png */; };
+		B142C28B1ECDF6BB00C61192 /* button_secondary_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = B142C2781ECDF6BB00C61192 /* button_secondary_selected.png */; };
+		B142C28C1ECDF6BB00C61192 /* button_secondary_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B142C2791ECDF6BB00C61192 /* button_secondary_selected@2x.png */; };
+		B142C28D1ECDF6BB00C61192 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = B142C27A1ECDF6BB00C61192 /* check.png */; };
+		B142C28E1ECDF6BB00C61192 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B142C27B1ECDF6BB00C61192 /* check@2x.png */; };
+		B142C28F1ECDF6BB00C61192 /* ios_sample_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B142C27C1ECDF6BB00C61192 /* ios_sample_icon.png */; };
+		B142C2901ECDF6BB00C61192 /* ios_sample_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B142C27D1ECDF6BB00C61192 /* ios_sample_icon@2x.png */; };
+		B142C2911ECDF6BB00C61192 /* libCardIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B142C27E1ECDF6BB00C61192 /* libCardIO.a */; };
+		B142C2921ECDF6BB00C61192 /* libopencv_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B142C27F1ECDF6BB00C61192 /* libopencv_core.a */; };
+		B142C2931ECDF6BB00C61192 /* libopencv_imgproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B142C2801ECDF6BB00C61192 /* libopencv_imgproc.a */; };
+		B142C2941ECDF6BB00C61192 /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B142C2811ECDF6BB00C61192 /* libPayPalMobile.a */; };
 		B148B2151EBF62BD009E9346 /* BlankTxtFildwithframe.png in Resources */ = {isa = PBXBuildFile; fileRef = B148B2141EBF62BD009E9346 /* BlankTxtFildwithframe.png */; };
 		B15330A51EB8FD5200E96C28 /* PaymentView1.m in Sources */ = {isa = PBXBuildFile; fileRef = B15330A41EB8FD5200E96C28 /* PaymentView1.m */; };
 		B15330A81EB9025300E96C28 /* PaymentView2.m in Sources */ = {isa = PBXBuildFile; fileRef = B15330A71EB9025300E96C28 /* PaymentView2.m */; };
@@ -413,6 +425,25 @@
 		B139840D1EB6432800A32E36 /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		B139840E1EB6432800A32E36 /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		B139840F1EB6432800A32E36 /* CategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
+		B142C2761ECDF6BB00C61192 /* button_secondary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_secondary.png; sourceTree = "<group>"; };
+		B142C2771ECDF6BB00C61192 /* button_secondary@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_secondary@2x.png"; sourceTree = "<group>"; };
+		B142C2781ECDF6BB00C61192 /* button_secondary_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_secondary_selected.png; sourceTree = "<group>"; };
+		B142C2791ECDF6BB00C61192 /* button_secondary_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_secondary_selected@2x.png"; sourceTree = "<group>"; };
+		B142C27A1ECDF6BB00C61192 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		B142C27B1ECDF6BB00C61192 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
+		B142C27C1ECDF6BB00C61192 /* ios_sample_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios_sample_icon.png; sourceTree = "<group>"; };
+		B142C27D1ECDF6BB00C61192 /* ios_sample_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios_sample_icon@2x.png"; sourceTree = "<group>"; };
+		B142C27E1ECDF6BB00C61192 /* libCardIO.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCardIO.a; sourceTree = "<group>"; };
+		B142C27F1ECDF6BB00C61192 /* libopencv_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_core.a; sourceTree = "<group>"; };
+		B142C2801ECDF6BB00C61192 /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_imgproc.a; sourceTree = "<group>"; };
+		B142C2811ECDF6BB00C61192 /* libPayPalMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPayPalMobile.a; sourceTree = "<group>"; };
+		B142C2821ECDF6BB00C61192 /* PayPalConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalConfiguration.h; sourceTree = "<group>"; };
+		B142C2831ECDF6BB00C61192 /* PayPalFuturePaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalFuturePaymentViewController.h; sourceTree = "<group>"; };
+		B142C2841ECDF6BB00C61192 /* PayPalMobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalMobile.h; sourceTree = "<group>"; };
+		B142C2851ECDF6BB00C61192 /* PayPalOAuthScopes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalOAuthScopes.h; sourceTree = "<group>"; };
+		B142C2861ECDF6BB00C61192 /* PayPalPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPayment.h; sourceTree = "<group>"; };
+		B142C2871ECDF6BB00C61192 /* PayPalPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPaymentViewController.h; sourceTree = "<group>"; };
+		B142C2881ECDF6BB00C61192 /* PayPalProfileSharingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalProfileSharingViewController.h; sourceTree = "<group>"; };
 		B148B2141EBF62BD009E9346 /* BlankTxtFildwithframe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlankTxtFildwithframe.png; sourceTree = "<group>"; };
 		B15330A31EB8FD5200E96C28 /* PaymentView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentView1.h; sourceTree = "<group>"; };
 		B15330A41EB8FD5200E96C28 /* PaymentView1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentView1.m; sourceTree = "<group>"; };
@@ -491,6 +522,7 @@
 				530B1F721D89779700F1F894 /* MessageUI.framework in Frameworks */,
 				530B1F701D89778300F1F894 /* CoreMedia.framework in Frameworks */,
 				530B1F6E1D89776400F1F894 /* AudioToolbox.framework in Frameworks */,
+				B142C2931ECDF6BB00C61192 /* libopencv_imgproc.a in Frameworks */,
 				530B1F6C1D89773F00F1F894 /* Accelerate.framework in Frameworks */,
 				5301AF7D1D76AAA400F16656 /* AVFoundation.framework in Frameworks */,
 				5301AF7B1D76AA9C00F16656 /* CFNetwork.framework in Frameworks */,
@@ -500,9 +532,12 @@
 				5301AF731D76AA6100F16656 /* Social.framework in Frameworks */,
 				5301AF711D76AA5200F16656 /* MobileCoreServices.framework in Frameworks */,
 				B1F47D4D1D6F6047000D5C0A /* ImageIO.framework in Frameworks */,
+				B142C2911ECDF6BB00C61192 /* libCardIO.a in Frameworks */,
 				B10B1BD81D6EFC1A005C9D87 /* CoreGraphics.framework in Frameworks */,
 				B10B1BD91D6EFC1A005C9D87 /* CoreLocation.framework in Frameworks */,
 				B10B1BD51D6EFC05005C9D87 /* MapKit.framework in Frameworks */,
+				B142C2941ECDF6BB00C61192 /* libPayPalMobile.a in Frameworks */,
+				B142C2921ECDF6BB00C61192 /* libopencv_core.a in Frameworks */,
 				535FF4D01D733262001355CD /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -747,6 +782,7 @@
 		B109C6521D6C9FC9000936A2 /* HalalMeatDelivery */ = {
 			isa = PBXGroup;
 			children = (
+				B142C2751ECDF6BB00C61192 /* PayPalSDK */,
 				530127A71EB769B400394F9A /* Slider */,
 				530A20E01E5C099200452FF2 /* ios */,
 				B1F47D3C1D6F54A4000D5C0A /* DTTableView */,
@@ -896,6 +932,32 @@
 				B11657F51D7760A7005AF0D1 /* UIView+WebCacheOperation.m */,
 			);
 			name = WEBIMG;
+			sourceTree = "<group>";
+		};
+		B142C2751ECDF6BB00C61192 /* PayPalSDK */ = {
+			isa = PBXGroup;
+			children = (
+				B142C2761ECDF6BB00C61192 /* button_secondary.png */,
+				B142C2771ECDF6BB00C61192 /* button_secondary@2x.png */,
+				B142C2781ECDF6BB00C61192 /* button_secondary_selected.png */,
+				B142C2791ECDF6BB00C61192 /* button_secondary_selected@2x.png */,
+				B142C27A1ECDF6BB00C61192 /* check.png */,
+				B142C27B1ECDF6BB00C61192 /* check@2x.png */,
+				B142C27C1ECDF6BB00C61192 /* ios_sample_icon.png */,
+				B142C27D1ECDF6BB00C61192 /* ios_sample_icon@2x.png */,
+				B142C27E1ECDF6BB00C61192 /* libCardIO.a */,
+				B142C27F1ECDF6BB00C61192 /* libopencv_core.a */,
+				B142C2801ECDF6BB00C61192 /* libopencv_imgproc.a */,
+				B142C2811ECDF6BB00C61192 /* libPayPalMobile.a */,
+				B142C2821ECDF6BB00C61192 /* PayPalConfiguration.h */,
+				B142C2831ECDF6BB00C61192 /* PayPalFuturePaymentViewController.h */,
+				B142C2841ECDF6BB00C61192 /* PayPalMobile.h */,
+				B142C2851ECDF6BB00C61192 /* PayPalOAuthScopes.h */,
+				B142C2861ECDF6BB00C61192 /* PayPalPayment.h */,
+				B142C2871ECDF6BB00C61192 /* PayPalPaymentViewController.h */,
+				B142C2881ECDF6BB00C61192 /* PayPalProfileSharingViewController.h */,
+			);
+			path = PayPalSDK;
 			sourceTree = "<group>";
 		};
 		B15662E91EB9F02D005791FE /* AddressView */ = {
@@ -1161,6 +1223,8 @@
 				535FF4D51D741877001355CD /* NearByCell.xib in Resources */,
 				B10B1BC51D6EC3CA005C9D87 /* login_back_xhdpi.png in Resources */,
 				B1F9A0521D842B63001ED014 /* RetViewCell.xib in Resources */,
+				B142C2891ECDF6BB00C61192 /* button_secondary.png in Resources */,
+				B142C28F1ECDF6BB00C61192 /* ios_sample_icon.png in Resources */,
 				B10B1BEA1D6EFEF4005C9D87 /* WhiteMenuIcon.png in Resources */,
 				535EA4A51EBB52FE00A1AA23 /* home1.png in Resources */,
 				530793371D7098010028BF53 /* PincodeTxt.png in Resources */,
@@ -1176,13 +1240,18 @@
 				B111C73E1D93093A00DE70B6 /* DateAlert.xib in Resources */,
 				530793301D7097AD0028BF53 /* pin_pop_Red.png in Resources */,
 				535EA4AD1EBB551600A1AA23 /* user1.png in Resources */,
+				B142C2901ECDF6BB00C61192 /* ios_sample_icon@2x.png in Resources */,
 				535FF4DA1D7418A0001355CD /* ProductDetailCell.xib in Resources */,
 				53080A901D85610700ADA06C /* RestaurantDetailTabView.xib in Resources */,
+				B142C28C1ECDF6BB00C61192 /* button_secondary_selected@2x.png in Resources */,
 				B111C7371D93046A00DE70B6 /* phonereceiver.png in Resources */,
 				B1FC79421D7DEDF900DA38DC /* PasswordView.xib in Resources */,
 				5309350E1D9E29FF00F9DBEE /* Main.storyboard in Resources */,
+				B142C28D1ECDF6BB00C61192 /* check.png in Resources */,
+				B142C28E1ECDF6BB00C61192 /* check@2x.png in Resources */,
 				530824931D829B8000948547 /* EmailTxt.png in Resources */,
 				530824951D82A0F800948547 /* userNameTxtSquare.png in Resources */,
+				B142C28B1ECDF6BB00C61192 /* button_secondary_selected.png in Resources */,
 				5307932B1D7086AE0028BF53 /* SplashScreen1.png in Resources */,
 				530793241D706FB40028BF53 /* passwordTxt.png in Resources */,
 				B1BE54DD1D6E1A030012A152 /* IQKeyboardManager.bundle in Resources */,
@@ -1195,6 +1264,7 @@
 				B10605B51D75F59A00D0501F /* WhiteBackArrowGo.png in Resources */,
 				B110D5C81D72B208008D8655 /* SearchByCatCell.xib in Resources */,
 				B10B1BC31D6EBDBD005C9D87 /* BackREDImg.png in Resources */,
+				B142C28A1ECDF6BB00C61192 /* button_secondary@2x.png in Resources */,
 				B10B1BCD1D6ED119005C9D87 /* DrawerView.xib in Resources */,
 				5357A5461D7ADF80008B4D2E /* checkOutBtn.png in Resources */,
 				B10605B71D75FDFE00D0501F /* myView.xib in Resources */,

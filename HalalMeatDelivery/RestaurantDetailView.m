@@ -271,17 +271,20 @@
     
     if (Cat_Arr.count>0)
     {
-        if (Cat_Arr.count<=3)
-        {
-            [HeaderView.Tab_Scroll layoutIfNeeded];
-            [self settabscroll:Cat_Arr.count];
-        }
-        else
-        {
-
-            [HeaderView.Tab_Scroll layoutIfNeeded];
-            [self settabscroll:3];
-        }
+        [HeaderView.Tab_Scroll layoutIfNeeded];
+        [self settabscroll:Cat_Arr.count];
+        
+//        if (Cat_Arr.count>=3)
+//        {
+//            [HeaderView.Tab_Scroll layoutIfNeeded];
+//            [self settabscroll:Cat_Arr.count];
+//        }
+//        else
+//        {
+//
+//            [HeaderView.Tab_Scroll layoutIfNeeded];
+//            [self settabscroll:3];
+//        }
     }
     
 }
@@ -789,6 +792,7 @@
         
         
         cell.RestQuatityLBL.text=[[MainCount objectAtIndex:tableView.tag] objectAtIndex:indexPath.row];
+        cell.TitleTriling.constant=0;
         
         
 //        NSInteger *Main=[[[MainDic valueForKey:@"MainCount"] objectAtIndex:indexPath.row] integerValue];

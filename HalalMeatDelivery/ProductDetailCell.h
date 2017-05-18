@@ -12,6 +12,7 @@
 {
     
 }
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *TitleTriling;
 @property (strong, nonatomic) IBOutlet UILabel *Title_LBL;
 @property (strong, nonatomic) IBOutlet UILabel *Price_LBL;
 @property (strong, nonatomic) IBOutlet UILabel *Cat_LBL;
