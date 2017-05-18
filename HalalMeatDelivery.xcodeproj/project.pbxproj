@@ -54,9 +54,6 @@
 		53080A901D85610700ADA06C /* RestaurantDetailTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53080A8F1D85610700ADA06C /* RestaurantDetailTabView.xib */; };
 		53080A921D857D0F00ADA06C /* AddReviewBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 53080A911D857D0F00ADA06C /* AddReviewBtn.png */; };
 		53080A961D85840300ADA06C /* HCSStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53080A951D85840300ADA06C /* HCSStarRatingView.m */; };
-		53080A981D8585FC00ADA06C /* HCSStarRatingView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53080A971D8585FC00ADA06C /* HCSStarRatingView.framework */; };
-		53080A991D85870700ADA06C /* HCSStarRatingView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53080A971D8585FC00ADA06C /* HCSStarRatingView.framework */; };
-		53080A9A1D85870700ADA06C /* HCSStarRatingView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 53080A971D8585FC00ADA06C /* HCSStarRatingView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5308248D1D8299C600948547 /* cityTxt.png in Resources */ = {isa = PBXBuildFile; fileRef = 5308248C1D8299C600948547 /* cityTxt.png */; };
 		5308248F1D829A4900948547 /* PhoneTxt.png in Resources */ = {isa = PBXBuildFile; fileRef = 5308248E1D829A4900948547 /* PhoneTxt.png */; };
 		530824931D829B8000948547 /* EmailTxt.png in Resources */ = {isa = PBXBuildFile; fileRef = 530824921D829B8000948547 /* EmailTxt.png */; };
@@ -193,20 +190,6 @@
 		B1FFE4B41D80870800A40684 /* ThankYouView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1FFE4B31D80870800A40684 /* ThankYouView.xib */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		53080A9B1D85870700ADA06C /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				53080A9A1D85870700ADA06C /* HCSStarRatingView.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		530127A81EB769C300394F9A /* TTRangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTRangeSlider.h; sourceTree = "<group>"; };
 		530127A91EB769C300394F9A /* TTRangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTRangeSlider.m; sourceTree = "<group>"; };
@@ -283,7 +266,6 @@
 		53080A911D857D0F00ADA06C /* AddReviewBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddReviewBtn.png; sourceTree = "<group>"; };
 		53080A941D85840300ADA06C /* HCSStarRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSStarRatingView.h; sourceTree = "<group>"; };
 		53080A951D85840300ADA06C /* HCSStarRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSStarRatingView.m; sourceTree = "<group>"; };
-		53080A971D8585FC00ADA06C /* HCSStarRatingView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HCSStarRatingView.framework; sourceTree = "<group>"; };
 		5308248C1D8299C600948547 /* cityTxt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cityTxt.png; sourceTree = "<group>"; };
 		5308248E1D829A4900948547 /* PhoneTxt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PhoneTxt.png; sourceTree = "<group>"; };
 		530824921D829B8000948547 /* EmailTxt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EmailTxt.png; sourceTree = "<group>"; };
@@ -305,6 +287,7 @@
 		530B1F731D8977C000F1F894 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		5310F8691D7854DE007744A1 /* myAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myAnnotation.h; sourceTree = "<group>"; };
 		5310F86A1D7854DE007744A1 /* myAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myAnnotation.m; sourceTree = "<group>"; };
+		5320DB141EC2ECC400B70059 /* HCSStarRatingView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HCSStarRatingView.framework; sourceTree = SOURCE_ROOT; };
 		5356CB311EB4765000E0A422 /* MyAccountVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccountVW.h; sourceTree = "<group>"; };
 		5356CB321EB4765000E0A422 /* MyAccountVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccountVW.m; sourceTree = "<group>"; };
 		5356CB341EB484B700E0A422 /* SavePaymentMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavePaymentMethod.h; sourceTree = "<group>"; };
@@ -518,10 +501,8 @@
 				5301AF711D76AA5200F16656 /* MobileCoreServices.framework in Frameworks */,
 				B1F47D4D1D6F6047000D5C0A /* ImageIO.framework in Frameworks */,
 				B10B1BD81D6EFC1A005C9D87 /* CoreGraphics.framework in Frameworks */,
-				53080A991D85870700ADA06C /* HCSStarRatingView.framework in Frameworks */,
 				B10B1BD91D6EFC1A005C9D87 /* CoreLocation.framework in Frameworks */,
 				B10B1BD51D6EFC05005C9D87 /* MapKit.framework in Frameworks */,
-				53080A981D8585FC00ADA06C /* HCSStarRatingView.framework in Frameworks */,
 				535FF4D01D733262001355CD /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -852,7 +833,7 @@
 		B10B1BDA1D6EFC33005C9D87 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				53080A971D8585FC00ADA06C /* HCSStarRatingView.framework */,
+				5320DB141EC2ECC400B70059 /* HCSStarRatingView.framework */,
 				5301AF7C1D76AAA400F16656 /* AVFoundation.framework */,
 				5301AF7A1D76AA9C00F16656 /* CFNetwork.framework */,
 				5301AF781D76AA9400F16656 /* SystemConfiguration.framework */,
@@ -1106,7 +1087,7 @@
 				B109C64C1D6C9FC9000936A2 /* Sources */,
 				B109C64D1D6C9FC9000936A2 /* Frameworks */,
 				B109C64E1D6C9FC9000936A2 /* Resources */,
-				53080A9B1D85870700ADA06C /* Embed Frameworks */,
+				534DB6731EC2E963005487CD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1128,8 +1109,8 @@
 				TargetAttributes = {
 					B109C64F1D6C9FC9000936A2 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 7PFD68G63X;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 82MF3E6LT7;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1226,6 +1207,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		534DB6731EC2E963005487CD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B109C64C1D6C9FC9000936A2 /* Sources */ = {
@@ -1442,8 +1439,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Faraz Mahadik (PHT4KDYA23)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7PFD68G63X;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 82MF3E6LT7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1453,7 +1450,7 @@
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				INFOPLIST_FILE = HalalMeatDelivery/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1462,15 +1459,18 @@
 					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalSDK",
 					"$(PROJECT_DIR)/HalalMeatDelivery/PaypalSDK/PayPalMobile",
 				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-fembed-bitcode";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jkinfoway.halalmeat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.feedmemeat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "293c2ed6-b99b-43e5-9559-8a07545af712";
+				PROVISIONING_PROFILE_SPECIFIER = feedmemeat_Distri;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "armv7 arm64 armv7s";
 			};
 			name = Debug;
 		};
@@ -1479,8 +1479,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Faraz Mahadik (PHT4KDYA23)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7PFD68G63X;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 82MF3E6LT7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1490,7 +1490,7 @@
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				INFOPLIST_FILE = HalalMeatDelivery/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1499,15 +1499,18 @@
 					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalSDK",
 					"$(PROJECT_DIR)/HalalMeatDelivery/PaypalSDK/PayPalMobile",
 				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-fembed-bitcode";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jkinfoway.halalmeat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.feedmemeat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "293c2ed6-b99b-43e5-9559-8a07545af712";
+				PROVISIONING_PROFILE_SPECIFIER = feedmemeat_Distri;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "armv7 arm64 armv7s";
 			};
 			name = Release;
 		};

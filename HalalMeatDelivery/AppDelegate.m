@@ -28,8 +28,9 @@
     
     // com.inertiasoftech6.halalMeat
     
-
     
+
+    /*
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
@@ -42,7 +43,7 @@
 #else
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
 #endif
-    
+    */
     
     
     [FBLoginView class];
@@ -51,33 +52,6 @@
     return YES;
 }
 
-- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
-{
-    NSString * deviceTokenNo=[[NSString alloc]init];
-    deviceTokenNo = [[[[deviceToken description]
-                       stringByReplacingOccurrencesOfString: @"<" withString: @""]
-                      stringByReplacingOccurrencesOfString: @">" withString: @""]
-                     stringByReplacingOccurrencesOfString: @" " withString: @""] ;
-    
-    if(deviceTokenNo.length>5)
-    {
-        [[NSUserDefaults standardUserDefaults] setObject:deviceTokenNo forKey:@"DEVICETOKEN"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-    NSLog(@"deviceTokenNo==%@",deviceTokenNo);
-}
-- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
-{
-    NSLog(@"Failed to get token, error: %@", error);
-}
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-{
-    NSLog(@"userInfo = =%@",userInfo);
-    if(userInfo)
-    {
-    }
-}
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     
     return [FBAppCall handleOpenURL:url
