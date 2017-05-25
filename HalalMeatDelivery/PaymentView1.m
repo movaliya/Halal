@@ -27,7 +27,9 @@
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
     {
-        [self getAddressData];
+        //[self getAddressData];
+        [self performSelector:@selector(getAddressData) withObject:self afterDelay:0.0 ];
+
     }
     else
         [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
@@ -62,12 +64,32 @@
         {
             if ([[Defaultname valueForKey:@"isDefault"] isEqualToString:@"1"])
             {
-                self.UserName_txt.text=[Defaultname valueForKey:@"name"];
-                self.UserEmail_txt.text=[Defaultname valueForKey:@"email"];
-                self.UserPhoneNo_txt.text=[Defaultname valueForKey:@"contact_number"];
-                self.UserPincode_txt.text=[Defaultname valueForKey:@"pincode"] ;
-                self.UserAddress_txt.text=[Defaultname valueForKey:@"address"] ;
-                self.UserCity_txt.text=[Defaultname valueForKey:@"city"] ;
+                if ([Defaultname valueForKey:@"name"] != (id)[NSNull null])
+                {
+                    self.UserName_txt.text=[Defaultname valueForKey:@"name"];
+                }
+                if ([Defaultname valueForKey:@"email"] != (id)[NSNull null])
+                {
+                    self.UserEmail_txt.text=[Defaultname valueForKey:@"email"];
+                }
+                if ([Defaultname valueForKey:@"contact_number"] != (id)[NSNull null])
+                {
+                    self.UserPhoneNo_txt.text=[Defaultname valueForKey:@"contact_number"];
+                }
+                if ([Defaultname valueForKey:@"pincode"] != (id)[NSNull null])
+                {
+                    self.UserPincode_txt.text=[Defaultname valueForKey:@"pincode"] ;
+                }
+                if ([Defaultname valueForKey:@"address"] != (id)[NSNull null])
+                {
+                    self.UserAddress_txt.text=[Defaultname valueForKey:@"address"] ;
+                }
+                if ([Defaultname valueForKey:@"city"] != (id)[NSNull null])
+                {
+                    self.UserCity_txt.text=[Defaultname valueForKey:@"city"] ;
+                }
+                self.UserEmail_txt.enabled=NO;
+                self.UserEmail_txt.textColor=[UIColor grayColor];
             }
         }
     }
@@ -77,16 +99,34 @@
         
         if ([UserData count] != 0)
         {
-            //NSString *User_UID=[[UserData valueForKey:@"u_id"] ;
-            self.UserName_txt.text=[UserData valueForKey:@"u_name"] ;
-            self.UserEmail_txt.text=[UserData valueForKey:@"u_email"] ;
-            self.UserPhoneNo_txt.text=[UserData valueForKey:@"u_phone"];
-            self.UserPincode_txt.text=[UserData valueForKey:@"u_pincode"] ;
-            self.UserAddress_txt.text=[UserData valueForKey:@"u_address"] ;
-            self.UserCity_txt.text=[UserData valueForKey:@"u_city"] ;
-            UserEmail_txt.enabled=NO;
-            UserEmail_txt.textColor=[UIColor grayColor];
-            NSLog(@"UserData=%@",UserData);
+            
+            if ([UserData valueForKey:@"u_name"] != (id)[NSNull null])
+            {
+                self.UserName_txt.text=[UserData valueForKey:@"u_name"];
+            }
+            if ([UserData valueForKey:@"u_email"] != (id)[NSNull null])
+            {
+                self.UserEmail_txt.text=[UserData valueForKey:@"u_email"];
+            }
+            if ([UserData valueForKey:@"u_phone"] != (id)[NSNull null])
+            {
+                self.UserPhoneNo_txt.text=[UserData valueForKey:@"u_phone"];
+            }
+            if ([UserData valueForKey:@"u_pincode"] != (id)[NSNull null])
+            {
+                self.UserPincode_txt.text=[UserData valueForKey:@"u_pincode"] ;
+            }
+            if ([UserData valueForKey:@"u_address"] != (id)[NSNull null])
+            {
+                self.UserAddress_txt.text=[UserData valueForKey:@"u_address"] ;
+            }
+            if ([UserData valueForKey:@"u_city"] != (id)[NSNull null])
+            {
+                self.UserCity_txt.text=[UserData valueForKey:@"u_city"] ;
+            }
+            self.UserEmail_txt.enabled=NO;
+            self.UserEmail_txt.textColor=[UIColor grayColor];
+            
         }
         //[AppDelegate showErrorMessageWithTitle:nil message:[response objectForKey:@"ack_msg"] delegate:nil];
     }
@@ -123,7 +163,8 @@
         BOOL internet=[AppDelegate connectedToNetwork];
         if (internet)
         {
-            [self SendBillDetail];
+            //[self SendBillDetail];
+            [self performSelector:@selector(SendBillDetail) withObject:self afterDelay:0.0 ];
         }
         else
             [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
@@ -164,13 +205,12 @@
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
        
-        [AppDelegate showErrorMessageWithTitle:AlertTitleError message:[response objectForKey:@"ack_msg"] delegate:nil];
-        
         PaymentView2 *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentView2"];
         vcr.ChargesDIC=response;
         vcr.DateNTime=self.PassDateNTime;
         vcr.Cart_ID=C_ID;
         [self.navigationController pushViewController:vcr animated:NO];
+        [AppDelegate showErrorMessageWithTitle:@"" message:[response objectForKey:@"ack_msg"] delegate:nil];
         
     }
     else

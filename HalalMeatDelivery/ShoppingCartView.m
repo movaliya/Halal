@@ -10,7 +10,6 @@
 #import "ProductDetailCell.h"
 #import "UIImageView+WebCache.h"
 #import "PaymentView.h"
-#import "DeliveryView.h"
 
 //New Implement file
 #import "PaymentView1.h"
@@ -212,7 +211,7 @@
         [_RestDeleveryLBL setHidden:YES];
         [_JustDeleveyLBL setHidden:YES];
         [_justCellRestImge setHidden:YES];
-        [AppDelegate showErrorMessageWithTitle:AlertTitleError message:[response objectForKey:@"ack_msg"] delegate:nil];
+        [AppDelegate showErrorMessageWithTitle:AlertTitleError message:@"CART EMPTY" delegate:nil];
     }
     
 }
@@ -650,9 +649,9 @@
     //self.POPDelivery.backgroundColor= [UIColor colorWithRed:(25/255.0) green:(123/255.0) blue:(48/255.0) alpha:1.0];
    // self.POPTakeAway.backgroundColor= [UIColor colorWithRed:(204/255.0) green:(204/255.0) blue:(204/255.0) alpha:1.0];
     
-    DeliveryView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DeliveryView"];
-     vcr.C_ID_Delivery=[CardDicnory valueForKey:@"cart_id"];
-    [self.navigationController pushViewController:vcr animated:NO];
+   // DeliveryView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DeliveryView"];
+   //  vcr.C_ID_Delivery=[CardDicnory valueForKey:@"cart_id"];
+   // [self.navigationController pushViewController:vcr animated:NO];
 }
 
 -(void)POPProceed_Click:(id)sender
@@ -671,7 +670,7 @@
     
     if (itemDetailDic.count==0)
     {
-        [AppDelegate showErrorMessageWithTitle:AlertTitleError message:@"No Item in cart or all cart already shipped!!" delegate:nil];
+        [AppDelegate showErrorMessageWithTitle:AlertTitleError message:@"CART EMPTY" delegate:nil];
     }
     else
     {
@@ -691,7 +690,18 @@
             {
                 if ([Paymethod_Str isEqualToString:@"Delivery"])
                 {
-                    [self performSelector:@selector(checkDeliveryTime) withObject:nil afterDelay:0.1];
+                    NSString *tempTotalcheck=_upperTotalLBL.text;
+                    tempTotalcheck = [tempTotalcheck stringByReplacingOccurrencesOfString:@"£ " withString:@""];
+                    
+                    if ([tempTotalcheck integerValue]<50)
+                    {
+                        NSLog(@"tempTotalcheck=%@",tempTotalcheck);
+                         [AppDelegate showErrorMessageWithTitle:@"Alert..!" message:@"Require minimum  £50 amount for delivery." delegate:nil];
+                    }
+                    else
+                    {
+                        [self performSelector:@selector(checkDeliveryTime) withObject:nil afterDelay:0.1];
+                    }
                 }
                 else
                 {

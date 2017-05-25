@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
-#import "PayPalMobile.h"
+#import "HalalMeatDelivery.pch"
+#import "Constant.h"
+@import Stripe;
 
 @interface AppDelegate ()
 
@@ -19,16 +21,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
- [self prefersStatusBarHidden];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES  withAnimation:UIStatusBarAnimationSlide];
     
-    [PayPalMobile initializeWithClientIdsForEnvironments:@{PayPalEnvironmentProduction : @"AaNSUyagndCI7EKZTypxYMqGR2w4lOF_d6RQXVvsG5OQr-1gLUxyQlfBUPHe0QIooHQEukBahn4IO2-z", PayPalEnvironmentSandbox : @""}];
+    [self prefersStatusBarHidden];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES  withAnimation:UIStatusBarAnimationSlide];
+    [self GetPublishableKey];
+    
     
 //sandBoxKey: AQUjbRYq2t8ExCL0hxJ0Tyd20lOc_fS16qhEuweO8ojBdMNGfF2ZDRBtDV5yl2xyhz5dq59WLgv4X0-q
     
     // com.inertiasoftech6.halalMeat
     
+    //com.jkinfoway.halalmeat
+    //com.feedmemeat
     
+    // PostCode 603002
 
     /*
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
@@ -51,7 +57,41 @@
    
     return YES;
 }
-
+-(void)GetPublishableKey
+{
+    
+    NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] init];
+    [dictParams setObject:@"feedmemeathalal_publishable_key"  forKey:@"enc_string"];
+    
+    [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",StripeBaseUrl,StripePublishKey] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)
+     {
+         [self handlePublishKeyResponse:response];
+     }];
+}
+- (void)handlePublishKeyResponse:(NSDictionary*)response
+{
+    
+    //publisable_key: "pk_test_AdQkfvDPjhh5OBqmlJ5DGCub"
+    
+    if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
+    {
+        kstrStripePublishableKey=[[NSString alloc]init];
+        kstrStripePublishableKey=[response objectForKey:@"publisable_key"];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:kstrStripePublishableKey forKey:@"PublishableKey"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        NSLog(@"kstrStripePublishableKey==%@",kstrStripePublishableKey);
+        if (kstrStripePublishableKey != nil) {
+            [[STPPaymentConfiguration sharedConfiguration] setPublishableKey:kstrStripePublishableKey];
+        }
+    }
+    else
+    {
+        //[AppDelegate showErrorMessageWithTitle:@"Error" message:@"Nothing to Show" delegate:nil];
+    }
+    
+}
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     
     return [FBAppCall handleOpenURL:url

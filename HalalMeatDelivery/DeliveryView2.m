@@ -24,6 +24,11 @@
     
     [super viewDidLoad];
     
+   // self.PaymentRadio_btn.hidden=YES;
+    //self.PaymentRadio_btn.enabled=NO;
+    
+    
+    
     //********************* set Payment Method ***********************************
     NSString *savedValue = [[NSUserDefaults standardUserDefaults]
                             stringForKey:@"PAYMENTMETHOD"];
@@ -69,7 +74,8 @@
         BOOL internet=[AppDelegate connectedToNetwork];
         if (internet)
         {
-            [self SendPayMethod];
+            [self performSelector:@selector(SendPayMethod) withObject:self afterDelay:0.0 ];
+           // [self SendPayMethod];
         }
         else
             [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
@@ -107,11 +113,11 @@
         vcr.CartID_DEL3=self.self.CartID_DEL2;
         
         [self.navigationController pushViewController:vcr animated:NO];
-        [AppDelegate showErrorMessageWithTitle:AlertTitleError message:[response objectForKey:@"ack_msg"] delegate:nil];
+        [AppDelegate showErrorMessageWithTitle:@"" message:[response objectForKey:@"ack_msg"] delegate:nil];
     }
     else
     {
-        [AppDelegate showErrorMessageWithTitle:AlertTitleError message:[response objectForKey:@"ack_msg"] delegate:nil];
+        [AppDelegate showErrorMessageWithTitle:@"" message:[response objectForKey:@"ack_msg"] delegate:nil];
     }
 }
 

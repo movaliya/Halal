@@ -321,8 +321,15 @@
                                           [FBSignupdictParams setObject:@""  forKey:@"u_country"];
                                           [FBSignupdictParams setObject:@"facebook"  forKey:@"u_type"];
                                           
-                                          [self CallFBSignup];
                                           
+                                          if ([[result objectForKey:@"u_email"]isEqualToString:@""])
+                                          {
+                                              [AppDelegate showErrorMessageWithTitle:@"Error..!" message:@"Privacy set in facebook account while getting user info." delegate:nil];
+                                          }
+                                          else
+                                          {
+                                              [self CallFBSignup];
+                                          }
                                           // Get the user's profile picture.
                                           // NSURL *pictureURL = [NSURL URLWithString:[[[result objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"]];
                                       }

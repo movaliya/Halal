@@ -57,8 +57,8 @@
 
     self.appDelegate = [AppDelegate sharedInstance];
     
-    LatArr=[NSMutableArray arrayWithObjects:@"12.9667",@"44.518640",@"44.521318",@"44.500746",@"44.490537",@"44.504082", nil];
-    LogArr=[NSMutableArray arrayWithObjects:@"77.5667",@"11.362665",@"11.374080",@"11.345394",@"11.358033",@"11.354256", nil];
+    //LatArr=[NSMutableArray arrayWithObjects:@"12.9667",@"44.518640",@"44.521318",@"44.500746",@"44.490537",@"44.504082", nil];
+   // LogArr=[NSMutableArray arrayWithObjects:@"77.5667",@"11.362665",@"11.374080",@"11.345394",@"11.358033",@"11.354256", nil];
    
    
 }
@@ -82,7 +82,7 @@
     }
     else
     {
-        [AppDelegate showErrorMessageWithTitle:AlertTitleError message:[response objectForKey:@"ack_msg"] delegate:nil];
+        [AppDelegate showErrorMessageWithTitle:@"Alert..!" message:@"No Shops Found." delegate:nil];
     }
     
 }

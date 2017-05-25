@@ -28,6 +28,11 @@
     SaveBtn.layer.borderColor=[[UIColor colorWithRed:161.0f/255.0f green:32.0f/255.0f blue:40.0f/255.0f alpha:1.0] CGColor];
     SaveBtn.layer.borderWidth=1;
     
+    // OnlinePaymtIMAGE.hidden=YES;
+    //self.onlinePay_Btn.hidden=YES;
+   // self.onlinePay_Btn.enabled=NO;
+    
+    
     NSString *savedValue = [[NSUserDefaults standardUserDefaults]
                             stringForKey:@"PAYMENTMETHOD"];
     if (savedValue)
@@ -47,6 +52,7 @@
             Paymethod_Str=@"OnlinePayment";
         }
     }
+   
     
 }
 

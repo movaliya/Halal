@@ -110,6 +110,17 @@
     LoginView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginView"];
     [self.navigationController  pushViewController:vcr animated:YES];
 }
+- (IBAction)RateApp_Btn_Click:(id)sender
+{
+    //https://itunes.apple.com/us/app/feed-me-meat/id1234871251?ls=1&mt=8
+    
+    NSString * appId = @"1234871251";
+    NSString * theUrl = [NSString  stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=%@&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software",appId];
+    if ([[UIDevice currentDevice].systemVersion integerValue] > 6) theUrl = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@",appId];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:theUrl]];
+}
+- (IBAction)Help_Btn_Click:(id)sender {
+}
 
 - (IBAction)MenuBtn_action:(id)sender
 {

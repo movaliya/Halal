@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Reachability.h"
+#import "Constant.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
@@ -28,6 +29,6 @@
 
 +(void)showInternetErrorMessageWithTitle:(NSString *)title delegate:(id)delegate;
 - (BOOL)isUserLoggedIn;
-
+-(void)GetPublishableKey;
 @end
 

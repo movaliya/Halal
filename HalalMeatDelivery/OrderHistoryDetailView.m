@@ -75,6 +75,14 @@
             _paymentMethodStatus_LBL.text=@"Order Date";
             _date_LBL.text=[MainCardDictnory valueForKey:@"orderdate"];
         }
+        else if ([[MainCardDictnory valueForKey:@"payment_mode"]isEqualToString:@"Cash On Delivery"])
+        {
+            _paymentMethodStatus_LBL.text=[NSString stringWithFormat:@"%@ Date",[MainCardDictnory valueForKey:@"payment_mode"]];
+            
+            NSString *dateTimeTakeway=[NSString stringWithFormat:@"%@",[MainCardDictnory valueForKey:@"orderdate"]];
+            
+            _date_LBL.text=dateTimeTakeway;
+        }
         else
         {
             _paymentMethodStatus_LBL.text=[NSString stringWithFormat:@"%@ Date",[MainCardDictnory valueForKey:@"payment_mode"]];

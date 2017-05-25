@@ -101,7 +101,19 @@ static dispatch_once_t predicate;
     
     limit_only=0;
     // Do any additional setup after loading the view.
-    [self getFilterData];
+    
+    
+    BOOL internet=[AppDelegate connectedToNetwork];
+    if (internet)
+    {
+         [self getFilterData];
+    }
+    else
+    {
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+    }
+    
+   
     
     catParsingArr=[[NSMutableArray alloc]init];
     PriceParsingArr=[[NSMutableArray alloc]init];
@@ -216,20 +228,25 @@ static dispatch_once_t predicate;
 }
 -(void)CallForSearchByShop
 {
-    NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] init];
-    [dictParams setObject:r_p  forKey:@"r_p"];
-    [dictParams setObject:SerachByShopServiceName  forKey:@"service"];
-    [dictParams setObject:[NSString stringWithFormat:@"%.8f", Latitude]  forKey:@"lat"];
-    [dictParams setObject:[NSString stringWithFormat:@"%.8f", Logitude]  forKey:@"long"];
-    [dictParams setObject:[NSString stringWithFormat:@"%ld", (long)limit_only]  forKey:@"limit_only"];
-    NSLog(@"dictParams===%@",dictParams);
+    if (Latitude)
+    {
+        NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] init];
+        [dictParams setObject:r_p  forKey:@"r_p"];
+        [dictParams setObject:SerachByShopServiceName  forKey:@"service"];
+        [dictParams setObject:[NSString stringWithFormat:@"%.8f", Latitude]  forKey:@"lat"];
+        [dictParams setObject:[NSString stringWithFormat:@"%.8f", Logitude]  forKey:@"long"];
+        [dictParams setObject:[NSString stringWithFormat:@"%ld", (long)limit_only]  forKey:@"limit_only"];
+        NSLog(@"dictParams===%@",dictParams);
+        
+        
+        
+        [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,SerachByShop_url] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)
+         {
+             [self handleCategoryResponse:response];
+         }];
+    }
     
     
-    
-    [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,SerachByShop_url] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)
-     {
-         [self handleCategoryResponse:response];
-     }];
 }
 
 - (void)handleCategoryResponse:(NSDictionary*)response
@@ -644,7 +661,7 @@ static dispatch_once_t predicate;
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    NSLog(@"didUpdateToLocation: %@", newLocation);
+    //NSLog(@"didUpdateToLocation: %@", newLocation);
     CLLocation *currentLocation = newLocation;
    
     if (currentLocation != nil)
@@ -675,8 +692,8 @@ static dispatch_once_t predicate;
         }
         
        
-        NSLog(@"longitude=%.8f",currentLocation.coordinate.longitude);
-        NSLog(@"latitude=%.8f",currentLocation.coordinate.latitude);
+       // NSLog(@"longitude=%.8f",currentLocation.coordinate.longitude);
+        //NSLog(@"latitude=%.8f",currentLocation.coordinate.latitude);
         
     }
     
@@ -762,27 +779,43 @@ static dispatch_once_t predicate;
 
 - (IBAction)Filter_click:(id)sender
 {
-    PriceView.hidden=YES;
-    FilterView.hidden=NO;
-    self.rangeSliderCurrency.hidden=YES;
     
-    CatTBL.hidden=NO;
-    SelectedShort=0;
-    [SearchByCatBTN setBackgroundColor:SelectedButtonColor];
-    [SearchByCatBTN setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    //FilterDict
     
+    BOOL internet=[AppDelegate connectedToNetwork];
+    if (internet)
+    {
+        if (!FilterDict)
+        {
+            [self getFilterData];
+        }
+        PriceView.hidden=YES;
+        FilterView.hidden=NO;
+        self.rangeSliderCurrency.hidden=YES;
+        
+        CatTBL.hidden=NO;
+        SelectedShort=0;
+        [SearchByCatBTN setBackgroundColor:SelectedButtonColor];
+        [SearchByCatBTN setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        
+        [SearchByPriceBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
+        [SearchByRatBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
+        [SearchByDistBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
+        [FreeDelevBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
+        
+        [SearchByPriceBTN setBackgroundColor:[UIColor clearColor]];
+        [SearchByRatBTN setBackgroundColor:[UIColor clearColor]];
+        [SearchByDistBTN setBackgroundColor:[UIColor clearColor]];
+        [FreeDelevBTN setBackgroundColor:[UIColor clearColor]];
+        
+        [CatTBL reloadData];
+    }
+    else
+    {
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+    }
     
-    [SearchByPriceBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
-    [SearchByRatBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
-    [SearchByDistBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
-    [FreeDelevBTN setTitleColor:UnSelectedButtonColor forState:UIControlStateNormal];
-    
-    [SearchByPriceBTN setBackgroundColor:[UIColor clearColor]];
-    [SearchByRatBTN setBackgroundColor:[UIColor clearColor]];
-    [SearchByDistBTN setBackgroundColor:[UIColor clearColor]];
-    [FreeDelevBTN setBackgroundColor:[UIColor clearColor]];
-    
-    [CatTBL reloadData];
 }
 
 - (IBAction)FilterBack_Ckick:(id)sender
@@ -996,7 +1029,7 @@ static dispatch_once_t predicate;
     }
     else
     {
-        [AppDelegate showErrorMessageWithTitle:AlertTitleError message:[response objectForKey:@"ack_msg"] delegate:nil];
+        [AppDelegate showErrorMessageWithTitle:AlertTitleError message:@"No Shops Found." delegate:nil];
         SearchDictnory=[[NSMutableArray alloc]init];
         NewArr=[[NSMutableArray alloc]initWithArray:SearchDictnory];
         [Table reloadData];

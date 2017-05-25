@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *OnlinePaymtIMAGE;
 @property (weak, nonatomic) IBOutlet UIButton *SaveBtn;
 @property (weak, nonatomic) IBOutlet UIView *MainVIEW;
+@property (weak, nonatomic) IBOutlet UIButton *onlinePay_Btn;
 
 @end

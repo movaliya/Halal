@@ -21,11 +21,17 @@
 
 
 
+// Stripe
+#define StripeBaseUrl @"http://feedmemeathalal.com/application/stripe/"
+#define StripePublishKey @"get_publishable_key.php"
+#define ChargeCard_url @"charge.php"
+
+#define KmyappDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
 // URL Or Web Service Implement  //@"http://bulkbox.in/halal/service/"
 
-//#define BaseUrl @"http://bulkbox.in/feedmemeat/service/"
-#define BaseUrl @"http://feedmemeathalal.com/application/service/"
+#define BaseUrl @"http://bulkbox.in/feedmemeat/service/"
+//#define BaseUrl @"http://feedmemeathalal.com/application/service/"
 #define r_p @"1224"
 
 #define UserLogin @"service_login.php"

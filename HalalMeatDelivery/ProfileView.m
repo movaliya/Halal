@@ -87,7 +87,6 @@
 {
     if ([Name_TXT.text isEqualToString:@""])
     {
-        
         [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter username" delegate:nil];
     }
     else if ([Address_TXT.text isEqualToString:@""])
