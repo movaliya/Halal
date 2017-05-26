@@ -23,4 +23,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *ShippingCharge_LBL;
 @property (weak, nonatomic) IBOutlet UILabel *ShippingDiscount_LBL;
 @property (weak, nonatomic) IBOutlet UILabel *Grand_Total_LBL;
+@property (weak, nonatomic) IBOutlet UITextField *Comment_TXT;
 @end

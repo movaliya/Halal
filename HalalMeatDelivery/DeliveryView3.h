@@ -41,4 +41,5 @@ typedef void (^STPSourceSubmissionHandler)(STPBackendChargeResult status, NSErro
 
 @property(nonatomic, strong, readwrite) NSString *environment;
 @property(nonatomic, strong, readwrite) NSString *resultText;
+@property (weak, nonatomic) IBOutlet UITextField *Comment_TXT;
 @end

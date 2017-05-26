@@ -30,7 +30,7 @@
 
 @implementation DeliveryView3
 @synthesize ThanksOK;
-
+@synthesize Comment_TXT;
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
@@ -140,6 +140,7 @@
             [dictParams setObject:place_order_part_3_delivery_codServiceName  forKey:@"service"];
             [dictParams setObject:User_UID  forKey:@"uid"];
             [dictParams setObject:self.CartID_DEL3  forKey:@"cid"];
+            [dictParams setObject:Comment_TXT.text  forKey:@"reviews"];
             
             [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,CardService_url] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)
              {
@@ -201,6 +202,7 @@
     [dictParams setObject:failure_message  forKey:@"failure_message"];
     [dictParams setObject:@"USD"  forKey:@"currency"];
     [dictParams setObject:final_total  forKey:@"amount"];
+    [dictParams setObject:Comment_TXT.text  forKey:@"reviews"];
     
     NSLog(@"StripeDetalDic=%@",dictParams);
     

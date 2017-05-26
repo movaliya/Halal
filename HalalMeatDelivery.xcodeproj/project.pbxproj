@@ -64,7 +64,6 @@
 		530824A11D82A3D800948547 /* AddressTxtQuare.png in Resources */ = {isa = PBXBuildFile; fileRef = 530824A01D82A3D800948547 /* AddressTxtQuare.png */; };
 		530824A31D82A45400948547 /* citytxtQuare.png in Resources */ = {isa = PBXBuildFile; fileRef = 530824A21D82A45400948547 /* citytxtQuare.png */; };
 		5309350C1D9E296700F9DBEE /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5309350B1D9E296700F9DBEE /* AlertView.xib */; };
-		5309350E1D9E29FF00F9DBEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5309350D1D9E29FF00F9DBEE /* Main.storyboard */; };
 		5309C4C81D83F3CF00C146AC /* RateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5309C4C71D83F3CE00C146AC /* RateView.m */; };
 		530A20E11E5C099200452FF2 /* ios in Resources */ = {isa = PBXBuildFile; fileRef = 530A20E01E5C099200452FF2 /* ios */; };
 		530B1F6C1D89773F00F1F894 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 530B1F6B1D89773F00F1F894 /* Accelerate.framework */; };
@@ -72,6 +71,7 @@
 		530B1F701D89778300F1F894 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 530B1F6F1D89778300F1F894 /* CoreMedia.framework */; };
 		530B1F721D89779700F1F894 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 530B1F711D89779700F1F894 /* MessageUI.framework */; };
 		530B1F741D8977C000F1F894 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 530B1F731D8977C000F1F894 /* SafariServices.framework */; };
+		530E786E1ED7EF6B001E04F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 530E786D1ED7EF6B001E04F4 /* Main.storyboard */; };
 		5310F86B1D7854DE007744A1 /* myAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5310F86A1D7854DE007744A1 /* myAnnotation.m */; };
 		534D02AA1ED6B8F10007F0C6 /* AddCreditCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 534D02A91ED6B8F10007F0C6 /* AddCreditCardView.m */; };
 		534D02AC1ED6BD660007F0C6 /* Stripe.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 534D02AB1ED6BD660007F0C6 /* Stripe.bundle */; };
@@ -305,7 +305,6 @@
 		530824A01D82A3D800948547 /* AddressTxtQuare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddressTxtQuare.png; sourceTree = "<group>"; };
 		530824A21D82A45400948547 /* citytxtQuare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = citytxtQuare.png; sourceTree = "<group>"; };
 		5309350B1D9E296700F9DBEE /* AlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
-		5309350D1D9E29FF00F9DBEE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		5309C4C61D83F3CE00C146AC /* RateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RateView.h; sourceTree = "<group>"; };
 		5309C4C71D83F3CE00C146AC /* RateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RateView.m; sourceTree = "<group>"; };
 		530A20E01E5C099200452FF2 /* ios */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ios; sourceTree = "<group>"; };
@@ -314,6 +313,7 @@
 		530B1F6F1D89778300F1F894 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		530B1F711D89779700F1F894 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		530B1F731D8977C000F1F894 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		530E786D1ED7EF6B001E04F4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		5310F8691D7854DE007744A1 /* myAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myAnnotation.h; sourceTree = "<group>"; };
 		5310F86A1D7854DE007744A1 /* myAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myAnnotation.m; sourceTree = "<group>"; };
 		5320DB141EC2ECC400B70059 /* HCSStarRatingView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HCSStarRatingView.framework; sourceTree = SOURCE_ROOT; };
@@ -837,7 +837,6 @@
 				B1FC793C1D7DE5D800DA38DC /* ProfileView.m */,
 				5309C4C61D83F3CE00C146AC /* RateView.h */,
 				5309C4C71D83F3CE00C146AC /* RateView.m */,
-				5309350D1D9E29FF00F9DBEE /* Main.storyboard */,
 				B109C6531D6C9FC9000936A2 /* Supporting Files */,
 			);
 			path = HalalMeatDelivery;
@@ -849,6 +848,7 @@
 				5301AEF61D76A72F00F16656 /* Class File */,
 				B10B1BDA1D6EFC33005C9D87 /* Frameworks */,
 				B10B1BC11D6EB2AD005C9D87 /* HalalMeatDelivery.pch */,
+				530E786D1ED7EF6B001E04F4 /* Main.storyboard */,
 				B109C6541D6C9FC9000936A2 /* main.m */,
 				B109C65F1D6C9FC9000936A2 /* Assets.xcassets */,
 				B109C6611D6C9FC9000936A2 /* LaunchScreen.storyboard */,
@@ -1227,7 +1227,6 @@
 				53080A901D85610700ADA06C /* RestaurantDetailTabView.xib in Resources */,
 				B111C7371D93046A00DE70B6 /* phonereceiver.png in Resources */,
 				B1FC79421D7DEDF900DA38DC /* PasswordView.xib in Resources */,
-				5309350E1D9E29FF00F9DBEE /* Main.storyboard in Resources */,
 				530824931D829B8000948547 /* EmailTxt.png in Resources */,
 				530824951D82A0F800948547 /* userNameTxtSquare.png in Resources */,
 				5307932B1D7086AE0028BF53 /* SplashScreen1.png in Resources */,
@@ -1247,6 +1246,7 @@
 				B10605B71D75FDFE00D0501F /* myView.xib in Resources */,
 				530793291D7079FF0028BF53 /* searchnearbyBtn.png in Resources */,
 				53080A921D857D0F00ADA06C /* AddReviewBtn.png in Resources */,
+				530E786E1ED7EF6B001E04F4 /* Main.storyboard in Resources */,
 				535EA4A31EBB52FE00A1AA23 /* adress1.png in Resources */,
 				530A20E11E5C099200452FF2 /* ios in Resources */,
 				5308249B1D82A25C00948547 /* PhoneTxtQuare.png in Resources */,

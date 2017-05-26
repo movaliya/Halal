@@ -27,7 +27,7 @@
 @implementation PaymentView2
 @synthesize ThanksOK;
 @synthesize NamePop,MobilePop,CityPop,AddressPop;
-
+@synthesize Comment_TXT;
 
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
@@ -63,6 +63,7 @@
         [dictParams setObject:PlaceOrderTakeAway2ServiceName  forKey:@"service"];
         [dictParams setObject:User_UID  forKey:@"uid"];
         [dictParams setObject:self.Cart_ID  forKey:@"cid"];
+        [dictParams setObject:Comment_TXT.text  forKey:@"reviews"];
         
         
         NSLog(@"placeorder change Dic=%@",dictParams);
