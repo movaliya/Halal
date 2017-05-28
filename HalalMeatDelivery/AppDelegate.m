@@ -42,7 +42,7 @@
     //com.jkinfoway.halalmeat
     //com.feedmemeat
     
-    // PostCode 603002
+    // PostCode LU1 1BT    uk pin
 
     /*
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;

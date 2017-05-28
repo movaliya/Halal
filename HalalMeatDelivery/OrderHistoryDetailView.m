@@ -83,6 +83,22 @@
             
             _date_LBL.text=dateTimeTakeway;
         }
+        else if ([[MainCardDictnory valueForKey:@"payment_mode"]isEqualToString:@"Delivery (Cash On Delivery)"])
+        {
+            _paymentMethodStatus_LBL.text=[NSString stringWithFormat:@"%@ Date",[MainCardDictnory valueForKey:@"payment_mode"]];
+            
+            NSString *dateTimeTakeway=[NSString stringWithFormat:@"%@",[MainCardDictnory valueForKey:@"orderdate"]];
+            
+            _date_LBL.text=dateTimeTakeway;
+        }
+        else if ([[MainCardDictnory valueForKey:@"payment_mode"]isEqualToString:@"Delivery (Online Payment)"])
+        {
+            _paymentMethodStatus_LBL.text=[NSString stringWithFormat:@"%@ Date",[MainCardDictnory valueForKey:@"payment_mode"]];
+            
+            NSString *dateTimeTakeway=[NSString stringWithFormat:@"%@",[MainCardDictnory valueForKey:@"orderdate"]];
+            
+            _date_LBL.text=dateTimeTakeway;
+        }
         else
         {
             _paymentMethodStatus_LBL.text=[NSString stringWithFormat:@"%@ Date",[MainCardDictnory valueForKey:@"payment_mode"]];
