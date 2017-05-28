@@ -694,6 +694,8 @@
                     NSString *tempTotalcheck=_upperTotalLBL.text;
                     tempTotalcheck = [tempTotalcheck stringByReplacingOccurrencesOfString:@"£ " withString:@""];
                     
+                    [self performSelector:@selector(checkDeliveryTime) withObject:nil afterDelay:0.1];
+                    /*
                     if ([tempTotalcheck integerValue]<50)
                     {
                         NSLog(@"tempTotalcheck=%@",tempTotalcheck);
@@ -701,8 +703,8 @@
                     }
                     else
                     {
-                        [self performSelector:@selector(checkDeliveryTime) withObject:nil afterDelay:0.1];
-                    }
+                        
+                    }*/
                 }
                 else
                 {

@@ -203,7 +203,7 @@
 
 - (IBAction)Menu_Click:(id)sender
 {
-    [self.rootNav drawerToggle];
+    //[self.rootNav drawerToggle];
 }
 
 
@@ -261,5 +261,9 @@
     }
     [locationManager stopUpdatingLocation];
     locationManager=nil;
+}
+- (IBAction)BackBtn_click:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

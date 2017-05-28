@@ -30,8 +30,8 @@
 
 // URL Or Web Service Implement  //@"http://bulkbox.in/halal/service/"
 
-#define BaseUrl @"http://bulkbox.in/feedmemeat/service/"
-//#define BaseUrl @"http://feedmemeathalal.com/application/service/"
+//#define BaseUrl @"http://bulkbox.in/feedmemeat/service/"
+#define BaseUrl @"http://feedmemeathalal.com/application/service/"
 #define r_p @"1224"
 
 #define UserLogin @"service_login.php"

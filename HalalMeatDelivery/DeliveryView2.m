@@ -108,7 +108,7 @@
         
         DeliveryView3 *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DeliveryView3"];
         vcr.PAYMENT_STR=Paymethod_Str;
-        vcr.ChargesDICNORY3=self.ChargesDICNORY;
+        vcr.ChargesDICNORY3=[response mutableCopy];
         vcr.DateNTimeSTR=self.dateNtime2;
         vcr.CartID_DEL3=self.self.CartID_DEL2;
         

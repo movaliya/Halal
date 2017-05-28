@@ -209,11 +209,11 @@
     
     [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,CardService_url] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)
      {
-         [self handlePlacePayPalOrderResponse:response];
+         [self handlePlaceStripOrderResponse:response];
      }];
 }
 
-- (void)handlePlacePayPalOrderResponse:(NSDictionary*)response
+- (void)handlePlaceStripOrderResponse:(NSDictionary*)response
 {
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
@@ -253,10 +253,13 @@
 }
 -(void)ChargeCards:(NSString *)token paidAmount:(NSString *)Amoumnt
 {
+    NSMutableDictionary *UserData = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginUserDic"] mutableCopy];
+    NSString *User_EMAIL=[UserData valueForKey:@"u_email"];
+    
    Amoumnt = [Amoumnt stringByReplacingOccurrencesOfString:@".00" withString:@""];
     NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] init];
     [dictParams setObject:token  forKey:@"stripeToken"];
-    [dictParams setObject:token  forKey:@"customer_email"];
+    [dictParams setObject:User_EMAIL  forKey:@"customer_email"];
     [dictParams setObject:Amoumnt  forKey:@"amount"];
     [dictParams setObject:@"GBP"  forKey:@"currency"];
     

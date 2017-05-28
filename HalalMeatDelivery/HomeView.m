@@ -21,6 +21,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
     self.appDelegate = [AppDelegate sharedInstance];
         
     Search_BTN.layer.cornerRadius=20.0;
