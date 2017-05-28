@@ -8,6 +8,7 @@
 
 #import "PaymentView1.h"
 #import "PaymentView2.h"
+#import "SelectPayment.h"
 @interface PaymentView1 ()
 
 @end
@@ -205,11 +206,16 @@
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
        
+        SelectPayment *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SelectPayment"];
+        vcr.PayCart_ID=C_ID;
+        vcr.PassDatefrom1=self.PassDateNTime;
+        [self.navigationController pushViewController:vcr animated:NO];
+        /*
         PaymentView2 *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentView2"];
         vcr.ChargesDIC=response;
         vcr.DateNTime=self.PassDateNTime;
         vcr.Cart_ID=C_ID;
-        [self.navigationController pushViewController:vcr animated:NO];
+        [self.navigationController pushViewController:vcr animated:NO];*/
         [AppDelegate showErrorMessageWithTitle:@"" message:[response objectForKey:@"ack_msg"] delegate:nil];
         
     }

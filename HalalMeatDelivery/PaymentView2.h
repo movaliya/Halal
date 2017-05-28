@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSDictionary *ChargesDIC;
 @property (strong, nonatomic) NSString *DateNTime;
 @property (strong, nonatomic) NSString *Cart_ID;
+@property (strong, nonatomic) NSString *PaymentString;
 
 @property (weak, nonatomic) IBOutlet UILabel *TakeAwayDateTime;
 @property (weak, nonatomic) IBOutlet UILabel *SubTotal_LBL;

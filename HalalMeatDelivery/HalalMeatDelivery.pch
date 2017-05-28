@@ -109,6 +109,11 @@
 #define PlaceOrderTakeAway2ServiceName @"place_order_part_2_take_away"
 #define PlaceOrderTakeAway1_1DateServiceName @"place_order_part_1_1_take_away"
 
+// TakeAway New service with Payment Selection
+#define place_order_part_2_take_awayServiceName @"place_order_part_2_take_away"
+#define place_order_part_3_take_away_collectionServiceName @"place_order_part_3_take_away_collection"
+#define place_order_part_3_take_away_onlinePayServiceName @"place_order_part_3_take_away_online_payment"
+
 
 // CheckOut COD Services
 #define place_order_part_1_deliveryServiceName @"place_order_part_1_delivery"

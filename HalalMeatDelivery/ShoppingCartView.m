@@ -282,6 +282,7 @@
     cell.AddCart_BTN.hidden=YES;
     cell.JustQuantityLBL.hidden=YES;
     cell.RestDetailPlusView.hidden=YES;
+    //cell.PlushView.hidden=NO;
     cell.Plush_BTN.tag=indexPath.row;
     cell.Minush_BTN.tag=indexPath.row;
     cell.Close_BTN.tag=indexPath.row;

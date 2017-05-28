@@ -37,6 +37,7 @@
 		5301AF791D76AA9400F16656 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5301AF781D76AA9400F16656 /* SystemConfiguration.framework */; };
 		5301AF7B1D76AA9C00F16656 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5301AF7A1D76AA9C00F16656 /* CFNetwork.framework */; };
 		5301AF7D1D76AAA400F16656 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5301AF7C1D76AAA400F16656 /* AVFoundation.framework */; };
+		530488811ED9C65400141E2E /* SelectPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = 530488801ED9C65400141E2E /* SelectPayment.m */; };
 		5307931D1D7068F90028BF53 /* reg_logo_xxhdpi.png in Resources */ = {isa = PBXBuildFile; fileRef = 5307931C1D7068F90028BF53 /* reg_logo_xxhdpi.png */; };
 		530793221D706FB40028BF53 /* FBLoginBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5307931E1D706FB40028BF53 /* FBLoginBtn@2x.png */; };
 		530793231D706FB40028BF53 /* loginBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 5307931F1D706FB40028BF53 /* loginBtn.png */; };
@@ -276,6 +277,8 @@
 		5301AF781D76AA9400F16656 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5301AF7A1D76AA9C00F16656 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5301AF7C1D76AAA400F16656 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		5304887F1ED9C65400141E2E /* SelectPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPayment.h; sourceTree = "<group>"; };
+		530488801ED9C65400141E2E /* SelectPayment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPayment.m; sourceTree = "<group>"; };
 		5307931C1D7068F90028BF53 /* reg_logo_xxhdpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reg_logo_xxhdpi.png; sourceTree = "<group>"; };
 		5307931E1D706FB40028BF53 /* FBLoginBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBLoginBtn@2x.png"; sourceTree = "<group>"; };
 		5307931F1D706FB40028BF53 /* loginBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBtn.png; sourceTree = "<group>"; };
@@ -707,6 +710,8 @@
 			children = (
 				B15330A31EB8FD5200E96C28 /* PaymentView1.h */,
 				B15330A41EB8FD5200E96C28 /* PaymentView1.m */,
+				5304887F1ED9C65400141E2E /* SelectPayment.h */,
+				530488801ED9C65400141E2E /* SelectPayment.m */,
 				B15330A61EB9025300E96C28 /* PaymentView2.h */,
 				B15330A71EB9025300E96C28 /* PaymentView2.m */,
 			);
@@ -1369,6 +1374,7 @@
 				B11657F71D7760A7005AF0D1 /* SDImageCache.m in Sources */,
 				B15330B11EB9067500E96C28 /* DeliveryView3.m in Sources */,
 				B10B1BCC1D6ED119005C9D87 /* CCKFNavDrawer.m in Sources */,
+				530488811ED9C65400141E2E /* SelectPayment.m in Sources */,
 				B1BE54CF1D6E1A030012A152 /* IQNSArray+Sort.m in Sources */,
 				5301AF621D76A85600F16656 /* AFAutoPurgingImageCache.m in Sources */,
 				5301AF351D76A80F00F16656 /* KVNProgress.m in Sources */,
