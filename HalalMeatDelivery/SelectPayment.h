@@ -15,6 +15,8 @@
 }
 @property (strong, nonatomic) NSString *PayCart_ID;
 @property (strong, nonatomic) NSString *PassDatefrom1;
+@property (weak, nonatomic) IBOutlet UIImageView *COD_Imageview;
+@property (weak, nonatomic) IBOutlet UIImageView *OnlinePay_ImageView;
 
 @property (weak, nonatomic) IBOutlet UIButton *CashOnDeleveryRadio_Btn;
 @property (weak, nonatomic) IBOutlet UIButton *PaymentRadio_btn;

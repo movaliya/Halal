@@ -36,15 +36,21 @@
     {
         if ([savedValue isEqualToString:@"CashOnDelivery"])
         {
-            [self.CashOnDeleveryRadio_Btn setBackgroundImage:[UIImage imageNamed:@"RadioEnable"] forState:UIControlStateNormal];
-            [self.PaymentRadio_btn setBackgroundImage:[UIImage imageNamed:@"RadioDisable"] forState:UIControlStateNormal];
+           // [self.CashOnDeleveryRadio_Btn setBackgroundImage:[UIImage imageNamed:@"RadioEnable"] forState:UIControlStateNormal];
+           // [self.PaymentRadio_btn setBackgroundImage:[UIImage imageNamed:@"RadioDisable"] forState:UIControlStateNormal];
+            
+            self.COD_ImageView.image=[UIImage imageNamed:@"RadioEnable"];
+            self.OnlinePay_ImageView.image=[UIImage imageNamed:@"RadioDisable"];
             Paymethod_Str=@"1";
             
         }
         else
         {
-            [self.CashOnDeleveryRadio_Btn setBackgroundImage:[UIImage imageNamed:@"RadioDisable"] forState:UIControlStateNormal];
-            [self.PaymentRadio_btn setBackgroundImage:[UIImage imageNamed:@"RadioEnable"] forState:UIControlStateNormal];
+            //[self.CashOnDeleveryRadio_Btn setBackgroundImage:[UIImage imageNamed:@"RadioDisable"] forState:UIControlStateNormal];
+           // [self.PaymentRadio_btn setBackgroundImage:[UIImage imageNamed:@"RadioEnable"] forState:UIControlStateNormal];
+            
+            self.COD_ImageView.image=[UIImage imageNamed:@"RadioDisable"];
+            self.OnlinePay_ImageView.image=[UIImage imageNamed:@"RadioEnable"];
             Paymethod_Str=@"2";
         }
     }
@@ -52,14 +58,21 @@
 }
 - (IBAction)COD_Btn_action:(id)sender
 {
-    [self.CashOnDeleveryRadio_Btn setBackgroundImage:[UIImage imageNamed:@"RadioEnable"] forState:UIControlStateNormal];
-    [self.PaymentRadio_btn setBackgroundImage:[UIImage imageNamed:@"RadioDisable"] forState:UIControlStateNormal];
+    //[self.CashOnDeleveryRadio_Btn setBackgroundImage:[UIImage imageNamed:@"RadioEnable"] forState:UIControlStateNormal];
+   // [self.PaymentRadio_btn setBackgroundImage:[UIImage imageNamed:@"RadioDisable"] forState:UIControlStateNormal];
+    self.COD_ImageView.image=[UIImage imageNamed:@"RadioEnable"];
+    self.OnlinePay_ImageView.image=[UIImage imageNamed:@"RadioDisable"];
+    
     Paymethod_Str=@"1";
 }
 - (IBAction)OnlinePaymentBtn_action:(id)sender
 {
-    [self.CashOnDeleveryRadio_Btn setBackgroundImage:[UIImage imageNamed:@"RadioDisable"] forState:UIControlStateNormal];
-    [self.PaymentRadio_btn setBackgroundImage:[UIImage imageNamed:@"RadioEnable"] forState:UIControlStateNormal];
+   // [self.CashOnDeleveryRadio_Btn setBackgroundImage:[UIImage imageNamed:@"RadioDisable"] forState:UIControlStateNormal];
+   // [self.PaymentRadio_btn setBackgroundImage:[UIImage imageNamed:@"RadioEnable"] forState:UIControlStateNormal];
+    
+    self.COD_ImageView.image=[UIImage imageNamed:@"RadioDisable"];
+    self.OnlinePay_ImageView.image=[UIImage imageNamed:@"RadioEnable"];
+    
     Paymethod_Str=@"2";
 }
 - (IBAction)NextBtn_action:(id)sender

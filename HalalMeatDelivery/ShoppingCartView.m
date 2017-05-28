@@ -236,6 +236,10 @@
 {
     [super didReceiveMemoryWarning];
 }
+- (IBAction)BackBtn_Click:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (IBAction)Menu_Click:(id)sender
 {
     [self.rootNav drawerToggle];
