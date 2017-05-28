@@ -24,7 +24,15 @@
     
     [self prefersStatusBarHidden];
     [[UIApplication sharedApplication] setStatusBarHidden:YES  withAnimation:UIStatusBarAnimationSlide];
-    [self GetPublishableKey];
+    
+    BOOL internet=[AppDelegate connectedToNetwork];
+    if (internet)
+    {
+        [self GetPublishableKey];
+    }
+    else
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+    
     
     
 //sandBoxKey: AQUjbRYq2t8ExCL0hxJ0Tyd20lOc_fS16qhEuweO8ojBdMNGfF2ZDRBtDV5yl2xyhz5dq59WLgv4X0-q

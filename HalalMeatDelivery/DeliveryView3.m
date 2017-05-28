@@ -289,7 +289,9 @@
     else
     {
         NSError *error;
-        [self exampleViewController:self didFinishWithError:error];
+        [self.navigationController popViewControllerAnimated:YES];
+        // [self exampleViewController:self didFinishWithError:error];
+        [AppDelegate showErrorMessageWithTitle:@"" message:[response objectForKey:@"ack_msg"] delegate:nil];
     }
     
 }
