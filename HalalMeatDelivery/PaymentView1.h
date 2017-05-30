@@ -22,5 +22,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *UserPincode_txt;
 @property (weak, nonatomic) IBOutlet UITextField *UserAddress_txt;
 @property (weak, nonatomic) IBOutlet UITextField *UserCity_txt;
+@property (weak, nonatomic) IBOutlet UIButton *NextBTN;
 
 @end

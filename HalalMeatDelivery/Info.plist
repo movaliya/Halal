@@ -51,7 +51,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>To scan credit cards.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>App will use this to enhance your connectivity. </string>
+	<string>This application requires location services to work</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>To scan credit cards.</string>
 	<key>UILaunchStoryboardName</key>

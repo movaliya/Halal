@@ -28,7 +28,7 @@
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
     {
-        [self getAddressData];
+         [self performSelector:@selector(getAddressData) withObject:self afterDelay:1.0 ];
     }
     else
         [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
@@ -130,24 +130,30 @@
 
 - (IBAction)NextBtn_action:(id)sender
 {
+    self.NextBTN.enabled=NO;
     if ([_UserName_txt.text isEqualToString:@""])
     {
+        self.NextBTN.enabled=YES;
         [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter username" delegate:nil];
     }
     else if ([_UserAddress_txt.text isEqualToString:@""])
     {
+        self.NextBTN.enabled=YES;
         [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Address" delegate:nil];
     }
     else if ([_UserPincode_txt.text isEqualToString:@""])
     {
+        self.NextBTN.enabled=YES;
         [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Post Code" delegate:nil];
     }
     else if ([_UserEmail_txt.text isEqualToString:@""])
     {
+        self.NextBTN.enabled=YES;
         [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Email" delegate:nil];
     }
     else if ([_UserPhoneNo_txt.text isEqualToString:@""])
     {
+        self.NextBTN.enabled=YES;
         [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Phone Number" delegate:nil];
     }
     else
@@ -156,11 +162,15 @@
         if (internet)
         {
            // [self SendBillDetail];
-            [self performSelector:@selector(SendBillDetail) withObject:self afterDelay:1.0 ];
+            [self performSelector:@selector(SendBillDetail) withObject:self afterDelay:0.0 ];
 
         }
         else
+        {
+            self.NextBTN.enabled=YES;
             [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+        }
+        
     }
 
 }
@@ -205,11 +215,15 @@
          vcr.dateNtime2=self.theDateNTimeDilvery;
         [self.navigationController pushViewController:vcr animated:NO];
         [AppDelegate showErrorMessageWithTitle:@"" message:[response objectForKey:@"ack_msg"] delegate:nil];
+        self.NextBTN.enabled=YES;
+
         
     }
     else
     {
         [AppDelegate showErrorMessageWithTitle:AlertTitleError message:[response objectForKey:@"ack_msg"] delegate:nil];
+        self.NextBTN.enabled=YES;
+
     }
 }
 - (IBAction)backBtn_action:(id)sender

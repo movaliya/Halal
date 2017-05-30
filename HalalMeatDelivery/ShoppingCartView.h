@@ -60,5 +60,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *upperDateGBLBL;
 @property (weak, nonatomic) IBOutlet UIImageView *UpperDeliveryRadioImage;
 @property (weak, nonatomic) IBOutlet UIImageView *upperTakeAwayImage;
+@property (weak, nonatomic) IBOutlet UIButton *CheckoutBTN;
 
 @end

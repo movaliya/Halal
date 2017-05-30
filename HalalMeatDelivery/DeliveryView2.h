@@ -21,5 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *PaymentRadio_btn;
 @property (weak, nonatomic) IBOutlet UIImageView *COD_ImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *OnlinePay_ImageView;
+@property (weak, nonatomic) IBOutlet UIButton *NextBTN;
+@property (weak, nonatomic) IBOutlet UIButton *PreviousBTN;
 
 @end

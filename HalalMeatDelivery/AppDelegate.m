@@ -25,6 +25,7 @@
     [self prefersStatusBarHidden];
     [[UIApplication sharedApplication] setStatusBarHidden:YES  withAnimation:UIStatusBarAnimationSlide];
     
+
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
     {
@@ -199,6 +200,9 @@
     }
     
     [FBAppCall handleDidBecomeActive];
+   
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"GetLocation" object:nil];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

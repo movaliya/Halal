@@ -672,10 +672,11 @@
 
 - (IBAction)CheckOut_btnClick:(id)sender
 {
-    
+    self.CheckoutBTN.enabled=NO;
     if (itemDetailDic.count==0)
     {
         [AppDelegate showErrorMessageWithTitle:AlertTitleError message:@"CART EMPTY" delegate:nil];
+        self.CheckoutBTN.enabled=YES;
     }
     else
     {
@@ -683,10 +684,12 @@
         if (Paymethod_Str.length==0)
         {
             [AppDelegate showErrorMessageWithTitle:AlertTitleError message:@"Please Select Delivery Option." delegate:nil];
+            self.CheckoutBTN.enabled=YES;
         }
         else if(theDate.length==0 || theTime.length==0)
         {
             [AppDelegate showErrorMessageWithTitle:AlertTitleError message:@"Please Select Date and Time" delegate:nil];
+            self.CheckoutBTN.enabled=YES;
         }
         else
         {
@@ -699,16 +702,7 @@
                     tempTotalcheck = [tempTotalcheck stringByReplacingOccurrencesOfString:@"£ " withString:@""];
                     
                     [self performSelector:@selector(checkDeliveryTime) withObject:nil afterDelay:0.1];
-                    /*
-                    if ([tempTotalcheck integerValue]<50)
-                    {
-                        NSLog(@"tempTotalcheck=%@",tempTotalcheck);
-                         [AppDelegate showErrorMessageWithTitle:@"Alert..!" message:@"Require minimum  £50 amount for delivery." delegate:nil];
-                    }
-                    else
-                    {
-                        
-                    }*/
+                   
                 }
                 else
                 {
@@ -717,7 +711,11 @@
                 
             }
             else
+            {
                 [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+                self.CheckoutBTN.enabled=YES;
+            }
+            
         }
          //[self ShowPOPUP];
         
@@ -753,15 +751,12 @@
         vcr.C_ID=[CardDicnory valueForKey:@"cart_id"];
         vcr.PassDateNTime=[NSString stringWithFormat:@"%@ %@",theDate,theTime];
         [self.navigationController pushViewController:vcr animated:NO];
-        /*
-        PaymentView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentView"];
-        vcr.C_ID=[CardDicnory valueForKey:@"cart_id"];
-        vcr.theDate=theDate;
-        vcr.theTime=theTime;
-        [self.navigationController pushViewController:vcr animated:NO];*/
+         self.CheckoutBTN.enabled=YES;
+        
     }
     else
     {
+         self.CheckoutBTN.enabled=YES;
         [AppDelegate showErrorMessageWithTitle:AlertTitleError message:[response objectForKey:@"ack_msg"] delegate:nil];
     }
     
@@ -796,15 +791,12 @@
         vcr.C_ID_Delivery1=[CardDicnory valueForKey:@"cart_id"];
         vcr.theDateNTimeDilvery=[NSString stringWithFormat:@"%@ %@",theDate,theTime];
         [self.navigationController pushViewController:vcr animated:NO];
-        /*
-        DeliveryView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DeliveryView"];
-        vcr.C_ID_Delivery=[CardDicnory valueForKey:@"cart_id"];
-        vcr.theDateDilvery=theDate;
-        vcr.theTimeDilvery=theTime;
-        [self.navigationController pushViewController:vcr animated:NO];*/
+         self.CheckoutBTN.enabled=YES;
+        
     }
     else
     {
+         self.CheckoutBTN.enabled=YES;
         [AppDelegate showErrorMessageWithTitle:AlertTitleError message:[response objectForKey:@"ack_msg"] delegate:nil];
     }
     

@@ -63,6 +63,11 @@ static dispatch_once_t predicate;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(Getlocationuser:)
+                                                 name:@"GetLocation" object:nil];
+    
     self.rangeSliderCurrency.hidden=YES;
     SelectedShort=0;
     CatTBL.hidden=NO;
@@ -71,16 +76,19 @@ static dispatch_once_t predicate;
     
     
     FilterView.hidden=YES;
+    
     // Getting Lat Log
-    SearchDictnory=[[NSMutableArray alloc]init];
-    NewArr=[[NSMutableArray alloc]init];
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     locationManager.distanceFilter = kCLDistanceFilterNone;
     [locationManager requestWhenInUseAuthorization];
-     predicate = 0;
+    predicate = 0;
     [locationManager startUpdatingLocation];
+    
+    
+    SearchDictnory=[[NSMutableArray alloc]init];
+    NewArr=[[NSMutableArray alloc]init];
     
     SearchBar.hidden=YES;
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor whiteColor]];
@@ -106,7 +114,8 @@ static dispatch_once_t predicate;
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
     {
-         [self getFilterData];
+        // [self getFilterData];
+         [self performSelector:@selector(getFilterData) withObject:nil afterDelay:0.0];
     }
     else
     {
@@ -120,7 +129,16 @@ static dispatch_once_t predicate;
     RatingParsingArr=[[NSMutableArray alloc]init];
     DistanceParsingArr=[[NSMutableArray alloc]init];
     FreDelParsingArr=[[NSMutableArray alloc]init];
-    
+}
+-(void)Getlocationuser:(NSNotification *)notification
+{
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.distanceFilter = kCLDistanceFilterNone;
+    [locationManager requestWhenInUseAuthorization];
+    predicate = 0;
+    [locationManager startUpdatingLocation];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -130,7 +148,9 @@ static dispatch_once_t predicate;
     [self.rootNav setCCKFNavDrawerDelegate:self];
     [self.rootNav CheckLoginArr];
     [self.rootNav.pan_gr setEnabled:NO];
+    
 }
+
 -(void)getFilterData
 {
     
@@ -228,30 +248,27 @@ static dispatch_once_t predicate;
 }
 -(void)CallForSearchByShop
 {
-    if (Latitude)
-    {
-        NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] init];
-        [dictParams setObject:r_p  forKey:@"r_p"];
-        [dictParams setObject:SerachByShopServiceName  forKey:@"service"];
-        [dictParams setObject:[NSString stringWithFormat:@"%.8f", Latitude]  forKey:@"lat"];
-        [dictParams setObject:[NSString stringWithFormat:@"%.8f", Logitude]  forKey:@"long"];
-        [dictParams setObject:[NSString stringWithFormat:@"%ld", (long)limit_only]  forKey:@"limit_only"];
-        NSLog(@"dictParams===%@",dictParams);
-        
-        
-        
-        [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,SerachByShop_url] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)
-         {
-             [self handleCategoryResponse:response];
-         }];
-    }
     
+    NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] init];
+    [dictParams setObject:r_p  forKey:@"r_p"];
+    [dictParams setObject:SerachByShopServiceName  forKey:@"service"];
+    [dictParams setObject:[NSString stringWithFormat:@"%.8f", Latitude]  forKey:@"lat"];
+    [dictParams setObject:[NSString stringWithFormat:@"%.8f", Logitude]  forKey:@"long"];
+    [dictParams setObject:[NSString stringWithFormat:@"%ld", (long)limit_only]  forKey:@"limit_only"];
+    NSLog(@"dictParams===%@",dictParams);
+    
+    
+    
+    [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,SerachByShop_url] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)
+     {
+         [self handleCategoryResponse:response];
+     }];
     
 }
 
 - (void)handleCategoryResponse:(NSDictionary*)response
 {
-    NSLog(@"response ===%@",response);
+    //NSLog(@"response ===%@",response);
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
         DataDic=[response valueForKey:@"result"];
@@ -656,7 +673,24 @@ static dispatch_once_t predicate;
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
     NSLog(@"didFailWithError: %@", error);
-    [AppDelegate showErrorMessageWithTitle:@"Warning." message:@"To re-enable, please go to Settings and turn on Location Service for this app." delegate:nil];
+    
+    NSLog(@"%@",error.userInfo);
+    if([CLLocationManager locationServicesEnabled]){
+        
+        NSLog(@"Location Services Enabled");
+        
+        if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusDenied){
+            UIAlertView    *alert = [[UIAlertView alloc] initWithTitle:@"App Permission Denied"
+                                                               message:@"To re-enable, please go to Settings and turn on Location Service for this app."
+                                                              delegate:nil
+                                                     cancelButtonTitle:@"OK"
+                                                     otherButtonTitles:nil];
+            [alert show];
+        }
+    }
+    
+    
+   // [AppDelegate showErrorMessageWithTitle:@"Warning." message:@"To re-enable, please go to Settings and turn on Location Service for this app." delegate:nil];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
@@ -674,21 +708,21 @@ static dispatch_once_t predicate;
         if (internet)
         {
             
-            dispatch_once(&predicate, ^{
+           // dispatch_once(&predicate, ^{
                 //your code here
                 [self CallForSearchByShop];
                  [locationManager stopUpdatingLocation];
                 locationManager=nil;
-            });
+           // });
         }
         else
         {
-            dispatch_once(&predicate, ^{
+          //  dispatch_once(&predicate, ^{
                 //your code here
                 [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
                 [locationManager stopUpdatingLocation];
                 locationManager=nil;
-            });
+           // });
         }
         
        

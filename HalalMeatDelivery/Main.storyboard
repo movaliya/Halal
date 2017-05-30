@@ -434,7 +434,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dilevery :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWF-Cg-CGS">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWF-Cg-CGS">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="12" id="t9f-d7-2r5"/>
                                         </constraints>
@@ -740,6 +740,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="CheckoutBTN" destination="OGh-x5-vF7" id="zE6-Dk-0jz"/>
                         <outlet property="JustDeleveyLBL" destination="ZWF-Cg-CGS" id="Qhp-y6-Jbf"/>
                         <outlet property="RestAddressLBL" destination="jiK-JO-9TG" id="gBh-zu-CM7"/>
                         <outlet property="RestDeleveryLBL" destination="Js2-fM-oNg" id="hlL-T0-8FX"/>
@@ -3407,7 +3408,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online Patment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCW-LU-cHt">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCW-LU-cHt">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="SDM-ct-UHX"/>
                                         </constraints>
@@ -4709,6 +4710,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="550"/>
                     <connections>
+                        <outlet property="NextBTN" destination="dLk-9G-OAD" id="nL5-4U-7ZK"/>
                         <outlet property="UserAddress_txt" destination="29H-FY-MpQ" id="tvp-aN-SzH"/>
                         <outlet property="UserCity_txt" destination="qdt-53-qxo" id="T1T-wq-6ri"/>
                         <outlet property="UserEmail_txt" destination="hkJ-9D-cGw" id="Arp-HY-4VT"/>
@@ -5254,9 +5256,9 @@
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
-                                                        <exclude reference="IuO-8R-c3X"/>
                                                         <exclude reference="hkN-NB-K9h"/>
                                                         <exclude reference="mxW-tl-t0R"/>
+                                                        <exclude reference="IuO-8R-c3X"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -6343,6 +6345,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="550"/>
                     <connections>
+                        <outlet property="NextBTN" destination="4WS-kB-PZK" id="rl9-i9-mDO"/>
                         <outlet property="UserAddress_txt" destination="mEV-lX-knc" id="XRt-xL-H8V"/>
                         <outlet property="UserCity_txt" destination="8I7-mV-h1D" id="SF1-4M-Abl"/>
                         <outlet property="UserEmail_txt" destination="Exr-JL-7cq" id="XqW-bW-ypo"/>
@@ -6550,8 +6553,10 @@
                     <connections>
                         <outlet property="COD_ImageView" destination="MW8-pc-EOz" id="Zc4-YT-uKV"/>
                         <outlet property="CashOnDeleveryRadio_Btn" destination="bd8-ul-iYp" id="15Z-jp-h4p"/>
+                        <outlet property="NextBTN" destination="0Wr-We-9P9" id="EsX-oq-uq3"/>
                         <outlet property="OnlinePay_ImageView" destination="tu0-bz-p6q" id="q9E-ra-oea"/>
                         <outlet property="PaymentRadio_btn" destination="Y6b-P4-rUd" id="KEL-7K-3mI"/>
+                        <outlet property="PreviousBTN" destination="Afr-S9-6cw" id="IVX-5O-flj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RJX-Mx-PvU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -7737,8 +7742,10 @@
                     <connections>
                         <outlet property="COD_Imageview" destination="Cze-5J-8T7" id="jBL-pt-nHX"/>
                         <outlet property="CashOnDeleveryRadio_Btn" destination="Bdc-b5-nOt" id="Vmc-gp-0gg"/>
+                        <outlet property="NextBTN" destination="961-4Q-vxU" id="mfU-NN-ExI"/>
                         <outlet property="OnlinePay_ImageView" destination="icx-Fp-XEJ" id="WoQ-Pl-2N7"/>
                         <outlet property="PaymentRadio_btn" destination="9bL-Yf-UhW" id="ous-vC-KSC"/>
+                        <outlet property="PreviousBTN" destination="Yuq-07-uuW" id="iFv-ci-J3n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xVU-JE-7ar" userLabel="First Responder" sceneMemberID="firstResponder"/>

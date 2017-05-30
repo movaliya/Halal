@@ -20,4 +20,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *CashOnDeleveryRadio_Btn;
 @property (weak, nonatomic) IBOutlet UIButton *PaymentRadio_btn;
+@property (weak, nonatomic) IBOutlet UIButton *NextBTN;
+@property (weak, nonatomic) IBOutlet UIButton *PreviousBTN;
 @end

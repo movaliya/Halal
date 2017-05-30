@@ -29,7 +29,7 @@
     if (internet)
     {
         //[self getAddressData];
-        [self performSelector:@selector(getAddressData) withObject:self afterDelay:0.0 ];
+        [self performSelector:@selector(getAddressData) withObject:self afterDelay:1.0 ];
 
     }
     else
@@ -57,7 +57,7 @@
 
 - (void)handleGetAddressResponse:(NSDictionary*)response
 {
-    NSLog(@"GetFilterResponse ===%@",response);
+    
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
         AddressArr=[[response valueForKey:@"result"] mutableCopy];
@@ -129,7 +129,6 @@
             self.UserEmail_txt.textColor=[UIColor grayColor];
             
         }
-        //[AppDelegate showErrorMessageWithTitle:nil message:[response objectForKey:@"ack_msg"] delegate:nil];
     }
     
 }
@@ -137,27 +136,33 @@
 
 - (IBAction)NextBtn_action:(id)sender
 {
+     self.NextBTN.enabled=NO;
     if ([UserName_txt.text isEqualToString:@""])
     {
         [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter username" delegate:nil];
+        self.NextBTN.enabled=YES;
     }
     else if ([UserAddress_txt.text isEqualToString:@""])
     {
         
         [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Address" delegate:nil];
+        self.NextBTN.enabled=YES;
     }
     else if ([UserPincode_txt.text isEqualToString:@""])
     {
         [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Pincode" delegate:nil];
+        self.NextBTN.enabled=YES;
     }
     else if ([UserEmail_txt.text isEqualToString:@""])
     {
         
         [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Email" delegate:nil];
+        self.NextBTN.enabled=YES;
     }
     else if ([UserPhoneNo_txt.text isEqualToString:@""])
     {
         [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Phone Number" delegate:nil];
+        self.NextBTN.enabled=YES;
     }
     else
     {
@@ -168,7 +173,11 @@
             [self performSelector:@selector(SendBillDetail) withObject:self afterDelay:0.0 ];
         }
         else
+        {
             [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+            self.NextBTN.enabled=YES;
+        }
+        
     }
 }
 -(void)SendBillDetail
@@ -202,7 +211,7 @@
 
 - (void)handleBillProcessResponse:(NSDictionary*)response
 {
-    NSLog(@"respose bill process=%@",response);
+   
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
        
@@ -210,17 +219,13 @@
         vcr.PayCart_ID=C_ID;
         vcr.PassDatefrom1=self.PassDateNTime;
         [self.navigationController pushViewController:vcr animated:NO];
-        /*
-        PaymentView2 *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentView2"];
-        vcr.ChargesDIC=response;
-        vcr.DateNTime=self.PassDateNTime;
-        vcr.Cart_ID=C_ID;
-        [self.navigationController pushViewController:vcr animated:NO];*/
         [AppDelegate showErrorMessageWithTitle:@"" message:[response objectForKey:@"ack_msg"] delegate:nil];
+        self.NextBTN.enabled=YES;
         
     }
     else
     {
+        self.NextBTN.enabled=YES;
         [AppDelegate showErrorMessageWithTitle:AlertTitleError message:[response objectForKey:@"ack_msg"] delegate:nil];
     }
 }

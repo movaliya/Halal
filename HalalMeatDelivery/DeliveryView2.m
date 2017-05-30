@@ -77,9 +77,10 @@
 }
 - (IBAction)NextBtn_action:(id)sender
 {
-    
+    self.NextBTN.enabled=NO;
     if(Paymethod_Str.length==0)
     {
+        self.NextBTN.enabled=YES;
          [AppDelegate showErrorMessageWithTitle:@"ERROR..!" message:@"Please Select Payment Method." delegate:nil];
     }
     else
@@ -91,7 +92,11 @@
            // [self SendPayMethod];
         }
         else
+        {
+            self.NextBTN.enabled=YES;
             [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+        }
+        
     }
 }
 
@@ -127,9 +132,13 @@
         
         [self.navigationController pushViewController:vcr animated:NO];
         [AppDelegate showErrorMessageWithTitle:@"" message:[response objectForKey:@"ack_msg"] delegate:nil];
+        self.NextBTN.enabled=YES;
+
     }
     else
     {
+        self.NextBTN.enabled=YES;
+
         [AppDelegate showErrorMessageWithTitle:@"" message:[response objectForKey:@"ack_msg"] delegate:nil];
     }
 }
@@ -142,6 +151,7 @@
 }
 - (IBAction)PreviousBtn_action:(id)sender
 {
+    //self.PreviousBTN.enabled=NO;
      [self.navigationController popViewControllerAnimated:YES];
 }
 
