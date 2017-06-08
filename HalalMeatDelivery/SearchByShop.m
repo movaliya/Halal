@@ -636,7 +636,8 @@ static dispatch_once_t predicate;
         if (internet)
         {
             if (NoResponseInt==1) {
-                 [self CallForSearchByShop];
+                
+                [self performSelector:@selector(CallForSearchByShop) withObject:nil afterDelay:0.0];
             }
            
         }
@@ -710,9 +711,10 @@ static dispatch_once_t predicate;
             
            // dispatch_once(&predicate, ^{
                 //your code here
-                [self CallForSearchByShop];
-                 [locationManager stopUpdatingLocation];
-                locationManager=nil;
+            [self performSelector:@selector(CallForSearchByShop) withObject:nil afterDelay:0.0];
+
+            [locationManager stopUpdatingLocation];
+            locationManager=nil;
            // });
         }
         else
@@ -821,7 +823,8 @@ static dispatch_once_t predicate;
     {
         if (!FilterDict)
         {
-            [self getFilterData];
+            [self performSelector:@selector(getFilterData) withObject:nil afterDelay:0.0];
+            //[self getFilterData];
         }
         PriceView.hidden=YES;
         FilterView.hidden=NO;

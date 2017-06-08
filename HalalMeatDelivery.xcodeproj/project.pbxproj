@@ -1136,9 +1136,9 @@
 				B109C64C1D6C9FC9000936A2 /* Sources */,
 				B109C64D1D6C9FC9000936A2 /* Frameworks */,
 				B109C64E1D6C9FC9000936A2 /* Resources */,
-				534DB6731EC2E963005487CD /* ShellScript */,
 				534D02B11ED6BD8E0007F0C6 /* Embed Frameworks */,
 				534D02B31ED6BD930007F0C6 /* Embed PlugIns */,
+				530965CA1EDEFA74008349DD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1160,7 +1160,7 @@
 				TargetAttributes = {
 					B109C64F1D6C9FC9000936A2 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 7PFD68G63X;
+						DevelopmentTeam = 82MF3E6LT7;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -1261,7 +1261,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		534DB6731EC2E963005487CD /* ShellScript */ = {
+		530965CA1EDEFA74008349DD /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1492,8 +1492,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Faraz Mahadik (PHT4KDYA23)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7PFD68G63X;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 82MF3E6LT7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1503,14 +1503,11 @@
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				INFOPLIST_FILE = HalalMeatDelivery/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HalalMeatDelivery",
-					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalMobile",
-					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalSDK",
-					"$(PROJECT_DIR)/HalalMeatDelivery/PaypalSDK/PayPalMobile",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-fembed-bitcode";
@@ -1518,10 +1515,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jkinfoway.halalmeat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.feedmemeat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "26b64c4b-f737-43db-a6c4-ba599d6420aa";
-				PROVISIONING_PROFILE_SPECIFIER = halalmeat_dev;
+				PROVISIONING_PROFILE = "293c2ed6-b99b-43e5-9559-8a07545af712";
+				PROVISIONING_PROFILE_SPECIFIER = feedmemeat_Distri;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
 			};
@@ -1532,8 +1529,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Faraz Mahadik (PHT4KDYA23)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7PFD68G63X;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 82MF3E6LT7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1543,14 +1540,11 @@
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				INFOPLIST_FILE = HalalMeatDelivery/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HalalMeatDelivery",
-					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalMobile",
-					"$(PROJECT_DIR)/HalalMeatDelivery/PayPalSDK",
-					"$(PROJECT_DIR)/HalalMeatDelivery/PaypalSDK/PayPalMobile",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-fembed-bitcode";
@@ -1558,10 +1552,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jkinfoway.halalmeat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.feedmemeat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "26b64c4b-f737-43db-a6c4-ba599d6420aa";
-				PROVISIONING_PROFILE_SPECIFIER = halalmeat_dev;
+				PROVISIONING_PROFILE = "293c2ed6-b99b-43e5-9559-8a07545af712";
+				PROVISIONING_PROFILE_SPECIFIER = feedmemeat_Distri;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
 			};
