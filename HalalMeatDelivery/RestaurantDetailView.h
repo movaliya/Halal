@@ -22,7 +22,7 @@
 }
 @property (weak, nonatomic) IBOutlet UILabel *QTYICON_LBL;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *ScrollHight;
-@property (strong, nonatomic) NSString *R_ID,*Pin;
+@property (strong, nonatomic) NSString *R_ID,*Pin,*LATPASS,*LONPASS;
 
 @property (strong, nonatomic) CCKFNavDrawer *rootNav;
 @property (strong, nonatomic) NSMutableDictionary *RestraorntDic;

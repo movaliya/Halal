@@ -101,7 +101,15 @@
     SelectDate_TXT.inputAccessoryView = toolbar;
     [SelectDate_TXT setInputView:datePicker];
 }
--(void) dateTextField:(id)sender
+- (void)dateTextField:(id)sender
+{
+    UIDatePicker *picker = (UIDatePicker*)SelectDate_TXT.inputView;
+    SelectDate_TXT.text = [self formatDate:picker.date];
+}
+
+
+// Formats the date chosen with the date picker.
+- (NSString *)formatDate:(NSDate *)date
 {
     UIDatePicker *picker = (UIDatePicker*)SelectDate_TXT.inputView;
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -119,9 +127,17 @@
     NSLog(@"theDate=%@",theDate);
     NSLog(@"theDate=%@",theTime);
     
-    
     NSString *dateString = [dateFormat stringFromDate:eventDate];
-    SelectDate_TXT.text = [NSString stringWithFormat:@"%@",dateString];
+   
+    return dateString;
+}
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField==SelectDate_TXT)
+    {
+        UIDatePicker *picker = (UIDatePicker*)SelectDate_TXT.inputView;
+        SelectDate_TXT.text = [self formatDate:picker.date];
+    }
 }
 
 -(void)GetCardDetail

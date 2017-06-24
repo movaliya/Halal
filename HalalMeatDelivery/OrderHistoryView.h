@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HalalMeatDelivery.pch"
-@interface OrderHistoryView : UIViewController<CCKFNavDrawerDelegate>
+@interface OrderHistoryView : UIViewController<CCKFNavDrawerDelegate,UITextFieldDelegate>
 {
     NSMutableArray *OderHistryDic;
     //NSDate *startDate,*endDate;

@@ -620,6 +620,8 @@ static dispatch_once_t predicate;
         RestaurantDetailView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RestaurantDetailView"];
         vcr.R_ID=[[SearchDictnory valueForKey:@"id"]objectAtIndex:indexPath.row];
         vcr.Pin=[[SearchDictnory valueForKey:@"pin"]objectAtIndex:indexPath.row];
+        vcr.LATPASS=[NSString stringWithFormat:@"%.8f", Latitude];
+        vcr.LONPASS=[NSString stringWithFormat:@"%.8f", Logitude];
         [self.navigationController pushViewController:vcr animated:YES];
     }
 }

@@ -631,6 +631,9 @@
     [dictParams setObject:SerachByPincodeServiceName  forKey:@"service"];
     [dictParams setObject:R_ID  forKey:@"rid"];
     [dictParams setObject:@"1"  forKey:@"p_required"];
+    [dictParams setObject:self.LATPASS  forKey:@"lat"];
+     [dictParams setObject:self.LONPASS  forKey:@"long"];
+    
     //[dictParams setObject:Pin  forKey:@"pin"];
     
     NSLog(@"rest dictParams==%@",dictParams);

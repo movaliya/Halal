@@ -343,6 +343,7 @@
 {
     
     ToTextPop= (UITextField *)[DateFiiterPOPUp viewWithTag:20];
+    ToTextPop.delegate=self;
     UIDatePicker *datePicker = [[UIDatePicker alloc]init];
     [datePicker setDate:[NSDate date]];
     datePicker.datePickerMode = UIDatePickerModeDate;
@@ -366,6 +367,7 @@
 {
     
     FromTextPop= (UITextField *)[DateFiiterPOPUp viewWithTag:21];
+    FromTextPop.delegate=self;
     UIDatePicker *datePicker = [[UIDatePicker alloc]init];
     [datePicker setDate:[NSDate date]];
     datePicker.datePickerMode = UIDatePickerModeDate;
@@ -384,8 +386,15 @@
     FromTextPop.inputAccessoryView = toolbar;
     [FromTextPop setInputView:datePicker];
 }
+- (void)dateTextField:(id)sender
+{
+    UIDatePicker *picker = (UIDatePicker*)ToTextPop.inputView;
+    ToTextPop.text = [self formatDate:picker.date];
+}
 
--(void) dateTextField:(id)sender
+
+// Formats the date chosen with the date picker.
+- (NSString *)formatDate:(NSDate *)date
 {
     UIDatePicker *picker = (UIDatePicker*)ToTextPop.inputView;
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -393,9 +402,18 @@
     [dateFormat setDateFormat:@"dd-MM-yyyy"];
     
     NSString *dateString = [dateFormat stringFromDate:eventDate];
-    ToTextPop.text = [NSString stringWithFormat:@"%@",dateString];
+    return dateString;
 }
--(void) dateTextField1:(id)sender
+
+
+- (void)dateTextField1:(id)sender
+{
+    UIDatePicker *picker = (UIDatePicker*)FromTextPop.inputView;
+    FromTextPop.text = [self formatDate1:picker.date];
+}
+
+// Formats the date chosen with the date picker.
+- (NSString *)formatDate1:(NSDate *)date
 {
     UIDatePicker *picker = (UIDatePicker*)FromTextPop.inputView;
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -403,6 +421,21 @@
     [dateFormat setDateFormat:@"dd-MM-yyyy"];
     
     NSString *dateString = [dateFormat stringFromDate:eventDate];
-    FromTextPop.text = [NSString stringWithFormat:@"%@",dateString];
+    return dateString;
 }
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField==FromTextPop)
+    {
+        UIDatePicker *picker = (UIDatePicker*)FromTextPop.inputView;
+        FromTextPop.text = [self formatDate1:picker.date];
+    }
+    if (textField==ToTextPop)
+    {
+        UIDatePicker *picker = (UIDatePicker*)ToTextPop.inputView;
+        ToTextPop.text = [self formatDate:picker.date];
+    }
+}
+
+
 @end
