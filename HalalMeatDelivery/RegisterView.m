@@ -130,7 +130,7 @@
     
     NSCharacterSet *numbers = [NSCharacterSet characterSetWithCharactersInString:@"0123456789!@#$%^&*()_-,.;:"];
     
-    if ( [pwd length]<8 || [pwd length]>10 )
+    if ( [pwd length]<8 || [pwd length]>20 )
         return NO;  // too long or too short
     NSRange rang;
     rang = [pwd rangeOfCharacterFromSet:[NSCharacterSet letterCharacterSet]];
@@ -211,8 +211,13 @@
         {
             [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter valid email" delegate:nil];
         }
+        else if (![self isPasswordValid:password_Txt.text])
+        {
+            [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Password should be 8 characters, one Special character , One Number" delegate:nil];
+        }
         else
         {
+            
             BOOL internet=[AppDelegate connectedToNetwork];
             if (internet)
             {
@@ -284,6 +289,8 @@
         [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
     
 }
+
+
 
 #pragma mark - Private method implementation
 -(void)openActiveSessionWithPermissions:(NSArray *)permissions allowLoginUI:(BOOL)allowLoginUI{

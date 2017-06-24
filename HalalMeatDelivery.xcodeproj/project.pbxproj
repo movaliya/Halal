@@ -165,6 +165,7 @@
 		B15662F21EB9F03D005791FE /* CreateNewAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15662ED1EB9F03D005791FE /* CreateNewAddressView.m */; };
 		B15662F31EB9F03D005791FE /* AddressListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B15662EF1EB9F03D005791FE /* AddressListCell.m */; };
 		B15662F41EB9F03D005791FE /* AddressListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B15662F01EB9F03D005791FE /* AddressListCell.xib */; };
+		B18343991EFE2F1F009C47B9 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18343981EFE2F1F009C47B9 /* PassKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B1BE545B1D6E134B0012A152 /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BE545A1D6E134B0012A152 /* HomeView.m */; };
 		B1BE54CF1D6E1A030012A152 /* IQNSArray+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BE54AD1D6E1A030012A152 /* IQNSArray+Sort.m */; };
 		B1BE54D01D6E1A030012A152 /* IQUIScrollView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BE54AF1D6E1A030012A152 /* IQUIScrollView+Additions.m */; };
@@ -466,6 +467,7 @@
 		B15662EE1EB9F03D005791FE /* AddressListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressListCell.h; sourceTree = "<group>"; };
 		B15662EF1EB9F03D005791FE /* AddressListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressListCell.m; sourceTree = "<group>"; };
 		B15662F01EB9F03D005791FE /* AddressListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressListCell.xib; sourceTree = "<group>"; };
+		B18343981EFE2F1F009C47B9 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		B1BE54591D6E134B0012A152 /* HomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeView.h; sourceTree = "<group>"; };
 		B1BE545A1D6E134B0012A152 /* HomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeView.m; sourceTree = "<group>"; };
 		B1BE54AC1D6E1A030012A152 /* IQNSArray+Sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQNSArray+Sort.h"; sourceTree = "<group>"; };
@@ -522,6 +524,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B18343991EFE2F1F009C47B9 /* PassKit.framework in Frameworks */,
 				534D02AF1ED6BD8E0007F0C6 /* Stripe.framework in Frameworks */,
 				530B1F741D8977C000F1F894 /* SafariServices.framework in Frameworks */,
 				530B1F721D89779700F1F894 /* MessageUI.framework in Frameworks */,
@@ -779,6 +782,7 @@
 				530B1F6B1D89773F00F1F894 /* Accelerate.framework */,
 				B109C6521D6C9FC9000936A2 /* HalalMeatDelivery */,
 				B109C6511D6C9FC9000936A2 /* Products */,
+				B18343971EFE2F1E009C47B9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -959,6 +963,14 @@
 				B15662F01EB9F03D005791FE /* AddressListCell.xib */,
 			);
 			name = AddressView;
+			sourceTree = "<group>";
+		};
+		B18343971EFE2F1E009C47B9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B18343981EFE2F1F009C47B9 /* PassKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		B1BE54571D6E12E70012A152 /* Images */ = {
