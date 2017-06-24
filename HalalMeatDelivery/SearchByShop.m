@@ -1140,7 +1140,9 @@ static dispatch_once_t predicate;
     
     [CatTBL reloadData];
     limit_only=0;
-    [self CallForSearchByShop];
+    //[self CallForSearchByShop];
+    [self performSelector:@selector(CallForSearchByShop) withObject:nil afterDelay:0.0];
+
     FilterView.hidden=YES;
 }
 @end

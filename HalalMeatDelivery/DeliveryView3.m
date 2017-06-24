@@ -187,6 +187,7 @@
         failure_message=@"unsuccessful";
         order_status=@"failed";
     }
+    //NSInteger Cal_FinalTotal=[final_total integerValue]*100;
     
     NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] init];
     [dictParams setObject:r_p  forKey:@"r_p"];
@@ -256,11 +257,15 @@
     NSMutableDictionary *UserData = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginUserDic"] mutableCopy];
     NSString *User_EMAIL=[UserData valueForKey:@"u_email"];
     
-   Amoumnt = [Amoumnt stringByReplacingOccurrencesOfString:@".00" withString:@""];
+    Amoumnt = [Amoumnt stringByReplacingOccurrencesOfString:@".00" withString:@""];
+    
+    NSInteger Cal_FinalTotal=[Amoumnt integerValue]*100;
+    NSString *finalCalAmount=[NSString stringWithFormat:@"%ld",(long)Cal_FinalTotal];
+    
     NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] init];
     [dictParams setObject:token  forKey:@"stripeToken"];
     [dictParams setObject:User_EMAIL  forKey:@"customer_email"];
-    [dictParams setObject:Amoumnt  forKey:@"amount"];
+    [dictParams setObject:finalCalAmount  forKey:@"amount"];
     [dictParams setObject:@"GBP"  forKey:@"currency"];
     
     [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",StripeBaseUrl,ChargeCard_url] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)

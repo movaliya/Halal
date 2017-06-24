@@ -39,7 +39,6 @@
 		5301AF7D1D76AAA400F16656 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5301AF7C1D76AAA400F16656 /* AVFoundation.framework */; };
 		530488811ED9C65400141E2E /* SelectPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = 530488801ED9C65400141E2E /* SelectPayment.m */; };
 		5307931D1D7068F90028BF53 /* reg_logo_xxhdpi.png in Resources */ = {isa = PBXBuildFile; fileRef = 5307931C1D7068F90028BF53 /* reg_logo_xxhdpi.png */; };
-		530793221D706FB40028BF53 /* FBLoginBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5307931E1D706FB40028BF53 /* FBLoginBtn@2x.png */; };
 		530793231D706FB40028BF53 /* loginBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 5307931F1D706FB40028BF53 /* loginBtn.png */; };
 		530793241D706FB40028BF53 /* passwordTxt.png in Resources */ = {isa = PBXBuildFile; fileRef = 530793201D706FB40028BF53 /* passwordTxt.png */; };
 		530793251D706FB40028BF53 /* userTxt.png in Resources */ = {isa = PBXBuildFile; fileRef = 530793211D706FB40028BF53 /* userTxt.png */; };
@@ -52,6 +51,7 @@
 		530793351D7097F50028BF53 /* FBSignUpBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 530793341D7097F50028BF53 /* FBSignUpBtn.png */; };
 		530793371D7098010028BF53 /* PincodeTxt.png in Resources */ = {isa = PBXBuildFile; fileRef = 530793361D7098010028BF53 /* PincodeTxt.png */; };
 		530793391D7098110028BF53 /* signupBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 530793381D7098110028BF53 /* signupBtn.png */; };
+		5307CE941EFAAFE100F73699 /* FBLoginBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5307CE931EFAAFE100F73699 /* FBLoginBtn@2x.png */; };
 		53080A901D85610700ADA06C /* RestaurantDetailTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53080A8F1D85610700ADA06C /* RestaurantDetailTabView.xib */; };
 		53080A921D857D0F00ADA06C /* AddReviewBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 53080A911D857D0F00ADA06C /* AddReviewBtn.png */; };
 		53080A961D85840300ADA06C /* HCSStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53080A951D85840300ADA06C /* HCSStarRatingView.m */; };
@@ -280,7 +280,6 @@
 		5304887F1ED9C65400141E2E /* SelectPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPayment.h; sourceTree = "<group>"; };
 		530488801ED9C65400141E2E /* SelectPayment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPayment.m; sourceTree = "<group>"; };
 		5307931C1D7068F90028BF53 /* reg_logo_xxhdpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reg_logo_xxhdpi.png; sourceTree = "<group>"; };
-		5307931E1D706FB40028BF53 /* FBLoginBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBLoginBtn@2x.png"; sourceTree = "<group>"; };
 		5307931F1D706FB40028BF53 /* loginBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBtn.png; sourceTree = "<group>"; };
 		530793201D706FB40028BF53 /* passwordTxt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = passwordTxt.png; sourceTree = "<group>"; };
 		530793211D706FB40028BF53 /* userTxt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userTxt.png; sourceTree = "<group>"; };
@@ -294,6 +293,7 @@
 		530793341D7097F50028BF53 /* FBSignUpBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBSignUpBtn.png; sourceTree = "<group>"; };
 		530793361D7098010028BF53 /* PincodeTxt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PincodeTxt.png; sourceTree = "<group>"; };
 		530793381D7098110028BF53 /* signupBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signupBtn.png; sourceTree = "<group>"; };
+		5307CE931EFAAFE100F73699 /* FBLoginBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBLoginBtn@2x.png"; sourceTree = "<group>"; };
 		53080A8F1D85610700ADA06C /* RestaurantDetailTabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestaurantDetailTabView.xib; sourceTree = "<group>"; };
 		53080A911D857D0F00ADA06C /* AddReviewBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddReviewBtn.png; sourceTree = "<group>"; };
 		53080A941D85840300ADA06C /* HCSStarRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSStarRatingView.h; sourceTree = "<group>"; };
@@ -678,7 +678,7 @@
 			isa = PBXGroup;
 			children = (
 				5307931C1D7068F90028BF53 /* reg_logo_xxhdpi.png */,
-				5307931E1D706FB40028BF53 /* FBLoginBtn@2x.png */,
+				5307CE931EFAAFE100F73699 /* FBLoginBtn@2x.png */,
 				5307931F1D706FB40028BF53 /* loginBtn.png */,
 				530793201D706FB40028BF53 /* passwordTxt.png */,
 				530793211D706FB40028BF53 /* userTxt.png */,
@@ -1160,7 +1160,7 @@
 				TargetAttributes = {
 					B109C64F1D6C9FC9000936A2 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 82MF3E6LT7;
+						DevelopmentTeam = 7PFD68G63X;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -1189,6 +1189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5309350C1D9E296700F9DBEE /* AlertView.xib in Resources */,
+				5307CE941EFAAFE100F73699 /* FBLoginBtn@2x.png in Resources */,
 				530793281D7079FF0028BF53 /* pincodeSearchBtn.png in Resources */,
 				5308248F1D829A4900948547 /* PhoneTxt.png in Resources */,
 				B10B97EB1D91AF9100228F33 /* OrderHistoryCell.xib in Resources */,
@@ -1199,7 +1200,6 @@
 				B1FAD78A1D6E0E1F00304CC0 /* MenuIcon.png in Resources */,
 				5308249D1D82A2C100948547 /* pincodeTxtQuare.png in Resources */,
 				535EA4A91EBB533700A1AA23 /* city.png in Resources */,
-				530793221D706FB40028BF53 /* FBLoginBtn@2x.png in Resources */,
 				B1F47D451D6F557C000D5C0A /* WhiteBackArrow.png in Resources */,
 				530793251D706FB40028BF53 /* userTxt.png in Resources */,
 				B109C6631D6C9FC9000936A2 /* LaunchScreen.storyboard in Resources */,
@@ -1492,8 +1492,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Faraz Mahadik (PHT4KDYA23)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 82MF3E6LT7;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7PFD68G63X;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1515,10 +1515,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.feedmemeat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jkinfoway.halalmeat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "293c2ed6-b99b-43e5-9559-8a07545af712";
-				PROVISIONING_PROFILE_SPECIFIER = feedmemeat_Distri;
+				PROVISIONING_PROFILE = "f07e8df3-3d40-4dff-992b-107d69dc6230";
+				PROVISIONING_PROFILE_SPECIFIER = halalmeat_dev;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
 			};
@@ -1529,8 +1529,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Faraz Mahadik (PHT4KDYA23)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 82MF3E6LT7;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7PFD68G63X;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1552,10 +1552,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.feedmemeat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jkinfoway.halalmeat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "293c2ed6-b99b-43e5-9559-8a07545af712";
-				PROVISIONING_PROFILE_SPECIFIER = feedmemeat_Distri;
+				PROVISIONING_PROFILE = "f07e8df3-3d40-4dff-992b-107d69dc6230";
+				PROVISIONING_PROFILE_SPECIFIER = halalmeat_dev;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
 			};
