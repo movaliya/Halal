@@ -155,6 +155,8 @@
 		B120439C1D789BE800095219 /* RestaurantHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B120439B1D789BE800095219 /* RestaurantHeaderView.m */; };
 		B13984101EB6432800A32E36 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B139840E1EB6432800A32E36 /* CategoryCell.m */; };
 		B13984111EB6432800A32E36 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B139840F1EB6432800A32E36 /* CategoryCell.xib */; };
+		B1460FCB1EFF798400BBF912 /* RecentAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = B1460FC91EFF798400BBF912 /* RecentAddress.m */; };
+		B1460FCC1EFF798400BBF912 /* RecentAddress.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1460FCA1EFF798400BBF912 /* RecentAddress.xib */; };
 		B148B2151EBF62BD009E9346 /* BlankTxtFildwithframe.png in Resources */ = {isa = PBXBuildFile; fileRef = B148B2141EBF62BD009E9346 /* BlankTxtFildwithframe.png */; };
 		B15330A51EB8FD5200E96C28 /* PaymentView1.m in Sources */ = {isa = PBXBuildFile; fileRef = B15330A41EB8FD5200E96C28 /* PaymentView1.m */; };
 		B15330A81EB9025300E96C28 /* PaymentView2.m in Sources */ = {isa = PBXBuildFile; fileRef = B15330A71EB9025300E96C28 /* PaymentView2.m */; };
@@ -449,6 +451,9 @@
 		B139840D1EB6432800A32E36 /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		B139840E1EB6432800A32E36 /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		B139840F1EB6432800A32E36 /* CategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
+		B1460FC81EFF798400BBF912 /* RecentAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentAddress.h; sourceTree = "<group>"; };
+		B1460FC91EFF798400BBF912 /* RecentAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentAddress.m; sourceTree = "<group>"; };
+		B1460FCA1EFF798400BBF912 /* RecentAddress.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentAddress.xib; sourceTree = "<group>"; };
 		B148B2141EBF62BD009E9346 /* BlankTxtFildwithframe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlankTxtFildwithframe.png; sourceTree = "<group>"; };
 		B15330A31EB8FD5200E96C28 /* PaymentView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentView1.h; sourceTree = "<group>"; };
 		B15330A41EB8FD5200E96C28 /* PaymentView1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentView1.m; sourceTree = "<group>"; };
@@ -961,6 +966,9 @@
 				B15662EE1EB9F03D005791FE /* AddressListCell.h */,
 				B15662EF1EB9F03D005791FE /* AddressListCell.m */,
 				B15662F01EB9F03D005791FE /* AddressListCell.xib */,
+				B1460FC81EFF798400BBF912 /* RecentAddress.h */,
+				B1460FC91EFF798400BBF912 /* RecentAddress.m */,
+				B1460FCA1EFF798400BBF912 /* RecentAddress.xib */,
 			);
 			name = AddressView;
 			sourceTree = "<group>";
@@ -1213,6 +1221,7 @@
 				5308249D1D82A2C100948547 /* pincodeTxtQuare.png in Resources */,
 				535EA4A91EBB533700A1AA23 /* city.png in Resources */,
 				B1F47D451D6F557C000D5C0A /* WhiteBackArrow.png in Resources */,
+				B1460FCC1EFF798400BBF912 /* RecentAddress.xib in Resources */,
 				530793251D706FB40028BF53 /* userTxt.png in Resources */,
 				B109C6631D6C9FC9000936A2 /* LaunchScreen.storyboard in Resources */,
 				530793331D7097E50028BF53 /* AddressTxt.png in Resources */,
@@ -1370,6 +1379,7 @@
 				B11657FA1D7760A7005AF0D1 /* SDWebImageDownloader.m in Sources */,
 				B15662F11EB9F03D005791FE /* AddressListView.m in Sources */,
 				B110D5D31D72F041008D8655 /* OrderHistoryDetailView.m in Sources */,
+				B1460FCB1EFF798400BBF912 /* RecentAddress.m in Sources */,
 				B10B98041D91B30E00228F33 /* OrderHistoryView.m in Sources */,
 				B1BE54DC1D6E1A030012A152 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				B1BE54D71D6E1A030012A152 /* IQTextView.m in Sources */,
