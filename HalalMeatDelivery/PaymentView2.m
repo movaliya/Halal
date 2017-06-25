@@ -103,7 +103,6 @@
 - (IBAction)PlaceOrderBtn_action:(id)sender
 {
     
-    
     if ([self.PaymentString isEqualToString:@"3"])
     {
         // Stripe Payment

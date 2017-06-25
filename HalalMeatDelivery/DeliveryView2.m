@@ -96,7 +96,6 @@
             self.NextBTN.enabled=YES;
             [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
         }
-        
     }
 }
 

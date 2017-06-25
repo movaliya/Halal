@@ -11,7 +11,10 @@
 @interface DeliveryView1 : UIViewController
 {
     NSMutableArray *AddressArr;
+    NSMutableDictionary *DefaltAddressArr;
 }
+@property (strong, nonatomic) IBOutlet UITableView *TBL;
+@property (weak, nonatomic) IBOutlet UIView *AddressTBLView;
 
 @property (strong, nonatomic) NSString *C_ID_Delivery1;
 @property (strong, nonatomic) NSString *theDateNTimeDilvery;

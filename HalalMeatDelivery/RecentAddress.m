@@ -9,9 +9,11 @@
 #import "RecentAddress.h"
 
 @implementation RecentAddress
-
+@synthesize Edit_BTN,DefailtBTN;
 - (void)awakeFromNib {
     [super awakeFromNib];
+    Edit_BTN.layer.cornerRadius=5;
+    DefailtBTN.layer.cornerRadius=5;
     // Initialization code
 }
 

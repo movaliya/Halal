@@ -763,6 +763,8 @@
     NSLog(@"check takeway Response=%@",response);
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
+        
+        
         PaymentView1 *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentView1"];
         vcr.C_ID=[CardDicnory valueForKey:@"cart_id"];
         vcr.PassDateNTime=[NSString stringWithFormat:@"%@ %@",theDate,theTime];

@@ -8,31 +8,43 @@
 
 #import "DeliveryView1.h"
 #import "DeliveryView2.h"
+
+#import "RecentAddress.h"
+#import "CreateNewAddressView.h"
+#define ButtonColor [UIColor colorWithRed:171.0/255.0 green:30.0/255.0 blue:40.0/255.0 alpha:1.0]
+#define DefaultBTNColor [UIColor colorWithRed:25.0/255.0 green:123.0/255.0 blue:48.0/255.0 alpha:1.0]
 @interface DeliveryView1 ()
 
 @end
 
 @implementation DeliveryView1
-
+@synthesize TBL;
 
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
 }
-
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
     {
-         [self performSelector:@selector(getAddressData) withObject:self afterDelay:1.0 ];
+        //[self getAddressData];
+        [self performSelector:@selector(getAddressData) withObject:self afterDelay:1.0 ];
+        
     }
     else
         [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
-   
+    
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    UINib *nib = [UINib nibWithNibName:@"RecentAddress" bundle:nil];
+    RecentAddress *cell2 = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
+    TBL.rowHeight = cell2.frame.size.height;
+    [TBL registerNib:nib forCellReuseIdentifier:@"RecentAddress"];
 }
 
 -(void)getAddressData
@@ -57,44 +69,72 @@
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
         AddressArr=[[response valueForKey:@"result"] mutableCopy];
+         DefaltAddressArr = [[NSMutableDictionary alloc] init];
         for (NSString *Defaultname in AddressArr)
         {
             if ([[Defaultname valueForKey:@"isDefault"] isEqualToString:@"1"])
             {
-                
                 if ([Defaultname valueForKey:@"name"] != (id)[NSNull null])
                 {
-                    self.UserName_txt.text=[Defaultname valueForKey:@"name"];
+                    [DefaltAddressArr setObject:[Defaultname valueForKey:@"name"] forKey:@"name"];
                 }
+                else
+                {
+                    [DefaltAddressArr setObject:@"" forKey:@"name"];
+                }
+                
                 if ([Defaultname valueForKey:@"email"] != (id)[NSNull null])
                 {
-                    self.UserEmail_txt.text=[Defaultname valueForKey:@"email"];
+                    [DefaltAddressArr setObject:[Defaultname valueForKey:@"email"] forKey:@"email"];
                 }
+                else
+                {
+                    [DefaltAddressArr setObject:@"" forKey:@"email"];
+                }
+                
                 if ([Defaultname valueForKey:@"contact_number"] != (id)[NSNull null])
                 {
-                    self.UserPhoneNo_txt.text=[Defaultname valueForKey:@"contact_number"];
+                    [DefaltAddressArr setObject:[Defaultname valueForKey:@"contact_number"] forKey:@"contact_number"];
                 }
+                else
+                {
+                    [DefaltAddressArr setObject:@"" forKey:@"contact_number"];
+                }
+                
                 if ([Defaultname valueForKey:@"pincode"] != (id)[NSNull null])
                 {
-                    self.UserPincode_txt.text=[Defaultname valueForKey:@"pincode"] ;
+                    [DefaltAddressArr setObject:[Defaultname valueForKey:@"pincode"] forKey:@"pincode"];
                 }
+                else
+                {
+                    [DefaltAddressArr setObject:@"" forKey:@"pincode"];
+                }
+                
                 if ([Defaultname valueForKey:@"address"] != (id)[NSNull null])
                 {
-                   self.UserAddress_txt.text=[Defaultname valueForKey:@"address"] ;
+                    [DefaltAddressArr setObject:[Defaultname valueForKey:@"address"] forKey:@"address"];
                 }
+                else
+                {
+                    [DefaltAddressArr setObject:@"" forKey:@"address"];
+                }
+                
                 if ([Defaultname valueForKey:@"city"] != (id)[NSNull null])
                 {
-                    self.UserCity_txt.text=[Defaultname valueForKey:@"city"] ;
+                    [DefaltAddressArr setObject:[Defaultname valueForKey:@"city"] forKey:@"city"];
                 }
-                self.UserEmail_txt.enabled=NO;
-                self.UserEmail_txt.textColor=[UIColor grayColor];
+                else
+                {
+                    [DefaltAddressArr setObject:@"" forKey:@"city"];
+                }
             }
         }
+        [TBL reloadData];
     }
     else
     {
+        [self.AddressTBLView setHidden:YES];
         NSMutableDictionary *UserData = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginUserDic"] mutableCopy];
-        
         if ([UserData count] != 0)
         {
             if ([UserData valueForKey:@"u_name"] != (id)[NSNull null])
@@ -127,52 +167,193 @@
     }
     
 }
-
-- (IBAction)NextBtn_action:(id)sender
+-(void)SetDefaultAddress :(NSString *)DeliveryAddress_idStr
 {
-    self.NextBTN.enabled=NO;
-    if ([_UserName_txt.text isEqualToString:@""])
+    
+    NSMutableDictionary *UserData = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginUserDic"] mutableCopy];
+    NSString *User_UID=[UserData valueForKey:@"u_id"];
+    
+    NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] init];
+    [dictParams setObject:r_p  forKey:@"r_p"];
+    [dictParams setObject:SetDefautAddress  forKey:@"service"];
+    [dictParams setObject:User_UID  forKey:@"uid"];
+    [dictParams setObject:DeliveryAddress_idStr  forKey:@"delivery_address_id"];
+    
+    
+    [CommonWS AAwebserviceWithURL:[NSString stringWithFormat:@"%@%@",BaseUrl,Filter_url] withParam:dictParams withCompletion:^(NSDictionary *response, BOOL success1)
+     {
+         [self handleSetDefaultAddress:response];
+     }];
+}
+
+- (void)handleSetDefaultAddress:(NSDictionary*)response
+{
+    NSLog(@"GetFilterResponse ===%@",response);
+    if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
-        self.NextBTN.enabled=YES;
-        [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter username" delegate:nil];
-    }
-    else if ([_UserAddress_txt.text isEqualToString:@""])
-    {
-        self.NextBTN.enabled=YES;
-        [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Address" delegate:nil];
-    }
-    else if ([_UserPincode_txt.text isEqualToString:@""])
-    {
-        self.NextBTN.enabled=YES;
-        [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Post Code" delegate:nil];
-    }
-    else if ([_UserEmail_txt.text isEqualToString:@""])
-    {
-        self.NextBTN.enabled=YES;
-        [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Email" delegate:nil];
-    }
-    else if ([_UserPhoneNo_txt.text isEqualToString:@""])
-    {
-        self.NextBTN.enabled=YES;
-        [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Phone Number" delegate:nil];
+        [AppDelegate showErrorMessageWithTitle:nil message:[response objectForKey:@"result"] delegate:nil];
     }
     else
     {
-        BOOL internet=[AppDelegate connectedToNetwork];
-        if (internet)
-        {
-           // [self SendBillDetail];
-            [self performSelector:@selector(SendBillDetail) withObject:self afterDelay:0.0 ];
+        [AppDelegate showErrorMessageWithTitle:nil message:[response objectForKey:@"ack_msg"] delegate:nil];
+    }
+    [self getAddressData];
+}
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 8.0f; // you can have your own choice, of course
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headerView = [[UIView alloc] init];
+    headerView.backgroundColor = [UIColor clearColor];
+    return headerView;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return AddressArr.count; // in your case, there are 3 cells
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"RecentAddress";
+    RecentAddress *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell=nil;
+    if (cell == nil)
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+    }
+    
+    if ([[[AddressArr objectAtIndex:indexPath.section]valueForKey:@"isDefault"] isEqualToString:@"1"])
+    {
+        cell.DefailtBTN.backgroundColor=DefaultBTNColor;
+    }
+    else
+    {
+        cell.DefailtBTN.backgroundColor=ButtonColor;
+    }
+    
+    cell.Name_LBL.text=[NSString stringWithFormat:@"Name : %@",[[AddressArr objectAtIndex:indexPath.section]valueForKey:@"name"]];
+    cell.Address_LBL.text=[NSString stringWithFormat:@"Address : %@",[[AddressArr objectAtIndex:indexPath.section]valueForKey:@"address"]];
+    cell.Email_LBL.text=[NSString stringWithFormat:@"Email : %@",[[AddressArr objectAtIndex:indexPath.section]valueForKey:@"email"]];
+    cell.Contact_LBL.text=[NSString stringWithFormat:@"Contact Number : %@",[[AddressArr objectAtIndex:indexPath.section]valueForKey:@"contact_number"]];
+    
+    
+    cell.Edit_BTN.tag=indexPath.section;
+    cell.DefailtBTN.tag=indexPath.section;
+    
+    [cell.Edit_BTN addTarget:self action:@selector(EditBTN_Click:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.DefailtBTN addTarget:self action:@selector(DefaultBTN_Click:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    return cell;
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+}
+-(void)EditBTN_Click:(id)sender
+{
+    UIButton *btn=(UIButton *)sender;
+    
+    CreateNewAddressView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CreateNewAddressView"];
+    if (AddressArr.count>0)
+    {
+        vcr.CheckAddresscount=YES;
+    }
+    else
+    {
+        vcr.CheckAddresscount=NO;
+    }
+    vcr.AddressDic=[AddressArr objectAtIndex:btn.tag];
+    [self.navigationController pushViewController:vcr animated:YES];
+}
+
+-(void)DefaultBTN_Click:(id)sender
+{
+    UIButton *btn=(UIButton *)sender;
+    NSLog(@"TAG==%ld",(long)btn.tag);
+    
+    [self SetDefaultAddress:[[AddressArr objectAtIndex:btn.tag] valueForKey:@"id"]];
+}
+- (IBAction)NextBtn_action:(id)sender
+{
+    self.NextBTN.enabled=NO;
+    if (AddressArr.count==0)
+    {
+        if ([_UserName_txt.text isEqualToString:@""])
+        {
+            self.NextBTN.enabled=YES;
+            [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter username" delegate:nil];
+        }
+        else if ([_UserAddress_txt.text isEqualToString:@""])
+        {
+            self.NextBTN.enabled=YES;
+            [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Address" delegate:nil];
+        }
+        else if ([_UserPincode_txt.text isEqualToString:@""])
+        {
+            self.NextBTN.enabled=YES;
+            [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Post Code" delegate:nil];
+        }
+        else if ([_UserEmail_txt.text isEqualToString:@""])
+        {
+            self.NextBTN.enabled=YES;
+            [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Email" delegate:nil];
+        }
+        else if ([_UserPhoneNo_txt.text isEqualToString:@""])
+        {
+            self.NextBTN.enabled=YES;
+            [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Phone Number" delegate:nil];
         }
         else
         {
-            self.NextBTN.enabled=YES;
-            [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+            BOOL internet=[AppDelegate connectedToNetwork];
+            if (internet)
+            {
+                // [self SendBillDetail];
+                [self performSelector:@selector(SendBillDetail) withObject:self afterDelay:0.0 ];
+                
+            }
+            else
+            {
+                self.NextBTN.enabled=YES;
+                [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+            }
+            
         }
-        
     }
-
+    else
+    {
+        if (DefaltAddressArr.count==0)
+        {
+            [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Address is not selected" delegate:nil];
+            self.NextBTN.enabled=YES;
+        }
+        else
+        {
+            BOOL internet=[AppDelegate connectedToNetwork];
+            if (internet)
+            {
+                [self performSelector:@selector(SendBillDetail) withObject:self afterDelay:0.0 ];
+            }
+            else
+            {
+                [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+                self.NextBTN.enabled=YES;
+            }
+        }
+    }
 }
 -(void)SendBillDetail
 {
@@ -185,14 +366,25 @@
     [dictParams setObject:place_order_part_1_deliveryServiceName  forKey:@"service"];
     [dictParams setObject:User_UID  forKey:@"uid"];
     [dictParams setObject:self.C_ID_Delivery1  forKey:@"cid"];
-    [dictParams setObject:_UserPincode_txt.text  forKey:@"u_pin"];
     
-    [dictParams setObject:_UserName_txt.text  forKey:@"u_name"];
-    [dictParams setObject:_UserEmail_txt.text  forKey:@"u_email"];
-    [dictParams setObject:_UserPhoneNo_txt.text  forKey:@"u_phone"];
-    [dictParams setObject:_UserAddress_txt.text  forKey:@"u_address"];
-    
-    [dictParams setObject:_UserCity_txt.text  forKey:@"u_city"];
+    if (DefaltAddressArr.count==0)
+    {
+        [dictParams setObject:_UserPincode_txt.text  forKey:@"u_pin"];
+        [dictParams setObject:_UserName_txt.text  forKey:@"u_name"];
+        [dictParams setObject:_UserEmail_txt.text  forKey:@"u_email"];
+        [dictParams setObject:_UserPhoneNo_txt.text  forKey:@"u_phone"];
+        [dictParams setObject:_UserAddress_txt.text  forKey:@"u_address"];
+        [dictParams setObject:_UserCity_txt.text  forKey:@"u_city"];
+    }
+    else
+    {
+        [dictParams setObject:[DefaltAddressArr valueForKey:@"pincode"]  forKey:@"u_pin"];
+        [dictParams setObject:[DefaltAddressArr valueForKey:@"name"]  forKey:@"u_name"];
+        [dictParams setObject:[DefaltAddressArr valueForKey:@"email"]  forKey:@"u_email"];
+        [dictParams setObject:[DefaltAddressArr valueForKey:@"contact_number"]  forKey:@"u_phone"];
+        [dictParams setObject:[DefaltAddressArr valueForKey:@"address"]  forKey:@"u_address"];
+        [dictParams setObject:[DefaltAddressArr valueForKey:@"city"]  forKey:@"u_city"];
+    }
     [dictParams setObject:@""  forKey:@"u_state"];
     [dictParams setObject:@""  forKey:@"u_country"];
     
