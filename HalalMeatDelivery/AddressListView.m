@@ -60,6 +60,7 @@
 - (void)handleGetFilterResponse:(NSDictionary*)response
 {
     NSLog(@"GetFilterResponse ===%@",response);
+    AddressArr=[[NSMutableArray alloc]init];
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
         AddressArr=[[response valueForKey:@"result"] mutableCopy];
@@ -103,7 +104,7 @@
     {
         [AppDelegate showErrorMessageWithTitle:nil message:[response objectForKey:@"ack_msg"] delegate:nil];
     }
-    [self getAddressData];
+    [self performSelector:@selector(getAddressData) withObject:nil afterDelay:0.1];
 }
 
 -(void)SetDefaultAddress :(NSString *)DeliveryAddress_idStr
