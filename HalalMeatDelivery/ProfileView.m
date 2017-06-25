@@ -230,6 +230,10 @@
         
         [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Confirm Password" delegate:nil];
     }
+    else if (![self isPasswordValid:POPNewPAss.text])
+    {
+        [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Password should be 8 characters, one Special character , One Number" delegate:nil];
+    }
     else
     {
         if([POPNewPAss.text isEqualToString:POPConPAss.text])
@@ -254,6 +258,31 @@
         
     }
 }
+-(BOOL) isPasswordValid:(NSString *)pwd
+{
+    NSCharacterSet *upperCaseChars = [NSCharacterSet characterSetWithCharactersInString:@"ABCDEFGHIJKLKMNOPQRSTUVWXYZ"];
+    NSCharacterSet *lowerCaseChars = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyz"];
+    
+    NSCharacterSet *numbers = [NSCharacterSet characterSetWithCharactersInString:@"0123456789!@#$%^&*()_-,.;:"];
+    
+    if ( [pwd length]<8 || [pwd length]>20 )
+        return NO;  // too long or too short
+    NSRange rang;
+    rang = [pwd rangeOfCharacterFromSet:[NSCharacterSet letterCharacterSet]];
+    if ( !rang.length )
+        return NO;  // no letter
+    rang = [pwd rangeOfCharacterFromSet:numbers];
+    if ( !rang.length )
+        return NO;  // no number;
+    rang = [pwd rangeOfCharacterFromSet:upperCaseChars];
+    if ( !rang.length )
+        return NO;  // no uppercase letter;
+    rang = [pwd rangeOfCharacterFromSet:lowerCaseChars];
+    if ( !rang.length )
+        return NO;  // no lowerCase Chars;
+    return YES;
+}
+
 -(void)updatePassword
 {
     NSMutableDictionary *UserData = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginUserDic"] mutableCopy];
