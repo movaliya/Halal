@@ -30,7 +30,7 @@
 
 // URL Or Web Service Implement  //@"http://bulkbox.in/halal/service/"
 
-#define BaseUrl @"http://feedmemeathalal.com/demo1/"
+#define BaseUrl @"http://feedmemeathalal.com/demo1//service/"
 //#define BaseUrl @"http://feedmemeathalal.com/application/service/"
 #define r_p @"1224"
 
