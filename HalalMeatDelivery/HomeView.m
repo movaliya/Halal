@@ -15,7 +15,7 @@
 @implementation HomeView
 @synthesize Search_BTN,SearchByStore_BTN;
 @synthesize LogoHight,LogoWidht,LogoLBL_Gap,Search_Gap,TopLogoGap;
-@synthesize pincodeTxt;
+@synthesize pincodeTxt,BackView;
 
 
 - (void)viewDidLoad
@@ -32,6 +32,9 @@
     Search_BTN.autoresizingMask=YES;
     
     Search_BTN.autoresizingMask=YES;
+    
+    BackView.layer.cornerRadius=20.0;
+    BackView.autoresizingMask=YES;
     
 //    PinView.layer.cornerRadius=20.0;
 //    PinView.autoresizingMask=YES;

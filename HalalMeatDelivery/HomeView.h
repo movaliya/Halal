@@ -13,6 +13,7 @@
 {
     NSDictionary *Maindic;
 }
+@property (weak, nonatomic) IBOutlet UIView *BackView;
 @property (weak, nonatomic) IBOutlet UITextField *pincodeTxt;
 
 @property (strong, nonatomic) CCKFNavDrawer *rootNav;
