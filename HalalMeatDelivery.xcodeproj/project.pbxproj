@@ -200,6 +200,9 @@
 		C516152E212946AA0048175F /* dot-line.png in Resources */ = {isa = PBXBuildFile; fileRef = C516152D212946A20048175F /* dot-line.png */; };
 		C5161530212952580048175F /* ios in Resources */ = {isa = PBXBuildFile; fileRef = C516152F212952570048175F /* ios */; };
 		C51615322129533A0048175F /* Logo 2.png in Resources */ = {isa = PBXBuildFile; fileRef = C5161531212953390048175F /* Logo 2.png */; };
+		C5161538212959F10048175F /* splash_new.png in Resources */ = {isa = PBXBuildFile; fileRef = C5161537212959F10048175F /* splash_new.png */; };
+		C516153A21295D5C0048175F /* login_background_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C516153921295D550048175F /* login_background_1.png */; };
+		C516153C21295ED20048175F /* halal_login.png in Resources */ = {isa = PBXBuildFile; fileRef = C516153B21295ED10048175F /* halal_login.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -529,6 +532,9 @@
 		C516152D212946A20048175F /* dot-line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot-line.png"; sourceTree = "<group>"; };
 		C516152F212952570048175F /* ios */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ios; sourceTree = "<group>"; };
 		C5161531212953390048175F /* Logo 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo 2.png"; sourceTree = "<group>"; };
+		C5161537212959F10048175F /* splash_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_new.png; sourceTree = "<group>"; };
+		C516153921295D550048175F /* login_background_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_background_1.png; sourceTree = "<group>"; };
+		C516153B21295ED10048175F /* halal_login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = halal_login.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1005,12 +1011,15 @@
 				B1FAD7871D6E0C5800304CC0 /* MaiinRedLogo.png */,
 				5357A5451D7ADF80008B4D2E /* checkOutBtn.png */,
 				530824941D82A0F800948547 /* userNameTxtSquare.png */,
+				C5161537212959F10048175F /* splash_new.png */,
 				530824981D82A1F400948547 /* emailTxtQuare.png */,
 				5308249A1D82A25C00948547 /* PhoneTxtQuare.png */,
 				5308249C1D82A2C100948547 /* pincodeTxtQuare.png */,
 				530824A01D82A3D800948547 /* AddressTxtQuare.png */,
 				530824A21D82A45400948547 /* citytxtQuare.png */,
 				53080A911D857D0F00ADA06C /* AddReviewBtn.png */,
+				C516153921295D550048175F /* login_background_1.png */,
+				C516153B21295ED10048175F /* halal_login.png */,
 				535EA49D1EBB52D200A1AA23 /* AddressIcon */,
 				530793311D7097CF0028BF53 /* Button */,
 			);
@@ -1225,6 +1234,7 @@
 				B1F47D451D6F557C000D5C0A /* WhiteBackArrow.png in Resources */,
 				B1460FCC1EFF798400BBF912 /* RecentAddress.xib in Resources */,
 				530793251D706FB40028BF53 /* userTxt.png in Resources */,
+				C516153A21295D5C0048175F /* login_background_1.png in Resources */,
 				B109C6631D6C9FC9000936A2 /* LaunchScreen.storyboard in Resources */,
 				530793331D7097E50028BF53 /* AddressTxt.png in Resources */,
 				B1F47D4B1D6F5C33000D5C0A /* WhiteStat.png in Resources */,
@@ -1244,6 +1254,7 @@
 				B10B1BD31D6EEC44005C9D87 /* MenuCell.xib in Resources */,
 				B10B98021D91B25700228F33 /* SimpleTXT.png in Resources */,
 				530793231D706FB40028BF53 /* loginBtn.png in Resources */,
+				C5161538212959F10048175F /* splash_new.png in Resources */,
 				535EA4A61EBB52FE00A1AA23 /* phone1.png in Resources */,
 				B148B2151EBF62BD009E9346 /* BlankTxtFildwithframe.png in Resources */,
 				B1FFE4B41D80870800A40684 /* ThankYouView.xib in Resources */,
@@ -1260,6 +1271,7 @@
 				B1FC79421D7DEDF900DA38DC /* PasswordView.xib in Resources */,
 				530824931D829B8000948547 /* EmailTxt.png in Resources */,
 				530824951D82A0F800948547 /* userNameTxtSquare.png in Resources */,
+				C516153C21295ED20048175F /* halal_login.png in Resources */,
 				5307932B1D7086AE0028BF53 /* SplashScreen1.png in Resources */,
 				530793241D706FB40028BF53 /* passwordTxt.png in Resources */,
 				530824A31D82A45400948547 /* citytxtQuare.png in Resources */,
