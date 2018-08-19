@@ -18,12 +18,14 @@
 @property (strong, nonatomic) IBOutlet UILabel *Item_LBL;
 @property (strong, nonatomic) IBOutlet UILabel *Review_LBL;
 @property (strong, nonatomic) IBOutlet UILabel *Dist_LBL;
+@property (strong, nonatomic) IBOutlet UIView *DistView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *Star1;
 @property (weak, nonatomic) IBOutlet UIImageView *star2;
 @property (weak, nonatomic) IBOutlet UIImageView *star3;
 @property (weak, nonatomic) IBOutlet UIImageView *star4;
 @property (weak, nonatomic) IBOutlet UIImageView *star5;
+@property (strong, nonatomic) IBOutlet UIImageView *CellShadow;
 
 -(void)ReviewCount:(NSString*)stars;
 @end

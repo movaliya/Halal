@@ -13,10 +13,13 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    Dist_LBL.layer.cornerRadius=5;
-    Dist_LBL.layer.masksToBounds=YES;
-    Dist_LBL.layer.borderColor=[[UIColor colorWithRed:224.0f/255.0f green:66.0f/255.0f blue:66.0f/255.0f alpha:1.0] CGColor];
-    Dist_LBL.layer.borderWidth=1;
+    _DistView.layer.cornerRadius=9;
+    _DistView.layer.masksToBounds=YES;
+    //Dist_LBL.layer.borderColor=[[UIColor colorWithRed:224.0f/255.0f green:66.0f/255.0f blue:66.0f/255.0f alpha:1.0] CGColor];
+    //Dist_LBL.layer.borderWidth=1;
+    
+    _CellShadow.layer.cornerRadius=5.0f;
+    _CellShadow.layer.masksToBounds=YES;
     
     // Initialization code
 }

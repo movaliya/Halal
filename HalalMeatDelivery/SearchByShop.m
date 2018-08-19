@@ -484,7 +484,7 @@ static dispatch_once_t predicate;
         if ([develveryOption isEqualToString:@"1"])
         {
             NSString *option=[[SearchDictnory valueForKey:@"min_delivery_amount"] objectAtIndex:indexPath.row];
-            cell.Desc_LBL.text=[NSString stringWithFormat:@"Deliver Min :£%@",option];
+            cell.Desc_LBL.text=[NSString stringWithFormat:@"Min. Delivery :£%@",option];
             cell.Desc_LBL.textColor=[UIColor colorWithRed:(62/255.0) green:(124/255.0) blue:(77/255.0) alpha:1.0];
         }
         else
@@ -494,9 +494,12 @@ static dispatch_once_t predicate;
         }
         
         
-        cell.Review_LBL.text=[NSString stringWithFormat:@"(%@ Review)",[[SearchDictnory valueForKey:@"count_review"] objectAtIndex:indexPath.row]];
-        cell.Dist_LBL.text=[NSString stringWithFormat:@" %@ ",[[SearchDictnory valueForKey:@"distance"] objectAtIndex:indexPath.row]] ;
+        cell.Review_LBL.text=[NSString stringWithFormat:@"(%@)",[[SearchDictnory valueForKey:@"count_review"] objectAtIndex:indexPath.row]];
+        NSString *DistStr=[NSString stringWithFormat:@"%@",[[SearchDictnory valueForKey:@"distance"] objectAtIndex:indexPath.row]] ;
         
+        
+        cell.Dist_LBL.text=DistStr;
+
         [cell ReviewCount:[[SearchDictnory valueForKey:@"count_review"] objectAtIndex:indexPath.row]];
         
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
