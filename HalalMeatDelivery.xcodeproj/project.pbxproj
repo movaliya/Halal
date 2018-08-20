@@ -203,6 +203,7 @@
 		C5161538212959F10048175F /* splash_new.png in Resources */ = {isa = PBXBuildFile; fileRef = C5161537212959F10048175F /* splash_new.png */; };
 		C516153A21295D5C0048175F /* login_background_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C516153921295D550048175F /* login_background_1.png */; };
 		C516153C21295ED20048175F /* halal_login.png in Resources */ = {isa = PBXBuildFile; fileRef = C516153B21295ED10048175F /* halal_login.png */; };
+		C5F03ED5212B1085001BFCEB /* GetHelpVW.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F03ED4212B1085001BFCEB /* GetHelpVW.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -535,6 +536,8 @@
 		C5161537212959F10048175F /* splash_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_new.png; sourceTree = "<group>"; };
 		C516153921295D550048175F /* login_background_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_background_1.png; sourceTree = "<group>"; };
 		C516153B21295ED10048175F /* halal_login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = halal_login.png; sourceTree = "<group>"; };
+		C5F03ED3212B1085001BFCEB /* GetHelpVW.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetHelpVW.h; sourceTree = "<group>"; };
+		C5F03ED4212B1085001BFCEB /* GetHelpVW.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetHelpVW.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -843,6 +846,8 @@
 				B110D5D21D72F041008D8655 /* OrderHistoryDetailView.m */,
 				535FF4E01D741931001355CD /* ShoppingCartView.h */,
 				535FF4E11D741931001355CD /* ShoppingCartView.m */,
+				C5F03ED3212B1085001BFCEB /* GetHelpVW.h */,
+				C5F03ED4212B1085001BFCEB /* GetHelpVW.m */,
 				530E786D1ED7EF6B001E04F4 /* Main.storyboard */,
 				5359251F1EB9CCD500872F0D /* OldTakeAway */,
 				535925201EB9CCED00872F0D /* OldDilvery */,
@@ -1353,6 +1358,7 @@
 				B10B97EA1D91AF9100228F33 /* OrderHistoryCell.m in Sources */,
 				5301AF681D76A85600F16656 /* UIProgressView+AFNetworking.m in Sources */,
 				B1FC793D1D7DE5D800DA38DC /* ProfileView.m in Sources */,
+				C5F03ED5212B1085001BFCEB /* GetHelpVW.m in Sources */,
 				B11657FF1D7760A7005AF0D1 /* UIImage+GIF.m in Sources */,
 				B11657F91D7760A7005AF0D1 /* SDWebImageDecoder.m in Sources */,
 				C5161527212945D60048175F /* IQPreviousNextView.m in Sources */,

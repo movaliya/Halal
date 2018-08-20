@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="17G65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue-Medium</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="128" id="KGk-i7-Jjw" customClass="NearByCell">
-            <rect key="frame" x="0.0" y="0.0" width="363" height="128"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="119" id="KGk-i7-Jjw" customClass="NearByCell">
+            <rect key="frame" x="0.0" y="0.0" width="363" height="119"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="363" height="127.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="363" height="118.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CellShadow" translatesAutoresizingMaskIntoConstraints="NO" id="aOx-c5-dH3">
-                        <rect key="frame" x="0.0" y="0.0" width="363" height="128"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aOx-c5-dH3">
+                        <rect key="frame" x="0.0" y="0.0" width="363" height="118.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Food.png" translatesAutoresizingMaskIntoConstraints="NO" id="wxr-mI-and">
-                        <rect key="frame" x="5" y="5" width="102" height="117.5"/>
+                        <rect key="frame" x="5" y="5" width="102" height="108.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="102" id="yQd-My-zoC"/>
                         </constraints>
@@ -102,7 +109,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lfY-oG-YlU">
-                        <rect key="frame" x="41.5" y="85.5" width="30.5" height="22"/>
+                        <rect key="frame" x="41.5" y="76.5" width="30.5" height="22"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sadf" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzd-o2-RvA">
                                 <rect key="frame" x="5" y="2" width="20.5" height="18"/>
@@ -124,7 +131,7 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="b3L-eF-QGk" firstAttribute="centerY" secondItem="AKV-Vx-AAl" secondAttribute="centerY" id="0mL-HE-ywJ"/>
                     <constraint firstItem="jv0-95-StX" firstAttribute="leading" secondItem="AKV-Vx-AAl" secondAttribute="trailing" constant="2" id="15j-Ic-KEu"/>
@@ -176,11 +183,10 @@
                 <outlet property="star4" destination="wo2-sE-yhU" id="97s-7V-npC"/>
                 <outlet property="star5" destination="t3H-7L-PKN" id="lcu-x9-qzx"/>
             </connections>
-            <point key="canvasLocation" x="-75.5" y="378"/>
+            <point key="canvasLocation" x="-75.5" y="382.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="CellShadow" width="531" height="187"/>
         <image name="Food.png" width="310" height="339"/>
         <image name="FullStar" width="11" height="10"/>
     </resources>

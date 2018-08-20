@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "star.png",
+      "filename" : "ic_favorite_border_black_18dp.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "star-1.png",
+      "filename" : "ic_favorite_border_black_18dp-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "star-2.png",
+      "filename" : "ic_favorite_border_black_18dp-2.png",
       "scale" : "3x"
     }
   ],

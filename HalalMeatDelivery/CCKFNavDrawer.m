@@ -18,6 +18,7 @@
 #import "ProfileView.h"
 #import "LoginView.h"
 #import "MyAccountVW.h"
+#import "GetHelpVW.h"
 
 #define SHAWDOW_ALPHA 0.5
 #define MENU_DURATION 0.3
@@ -60,15 +61,15 @@
     
     if ([self.appDelegate isUserLoggedIn] == NO)
     {
-        TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Search Near Places",@"Search By Shop",@"Shopping Cart",@"Order History",@"My Account",@"Login & Signup", nil];
+        TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Search Near Places",@"Search By Shop",@"Shopping Cart",@"Order History",@"My Account",@"Login & Signup",@"Get Help", nil];
     }
     else
     {
-        TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Search Near Places",@"Search By Shop",@"Shopping Cart",@"Order History",@"My Account",@"Logout", nil];
+        TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Search Near Places",@"Search By Shop",@"Shopping Cart",@"Order History",@"My Account",@"Logout",@"Get Help", nil];
     }
     
     
-    ImgArr=[[NSMutableArray alloc] initWithObjects:@"HomeRed",@"SearchnearPlaceRed",@"SearchByCatRed",@"shoppingCartRed",@"OrderHistoryRed",@"ProfileRed",@"LogoutRed", nil];
+    ImgArr=[[NSMutableArray alloc] initWithObjects:@"HomeRed",@"SearchnearPlaceRed",@"SearchByCatRed",@"shoppingCartRed",@"OrderHistoryRed",@"ProfileRed",@"LogoutRed",@"GetHelp_ic", nil];
     
     
     [self setUpDrawer];
@@ -98,14 +99,14 @@
     
     if ([self.appDelegate isUserLoggedIn] == NO)
     {
-        TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Search Near Places",@"Search By Shop",@"Shopping Cart",@"Order History",@"My Account",@"Login & Signup", nil];
+        TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Search Near Places",@"Search By Shop",@"Shopping Cart",@"Order History",@"My Account",@"Login & Signup",@"Get Help", nil];
     }
     else
     {
-        TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Search Near Places",@"Search By Shop",@"Shopping Cart",@"Order History",@"My Account",@"Logout", nil];
+        TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Search Near Places",@"Search By Shop",@"Shopping Cart",@"Order History",@"My Account",@"Logout",@"Get Help", nil];
     }
     
-    ImgArr=[[NSMutableArray alloc] initWithObjects:@"HomeRed",@"SearchnearPlaceRed",@"SearchByCatRed",@"shoppingCartRed",@"OrderHistoryRed",@"ProfileRed",@"LogoutRed", nil];
+    ImgArr=[[NSMutableArray alloc] initWithObjects:@"HomeRed",@"SearchnearPlaceRed",@"SearchByCatRed",@"shoppingCartRed",@"OrderHistoryRed",@"ProfileRed",@"LogoutRed",@"GetHelp_ic", nil];
     
     [self.drawerView.drawerTableView reloadData];
     
@@ -366,8 +367,8 @@
     }
     if (indexPath.row==1)
     {
-        cell.IconWidth.constant=20;
-        cell.IconHeight.constant=15;
+        cell.IconWidth.constant=16;
+        cell.IconHeight.constant=17;
         cell.IconX.constant=8;
         cell.ImgLblGap.constant=15.5;
         
@@ -403,7 +404,7 @@
     if (indexPath.row==6)
     {
         cell.IconWidth.constant=14;
-        cell.IconHeight.constant=20;
+        cell.IconHeight.constant=18;
         cell.IconX.constant=8;
         cell.ImgLblGap.constant=18;
         
@@ -486,6 +487,14 @@
             [alert show];
         }
         
+    }
+    else if (indexPath.row==7)
+    {
+        GetHelpVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"GetHelpVW"];
+        [super pushViewController:vcr animated:YES];
+        
+        //ProfileView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ProfileView"];
+        //[super pushViewController:vcr animated:YES];
     }
     [self closeNavigationDrawer];
 }

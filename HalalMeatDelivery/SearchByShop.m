@@ -470,6 +470,7 @@ static dispatch_once_t predicate;
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             
         }
+        
         NSString *Urlstr=[[SearchDictnory valueForKey:@"image_path"] objectAtIndex:indexPath.row];
         Urlstr = [Urlstr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
