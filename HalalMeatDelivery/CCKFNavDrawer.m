@@ -76,16 +76,16 @@
     
     if (SCREEN_HEIGHT==480)
     {
-        self.drawerView.LogoWidht.constant=170;
-        self.drawerView.LogoHight.constant=86;
+        self.drawerView.LogoWidht.constant=100;
+        self.drawerView.LogoHight.constant=135;
         self.drawerView.LBLLeading.constant=25;
         self.drawerView.LBL_Trailing.constant=25;
         self.drawerView.LogoLBLGap.constant=20;
     }
     else
     {
-        self.drawerView.LogoWidht.constant=212;
-        self.drawerView.LogoHight.constant=114;
+        //self.drawerView.LogoWidht.constant=212;
+        //self.drawerView.LogoHight.constant=114;
         self.drawerView.LBLLeading.constant=20;
         self.drawerView.LBL_Trailing.constant=20;
         self.drawerView.LogoLBLGap.constant=29;
@@ -368,15 +368,15 @@
     if (indexPath.row==1)
     {
         cell.IconWidth.constant=16;
-        cell.IconHeight.constant=17;
+        cell.IconHeight.constant=20;
         cell.IconX.constant=8;
         cell.ImgLblGap.constant=15.5;
         
     }
     if (indexPath.row==2)
     {
-        cell.IconWidth.constant=14;
-        cell.IconHeight.constant=14;
+        cell.IconWidth.constant=15;
+        cell.IconHeight.constant=15;
         cell.IconX.constant=8;
         cell.ImgLblGap.constant=19;
     }
@@ -389,22 +389,30 @@
     }
     if (indexPath.row==4)
     {
-        cell.IconWidth.constant=14;
-        cell.IconHeight.constant=13;
+        cell.IconWidth.constant=15;
+        cell.IconHeight.constant=15;
         cell.IconX.constant=8;
         cell.ImgLblGap.constant=19;
     }
     if (indexPath.row==5)
     {
-        cell.IconWidth.constant=15;
-        cell.IconHeight.constant=15;
+        cell.IconWidth.constant=15.5;
+        cell.IconHeight.constant=15.5;
         cell.IconX.constant=8;
         cell.ImgLblGap.constant=18;
     }
     if (indexPath.row==6)
     {
-        cell.IconWidth.constant=14;
+        cell.IconWidth.constant=15;
         cell.IconHeight.constant=18;
+        cell.IconX.constant=8;
+        cell.ImgLblGap.constant=18;
+        
+    }
+    if (indexPath.row==7)
+    {
+        cell.IconWidth.constant=17;
+        cell.IconHeight.constant=20;
         cell.IconX.constant=8;
         cell.ImgLblGap.constant=18;
         

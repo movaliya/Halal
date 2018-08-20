@@ -36,6 +36,22 @@
     BackView.layer.cornerRadius=20.0;
     BackView.autoresizingMask=YES;
     
+    
+    if (isIPhone5)
+    {
+        self.SearchViewHight.constant=330;
+        self.SearchViewBottom.constant=60;
+    }
+    else if (IS_IPHONE_6)
+    {
+        self.SearchViewHight.constant=350;
+        self.SearchViewBottom.constant=70;
+    }
+    else if (IS_IPHONE_6P)
+    {
+        self.SearchViewHight.constant=370;
+        self.SearchViewBottom.constant=70;
+    }
 //    PinView.layer.cornerRadius=20.0;
 //    PinView.autoresizingMask=YES;
 //    [PinCode_TXT setValue:[UIColor colorWithRed:246.0f/255.0f green:246.0f/255.0f blue:246.0f/255.0f alpha:1.0f] forKeyPath:@"_placeholderLabel.textColor"];

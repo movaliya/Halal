@@ -30,6 +30,8 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *LogoLBL_Gap;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *Search_Gap;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *TopLogoGap;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *SearchViewHight;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *SearchViewBottom;
 
 
 

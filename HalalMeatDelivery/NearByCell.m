@@ -20,6 +20,9 @@
     
     _CellShadow.layer.cornerRadius=20.0f;
     _CellShadow.layer.masksToBounds=YES;
+    
+    _BackView.layer.cornerRadius=5.0f;
+    _BackView.layer.masksToBounds=YES;
     // Initialization code
 }
 -(void)ReviewCount:(NSString*)stars

@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *star4;
 @property (weak, nonatomic) IBOutlet UIImageView *star5;
 @property (strong, nonatomic) IBOutlet UIImageView *CellShadow;
+@property (strong, nonatomic) IBOutlet UIView *BackView;
 
 -(void)ReviewCount:(NSString*)stars;
 @end
