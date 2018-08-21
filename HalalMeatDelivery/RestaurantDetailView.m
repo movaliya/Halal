@@ -851,7 +851,7 @@
         {
             cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
         }
-
+        cell.backgroundColor=[UIColor clearColor];
         return cell;
     }
     return nil;

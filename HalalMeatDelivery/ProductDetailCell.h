@@ -38,5 +38,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *RestPlusBtn;
 @property (weak, nonatomic) IBOutlet UIButton *RestMinuBTN;
 @property (weak, nonatomic) IBOutlet UILabel *RestQuatityLBL;
+@property (strong, nonatomic) IBOutlet UIImageView *BackIMG;
 
+@property (strong, nonatomic) IBOutlet UIView *BackView;
 @end
