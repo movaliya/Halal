@@ -64,5 +64,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *star4;
 @property (weak, nonatomic) IBOutlet UIImageView *star5;
 
+@property (strong, nonatomic) IBOutlet UITableView *TBL;
 
 @end

@@ -18,7 +18,8 @@ static int const kHeaderSectionTag = 6900;
 
 @implementation GetHelpVW
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     self.sectionNames = @[ @"iPhone", @"iPad", @"Apple Watch" ];
@@ -45,7 +46,6 @@ static int const kHeaderSectionTag = 6900;
 
 -(void)GetFAQ
 {
-  
     NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] init];
     [dictParams setObject:r_p  forKey:@"r_p"];
     [dictParams setObject:FAQ_orderServiceName  forKey:@"service"];

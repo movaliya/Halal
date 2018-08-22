@@ -152,6 +152,8 @@
 		B11658021D7760A7005AF0D1 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B11657F31D7760A7005AF0D1 /* UIImageView+WebCache.m */; };
 		B11658031D7760A7005AF0D1 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B11657F51D7760A7005AF0D1 /* UIView+WebCacheOperation.m */; };
 		B120439C1D789BE800095219 /* RestaurantHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B120439B1D789BE800095219 /* RestaurantHeaderView.m */; };
+		B135148A212DD9A600BC768F /* RestHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1351488212DD9A600BC768F /* RestHeaderCell.m */; };
+		B135148B212DD9A600BC768F /* RestHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1351489212DD9A600BC768F /* RestHeaderCell.xib */; };
 		B13984101EB6432800A32E36 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B139840E1EB6432800A32E36 /* CategoryCell.m */; };
 		B13984111EB6432800A32E36 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B139840F1EB6432800A32E36 /* CategoryCell.xib */; };
 		B1460FCB1EFF798400BBF912 /* RecentAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = B1460FC91EFF798400BBF912 /* RecentAddress.m */; };
@@ -455,6 +457,9 @@
 		B11657F51D7760A7005AF0D1 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		B120439A1D789BE800095219 /* RestaurantHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantHeaderView.h; sourceTree = "<group>"; };
 		B120439B1D789BE800095219 /* RestaurantHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantHeaderView.m; sourceTree = "<group>"; };
+		B1351487212DD9A600BC768F /* RestHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestHeaderCell.h; sourceTree = "<group>"; };
+		B1351488212DD9A600BC768F /* RestHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestHeaderCell.m; sourceTree = "<group>"; };
+		B1351489212DD9A600BC768F /* RestHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestHeaderCell.xib; sourceTree = "<group>"; };
 		B139840D1EB6432800A32E36 /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		B139840E1EB6432800A32E36 /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		B139840F1EB6432800A32E36 /* CategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
@@ -1037,6 +1042,9 @@
 				535FF4D11D741877001355CD /* NearByCell.h */,
 				535FF4D21D741877001355CD /* NearByCell.m */,
 				535FF4D31D741877001355CD /* NearByCell.xib */,
+				B1351487212DD9A600BC768F /* RestHeaderCell.h */,
+				B1351488212DD9A600BC768F /* RestHeaderCell.m */,
+				B1351489212DD9A600BC768F /* RestHeaderCell.xib */,
 				535FF4D61D7418A0001355CD /* ProductDetailCell.h */,
 				535FF4D71D7418A0001355CD /* ProductDetailCell.m */,
 				535FF4D81D7418A0001355CD /* ProductDetailCell.xib */,
@@ -1290,6 +1298,7 @@
 				B110D5C81D72B208008D8655 /* SearchByCatCell.xib in Resources */,
 				C516152E212946AA0048175F /* dot-line.png in Resources */,
 				B10B1BC31D6EBDBD005C9D87 /* BackREDImg.png in Resources */,
+				B135148B212DD9A600BC768F /* RestHeaderCell.xib in Resources */,
 				B10B1BCD1D6ED119005C9D87 /* DrawerView.xib in Resources */,
 				5357A5461D7ADF80008B4D2E /* checkOutBtn.png in Resources */,
 				B10605B71D75FDFE00D0501F /* myView.xib in Resources */,
@@ -1386,6 +1395,7 @@
 				B109C6581D6C9FC9000936A2 /* AppDelegate.m in Sources */,
 				5301AF4A1D76A83C00F16656 /* AFURLRequestSerialization.m in Sources */,
 				B15330AE1EB9066100E96C28 /* DeliveryView2.m in Sources */,
+				B135148A212DD9A600BC768F /* RestHeaderCell.m in Sources */,
 				5301AF491D76A83C00F16656 /* AFSecurityPolicy.m in Sources */,
 				535FF4D41D741877001355CD /* NearByCell.m in Sources */,
 				535FF4E21D741931001355CD /* ShoppingCartView.m in Sources */,

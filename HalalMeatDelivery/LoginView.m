@@ -86,16 +86,16 @@
    
     if (SCREEN_HEIGHT==480)
     {
-        LogoHight.constant=83;
-        LogoWidth.constant=185;
+       // LogoHight.constant=83;
+       // LogoWidth.constant=185;
         WelcomToLogoGap.constant=28;
         WelcomeGap.constant=15;
         TopLogoHight.constant=20;
     }
     else
     {
-        LogoHight.constant=108;
-        LogoWidth.constant=234;
+       // LogoHight.constant=108;
+        //LogoWidth.constant=234;
         WelcomToLogoGap.constant=55;
         WelcomeGap.constant=25;
         TopLogoHight.constant=27;

@@ -119,7 +119,9 @@
     if ([[UIDevice currentDevice].systemVersion integerValue] > 6) theUrl = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@",appId];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:theUrl]];
 }
-- (IBAction)Help_Btn_Click:(id)sender {
+- (IBAction)Help_Btn_Click:(id)sender
+{
+    
 }
 
 - (IBAction)MenuBtn_action:(id)sender

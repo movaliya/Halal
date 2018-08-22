@@ -15,6 +15,7 @@
 #import "ShoppingCartView.h"
 #import "RateView.h"
 #import <CoreLocation/CoreLocation.h>
+#import "RestHeaderCell.h"
 
 
 @interface RestaurantDetailView ()<UIScrollViewDelegate,CLLocationManagerDelegate>
@@ -59,6 +60,7 @@
 {
     NSLog(@"CCKFNavDrawerSelection = %li", (long)selectionIndex);
 }
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -69,10 +71,17 @@
 {
     [super viewDidLoad];
     
+    UINib *nib = [UINib nibWithNibName:@"RestHeaderCell" bundle:nil];
+    [self.TBL registerNib:nib forCellReuseIdentifier:@"RestHeaderCell"];
+    
+    
+    
+    
+    /*
     self.appDelegate = [AppDelegate sharedInstance];
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     screenWidth = screenRect.size.width;
-    [self settabscroll:3];
+   // [self settabscroll:3];
     
     _RestDistance_LBL.layer.cornerRadius=5;
     _RestDistance_LBL.layer.masksToBounds=YES;
@@ -84,12 +93,12 @@
     {
         if (R_ID.length>0)
         {
-            [self GetRestDetail];
+            //[self GetRestDetail];
         }
         else
         {
             
-            [self SetdataInTable];
+           // [self SetdataInTable];
         }
     }
     else
@@ -152,7 +161,7 @@
         QTYICON_LBL.hidden=YES;
         self.MapPlaceIMG.hidden=YES;
         self.CartIMG.hidden=YES;
-    }
+    }*/
     
     
 }
@@ -165,15 +174,15 @@
     [self.rootNav CheckLoginArr];
     [self.rootNav.pan_gr setEnabled:NO];
     
-    pageControl = [[UIPageControl alloc] init];
-    [MainScroll addSubview:pageControl];
-    [MainScroll setContentOffset:CGPointMake(0,2) animated:YES];
+    //pageControl = [[UIPageControl alloc] init];
+    //[MainScroll addSubview:pageControl];
+    //[MainScroll setContentOffset:CGPointMake(0,2) animated:YES];
 
 }
 
 -(void)viewWillLayoutSubviews
 {
-    [self Setimagesroll];
+   // [self Setimagesroll];
     [self.view layoutIfNeeded];
 }
 
@@ -185,7 +194,7 @@
 
 #pragma mark -
 #pragma mark - Scrollview Delegate
-
+/*
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     if([scrollView isKindOfClass:[UITableView class]])
@@ -535,6 +544,7 @@
         NSLog(@"%f",y);
     }
 }
+ */
 
 -(void)BTN_Click:(UIButton *)sender
 {
@@ -758,13 +768,43 @@
     
     
     [TableScroll setContentSize:CGSizeMake(([arrData count])*screenWidth, TableScroll.frame.size.height)];
-    [self Setimagesroll];
+    //[self Setimagesroll];
 }
 
 #pragma mark
 #pragma mark - Table view data source
 #pragma mark UITableView delegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    return 250;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"RestHeaderCell";
+    RestHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell=nil;
+    if (cell == nil)
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    }
+    return cell;
+}
+
+
+
+/*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -855,12 +895,12 @@
         return cell;
     }
     return nil;
-}
+}*/
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 0.01f;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    return 0.01f;
+//}
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
