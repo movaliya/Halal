@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HalalMeatDelivery.pch"
+#import "ProductDetailCell.h"
 
 @interface GetHelpVW : UIViewController
+{
+      NSMutableDictionary *FAQArryDic;
+    NSMutableArray *QuestionArr,*AnswerArr;
+    
+}
+@property (weak, nonatomic) IBOutlet UITableView *TableVW;
 
 @end

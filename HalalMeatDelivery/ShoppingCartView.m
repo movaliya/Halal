@@ -45,6 +45,9 @@
     POPView.hidden=YES;
     
     [self setPickerToTXT];
+    RestruntNameView.layer.cornerRadius=10;
+    RestruntNameView.layer.masksToBounds=YES;
+    
     upperDateGBLBL.layer.cornerRadius=5;
     upperDateGBLBL.layer.masksToBounds=YES;
     upperDateGBLBL.layer.borderColor=[[UIColor colorWithRed:226.0f/255.0f green:226.0f/255.0f blue:226.0f/255.0f alpha:1.0] CGColor];

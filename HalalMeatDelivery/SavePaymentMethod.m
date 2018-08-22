@@ -25,8 +25,8 @@
     
     SaveBtn.layer.cornerRadius=11;
     SaveBtn.layer.masksToBounds=YES;
-    SaveBtn.layer.borderColor=[[UIColor colorWithRed:161.0f/255.0f green:32.0f/255.0f blue:40.0f/255.0f alpha:1.0] CGColor];
-    SaveBtn.layer.borderWidth=1;
+   // SaveBtn.layer.borderColor=[[UIColor colorWithRed:161.0f/255.0f green:32.0f/255.0f blue:40.0f/255.0f alpha:1.0] CGColor];
+    //SaveBtn.layer.borderWidth=1;
     
     // OnlinePaymtIMAGE.hidden=YES;
     //self.onlinePay_Btn.hidden=YES;
@@ -39,15 +39,15 @@
     {
         if ([savedValue isEqualToString:@"CashOnDelivery"])
         {
-            CashOndlvryIMAGE.image=[UIImage imageNamed:@"RadioEnable"];
-            OnlinePaymtIMAGE.image=[UIImage imageNamed:@"RadioDisable"];
+            CashOndlvryIMAGE.image=[UIImage imageNamed:@"YellowRadioOn"];
+            OnlinePaymtIMAGE.image=[UIImage imageNamed:@"YellowRadioOff"];
             
             Paymethod_Str=@"CashOnDelivery";
         }
         else
         {
-            CashOndlvryIMAGE.image=[UIImage imageNamed:@"RadioDisable"];
-            OnlinePaymtIMAGE.image=[UIImage imageNamed:@"RadioEnable"];
+            CashOndlvryIMAGE.image=[UIImage imageNamed:@"YellowRadioOff"];
+            OnlinePaymtIMAGE.image=[UIImage imageNamed:@"YellowRadioOn"];
             
             Paymethod_Str=@"OnlinePayment";
         }
@@ -63,16 +63,16 @@
 
 - (IBAction)CashOnDelivery_Action:(id)sender
 {
-    CashOndlvryIMAGE.image=[UIImage imageNamed:@"RadioEnable"];
-    OnlinePaymtIMAGE.image=[UIImage imageNamed:@"RadioDisable"];
+    CashOndlvryIMAGE.image=[UIImage imageNamed:@"YellowRadioOn"];
+    OnlinePaymtIMAGE.image=[UIImage imageNamed:@"YellowRadioOff"];
     
     Paymethod_Str=@"CashOnDelivery";
    
 }
 - (IBAction)OnlinePayment_action:(id)sender
 {
-    CashOndlvryIMAGE.image=[UIImage imageNamed:@"RadioDisable"];
-    OnlinePaymtIMAGE.image=[UIImage imageNamed:@"RadioEnable"];
+    CashOndlvryIMAGE.image=[UIImage imageNamed:@"YellowRadioOff"];
+    OnlinePaymtIMAGE.image=[UIImage imageNamed:@"YellowRadioOn"];
     
     Paymethod_Str=@"OnlinePayment";
    }
