@@ -143,6 +143,7 @@ static int const kHeaderSectionTag = 6900;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 
 {
+    /*
     static NSString *CellIdentifier = @"ProductDetailCell";
     ProductDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell=nil;
@@ -153,9 +154,9 @@ static int const kHeaderSectionTag = 6900;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
          return cell;
     }
-     return nil;
+     return nil;*/
     
-    /*
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tableCell" forIndexPath:indexPath];
     NSArray *section = [AnswerArr objectAtIndex:indexPath.section];
     
@@ -165,7 +166,7 @@ static int const kHeaderSectionTag = 6900;
    
     cell.textLabel.textColor = [UIColor blackColor];
     cell.textLabel.text = [section objectAtIndex:indexPath.row];
-    return cell;*/
+    return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

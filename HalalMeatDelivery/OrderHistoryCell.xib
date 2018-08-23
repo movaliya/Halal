@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,11 +16,14 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="90"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Itemdetailbackimg" translatesAutoresizingMaskIntoConstraints="NO" id="OGL-rH-aUp"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Itemdetailbackimg" translatesAutoresizingMaskIntoConstraints="NO" id="OGL-rH-aUp">
+                        <rect key="frame" x="0.0" y="0.0" width="315" height="89.5"/>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aaqa Halal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ldg-G2-oto">
+                        <rect key="frame" x="88" y="10" width="192" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="Vgg-Af-0kG"/>
                         </constraints>
@@ -26,6 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3232" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nJI-ef-2Xv">
+                        <rect key="frame" x="88" y="50" width="212" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="b3x-Wn-1qb"/>
                         </constraints>
@@ -34,6 +41,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="2016-09-20 08:44:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1mS-Si-zJN">
+                        <rect key="frame" x="88" y="70" width="136" height="9"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="9" id="o6b-rC-nfh"/>
                         </constraints>
@@ -42,6 +50,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cash on Delivery" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5h-eh-cF2">
+                        <rect key="frame" x="235" y="69" width="76" height="9"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="UOG-sf-Mpr"/>
                             <constraint firstAttribute="height" constant="9" id="fci-wv-WNJ"/>
@@ -56,6 +65,7 @@
                         </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ordrt Id :87" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWF-MS-P6B">
+                        <rect key="frame" x="88" y="30" width="212" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="wqS-Ml-KOG"/>
                         </constraints>
@@ -64,11 +74,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QnQ-OV-3yy">
+                        <rect key="frame" x="5" y="0.0" width="75" height="89.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="75" id="Bxw-9N-tzN"/>
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eab-mg-eJb">
+                        <rect key="frame" x="282" y="3" width="34" height="29"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="29" id="QgH-ej-JvI"/>
                             <constraint firstAttribute="width" constant="34" id="wMz-DQ-NL1"/>
@@ -123,7 +135,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="CloseImg" width="9" height="9"/>
-        <image name="Itemdetailbackimg" width="355" height="66"/>
+        <image name="CloseImg" width="14" height="14"/>
+        <image name="Itemdetailbackimg" width="532" height="99"/>
     </resources>
 </document>

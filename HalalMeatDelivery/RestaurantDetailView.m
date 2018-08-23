@@ -16,6 +16,7 @@
 #import "RateView.h"
 #import <CoreLocation/CoreLocation.h>
 #import "RestHeaderCell.h"
+static int const kHeaderSectionTag = 6900;
 
 
 @interface RestaurantDetailView ()<UIScrollViewDelegate,CLLocationManagerDelegate>
@@ -25,7 +26,7 @@
     UIScrollView *Imagescr;
     UIPageControl *pageControl ;
     NSMutableArray *Cat_Arr,*LoadArr;
-    NSMutableDictionary *ItemDic;
+    NSMutableArray *ItemDic;
     
     NSMutableArray *MainCountArr;
     
@@ -34,7 +35,12 @@
     NSMutableArray *arrData;
     int pageTable;
     UITableView *DataTable;
+    NSArray *sectionNames,*sectionItems;
+    int expandedSectionHeaderNumber;
+    UITableViewHeaderFooterView *expandedSectionHeader;
 }
+
+
 @property AppDelegate *appDelegate;
 
 
@@ -71,8 +77,44 @@
 {
     [super viewDidLoad];
     
+    
+    
+    
     UINib *nib = [UINib nibWithNibName:@"RestHeaderCell" bundle:nil];
     [self.TBL registerNib:nib forCellReuseIdentifier:@"RestHeaderCell"];
+    
+    UINib *nib1 = [UINib nibWithNibName:@"ProductDetailCell" bundle:nil];
+    [self.TBL registerNib:nib1 forCellReuseIdentifier:@"ProductDetailCell"];
+    
+    
+    
+   sectionNames = @[ @"iPhone", @"iPad", @"Apple Watch" ];
+    sectionItems = @[ @[@"iPhone 5"],
+                           @[@"iPad Mini", @"iPad Air 2", @"iPad Pro", @"iPad Pro 9.7"],
+                           @[@"Apple Watch", @"Apple Watch 2", @"Apple Watch 2 (Nike)"]
+                           ];
+    // configure the tableview
+    self.TBL.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.TBL.rowHeight = UITableViewAutomaticDimension;
+    //self.TBL.estimatedRowHeight = 100;
+    expandedSectionHeaderNumber = -1;
+    
+    BOOL internet=[AppDelegate connectedToNetwork];
+    if (internet)
+    {
+        if (R_ID.length>0)
+        {
+            [self GetRestDetail];
+        }
+        else
+        {
+            
+             //[self SetdataInTable];
+        }
+    }
+    else
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+    
     
     
     
@@ -660,8 +702,27 @@
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
         RestraorntDic=[[response valueForKey:@"result"] objectAtIndex:0];
+        Cat_Arr=[[[RestraorntDic valueForKey:@"products"] valueForKey:@"service_category"]mutableCopy];
+        [Cat_Arr insertObject:@"" atIndex:0];
+        NSMutableArray *TempItem=[[RestraorntDic valueForKey:@"products"]mutableCopy];
+        ItemDic=[[NSMutableArray alloc]init];
+        for (int i=0; i<Cat_Arr.count; i++)
+        {
+            if (i==0)
+            {
+                 NSArray *selectArr=[[NSArray alloc]initWithObjects:@"", nil];
+                [ItemDic addObject:selectArr];
+            }
+            else
+            {
+                NSArray *selectArr=[[TempItem valueForKey:[Cat_Arr objectAtIndex:i]]mutableCopy];
+                [ItemDic addObject:selectArr];
+            }
+            
+        }
         
-        [self SetdataInTable];
+        //[self SetdataInTable];
+        [self.TBL reloadData];
     }
     else
     {
@@ -777,31 +838,296 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    return 250;
+    if (indexPath.section==0)
+    {
+        return 200.0f;
+    }
+    return 50.0f;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
+{
+    if (section!=0)
+    {
+        return 50.0;
+    }
+    return 0.01f;
+    
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    
+    if (Cat_Arr.count > 0)
+    {
+        self.TBL.backgroundView = nil;
+        return Cat_Arr.count;
+    }
+    return 0;
+    //    else
+    //    {
+    //        UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    //
+    //        messageLabel.text = @"Retrieving data.\nPlease wait.";
+    //        messageLabel.numberOfLines = 0;
+    //        messageLabel.textAlignment = NSTextAlignmentCenter;
+    //        messageLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:20];
+    //        [messageLabel sizeToFit];
+    //        self.TBL.backgroundView = messageLabel;
+    //
+    //        return 0;
+    //    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    if (section==0)
+    {
+        return 1;
+    }
+    if (expandedSectionHeaderNumber == section)
+    {
+        NSMutableArray *arrayOfItems = [ItemDic objectAtIndex:section];
+        return arrayOfItems.count;
+    } else {
+        return 0;
+    }
+    
 }
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section!=0)
+    {
+        if (Cat_Arr.count)
+        {
+            return [Cat_Arr objectAtIndex:section];
+        }
+    }
+    
+    return @"";
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"RestHeaderCell";
-    RestHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    cell=nil;
-    if (cell == nil)
+    if (indexPath.section==0)
     {
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        static NSString *CellIdentifier = @"RestHeaderCell";
+        RestHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cell=nil;
+        if (cell == nil)
+        {
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        }
+        cell.Restorant_Name.text=[RestraorntDic valueForKey:@"name"];
+        cell.RestorantName2.text=[RestraorntDic valueForKey:@"name"];
+        cell.Rest_Addess.text=[RestraorntDic valueForKey:@"address"];
+        cell.ReviewLBL.text=[NSString stringWithFormat:@"(%@ Review)",[RestraorntDic valueForKey:@"count_review"]];
+        [cell ReviewCount:[NSString stringWithFormat:@"%@",[RestraorntDic valueForKey:@"rate"]]];
+        
+        return cell;
     }
-    return cell;
+    else
+    {
+     /*
+        static NSString *CellIdentifier = @"Cell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil)
+        {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
+        //Configure cell
+        NSArray *section = [ItemDic  objectAtIndex:indexPath.section];
+        cell.textLabel.numberOfLines = 0;
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
+        
+        cell.textLabel.textColor = [UIColor blackColor];
+        cell.textLabel.text = [[section valueForKey:@"name"] objectAtIndex:indexPath.row];
+        return cell;*/
+        
+        static NSString *CellIdentifier = @"ProductDetailCell";
+        ProductDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cell=nil;
+        if (cell == nil)
+        {
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            cell.accessoryView = nil;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            cell.PlushView.hidden=YES;
+            cell.Update_View.hidden=YES;
+            cell.Close_BTN.hidden=YES;
+            cell.Close_IMG.hidden=YES;
+            cell.Plush_BTN.tag=indexPath.row;
+            cell.Minush_BTN.tag=indexPath.row;
+            
+            
+            cell.RestQuatityLBL.text=[[MainCount objectAtIndex:tableView.tag] objectAtIndex:indexPath.row];
+            cell.TitleTriling.constant=0;
+            
+           
+            
+            [cell.AddCart_BTN addTarget:self action:@selector(AddToCardClick:) forControlEvents:UIControlEventTouchUpInside];
+            cell.AddCart_BTN.tag=indexPath.row;
+            NSLog(@"ddd===%ld",(long)indexPath.row);
+            
+            [cell.RestPlusBtn addTarget:self action:@selector(PlushClick:) forControlEvents:UIControlEventTouchUpInside];
+            cell.RestPlusBtn.tag=indexPath.row;
+            [cell.RestMinuBTN addTarget:self action:@selector(MinushClick:) forControlEvents:UIControlEventTouchUpInside];
+            cell.RestMinuBTN.tag=indexPath.row;
+            
+            LoadArr = [[arrData objectAtIndex:tableView.tag] mutableCopy];
+            
+            NSArray *section = [ItemDic  objectAtIndex:indexPath.section];
+            cell.Title_LBL.text = [[section valueForKey:@"name"] objectAtIndex:indexPath.row];
+            
+            cell.Price_LBL.text=[NSString stringWithFormat:@"£%@",[[LoadArr valueForKey:@"sell_price"] objectAtIndex:indexPath.row]];
+            cell.Cat_LBL.text=[[LoadArr valueForKey:@"category"] objectAtIndex:indexPath.row];
+            
+            NSString *Urlstr=[[LoadArr valueForKey:@"image_path"] objectAtIndex:indexPath.row];
+            Urlstr = [Urlstr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            
+            [cell.item_IMG sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
+            [cell.item_IMG setShowActivityIndicatorView:YES];
+            
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            
+            if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)])
+            {
+                cell.preservesSuperviewLayoutMargins = NO;
+            }
+            cell.separatorInset = UIEdgeInsetsMake(0.f, 0.f, 0.f, cell.bounds.size.width);
+            if([cell respondsToSelector:@selector(setLayoutMargins:)])
+            {
+                cell.layoutMargins = UIEdgeInsetsZero;
+            }
+            
+            if (indexPath.row == LoadArr.count-1)
+            {
+                cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
+            }
+            cell.backgroundColor=[UIColor clearColor];
+            return cell;
+        }
+    }
+    return nil;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    
+    if (section!=0)
+    {
+        // recast your view as a UITableViewHeaderFooterView
+        UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+        header.contentView.backgroundColor = [UIColor colorWithRed:184.0f/255.0f green:70.0f/255.0f blue:70.0f/255.0f alpha:1.0f];
+        
+        header.textLabel.textColor = [UIColor whiteColor];
+        UIImageView *viewWithTag = [self.view viewWithTag:kHeaderSectionTag + section];
+        if (viewWithTag) {
+            [viewWithTag removeFromSuperview];
+        }
+        // add the arrow image
+        CGSize headerFrame = self.view.frame.size;
+        UIImageView *theImageView = [[UIImageView alloc] initWithFrame:CGRectMake(headerFrame.width - 32, 13, 18, 18)];
+        theImageView.image = [UIImage imageNamed:@"Chevron-Dn-Wht"];
+        theImageView.tag = kHeaderSectionTag + section;
+        [header addSubview:theImageView];
+        
+        // make headers touchable
+        header.tag = section;
+        UITapGestureRecognizer *headerTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sectionItems:)];
+        [header addGestureRecognizer:headerTapGesture];
+    }
+}
+
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section!=0)
+    {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+    }
+}
+
+- (void)updateTableViewRowDisplay:(NSArray *)arrayOfIndexPaths
+{
+    [self.TBL beginUpdates];
+    [self.TBL deleteRowsAtIndexPaths:arrayOfIndexPaths withRowAnimation: UITableViewRowAnimationFade];
+    [self.TBL endUpdates];
+}
+
+#pragma mark - Expand / Collapse Methods
+
+- (void)sectionItems:(UITapGestureRecognizer *)sender
+{
+    UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)sender.view;
+    NSInteger section = headerView.tag;
+    UIImageView *eImageView = (UIImageView *)[headerView viewWithTag:kHeaderSectionTag + section];
+    expandedSectionHeader = headerView;
+    
+    if (expandedSectionHeaderNumber == -1) {
+        expandedSectionHeaderNumber = section;
+        [self tableViewExpandSection:section withImage: eImageView];
+    } else {
+        if (expandedSectionHeaderNumber == section) {
+            [self tableViewCollapeSection:section withImage: eImageView];
+            expandedSectionHeader = nil;
+        } else {
+            UIImageView *cImageView  = (UIImageView *)[self.view viewWithTag:kHeaderSectionTag + expandedSectionHeaderNumber];
+            [self tableViewCollapeSection:expandedSectionHeaderNumber withImage: cImageView];
+            [self tableViewExpandSection:section withImage: eImageView];
+        }
+    }
+}
+
+- (void)tableViewCollapeSection:(NSInteger)section withImage:(UIImageView *)imageView {
+    NSArray *sectionData = [ItemDic objectAtIndex:section];
+    
+    expandedSectionHeaderNumber = -1;
+    if (sectionData.count == 0)
+    {
+        return;
+    }
+    else
+    {
+        [UIView animateWithDuration:0.4 animations:^{
+            imageView.transform = CGAffineTransformMakeRotation((0.0 * M_PI) / 180.0);
+        }];
+        NSMutableArray *arrayOfIndexPaths = [NSMutableArray array];
+        for (int i=0; i< sectionData.count; i++) {
+            NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:section];
+            [arrayOfIndexPaths addObject:index];
+        }
+        [self.TBL beginUpdates];
+        [self.TBL deleteRowsAtIndexPaths:arrayOfIndexPaths withRowAnimation: UITableViewRowAnimationFade];
+        [self.TBL endUpdates];
+    }
+}
+
+- (void)tableViewExpandSection:(NSInteger)section withImage:(UIImageView *)imageView {
+    NSArray *sectionData = [ItemDic objectAtIndex:section];
+    
+    if (sectionData.count == 0) {
+        expandedSectionHeaderNumber = -1;
+        return;
+    } else {
+        [UIView animateWithDuration:0.4 animations:^{
+            imageView.transform = CGAffineTransformMakeRotation((180.0 * M_PI) / 180.0);
+        }];
+        NSMutableArray *arrayOfIndexPaths = [NSMutableArray array];
+        for (int i=0; i< sectionData.count; i++) {
+            NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:section];
+            [arrayOfIndexPaths addObject:index];
+        }
+        expandedSectionHeaderNumber = section;
+        [self.TBL beginUpdates];
+        [self.TBL insertRowsAtIndexPaths:arrayOfIndexPaths withRowAnimation: UITableViewRowAnimationFade];
+        [self.TBL endUpdates];
+    }
+}
 
 
 /*
@@ -1203,50 +1529,51 @@
 -(void)ReviewCount:(NSString*)stars
 {
     NSLog(@"stars=%@",stars);
-    
+    static NSString *CellIdentifier = @"RestHeaderCell";
+    RestHeaderCell *cell ;
     if ([stars integerValue]<=5)
     {
         if ([stars integerValue]==0) {
-            _star1.image=[UIImage imageNamed:@"DisableWhiteStar"];
-            _star2.image=[UIImage imageNamed:@"DisableWhiteStar"];
-            _star3.image=[UIImage imageNamed:@"DisableWhiteStar"];
-            _star4.image=[UIImage imageNamed:@"DisableWhiteStar"];
-            _star5.image=[UIImage imageNamed:@"DisableWhiteStar"];
+            cell.star1.image=[UIImage imageNamed:@"DisableWhiteStar"];
+            cell.star2.image=[UIImage imageNamed:@"DisableWhiteStar"];
+            cell.star3.image=[UIImage imageNamed:@"DisableWhiteStar"];
+            cell.star4.image=[UIImage imageNamed:@"DisableWhiteStar"];
+            cell.star5.image=[UIImage imageNamed:@"DisableWhiteStar"];
         }
         if ([stars integerValue]==1) {
-            _star1.image=[UIImage imageNamed:@"WhiteStat"];
-            _star2.image=[UIImage imageNamed:@"DisableWhiteStar"];
-            _star3.image=[UIImage imageNamed:@"DisableWhiteStar"];
-            _star4.image=[UIImage imageNamed:@"DisableWhiteStar"];
-            _star5.image=[UIImage imageNamed:@"DisableWhiteStar"];
+            cell.star1.image=[UIImage imageNamed:@"WhiteStat"];
+            cell.star2.image=[UIImage imageNamed:@"DisableWhiteStar"];
+            cell.star3.image=[UIImage imageNamed:@"DisableWhiteStar"];
+            cell.star4.image=[UIImage imageNamed:@"DisableWhiteStar"];
+            cell.star5.image=[UIImage imageNamed:@"DisableWhiteStar"];
         }
         if ([stars integerValue]==2) {
-            _star1.image=[UIImage imageNamed:@"WhiteStat"];
-            _star2.image=[UIImage imageNamed:@"WhiteStat"];
-            _star3.image=[UIImage imageNamed:@"DisableWhiteStar"];
-            _star4.image=[UIImage imageNamed:@"DisableWhiteStar"];
-            _star5.image=[UIImage imageNamed:@"DisableWhiteStar"];
+            cell.star1.image=[UIImage imageNamed:@"WhiteStat"];
+            cell.star2.image=[UIImage imageNamed:@"WhiteStat"];
+            cell.star3.image=[UIImage imageNamed:@"DisableWhiteStar"];
+            cell.star4.image=[UIImage imageNamed:@"DisableWhiteStar"];
+            cell.star5.image=[UIImage imageNamed:@"DisableWhiteStar"];
         }
         if ([stars integerValue]==3) {
-            _star1.image=[UIImage imageNamed:@"WhiteStat"];
-            _star2.image=[UIImage imageNamed:@"WhiteStat"];
-            _star3.image=[UIImage imageNamed:@"WhiteStat"];
-            _star4.image=[UIImage imageNamed:@"DisableWhiteStar"];
-            _star5.image=[UIImage imageNamed:@"DisableWhiteStar"];
+            cell.star1.image=[UIImage imageNamed:@"WhiteStat"];
+            cell.star2.image=[UIImage imageNamed:@"WhiteStat"];
+            cell.star3.image=[UIImage imageNamed:@"WhiteStat"];
+            cell.star4.image=[UIImage imageNamed:@"DisableWhiteStar"];
+            cell.star5.image=[UIImage imageNamed:@"DisableWhiteStar"];
         }
         if ([stars integerValue]==4) {
-            _star1.image=[UIImage imageNamed:@"WhiteStat"];
-            _star2.image=[UIImage imageNamed:@"WhiteStat"];
-            _star3.image=[UIImage imageNamed:@"WhiteStat"];
-            _star4.image=[UIImage imageNamed:@"WhiteStat"];
-            _star5.image=[UIImage imageNamed:@"DisableWhiteStar"];
+            cell.star1.image=[UIImage imageNamed:@"WhiteStat"];
+            cell.star2.image=[UIImage imageNamed:@"WhiteStat"];
+            cell.star3.image=[UIImage imageNamed:@"WhiteStat"];
+            cell.star4.image=[UIImage imageNamed:@"WhiteStat"];
+            cell.star5.image=[UIImage imageNamed:@"DisableWhiteStar"];
         }
         if ([stars integerValue]==5) {
-            _star1.image=[UIImage imageNamed:@"FullStar"];
-            _star2.image=[UIImage imageNamed:@"FullStar"];
-            _star3.image=[UIImage imageNamed:@"FullStar"];
-            _star4.image=[UIImage imageNamed:@"FullStar"];
-            _star5.image=[UIImage imageNamed:@"FullStar"];
+            cell.star1.image=[UIImage imageNamed:@"FullStar"];
+            cell.star2.image=[UIImage imageNamed:@"FullStar"];
+            cell.star3.image=[UIImage imageNamed:@"FullStar"];
+            cell.star4.image=[UIImage imageNamed:@"FullStar"];
+            cell.star5.image=[UIImage imageNamed:@"FullStar"];
         }
     }
 }
