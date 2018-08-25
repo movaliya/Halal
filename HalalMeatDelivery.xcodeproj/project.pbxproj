@@ -168,6 +168,10 @@
 		B15662F21EB9F03D005791FE /* CreateNewAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15662ED1EB9F03D005791FE /* CreateNewAddressView.m */; };
 		B15662F31EB9F03D005791FE /* AddressListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B15662EF1EB9F03D005791FE /* AddressListCell.m */; };
 		B15662F41EB9F03D005791FE /* AddressListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B15662F01EB9F03D005791FE /* AddressListCell.xib */; };
+		B15CED8D21317A920040EF69 /* HHHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15CED8921317A920040EF69 /* HHHeaderView.m */; };
+		B15CED8E21317A920040EF69 /* HHHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B15CED8A21317A920040EF69 /* HHHeaderView.xib */; };
+		B15CED8F21317A920040EF69 /* HHContentTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15CED8C21317A920040EF69 /* HHContentTableView.m */; };
+		B15CED9221317AA40040EF69 /* HHHorizontalPagingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15CED9121317AA40040EF69 /* HHHorizontalPagingView.m */; };
 		B18343991EFE2F1F009C47B9 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18343981EFE2F1F009C47B9 /* PassKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B1BE545B1D6E134B0012A152 /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BE545A1D6E134B0012A152 /* HomeView.m */; };
 		B1F47D451D6F557C000D5C0A /* WhiteBackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B1F47D441D6F557C000D5C0A /* WhiteBackArrow.png */; };
@@ -484,6 +488,13 @@
 		B15662EE1EB9F03D005791FE /* AddressListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressListCell.h; sourceTree = "<group>"; };
 		B15662EF1EB9F03D005791FE /* AddressListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressListCell.m; sourceTree = "<group>"; };
 		B15662F01EB9F03D005791FE /* AddressListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressListCell.xib; sourceTree = "<group>"; };
+		B15CED8821317A920040EF69 /* HHHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHHeaderView.h; sourceTree = "<group>"; };
+		B15CED8921317A920040EF69 /* HHHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHHeaderView.m; sourceTree = "<group>"; };
+		B15CED8A21317A920040EF69 /* HHHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HHHeaderView.xib; sourceTree = "<group>"; };
+		B15CED8B21317A920040EF69 /* HHContentTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHContentTableView.h; sourceTree = "<group>"; };
+		B15CED8C21317A920040EF69 /* HHContentTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHContentTableView.m; sourceTree = "<group>"; };
+		B15CED9021317AA40040EF69 /* HHHorizontalPagingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHHorizontalPagingView.h; sourceTree = "<group>"; };
+		B15CED9121317AA40040EF69 /* HHHorizontalPagingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHHorizontalPagingView.m; sourceTree = "<group>"; };
 		B18343981EFE2F1F009C47B9 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		B1BE54591D6E134B0012A152 /* HomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeView.h; sourceTree = "<group>"; };
 		B1BE545A1D6E134B0012A152 /* HomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeView.m; sourceTree = "<group>"; };
@@ -815,6 +826,15 @@
 		B109C6521D6C9FC9000936A2 /* HalalMeatDelivery */ = {
 			isa = PBXGroup;
 			children = (
+				B15CED8821317A920040EF69 /* HHHeaderView.h */,
+				B15CED8921317A920040EF69 /* HHHeaderView.m */,
+				B15CED8A21317A920040EF69 /* HHHeaderView.xib */,
+				B15CED8B21317A920040EF69 /* HHContentTableView.h */,
+				B15CED8C21317A920040EF69 /* HHContentTableView.m */,
+				B15CED9021317AA40040EF69 /* HHHorizontalPagingView.h */,
+				B15CED9121317AA40040EF69 /* HHHorizontalPagingView.m */,
+				B10B97FB1D91B12400228F33 /* RestaurantDetailView.h */,
+				B10B97FC1D91B12400228F33 /* RestaurantDetailView.m */,
 				C516152F212952570048175F /* ios */,
 				530127A71EB769B400394F9A /* Slider */,
 				B1F47D3C1D6F54A4000D5C0A /* DTTableView */,
@@ -841,8 +861,6 @@
 				53FE84A51D7FF2A7005AF059 /* MapNearbyPlace.m */,
 				B10EBE901D870C1100DB5E3B /* ViewController.h */,
 				B10EBE911D870C1100DB5E3B /* ViewController.m */,
-				B10B97FB1D91B12400228F33 /* RestaurantDetailView.h */,
-				B10B97FC1D91B12400228F33 /* RestaurantDetailView.m */,
 				5307932C1D7088A90028BF53 /* SearchByShop.h */,
 				5307932D1D7088A90028BF53 /* SearchByShop.m */,
 				B110D5C91D72BF2E008D8655 /* OrderHistoryView.h */,
@@ -1283,6 +1301,7 @@
 				B111C7371D93046A00DE70B6 /* phonereceiver.png in Resources */,
 				B1FC79421D7DEDF900DA38DC /* PasswordView.xib in Resources */,
 				530824931D829B8000948547 /* EmailTxt.png in Resources */,
+				B15CED8E21317A920040EF69 /* HHHeaderView.xib in Resources */,
 				530824951D82A0F800948547 /* userNameTxtSquare.png in Resources */,
 				C516153C21295ED20048175F /* halal_login.png in Resources */,
 				5307932B1D7086AE0028BF53 /* SplashScreen1.png in Resources */,
@@ -1341,6 +1360,7 @@
 				B11657FD1D7760A7005AF0D1 /* SDWebImagePrefetcher.m in Sources */,
 				53FE84A61D7FF2A7005AF059 /* NearByView.m in Sources */,
 				B110D5C71D72B208008D8655 /* SearchByCatCell.m in Sources */,
+				B15CED9221317AA40040EF69 /* HHHorizontalPagingView.m in Sources */,
 				5301AF301D76A80300F16656 /* UIImage+KVNImageEffects.m in Sources */,
 				5301AF361D76A80F00F16656 /* KVNProgressConfiguration.m in Sources */,
 				B11657F61D7760A7005AF0D1 /* NSData+ImageContentType.m in Sources */,
@@ -1402,7 +1422,9 @@
 				5301AF2E1D76A80300F16656 /* UIColor+KVNContrast.m in Sources */,
 				B11657FB1D7760A7005AF0D1 /* SDWebImageDownloaderOperation.m in Sources */,
 				5301AF6A1D76A85600F16656 /* UIWebView+AFNetworking.m in Sources */,
+				B15CED8D21317A920040EF69 /* HHHeaderView.m in Sources */,
 				B10B97F31D91AFEB00228F33 /* TakeawayThaxView.m in Sources */,
+				B15CED8F21317A920040EF69 /* HHContentTableView.m in Sources */,
 				B120439C1D789BE800095219 /* RestaurantHeaderView.m in Sources */,
 				5301AF471D76A83C00F16656 /* AFHTTPSessionManager.m in Sources */,
 				5301AF651D76A85600F16656 /* UIActivityIndicatorView+AFNetworking.m in Sources */,

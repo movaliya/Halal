@@ -16,10 +16,15 @@
 #import "RateView.h"
 #import <CoreLocation/CoreLocation.h>
 #import "RestHeaderCell.h"
+
+#import "HHHorizontalPagingView.h"
+#import "HHHeaderView.h"
+#import "HHContentTableView.h"
+
 static int const kHeaderSectionTag = 6900;
 
 
-@interface RestaurantDetailView ()<UIScrollViewDelegate,CLLocationManagerDelegate>
+@interface RestaurantDetailView ()<UIScrollViewDelegate,CLLocationManagerDelegate,HHContentTableViewDelegate>
 {
     CLLocationManager *locationManager;
     RestaurantHeaderView *HeaderView;
@@ -38,6 +43,10 @@ static int const kHeaderSectionTag = 6900;
     NSArray *sectionNames,*sectionItems;
     int expandedSectionHeaderNumber;
     UITableViewHeaderFooterView *expandedSectionHeader;
+    
+    HHContentTableView *tableView;
+    HHHeaderView *headerView;
+    HHHorizontalPagingView *pagingView;
 }
 
 
@@ -79,26 +88,6 @@ static int const kHeaderSectionTag = 6900;
     
     
     
-    
-    UINib *nib = [UINib nibWithNibName:@"RestHeaderCell" bundle:nil];
-    [self.TBL registerNib:nib forCellReuseIdentifier:@"RestHeaderCell"];
-    
-    UINib *nib1 = [UINib nibWithNibName:@"ProductDetailCell" bundle:nil];
-    [self.TBL registerNib:nib1 forCellReuseIdentifier:@"ProductDetailCell"];
-    
-    
-    
-   sectionNames = @[ @"iPhone", @"iPad", @"Apple Watch" ];
-    sectionItems = @[ @[@"iPhone 5"],
-                           @[@"iPad Mini", @"iPad Air 2", @"iPad Pro", @"iPad Pro 9.7"],
-                           @[@"Apple Watch", @"Apple Watch 2", @"Apple Watch 2 (Nike)"]
-                           ];
-    // configure the tableview
-    self.TBL.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.TBL.rowHeight = UITableViewAutomaticDimension;
-    //self.TBL.estimatedRowHeight = 100;
-    expandedSectionHeaderNumber = -1;
-    
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
     {
@@ -115,9 +104,7 @@ static int const kHeaderSectionTag = 6900;
     else
         [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
     
-    
-    
-    
+        
     
     /*
     self.appDelegate = [AppDelegate sharedInstance];
@@ -703,26 +690,14 @@ static int const kHeaderSectionTag = 6900;
     {
         RestraorntDic=[[response valueForKey:@"result"] objectAtIndex:0];
         Cat_Arr=[[[RestraorntDic valueForKey:@"products"] valueForKey:@"service_category"]mutableCopy];
-        [Cat_Arr insertObject:@"" atIndex:0];
         NSMutableArray *TempItem=[[RestraorntDic valueForKey:@"products"]mutableCopy];
         ItemDic=[[NSMutableArray alloc]init];
         for (int i=0; i<Cat_Arr.count; i++)
         {
-            if (i==0)
-            {
-                 NSArray *selectArr=[[NSArray alloc]initWithObjects:@"", nil];
-                [ItemDic addObject:selectArr];
-            }
-            else
-            {
-                NSArray *selectArr=[[TempItem valueForKey:[Cat_Arr objectAtIndex:i]]mutableCopy];
-                [ItemDic addObject:selectArr];
-            }
-            
+            NSArray *selectArr=[[TempItem valueForKey:[Cat_Arr objectAtIndex:i]]mutableCopy];
+            [ItemDic addObject:selectArr];
         }
-        
-        //[self SetdataInTable];
-        [self.TBL reloadData];
+        [self SetdataInTable];
     }
     else
     {
@@ -732,27 +707,6 @@ static int const kHeaderSectionTag = 6900;
 
 -(void)SetdataInTable
 {
-   // NSLog(@"REST===%@",RestraorntDic);
-    NSArray* subviews = [[NSArray alloc] initWithArray: TableScroll.subviews];
-    for (UIView* view in subviews)
-    {
-        if ([view isKindOfClass:[UIView class]])
-        {
-            [view removeFromSuperview];
-        }
-        if ([view isKindOfClass:[UIImageView class]])
-        {
-            [view removeFromSuperview];
-        }
-        if ([view isKindOfClass:[UIButton class]])
-        {
-            [view removeFromSuperview];
-        }
-        if ([view isKindOfClass:[UILabel class]])
-        {
-            [view removeFromSuperview];
-        }
-    }
     
     //--------------------------Header View Of Restorant ---------------------------------------
     _RestorantName_Lbl.text=[RestraorntDic valueForKey:@"name"];
@@ -778,20 +732,7 @@ static int const kHeaderSectionTag = 6900;
                 [countArr addObject:@"1"];
             }
             [MainCount addObject:countArr];
-           
-            //***************** static array or Dic *****************************
-//            dic=[[NSMutableDictionary alloc]init];
-//            MainDic=[[NSMutableDictionary alloc]init];
-//            arr=[[NSMutableArray alloc]init];
-//            MainCount=[[NSMutableArray alloc]init];
-//            for (int i = 0; i<[arr count]; i++)
-//            {
-//                [arr addObject:@"1"];
-//                [MainCount addObject:@"1"];
-//            }
-//            [dic setObject:arr forKey:@"Count"];
-//            [MainDic setObject:MainCount forKey:@"MainCount"];
-            //***************** static array or Dic *****************************
+            
             [arrData addObject:arr];
             if (i==0)
             {
@@ -806,36 +747,126 @@ static int const kHeaderSectionTag = 6900;
     }
     //-------------------------------------END-----------------------------------------------------
     
-    int width=0;
-    for (int i = 0; i<[arrData count]; i++)
-    {
-        DataTable = [[UITableView alloc] initWithFrame:CGRectMake(width, 0, screenWidth, 600) style:UITableViewStylePlain];
-        
-        UINib *nib = [UINib nibWithNibName:@"ProductDetailCell" bundle:nil];
-        ProductDetailCell *cell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
-        DataTable.rowHeight = cell.frame.size.height;
-        [DataTable registerNib:nib forCellReuseIdentifier:@"ProductDetailCell"];
-        
-        DataTable.tag=i;
-        DataTable.dataSource = self;
-        DataTable.delegate = self;
-        [DataTable setBackgroundColor:[UIColor clearColor]];
-        DataTable.separatorColor = [UIColor blackColor];
-        [TableScroll addSubview:DataTable];
-        width+=screenWidth;
-    }
+    headerView = [HHHeaderView headerView];
+    headerView.RestraorntDic=[RestraorntDic mutableCopy];
+    [self SetHeaderimagesroll];
+    
+    
+    headerView.ImageScroll.scrollEnabled=YES;
+    
+    
+    tableView = [HHContentTableView contentTableView];
+    tableView.delegaterr=self;
+    
+    
+    tableView.expandedSectionHeaderNumber = -1;
+    
+    
+    /*UIView *SegmentView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 55)];
+    SegmentView.backgroundColor=[UIColor orangeColor];
+    UILabel *title_LBL=[[UILabel alloc]initWithFrame:CGRectMake(8, 5, screenWidth-30, 25)];
+    title_LBL.text=[RestraorntDic valueForKey:@"name"];
+    title_LBL.font=[UIFont boldSystemFontOfSize:25];
+    title_LBL.textColor=[UIColor whiteColor];
+    
+    [SegmentView addSubview:title_LBL];*/
     
     
     
+    NSMutableArray *buttonArray = [NSMutableArray array];
+    
+    UIButton *segmentButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [segmentButton setTitle:@"Kaushik Movaliya" forState:UIControlStateNormal];
+    [segmentButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [segmentButton setBackgroundColor:[UIColor colorWithRed:255.0f/255.0f green:173.0f/255.0f blue:103.0f/255.0f alpha:1.0f]];
+    [buttonArray addObject:segmentButton];
+    
+    pagingView = [HHHorizontalPagingView pagingViewWithHeaderView:headerView headerHeight:300.f segmentButtons:buttonArray segmentHeight:55 contentViews:@[tableView]];
+    
+    [self.view addSubview:pagingView];
+    
+    
+    // configure the tableview
+    tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    tableView.rowHeight = UITableViewAutomaticDimension;
+    self.TBL.estimatedRowHeight = 100;
+    expandedSectionHeaderNumber = -1;
+    
+    tableView.Cat_Arr=[[NSMutableArray alloc]initWithArray:Cat_Arr];
+    tableView.ItemDic=[[NSMutableArray alloc]initWithArray:ItemDic];
+    tableView.MainCount=[[NSMutableArray alloc]initWithArray:MainCount];
+    tableView.LoadArr=[[NSMutableArray alloc]initWithArray:LoadArr];
+    tableView.arrData=[[NSMutableArray alloc]initWithArray:arrData];
+    
+    headerView.RestraorntDic=[RestraorntDic mutableCopy];
+    
+     [tableView reloadData];
     
     [TableScroll setContentSize:CGSizeMake(([arrData count])*screenWidth, TableScroll.frame.size.height)];
-    //[self Setimagesroll];
+    
+    headerView.ImageScroll.scrollEnabled=YES;
+    
 }
+
+
+-(void)SetHeaderimagesroll
+{
+    headerView.ImageScroll.delegate=self;
+    int x=0;
+    for (int i=0; i<[[RestraorntDic valueForKey:@"alt_img"] count]; i++)
+    {
+        ImgVW=[[UIImageView alloc]initWithFrame:CGRectMake(x, 0, SCREEN_WIDTH, 250)];
+        NSString *Urlstr=[[RestraorntDic valueForKey:@"alt_img"] objectAtIndex:i];
+        Urlstr = [Urlstr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        [ImgVW sd_setImageWithURLforPromotion:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
+        [ImgVW setShowActivityIndicatorView:YES];
+        [headerView.ImageScroll addSubview:ImgVW];
+        
+        UIImageView *maskimg=[[UIImageView alloc]initWithFrame:CGRectMake(x, 0, SCREEN_WIDTH, 250)];
+        maskimg.backgroundColor=[UIColor blackColor];
+        maskimg.alpha=0.3f;
+        //[Imagescr addSubview:maskimg];
+        [headerView.ImageScroll addSubview:maskimg];
+        
+        x=x+SCREEN_WIDTH;
+    }
+    [headerView.ImageScroll setContentSize:CGSizeMake(x, 50)];
+    
+    
+    headerView.PageCont.frame = CGRectMake(0,ImgVW.frame.size.height-30,SCREEN_WIDTH,5);
+    headerView.PageCont.numberOfPages =[[RestraorntDic valueForKey:@"alt_img"] count];
+    headerView.PageCont.currentPage = 0;
+    
+    
+    headerView.HeaderTitle_LBL.text=[RestraorntDic valueForKey:@"name"];
+    headerView.HeaderDesc_LBL.text=[RestraorntDic valueForKey:@"address"];
+    headerView.HeaderReview_LBL.text=[NSString stringWithFormat:@"(%@ Review)",[RestraorntDic valueForKey:@"count_review"]];
+    //[cell ReviewCount:[NSString stringWithFormat:@"%@",[RestraorntDic valueForKey:@"rate"]]];
+    
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)sender
+{
+    if([sender isKindOfClass:[UITableView class]])
+    {
+        return;
+    }
+    
+    if (sender==headerView.ImageScroll)
+    {
+        CGFloat pageWidth = headerView.ImageScroll.frame.size.width;
+        float fractionalPage = headerView.ImageScroll.contentOffset.x / pageWidth;
+        NSInteger page = lround(fractionalPage);
+        headerView.PageCont.currentPage = page;
+    }
+}
+
 
 #pragma mark
 #pragma mark - Table view data source
 #pragma mark UITableView delegate
-
+/*
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     if (indexPath.section==0)
@@ -929,22 +960,7 @@ static int const kHeaderSectionTag = 6900;
     }
     else
     {
-     /*
-        static NSString *CellIdentifier = @"Cell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        if (cell == nil)
-        {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        }
-        //Configure cell
-        NSArray *section = [ItemDic  objectAtIndex:indexPath.section];
-        cell.textLabel.numberOfLines = 0;
-        cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
-        
-        cell.textLabel.textColor = [UIColor blackColor];
-        cell.textLabel.text = [[section valueForKey:@"name"] objectAtIndex:indexPath.row];
-        return cell;*/
+     
         
         static NSString *CellIdentifier = @"ProductDetailCell";
         ProductDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -1128,7 +1144,7 @@ static int const kHeaderSectionTag = 6900;
         [self.TBL endUpdates];
     }
 }
-
+*/
 
 /*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -1228,29 +1244,37 @@ static int const kHeaderSectionTag = 6900;
 //    return 0.01f;
 //}
 
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+
+
+//-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//        cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.0f);
+//}
+
+-(void)updateScroll
 {
-        cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.0f);
+    CGPoint point = [pagingView.currentScrollView contentOffset];
+    [pagingView.currentScrollView setContentOffset: CGPointMake(point.x, point.y + 0.5)  animated:YES];
+    [pagingView.currentScrollView setContentOffset: CGPointMake(point.x, point.y - 0.5)  animated:YES];
 }
 
 -(void)PlushClick:(id)sender
 {
     UIButton *senderButton = (UIButton *)sender;
-    UIView *cellContentView = (UIView *)senderButton.superview;
-    UITableViewCell *buttonCell = (UITableViewCell *)[[cellContentView superview] superview];
-    UITableView* table = (UITableView *)[[buttonCell superview] superview];
-    NSIndexPath* pathOfTheCell = [table indexPathForCell:buttonCell];
-    //NSDictionary *item = sortedItems[sortedItems.allKeys[pathOfTheCell.row]];
-    ProductDetailCell *cell = (ProductDetailCell *)[DataTable cellForRowAtIndexPath:pathOfTheCell];
+
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:tableView];
+    NSIndexPath *pathOfTheCell = [tableView indexPathForRowAtPoint:buttonPosition];
+    
+    ProductDetailCell *cell = (ProductDetailCell *)[tableView cellForRowAtIndexPath:pathOfTheCell];
     NSLog(@"senderButton.tag=%ld",(long)senderButton.tag);
     
-    NSLog(@"Array===%@",[[MainCount objectAtIndex:pageTable] objectAtIndex:senderButton.tag]);
+    NSLog(@"Array===%@",[[tableView.MainCount objectAtIndex:pageTable] objectAtIndex:senderButton.tag]);
     
-    NSInteger count = [[[MainCount objectAtIndex:pageTable] objectAtIndex:senderButton.tag] integerValue];
+    NSInteger count = [[[tableView.MainCount objectAtIndex:pageTable] objectAtIndex:senderButton.tag] integerValue];
     count = count + 1;
     cell.RestQuatityLBL.text = [NSString stringWithFormat:@"%ld",(long)count];
     
-    [[MainCount objectAtIndex:pageTable] replaceObjectAtIndex:senderButton.tag withObject:[NSString stringWithFormat:@"%ld",(long)count]];
+    [[tableView.MainCount objectAtIndex:pageTable] replaceObjectAtIndex:senderButton.tag withObject:[NSString stringWithFormat:@"%ld",(long)count]];
     
     ButtonTag=senderButton.tag;
     chechPlusMinus=1;
@@ -1262,18 +1286,19 @@ static int const kHeaderSectionTag = 6900;
         {
             [view reloadData];
         }
-    }    //[TableView reloadData];
+    }
+    [tableView reloadData];
     
 }
 
 -(void)MinushClick:(id)sender
 {
+    
     UIButton *senderButton = (UIButton *)sender;
-    UIView *cellContentView = (UIView *)senderButton.superview;
-    UITableViewCell *buttonCell = (UITableViewCell *)[[cellContentView superview] superview];
-    UITableView* table = (UITableView *)[[buttonCell superview] superview];
-    NSIndexPath* pathOfTheCell = [table indexPathForCell:buttonCell];
-    //NSDictionary *item = sortedItems[sortedItems.allKeys[pathOfTheCell.row]];
+    
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:tableView];
+    NSIndexPath *pathOfTheCell = [tableView indexPathForRowAtPoint:buttonPosition];
+    
     ProductDetailCell *cell = (ProductDetailCell *)[DataTable cellForRowAtIndexPath:pathOfTheCell];
     
     NSInteger count = [[[MainCount objectAtIndex:pageTable] objectAtIndex:senderButton.tag] integerValue];
@@ -1311,11 +1336,11 @@ static int const kHeaderSectionTag = 6900;
 
 -(void)AddToCardClick:(id)sender
 {
-    NSArray *LoadArr2 = [[arrData objectAtIndex:pageTable] mutableCopy];
+    NSArray *LoadArr2 = [[tableView.arrData objectAtIndex:pageTable] mutableCopy];
     NSLog(@"===%@",[LoadArr2 objectAtIndex: [sender tag]]);
      NSLog(@"ID===%@",[[LoadArr2 objectAtIndex: [sender tag]] valueForKey:@"id"]);
     
-    NSArray *QTYARR= [[MainCount objectAtIndex:pageTable] mutableCopy];
+    NSArray *QTYARR= [[tableView.MainCount objectAtIndex:pageTable] mutableCopy];
     
     if ([self.appDelegate isUserLoggedIn] == NO)
     {
@@ -1434,7 +1459,7 @@ static int const kHeaderSectionTag = 6900;
     if (savedValue)
     {
         TempAdd=[savedValue integerValue]+[count integerValue];
-        finalVAL=[NSString stringWithFormat:@"%d",TempAdd];
+        finalVAL=[NSString stringWithFormat:@"%ld",(long)TempAdd];
     }
     else
     {
@@ -1495,8 +1520,8 @@ static int const kHeaderSectionTag = 6900;
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     CLLocation *currentLocation = newLocation;
-    if (currentLocation != nil) {
-        
+    if (currentLocation != nil)
+    {
         NSString *coordinateString1 = [NSString stringWithFormat:@"%f,%f",currentLocation.coordinate.latitude,currentLocation.coordinate.longitude];
         
         NSString *coordinateString2 = [NSString stringWithFormat:@"%@,%@",ResLat,ResLog];

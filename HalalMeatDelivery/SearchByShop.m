@@ -17,6 +17,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import "CategoryCell.h"
 
+
+
 static dispatch_once_t predicate;
 
 #define SelectedButtonColor [UIColor colorWithRed:169.0f/255.0f green:32.0f/255.0f blue:40.0f/255.0f alpha:1.0f]
@@ -63,6 +65,7 @@ static dispatch_once_t predicate;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(Getlocationuser:)

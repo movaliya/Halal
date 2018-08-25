@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="17G65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,9 +21,8 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen.png" translatesAutoresizingMaskIntoConstraints="NO" id="HNO-q4-PHO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="193.5"/>
                     </imageView>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DPI-JB-pfE">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPI-JB-pfE">
                         <rect key="frame" x="0.0" y="99" width="320" height="94"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="REST Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Xp-RY-KNQ">
                                 <rect key="frame" x="0.0" y="2" width="312" height="21"/>
@@ -80,10 +79,16 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99607843139999996" green="0.68235294120000001" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="94" id="N9s-x9-sEl"/>
+                        </constraints>
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="DPI-JB-pfE" secondAttribute="trailing" id="LV9-hX-t4e"/>
                     <constraint firstAttribute="bottom" secondItem="HNO-q4-PHO" secondAttribute="bottom" id="Th5-hg-8sv"/>
+                    <constraint firstItem="DPI-JB-pfE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Y6b-pO-biK"/>
+                    <constraint firstAttribute="bottom" secondItem="DPI-JB-pfE" secondAttribute="bottom" id="bxp-6B-mdk"/>
                     <constraint firstItem="HNO-q4-PHO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cxI-jt-iR4"/>
                     <constraint firstItem="HNO-q4-PHO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="jQT-ra-84s"/>
                     <constraint firstAttribute="trailing" secondItem="HNO-q4-PHO" secondAttribute="trailing" id="pUu-dJ-g4c"/>
