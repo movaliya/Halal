@@ -739,6 +739,7 @@ static int const kHeaderSectionTag = 6900;
     
     UIButton *CartBTN=[[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-40, 22, 30, 30)];
     [CartBTN setImage:[UIImage imageNamed:@"CartImg"] forState:UIControlStateNormal];
+    [CartBTN addTarget:self action:@selector(Cart_Click:) forControlEvents:UIControlEventTouchUpInside];
     CartBTN.backgroundColor=[UIColor clearColor];
     
     UILabel *Cart_LBL=[[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-25, 15, 18, 18)];
@@ -778,8 +779,8 @@ static int const kHeaderSectionTag = 6900;
         if ([savedQTY integerValue]==0 && savedQTY == nil)
         {
             [self UpdateCartQnt:@"" HideShow:YES];
-            headerView.MapBTN.hidden=YES;
-            headerView.BackBTN.hidden=YES;
+            //headerView.MapBTN.hidden=YES;
+            //headerView.BackBTN.hidden=YES;
             
             //[QTYICON_LBL setHidden:YES];
             //Back_BTN.hidden=YES;
@@ -789,8 +790,8 @@ static int const kHeaderSectionTag = 6900;
         else
         {
             [self UpdateCartQnt:savedQTY HideShow:NO];
-            headerView.MapBTN.hidden=YES;
-            headerView.BackBTN.hidden=YES;
+           // headerView.MapBTN.hidden=YES;
+            //headerView.BackBTN.hidden=YES;
             //Back_BTN.hidden=NO;
             //QTYICON_LBL.hidden=NO;
             //self.MapPlaceIMG.hidden=NO;
@@ -806,8 +807,8 @@ static int const kHeaderSectionTag = 6900;
     else
     {
         [self UpdateCartQnt:@"" HideShow:YES];
-        headerView.MapBTN.hidden=YES;
-        headerView.BackBTN.hidden=YES;
+        //headerView.MapBTN.hidden=YES;
+       // headerView.BackBTN.hidden=YES;
         
        // Back_BTN.hidden=YES;
         //QTYICON_LBL.hidden=YES;
@@ -836,9 +837,6 @@ static int const kHeaderSectionTag = 6900;
     [TableScroll setContentSize:CGSizeMake(([arrData count])*screenWidth, TableScroll.frame.size.height)];
     
     headerView.ImageScroll.scrollEnabled=YES;
-    
-    
-    
     
     
 }
@@ -1463,16 +1461,16 @@ static int const kHeaderSectionTag = 6900;
             if ([savedQTY integerValue]==0)
             {
                 [self UpdateCartQnt:@"" HideShow:YES];
-                headerView.BackBTN.hidden=YES;
-                headerView.MapBTN.hidden=YES;
+               // headerView.BackBTN.hidden=YES;
+                //headerView.MapBTN.hidden=YES;
                 //self.CartIMG.hidden=YES;
             }
             else
             {
-                headerView.BackBTN.hidden=NO;
+                //headerView.BackBTN.hidden=NO;
                 [self UpdateCartQnt:savedQTY HideShow:NO];
                 //QTYICON_LBL.hidden=NO;
-                headerView.MapBTN.hidden=NO;
+                //headerView.MapBTN.hidden=NO;
                 //self.CartIMG.hidden=NO;
                 //QTYICON_LBL.text=savedQTY;
             }
@@ -1523,7 +1521,8 @@ static int const kHeaderSectionTag = 6900;
     
     return finalVAL;
 }
-- (IBAction)Cart_Click:(id)sender
+
+- (void)Cart_Click:(id)sender
 {
     if ([self.appDelegate isUserLoggedIn] == NO)
     {

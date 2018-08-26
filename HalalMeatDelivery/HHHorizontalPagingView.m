@@ -303,10 +303,10 @@ static NSInteger kPagingButtonTag                 = 1000;
         }
         else if ([view isKindOfClass:[UIButton class]])
         {
-            if ([[view superview] isKindOfClass:[self.headerView class]])
-            {
+            //if ([[view superview] isKindOfClass:[self.headerView class]])
+            //{
                 return view;
-            }
+            //}
         }
        return self.currentScrollView;
     }
