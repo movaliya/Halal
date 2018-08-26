@@ -182,15 +182,16 @@ static NSInteger kPagingButtonTag                 = 1000;
         }
         
         [_segmentView removeConstraints:self.segmentButtonConstraintArray];
-        for(int i = 0; i < [self.segmentButtons count]; i++) {
-            UIButton *segmentButton = self.segmentButtons[i];
+        for(int i = 0; i < [self.segmentButtons count]; i++)
+        {
+            UIView *segmentButton = self.segmentButtons[i];
             [segmentButton removeConstraints:self.segmentButtonConstraintArray];
             segmentButton.tag = kPagingButtonTag+i;
-           // [segmentButton addTarget:self action:@selector(segmentButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+            //[segmentButton addTarget:self action:@selector(segmentButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
             [_segmentView addSubview:segmentButton];
             
             if(i == 0) {
-               // [segmentButton setSelected:YES];
+             //   [segmentButton setSelected:YES];
             }
             
             segmentButton.translatesAutoresizingMaskIntoConstraints = NO;
@@ -214,12 +215,13 @@ static NSInteger kPagingButtonTag                 = 1000;
     }
 }
 
-- (void)segmentButtonEvent:(UIButton *)segmentButton {
-    for(UIButton *b in self.segmentButtons) {
-        [b setSelected:NO];
+- (void)segmentButtonEvent:(UIButton *)segmentButton
+{
+    //for(UIButton *b in self.segmentButtons) {
+     //   [b setSelected:NO];
         
-    }
-    [segmentButton setSelected:YES];
+    //}
+   // [segmentButton setSelected:YES];
     
     NSInteger clickIndex = segmentButton.tag-kPagingButtonTag;
     
@@ -267,25 +269,39 @@ static NSInteger kPagingButtonTag                 = 1000;
     return YES;
 }
 
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
     UIView *view = [super hitTest:point withEvent:event];
-    if ([view isDescendantOfView:self.headerView] || [view isDescendantOfView:self.segmentView]) {
+    if ([view isDescendantOfView:self.headerView] || [view isDescendantOfView:self.segmentView])
+    {
         self.horizontalCollectionView.scrollEnabled = NO;
         
         self.currentTouchView = nil;
         self.currentTouchButton = nil;
         
-        [self.segmentButtons enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if(obj == view) {
+        [self.segmentButtons enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+        {
+            if(obj == view)
+            {
                 self.currentTouchButton = obj;
             }
         }];
-        if(!self.currentTouchButton) {
+        if(!self.currentTouchButton)
+        {
             self.currentTouchView = view;
-        }else {
+        }
+        else
+        {
             return view;
         }
-        return self.currentScrollView;
+        if ([view isKindOfClass:[UIScrollView class]])
+        {
+            if ([[view superview] isKindOfClass:[self.headerView class]])
+            {
+                return view;
+            }
+        }
+       return self.currentScrollView;
     }
     return view;
 }
@@ -421,16 +437,18 @@ static NSInteger kPagingButtonTag                 = 1000;
 }
 
 #pragma mark - UIScrollViewDelegate
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
     NSInteger currentPage = scrollView.contentOffset.x/[[UIScreen mainScreen] bounds].size.width;
     
-    for(UIButton *b in self.segmentButtons) {
-        if(b.tag - kPagingButtonTag == currentPage) {
-            [b setSelected:YES];
-        }else {
-            [b setSelected:NO];
-        }
-    }
+    //for(UIButton *b in self.segmentButtons)
+    //{
+        //if(b.tag - kPagingButtonTag == currentPage) {
+        //    [b setSelected:YES];
+        //}else {
+           // [b setSelected:NO];
+        //}
+   // }
     self.currentScrollView = self.contentViews[currentPage];
     self.currentScrollView.scrollEnabled = YES;
     

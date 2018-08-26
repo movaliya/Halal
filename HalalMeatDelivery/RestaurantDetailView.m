@@ -626,42 +626,6 @@ static int const kHeaderSectionTag = 6900;
     }
 }
 
-
--(void)Settable
-{
-    NSArray* subviews = [[NSArray alloc] initWithArray: TableScroll.subviews];
-    for (UIView* view in subviews)
-    {
-        if ([view isKindOfClass:[UIView class]])
-        {
-            [view removeFromSuperview];
-        }
-        
-        if ([view isKindOfClass:[UITableView class]])
-        {
-            [view removeFromSuperview];
-        }
-    }
-    int width=0;
-    for (int i = 0; i<[arrData count]; i++)
-    {
-        DataTable = [[UITableView alloc] initWithFrame:CGRectMake(width, 0, screenWidth, 600) style:UITableViewStylePlain];
-        
-        DataTable.tag=i;
-        DataTable.dataSource = self;
-        DataTable.delegate = self;
-        [DataTable setBackgroundColor:[UIColor clearColor]];
-        DataTable.separatorColor = [UIColor clearColor];
-        DataTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-
-        [TableScroll addSubview:DataTable];
-        width+=screenWidth;
-    }
-    
-    [TableScroll setContentSize:CGSizeMake(([arrData count])*screenWidth, TableScroll.frame.size.height)];
-}
-
-
 -(void)GetRestDetail
 {
     
@@ -761,25 +725,30 @@ static int const kHeaderSectionTag = 6900;
     
     tableView.expandedSectionHeaderNumber = -1;
     
+    NSMutableArray *buttonArray = [NSMutableArray array];
+
     
-    /*UIView *SegmentView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 55)];
-    SegmentView.backgroundColor=[UIColor orangeColor];
-    UILabel *title_LBL=[[UILabel alloc]initWithFrame:CGRectMake(8, 5, screenWidth-30, 25)];
-    title_LBL.text=[RestraorntDic valueForKey:@"name"];
+    UIView *SegmentView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 55)];
+    SegmentView.backgroundColor=[UIColor blackColor];
+   
+    UILabel *title_LBL=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, screenWidth-30, 25)];
+    title_LBL.text=@"sdfdas sdaf sdf ";
     title_LBL.font=[UIFont boldSystemFontOfSize:25];
+    title_LBL.backgroundColor=[UIColor redColor];
     title_LBL.textColor=[UIColor whiteColor];
     
-    [SegmentView addSubview:title_LBL];*/
+    [SegmentView addSubview:title_LBL];
+    
+    [buttonArray addObject:SegmentView];
     
     
     
-    NSMutableArray *buttonArray = [NSMutableArray array];
     
     UIButton *segmentButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [segmentButton setTitle:@"Kaushik Movaliya" forState:UIControlStateNormal];
     [segmentButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [segmentButton setBackgroundColor:[UIColor colorWithRed:255.0f/255.0f green:173.0f/255.0f blue:103.0f/255.0f alpha:1.0f]];
-    [buttonArray addObject:segmentButton];
+    //[buttonArray addObject:segmentButton];
     
     pagingView = [HHHorizontalPagingView pagingViewWithHeaderView:headerView headerHeight:300.f segmentButtons:buttonArray segmentHeight:55 contentViews:@[tableView]];
     
@@ -831,6 +800,7 @@ static int const kHeaderSectionTag = 6900;
         
         x=x+SCREEN_WIDTH;
     }
+    
     [headerView.ImageScroll setContentSize:CGSizeMake(x, 50)];
     
     
