@@ -192,7 +192,7 @@ static int const kHeaderSectionTag = 6900;
     // add the arrow image
     CGSize headerFrame = self.frame.size;
     UIImageView *theImageView = [[UIImageView alloc] initWithFrame:CGRectMake(headerFrame.width - 32, 13, 18, 18)];
-    theImageView.image = [UIImage imageNamed:@"Chevron-Dn-Wht"];
+    theImageView.image = [UIImage imageNamed:@"Tbl_Arrow_white"];
     theImageView.tag = kHeaderSectionTag + section;
     [header addSubview:theImageView];
     

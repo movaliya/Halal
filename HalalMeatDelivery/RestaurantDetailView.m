@@ -812,7 +812,8 @@ static int const kHeaderSectionTag = 6900;
     headerView.HeaderTitle_LBL.text=[RestraorntDic valueForKey:@"name"];
     headerView.HeaderDesc_LBL.text=[RestraorntDic valueForKey:@"address"];
     headerView.HeaderReview_LBL.text=[NSString stringWithFormat:@"(%@ Review)",[RestraorntDic valueForKey:@"count_review"]];
-    //[cell ReviewCount:[NSString stringWithFormat:@"%@",[RestraorntDic valueForKey:@"rate"]]];
+    [headerView ReviewCount:[NSString stringWithFormat:@"%@",[RestraorntDic valueForKey:@"rate"]]];
+   
     
 }
 

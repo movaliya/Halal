@@ -14,10 +14,10 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    AddCart_BTN.layer.cornerRadius=11;
-    AddCart_BTN.layer.masksToBounds=YES;
-    AddCart_BTN.layer.borderColor=[[UIColor colorWithRed:25.0f/255.0f green:123.0f/255.0f blue:48.0f/255.0f alpha:1.0] CGColor];
-    AddCart_BTN.layer.borderWidth=1;
+   // AddCart_BTN.layer.cornerRadius=11;
+    //AddCart_BTN.layer.masksToBounds=YES;
+   // AddCart_BTN.layer.borderColor=[[UIColor colorWithRed:25.0f/255.0f green:123.0f/255.0f blue:48.0f/255.0f alpha:1.0] CGColor];
+   // AddCart_BTN.layer.borderWidth=1;
     self.BackView.layer.cornerRadius=10.0f;
     self.BackView.layer.masksToBounds=YES;
 

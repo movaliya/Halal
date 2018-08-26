@@ -27,6 +27,57 @@
 
 
 
-- (IBAction)HeaderReview_Click:(id)sender {
+- (IBAction)HeaderReview_Click:(id)sender
+{
+}
+-(void)ReviewCount:(NSString*)stars
+{
+    NSLog(@"stars=%@",stars);
+    
+    if ([stars integerValue]<=5)
+    {
+        if ([stars integerValue]==0) {
+            self.star1.image=[UIImage imageNamed:@"HalStar"];
+            self.star2.image=[UIImage imageNamed:@"HalStar"];
+            self.star3.image=[UIImage imageNamed:@"HalStar"];
+            self.star4.image=[UIImage imageNamed:@"HalStar"];
+            self.star5.image=[UIImage imageNamed:@"HalStar"];
+        }
+        if ([stars integerValue]==1) {
+            self.star1.image=[UIImage imageNamed:@"WhiteFullHeart"];
+            self.star2.image=[UIImage imageNamed:@"HalStar"];
+            self.star3.image=[UIImage imageNamed:@"HalStar"];
+            self.star4.image=[UIImage imageNamed:@"HalStar"];
+            self.star5.image=[UIImage imageNamed:@"HalStar"];
+        }
+        if ([stars integerValue]==2) {
+            self.star1.image=[UIImage imageNamed:@"WhiteFullHeart"];
+            self.star2.image=[UIImage imageNamed:@"WhiteFullHeart"];
+            self.star3.image=[UIImage imageNamed:@"HalStar"];
+            self.star4.image=[UIImage imageNamed:@"HalStar"];
+            self.star5.image=[UIImage imageNamed:@"HalStar"];
+        }
+        if ([stars integerValue]==3) {
+            self.star1.image=[UIImage imageNamed:@"WhiteFullHeart"];
+            self.star2.image=[UIImage imageNamed:@"WhiteFullHeart"];
+            self.star3.image=[UIImage imageNamed:@"WhiteFullHeart"];
+            self.star4.image=[UIImage imageNamed:@"HalStar"];
+            self.star5.image=[UIImage imageNamed:@"HalStar"];
+        }
+        if ([stars integerValue]==4) {
+            self.star1.image=[UIImage imageNamed:@"WhiteFullHeart"];
+            self.star2.image=[UIImage imageNamed:@"WhiteFullHeart"];
+            self.star3.image=[UIImage imageNamed:@"WhiteFullHeart"];
+            self.star4.image=[UIImage imageNamed:@"WhiteFullHeart"];
+            self.star5.image=[UIImage imageNamed:@"HalStar"];
+        }
+        if ([stars integerValue]==5) {
+            self.star1.image=[UIImage imageNamed:@"WhiteFullHeart"];
+            self.star2.image=[UIImage imageNamed:@"WhiteFullHeart"];
+            self.star3.image=[UIImage imageNamed:@"WhiteFullHeart"];
+            self.star4.image=[UIImage imageNamed:@"WhiteFullHeart"];
+            self.star5.image=[UIImage imageNamed:@"WhiteFullHeart"];
+        }
+    }
 }
 @end
