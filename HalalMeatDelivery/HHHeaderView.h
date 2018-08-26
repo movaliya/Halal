@@ -16,7 +16,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *HeaderTitle_LBL;
 @property (strong, nonatomic) IBOutlet UILabel *HeaderDesc_LBL;
 @property (strong, nonatomic) IBOutlet UILabel *HeaderReview_LBL;
-- (IBAction)HeaderReview_Click:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *ReviewBTN;
 
 
 @property (strong, nonatomic) IBOutlet UIScrollView *ImageScroll;
@@ -29,6 +29,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *star4;
 @property (weak, nonatomic) IBOutlet UIImageView *star5;
 -(void)ReviewCount:(NSString*)stars;
+
+@property (strong, nonatomic) IBOutlet UIButton *BackBTN;
+@property (strong, nonatomic) IBOutlet UIButton *MapBTN;
+
 
 + (HHHeaderView *)headerView;
 

@@ -18,6 +18,12 @@
 
 @synthesize RestraorntDic,ImageScroll,PageCont;
 
+- (IBAction)Back_Click:(id)sender {
+}
+
+- (IBAction)Map_Click:(id)sender {
+}
+
 + (HHHeaderView *)headerView
 {
     HHHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"HHHeaderView" owner:self options:nil][0];

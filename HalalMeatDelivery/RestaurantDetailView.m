@@ -104,7 +104,8 @@ static int const kHeaderSectionTag = 6900;
     else
         [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
     
-        
+    
+    
     
     /*
     self.appDelegate = [AppDelegate sharedInstance];
@@ -728,31 +729,92 @@ static int const kHeaderSectionTag = 6900;
     NSMutableArray *buttonArray = [NSMutableArray array];
 
     
-    UIView *SegmentView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 55)];
-    SegmentView.backgroundColor=[UIColor blackColor];
+    UIView *SegmentView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 55)];
+    SegmentView.backgroundColor=[UIColor colorWithRed:254.0f/255.0f green:174.0f/255.0f blue:89.0f/255.0f alpha:1.0f];
    
-    UILabel *title_LBL=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, screenWidth-30, 25)];
-    title_LBL.text=@"sdfdas sdaf sdf ";
-    title_LBL.font=[UIFont boldSystemFontOfSize:25];
-    title_LBL.backgroundColor=[UIColor redColor];
+    UILabel *title_LBL=[[UILabel alloc]initWithFrame:CGRectMake(5, 25, SCREEN_WIDTH-50, 25)];
+    title_LBL.text=[RestraorntDic valueForKey:@"name"];
+    title_LBL.font=[UIFont boldSystemFontOfSize:18];
     title_LBL.textColor=[UIColor whiteColor];
     
-    [SegmentView addSubview:title_LBL];
+    UIButton *CartBTN=[[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-40, 22, 30, 30)];
+    [CartBTN setImage:[UIImage imageNamed:@"CartImg"] forState:UIControlStateNormal];
+    CartBTN.backgroundColor=[UIColor clearColor];
     
+    UILabel *Cart_LBL=[[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-25, 15, 18, 18)];
+    Cart_LBL.text=@"4";
+    Cart_LBL.font=[UIFont systemFontOfSize:14];
+    Cart_LBL.textColor=[UIColor whiteColor];
+    Cart_LBL.backgroundColor =[UIColor colorWithRed:0.0f/255.0f green:0.0f/255.0f blue:90.0f/255.0f alpha:1.0f];
+    Cart_LBL.textAlignment=NSTextAlignmentCenter;
+    Cart_LBL.layer.cornerRadius=9.0f;
+    Cart_LBL.layer.masksToBounds=YES;
+    Cart_LBL.tag=101;
+    
+    
+    [SegmentView addSubview:title_LBL];
+    [SegmentView addSubview:CartBTN];
+    [SegmentView addSubview:Cart_LBL];
     [buttonArray addObject:SegmentView];
     
-    
-    
-    
-    UIButton *segmentButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [segmentButton setTitle:@"Kaushik Movaliya" forState:UIControlStateNormal];
-    [segmentButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [segmentButton setBackgroundColor:[UIColor colorWithRed:255.0f/255.0f green:173.0f/255.0f blue:103.0f/255.0f alpha:1.0f]];
-    //[buttonArray addObject:segmentButton];
     
     pagingView = [HHHorizontalPagingView pagingViewWithHeaderView:headerView headerHeight:300.f segmentButtons:buttonArray segmentHeight:55 contentViews:@[tableView]];
     
     [self.view addSubview:pagingView];
+    
+    [self.view bringSubviewToFront:Back_BTN];
+    [self.view bringSubviewToFront:QTYICON_LBL];
+    [self.view bringSubviewToFront:CartIMG];
+    [self.view bringSubviewToFront:MapPlaceIMG];
+    
+    [headerView.BackBTN addTarget:self action:@selector(Back_Click:) forControlEvents:UIControlEventTouchUpInside];
+    [headerView.ReviewBTN addTarget:self action:@selector(ReviewBtn_Click:) forControlEvents:UIControlEventTouchUpInside];
+    [headerView.MapBTN addTarget:self action:@selector(Map_Click:) forControlEvents:UIControlEventTouchUpInside];
+    
+    NSString *savedQTY = [[NSUserDefaults standardUserDefaults] stringForKey:@"QUANTITYCOUNT"];
+    
+    if (savedQTY)
+    {
+        if ([savedQTY integerValue]==0 && savedQTY == nil)
+        {
+            [self UpdateCartQnt:@"" HideShow:YES];
+            headerView.MapBTN.hidden=YES;
+            headerView.BackBTN.hidden=YES;
+            
+            //[QTYICON_LBL setHidden:YES];
+            //Back_BTN.hidden=YES;
+            //self.MapPlaceIMG.hidden=YES;
+            //self.CartIMG.hidden=YES;
+        }
+        else
+        {
+            [self UpdateCartQnt:savedQTY HideShow:NO];
+            headerView.MapBTN.hidden=YES;
+            headerView.BackBTN.hidden=YES;
+            //Back_BTN.hidden=NO;
+            //QTYICON_LBL.hidden=NO;
+            //self.MapPlaceIMG.hidden=NO;
+            //self.CartIMG.hidden=NO;
+           // QTYICON_LBL.text=savedQTY;
+            
+            QTYICON_LBL.alpha = 0;
+            [UIView animateWithDuration:1.0 delay:0.5 options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse animations:^{
+                QTYICON_LBL.alpha = 1;
+            } completion:nil];
+        }
+    }
+    else
+    {
+        [self UpdateCartQnt:@"" HideShow:YES];
+        headerView.MapBTN.hidden=YES;
+        headerView.BackBTN.hidden=YES;
+        
+       // Back_BTN.hidden=YES;
+        //QTYICON_LBL.hidden=YES;
+        //self.MapPlaceIMG.hidden=YES;
+        //self.CartIMG.hidden=YES;
+    }
+    
     
     
     // configure the tableview
@@ -775,8 +837,31 @@ static int const kHeaderSectionTag = 6900;
     
     headerView.ImageScroll.scrollEnabled=YES;
     
+    
+    
+    
+    
 }
 
+
+-(void)UpdateCartQnt :(NSString *)QNT HideShow:(BOOL)HideShow
+{
+    NSArray *view=(NSArray *)pagingView.segmentView.subviews;
+    UIView *header=(UIView *)[view objectAtIndex:0];
+    
+    for (UIView *LL in header.subviews)
+    {
+        if ([LL isKindOfClass:[UILabel class]])
+        {
+            UILabel *LBL=(UILabel *)LL;
+            if (LBL.tag==101)
+            {
+                LBL.text=QNT;
+                LBL.hidden=HideShow;
+            }
+        }
+    }
+}
 
 -(void)SetHeaderimagesroll
 {
@@ -795,7 +880,6 @@ static int const kHeaderSectionTag = 6900;
         UIImageView *maskimg=[[UIImageView alloc]initWithFrame:CGRectMake(x, 0, SCREEN_WIDTH, 250)];
         maskimg.backgroundColor=[UIColor blackColor];
         maskimg.alpha=0.3f;
-        //[Imagescr addSubview:maskimg];
         [headerView.ImageScroll addSubview:maskimg];
         
         x=x+SCREEN_WIDTH;
@@ -803,17 +887,14 @@ static int const kHeaderSectionTag = 6900;
     
     [headerView.ImageScroll setContentSize:CGSizeMake(x, 50)];
     
-    
     headerView.PageCont.frame = CGRectMake(0,ImgVW.frame.size.height-30,SCREEN_WIDTH,5);
     headerView.PageCont.numberOfPages =[[RestraorntDic valueForKey:@"alt_img"] count];
     headerView.PageCont.currentPage = 0;
-    
     
     headerView.HeaderTitle_LBL.text=[RestraorntDic valueForKey:@"name"];
     headerView.HeaderDesc_LBL.text=[RestraorntDic valueForKey:@"address"];
     headerView.HeaderReview_LBL.text=[NSString stringWithFormat:@"(%@ Review)",[RestraorntDic valueForKey:@"count_review"]];
     [headerView ReviewCount:[NSString stringWithFormat:@"%@",[RestraorntDic valueForKey:@"rate"]]];
-   
     
 }
 
@@ -1381,23 +1462,26 @@ static int const kHeaderSectionTag = 6900;
         {
             if ([savedQTY integerValue]==0)
             {
-                [QTYICON_LBL setHidden:YES];
-                Back_BTN.hidden=YES;
-                self.MapPlaceIMG.hidden=YES;
-                self.CartIMG.hidden=YES;
+                [self UpdateCartQnt:@"" HideShow:YES];
+                headerView.BackBTN.hidden=YES;
+                headerView.MapBTN.hidden=YES;
+                //self.CartIMG.hidden=YES;
             }
             else
             {
-                Back_BTN.hidden=NO;
-                QTYICON_LBL.hidden=NO;
-                self.MapPlaceIMG.hidden=NO;
-                self.CartIMG.hidden=NO;
-                QTYICON_LBL.text=savedQTY;
+                headerView.BackBTN.hidden=NO;
+                [self UpdateCartQnt:savedQTY HideShow:NO];
+                //QTYICON_LBL.hidden=NO;
+                headerView.MapBTN.hidden=NO;
+                //self.CartIMG.hidden=NO;
+                //QTYICON_LBL.text=savedQTY;
             }
         }
         else
         {
+            
             [QTYICON_LBL setHidden:YES];
+            [self UpdateCartQnt:@"" HideShow:YES];
         }
         
     }
@@ -1453,7 +1537,7 @@ static int const kHeaderSectionTag = 6900;
 }
 
 
-- (IBAction)ReviewBtn_Click:(id)sender
+- (void)ReviewBtn_Click:(id)sender
 {
     
     RateView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RateView"];
@@ -1463,7 +1547,7 @@ static int const kHeaderSectionTag = 6900;
     [self.navigationController pushViewController:vcr animated:YES];
 }
 
-- (IBAction)Map_Click:(id)sender
+- (void)Map_Click:(id)sender
 {
     
     BOOL internet=[AppDelegate connectedToNetwork];
@@ -1517,7 +1601,7 @@ static int const kHeaderSectionTag = 6900;
     [locationManager stopUpdatingLocation];
     locationManager=nil;
 }
-- (IBAction)Back_Click:(id)sender
+- (void)Back_Click:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -1525,7 +1609,6 @@ static int const kHeaderSectionTag = 6900;
 -(void)ReviewCount:(NSString*)stars
 {
     NSLog(@"stars=%@",stars);
-    static NSString *CellIdentifier = @"RestHeaderCell";
     RestHeaderCell *cell ;
     if ([stars integerValue]<=5)
     {
