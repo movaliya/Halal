@@ -129,7 +129,7 @@ static int const kHeaderSectionTag = 6900;
     cell.Minush_BTN.tag=indexPath.row;
     
     
-    cell.RestQuatityLBL.text=[[MainCount objectAtIndex:0] objectAtIndex:indexPath.row];
+    cell.RestQuatityLBL.text=[[MainCount objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     cell.TitleTriling.constant=0;
     
     

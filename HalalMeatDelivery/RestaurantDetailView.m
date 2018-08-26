@@ -1315,16 +1315,17 @@ static int const kHeaderSectionTag = 6900;
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:tableView];
     NSIndexPath *pathOfTheCell = [tableView indexPathForRowAtPoint:buttonPosition];
     
+    
     ProductDetailCell *cell = (ProductDetailCell *)[tableView cellForRowAtIndexPath:pathOfTheCell];
     NSLog(@"senderButton.tag=%ld",(long)senderButton.tag);
     
-    NSLog(@"Array===%@",[[tableView.MainCount objectAtIndex:pageTable] objectAtIndex:senderButton.tag]);
+    NSLog(@"Array===%@",[[tableView.MainCount objectAtIndex:pathOfTheCell.section] objectAtIndex:senderButton.tag]);
     
-    NSInteger count = [[[tableView.MainCount objectAtIndex:pageTable] objectAtIndex:senderButton.tag] integerValue];
+    NSInteger count = [[[tableView.MainCount objectAtIndex:pathOfTheCell.section] objectAtIndex:senderButton.tag] integerValue];
     count = count + 1;
     cell.RestQuatityLBL.text = [NSString stringWithFormat:@"%ld",(long)count];
     
-    [[tableView.MainCount objectAtIndex:pageTable] replaceObjectAtIndex:senderButton.tag withObject:[NSString stringWithFormat:@"%ld",(long)count]];
+    [[tableView.MainCount objectAtIndex:pathOfTheCell.section] replaceObjectAtIndex:senderButton.tag withObject:[NSString stringWithFormat:@"%ld",(long)count]];
     
     ButtonTag=senderButton.tag;
     chechPlusMinus=1;
@@ -1351,12 +1352,12 @@ static int const kHeaderSectionTag = 6900;
     
     ProductDetailCell *cell = (ProductDetailCell *)[DataTable cellForRowAtIndexPath:pathOfTheCell];
     
-    NSInteger count = [[[tableView.MainCount objectAtIndex:pageTable] objectAtIndex:senderButton.tag] integerValue];
+    NSInteger count = [[[tableView.MainCount objectAtIndex:pathOfTheCell.section] objectAtIndex:senderButton.tag] integerValue];
     count = count - 1;
     if (count!=0)
     {
         cell.RestQuatityLBL.text = [NSString stringWithFormat:@"%ld",(long)count];
-        [[tableView.MainCount objectAtIndex:pageTable] replaceObjectAtIndex:senderButton.tag withObject:[NSString stringWithFormat:@"%ld",(long)count]];
+        [[tableView.MainCount objectAtIndex:pathOfTheCell.section] replaceObjectAtIndex:senderButton.tag withObject:[NSString stringWithFormat:@"%ld",(long)count]];
         ButtonTag=senderButton.tag;
         chechPlusMinus=0;
        
@@ -1386,11 +1387,15 @@ static int const kHeaderSectionTag = 6900;
 
 -(void)AddToCardClick:(id)sender
 {
-    NSArray *LoadArr2 = [[tableView.arrData objectAtIndex:pageTable] mutableCopy];
+    
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:tableView];
+    NSIndexPath *pathOfTheCell = [tableView indexPathForRowAtPoint:buttonPosition];
+    NSArray *LoadArr2 = [[tableView.arrData objectAtIndex:pathOfTheCell.section] mutableCopy];
+    
     NSLog(@"===%@",[LoadArr2 objectAtIndex: [sender tag]]);
      NSLog(@"ID===%@",[[LoadArr2 objectAtIndex: [sender tag]] valueForKey:@"id"]);
     
-    NSArray *QTYARR= [[tableView.MainCount objectAtIndex:pageTable] mutableCopy];
+    NSArray *QTYARR= [[tableView.MainCount objectAtIndex:pathOfTheCell.section] mutableCopy];
     
     if ([self.appDelegate isUserLoggedIn] == NO)
     {
