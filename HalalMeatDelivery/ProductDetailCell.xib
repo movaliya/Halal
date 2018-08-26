@@ -68,13 +68,13 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xlw-n9-6Om">
                                 <rect key="frame" x="282" y="31.5" width="33" height="33"/>
-                                <color key="backgroundColor" red="0.098039215686274508" green="0.4823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="33" id="gqm-KB-KGg"/>
                                     <constraint firstAttribute="height" constant="33" id="zPw-9f-hSz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="7"/>
-                                <state key="normal" title="ADD TO CART"/>
+                                <state key="normal" image="GreenCartBtn"/>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CloseImg" translatesAutoresizingMaskIntoConstraints="NO" id="fuq-77-kkM">
                                 <rect key="frame" x="300" y="22" width="15" height="15"/>
@@ -286,6 +286,7 @@
     <resources>
         <image name="CloseImg" width="14" height="14"/>
         <image name="Food.png" width="310" height="339"/>
+        <image name="GreenCartBtn" width="24" height="24"/>
         <image name="MinushIMG" width="17" height="17"/>
         <image name="PlushIMG" width="17" height="17"/>
     </resources>

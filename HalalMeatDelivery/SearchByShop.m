@@ -504,7 +504,7 @@ static dispatch_once_t predicate;
         
         cell.Dist_LBL.text=DistStr;
 
-        [cell ReviewCount:[[SearchDictnory valueForKey:@"count_review"] objectAtIndex:indexPath.row]];
+        [cell ReviewCount:[[SearchDictnory valueForKey:@"rate"] objectAtIndex:indexPath.row]];
         
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         cell.backgroundColor=[UIColor clearColor];

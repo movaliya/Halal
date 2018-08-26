@@ -23,6 +23,12 @@
 @property (strong, nonatomic) IBOutlet UIPageControl *PageCont;
 
 @property (nonatomic, weak) IBOutlet UIView *segmentView;
+@property (weak, nonatomic) IBOutlet UIImageView *star1;
+@property (weak, nonatomic) IBOutlet UIImageView *star2;
+@property (weak, nonatomic) IBOutlet UIImageView *star3;
+@property (weak, nonatomic) IBOutlet UIImageView *star4;
+@property (weak, nonatomic) IBOutlet UIImageView *star5;
+-(void)ReviewCount:(NSString*)stars;
 
 + (HHHeaderView *)headerView;
 
