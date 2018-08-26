@@ -15,8 +15,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lbP-80-AQM">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbP-80-AQM">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
                 </scrollView>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="cbC-nz-12b">
                     <rect key="frame" x="10" y="145" width="300" height="37"/>
@@ -121,7 +121,7 @@
                 <constraint firstItem="cbC-nz-12b" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="Sgm-Kh-1ps"/>
                 <constraint firstAttribute="trailing" secondItem="cbC-nz-12b" secondAttribute="trailing" constant="10" id="V6g-2v-QmR"/>
                 <constraint firstItem="lbP-80-AQM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bW2-1i-nsV"/>
-                <constraint firstAttribute="bottom" secondItem="lbP-80-AQM" secondAttribute="bottom" id="cms-ct-56N"/>
+                <constraint firstAttribute="bottom" secondItem="lbP-80-AQM" secondAttribute="bottom" constant="60" id="cms-ct-56N"/>
                 <constraint firstItem="2UI-PN-1U4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qLi-Wx-oCX"/>
                 <constraint firstItem="2UI-PN-1U4" firstAttribute="top" secondItem="cbC-nz-12b" secondAttribute="bottom" constant="-2" id="vG5-kM-y5b"/>
             </constraints>
