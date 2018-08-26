@@ -1147,7 +1147,7 @@ static dispatch_once_t predicate;
     RatingParsingArr=[[NSMutableArray alloc]init];
     DistanceParsingArr=[[NSMutableArray alloc]init];
     FreDelParsingArr=[[NSMutableArray alloc]init];
-    
+    SearchDictnory=[[NSMutableArray alloc]init];
     [CatTBL reloadData];
     limit_only=0;
     //[self CallForSearchByShop];

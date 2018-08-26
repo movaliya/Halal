@@ -61,9 +61,10 @@ static int const kHeaderSectionTag = 6900;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 {
-    return 40.0;
+    return 44.0;
     
 }
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
@@ -184,6 +185,7 @@ static int const kHeaderSectionTag = 6900;
     header.contentView.backgroundColor = [UIColor colorWithRed:184.0f/255.0f green:70.0f/255.0f blue:70.0f/255.0f alpha:1.0f];
     
     header.textLabel.textColor = [UIColor whiteColor];
+    header.textLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
     UIImageView *viewWithTag = [self viewWithTag:kHeaderSectionTag + section];
     if (viewWithTag)
     {
