@@ -33,7 +33,7 @@ static int const kHeaderSectionTag = 6900;
     contentTV.bounces=NO;
     
     contentTV.expandedSectionHeaderNumber = -1;
-
+  
     
     contentTV.Cat_Arr=[[NSMutableArray alloc]init];
     contentTV.ItemDic=[[NSMutableArray alloc]init];
@@ -143,10 +143,11 @@ static int const kHeaderSectionTag = 6900;
     [cell.RestMinuBTN addTarget:self action:@selector(MinushClick:) forControlEvents:UIControlEventTouchUpInside];
     cell.RestMinuBTN.tag=indexPath.row;
     
-    LoadArr = [[arrData objectAtIndex:tableView.tag] mutableCopy];
+    //LoadArr = [[arrData objectAtIndex:tableView.tag] mutableCopy];
+    LoadArr = [[arrData objectAtIndex:indexPath.section] mutableCopy];
     
     NSDictionary *section = [ItemDic  objectAtIndex:indexPath.section];
-    cell.Title_LBL.text = [section valueForKey:@"name"];
+    cell.Title_LBL.text = [[LoadArr valueForKey:@"name"]objectAtIndex:indexPath.row];
     
     cell.Price_LBL.text=[NSString stringWithFormat:@"£%@",[[LoadArr valueForKey:@"sell_price"] objectAtIndex:indexPath.row]];
     cell.Cat_LBL.text=[[LoadArr valueForKey:@"category"] objectAtIndex:indexPath.row];
@@ -202,6 +203,8 @@ static int const kHeaderSectionTag = 6900;
     header.tag = section;
     UITapGestureRecognizer *headerTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sectionItems:)];
     [header addGestureRecognizer:headerTapGesture];
+   
+   
 }
 
 
@@ -253,6 +256,8 @@ static int const kHeaderSectionTag = 6900;
     }
 }
 
+
+
 - (void)tableViewCollapeSection:(NSInteger)section withImage:(UIImageView *)imageView
 {
     NSArray *sectionData = ItemDic;
@@ -277,6 +282,9 @@ static int const kHeaderSectionTag = 6900;
         [self endUpdates];
     }
     [self.delegaterr updateScroll];
+    
+    
+    
 }
 
 - (void)tableViewExpandSection:(NSInteger)section withImage:(UIImageView *)imageView
