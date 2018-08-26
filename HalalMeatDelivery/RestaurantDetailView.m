@@ -86,7 +86,7 @@ static int const kHeaderSectionTag = 6900;
 {
     [super viewDidLoad];
     
-    
+    self.appDelegate = [AppDelegate sharedInstance];
     
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
@@ -654,13 +654,13 @@ static int const kHeaderSectionTag = 6900;
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
         RestraorntDic=[[response valueForKey:@"result"] objectAtIndex:0];
-        Cat_Arr=[[[RestraorntDic valueForKey:@"products"] valueForKey:@"service_category"]mutableCopy];
+        tableView.Cat_Arr=[[[RestraorntDic valueForKey:@"products"] valueForKey:@"service_category"]mutableCopy];
         NSMutableArray *TempItem=[[RestraorntDic valueForKey:@"products"]mutableCopy];
-        ItemDic=[[NSMutableArray alloc]init];
-        for (int i=0; i<Cat_Arr.count; i++)
+        tableView.ItemDic=[[NSMutableArray alloc]init];
+        for (int i=0; i<tableView.Cat_Arr.count; i++)
         {
-            NSArray *selectArr=[[TempItem valueForKey:[Cat_Arr objectAtIndex:i]]mutableCopy];
-            [ItemDic addObject:selectArr];
+            NSArray *selectArr=[[TempItem valueForKey:[tableView.Cat_Arr objectAtIndex:i]]mutableCopy];
+            [tableView.ItemDic addObject:selectArr];
         }
         [self SetdataInTable];
     }
@@ -893,7 +893,7 @@ static int const kHeaderSectionTag = 6900;
     
     headerView.HeaderTitle_LBL.text=[RestraorntDic valueForKey:@"name"];
     headerView.HeaderDesc_LBL.text=[RestraorntDic valueForKey:@"address"];
-    headerView.HeaderReview_LBL.text=[NSString stringWithFormat:@"(%@ Review)",[RestraorntDic valueForKey:@"count_review"]];
+    headerView.HeaderReview_LBL.text=[NSString stringWithFormat:@"Review %@",[RestraorntDic valueForKey:@"count_review"]];
     [headerView ReviewCount:[NSString stringWithFormat:@"%@",[RestraorntDic valueForKey:@"rate"]]];
     
 }
@@ -1353,12 +1353,12 @@ static int const kHeaderSectionTag = 6900;
     
     ProductDetailCell *cell = (ProductDetailCell *)[DataTable cellForRowAtIndexPath:pathOfTheCell];
     
-    NSInteger count = [[[MainCount objectAtIndex:pageTable] objectAtIndex:senderButton.tag] integerValue];
+    NSInteger count = [[[tableView.MainCount objectAtIndex:pageTable] objectAtIndex:senderButton.tag] integerValue];
     count = count - 1;
     if (count!=0)
     {
         cell.RestQuatityLBL.text = [NSString stringWithFormat:@"%ld",(long)count];
-        [[MainCount objectAtIndex:pageTable] replaceObjectAtIndex:senderButton.tag withObject:[NSString stringWithFormat:@"%ld",(long)count]];
+        [[tableView.MainCount objectAtIndex:pageTable] replaceObjectAtIndex:senderButton.tag withObject:[NSString stringWithFormat:@"%ld",(long)count]];
         ButtonTag=senderButton.tag;
         chechPlusMinus=0;
        
