@@ -84,7 +84,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1J-q7-PUL">
-                                <rect key="frame" x="290" y="0.0" width="30" height="20"/>
+                                <rect key="frame" x="290" y="20" width="30" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="h81-hZ-MGV"/>
                                     <constraint firstAttribute="width" constant="30" id="sA5-Ua-bIq"/>
@@ -225,7 +225,7 @@
                         <constraints>
                             <constraint firstItem="mDa-I3-sey" firstAttribute="leading" secondItem="lQl-At-Z3E" secondAttribute="leading" id="086-hk-ZAP"/>
                             <constraint firstItem="mvM-xA-ze3" firstAttribute="top" secondItem="Xwe-kA-yMG" secondAttribute="bottom" constant="13" id="4Zt-pB-Xs5"/>
-                            <constraint firstItem="U1J-q7-PUL" firstAttribute="top" secondItem="lQl-At-Z3E" secondAttribute="top" id="7Xj-bE-ojz"/>
+                            <constraint firstItem="U1J-q7-PUL" firstAttribute="top" secondItem="lQl-At-Z3E" secondAttribute="top" constant="20" id="7Xj-bE-ojz"/>
                             <constraint firstItem="QdC-hW-syS" firstAttribute="top" secondItem="Xwe-kA-yMG" secondAttribute="bottom" id="BB6-i6-stn"/>
                             <constraint firstItem="QdC-hW-syS" firstAttribute="leading" secondItem="mDa-I3-sey" secondAttribute="trailing" constant="8" id="D2f-SW-odY"/>
                             <constraint firstItem="0MY-9T-wEj" firstAttribute="top" secondItem="QdC-hW-syS" secondAttribute="bottom" constant="2" id="FZY-Xh-ne3"/>

@@ -26,7 +26,9 @@ static int const kHeaderSectionTag = 6900;
 
 + (HHContentTableView *)contentTableView
 {
-    HHContentTableView *contentTV = [[HHContentTableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    HHContentTableView *contentTV = [[HHContentTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    contentTV.rowHeight = UITableViewAutomaticDimension;
+    
     contentTV.backgroundColor = [UIColor clearColor];
     contentTV.dataSource = contentTV;
     contentTV.delegate = contentTV;
@@ -61,8 +63,12 @@ static int const kHeaderSectionTag = 6900;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 {
-    return 44.0;
+    return 44.0f;
     
+}
+-(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 2.0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
