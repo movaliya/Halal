@@ -156,6 +156,10 @@
 		B135148B212DD9A600BC768F /* RestHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1351489212DD9A600BC768F /* RestHeaderCell.xib */; };
 		B13984101EB6432800A32E36 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B139840E1EB6432800A32E36 /* CategoryCell.m */; };
 		B13984111EB6432800A32E36 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B139840F1EB6432800A32E36 /* CategoryCell.xib */; };
+		B141C0A42136C7C000350BD4 /* HeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B141C0A22136C7C000350BD4 /* HeaderCell.m */; };
+		B141C0A52136C7C000350BD4 /* HeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B141C0A32136C7C000350BD4 /* HeaderCell.xib */; };
+		B141C0AC2136D28100350BD4 /* ArrowDown.png in Resources */ = {isa = PBXBuildFile; fileRef = B141C0AA2136D28100350BD4 /* ArrowDown.png */; };
+		B141C0AD2136D28100350BD4 /* ArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = B141C0AB2136D28100350BD4 /* ArrowRight.png */; };
 		B1460FCB1EFF798400BBF912 /* RecentAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = B1460FC91EFF798400BBF912 /* RecentAddress.m */; };
 		B1460FCC1EFF798400BBF912 /* RecentAddress.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1460FCA1EFF798400BBF912 /* RecentAddress.xib */; };
 		B148B2151EBF62BD009E9346 /* BlankTxtFildwithframe.png in Resources */ = {isa = PBXBuildFile; fileRef = B148B2141EBF62BD009E9346 /* BlankTxtFildwithframe.png */; };
@@ -468,6 +472,11 @@
 		B139840D1EB6432800A32E36 /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		B139840E1EB6432800A32E36 /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		B139840F1EB6432800A32E36 /* CategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
+		B141C0A12136C7C000350BD4 /* HeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderCell.h; sourceTree = "<group>"; };
+		B141C0A22136C7C000350BD4 /* HeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderCell.m; sourceTree = "<group>"; };
+		B141C0A32136C7C000350BD4 /* HeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderCell.xib; sourceTree = "<group>"; };
+		B141C0AA2136D28100350BD4 /* ArrowDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArrowDown.png; sourceTree = "<group>"; };
+		B141C0AB2136D28100350BD4 /* ArrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArrowRight.png; sourceTree = "<group>"; };
 		B1460FC81EFF798400BBF912 /* RecentAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentAddress.h; sourceTree = "<group>"; };
 		B1460FC91EFF798400BBF912 /* RecentAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentAddress.m; sourceTree = "<group>"; };
 		B1460FCA1EFF798400BBF912 /* RecentAddress.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentAddress.xib; sourceTree = "<group>"; };
@@ -828,9 +837,14 @@
 		B109C6521D6C9FC9000936A2 /* HalalMeatDelivery */ = {
 			isa = PBXGroup;
 			children = (
+				B141C0AA2136D28100350BD4 /* ArrowDown.png */,
+				B141C0AB2136D28100350BD4 /* ArrowRight.png */,
 				B15CED8821317A920040EF69 /* HHHeaderView.h */,
 				B15CED8921317A920040EF69 /* HHHeaderView.m */,
 				B15CED8A21317A920040EF69 /* HHHeaderView.xib */,
+				B141C0A12136C7C000350BD4 /* HeaderCell.h */,
+				B141C0A22136C7C000350BD4 /* HeaderCell.m */,
+				B141C0A32136C7C000350BD4 /* HeaderCell.xib */,
 				B15CED8B21317A920040EF69 /* HHContentTableView.h */,
 				B15CED8C21317A920040EF69 /* HHContentTableView.m */,
 				B15CED9021317AA40040EF69 /* HHHorizontalPagingView.h */,
@@ -1272,6 +1286,7 @@
 				B109C6631D6C9FC9000936A2 /* LaunchScreen.storyboard in Resources */,
 				530793331D7097E50028BF53 /* AddressTxt.png in Resources */,
 				B1F47D4B1D6F5C33000D5C0A /* WhiteStat.png in Resources */,
+				B141C0AC2136D28100350BD4 /* ArrowDown.png in Resources */,
 				C5161500212944180048175F /* whitMenu.png in Resources */,
 				B109C67B1D6CBE1A000936A2 /* Food.png in Resources */,
 				C51614F921293E980048175F /* SplashScreen.png in Resources */,
@@ -1293,6 +1308,7 @@
 				535EA4A61EBB52FE00A1AA23 /* phone1.png in Resources */,
 				B148B2151EBF62BD009E9346 /* BlankTxtFildwithframe.png in Resources */,
 				B1FFE4B41D80870800A40684 /* ThankYouView.xib in Resources */,
+				B141C0A52136C7C000350BD4 /* HeaderCell.xib in Resources */,
 				B111C7391D93049500DE70B6 /* HostoryDetailCell.xib in Resources */,
 				534D02AC1ED6BD660007F0C6 /* Stripe.bundle in Resources */,
 				B15662F41EB9F03D005791FE /* AddressListCell.xib in Resources */,
@@ -1309,6 +1325,7 @@
 				530824951D82A0F800948547 /* userNameTxtSquare.png in Resources */,
 				C516153C21295ED20048175F /* halal_login.png in Resources */,
 				5307932B1D7086AE0028BF53 /* SplashScreen1.png in Resources */,
+				B141C0AD2136D28100350BD4 /* ArrowRight.png in Resources */,
 				530793241D706FB40028BF53 /* passwordTxt.png in Resources */,
 				530824A31D82A45400948547 /* citytxtQuare.png in Resources */,
 				535EA4AB1EBB54EC00A1AA23 /* email1.png in Resources */,
@@ -1428,6 +1445,7 @@
 				5301AF6A1D76A85600F16656 /* UIWebView+AFNetworking.m in Sources */,
 				B15CED8D21317A920040EF69 /* HHHeaderView.m in Sources */,
 				B10B97F31D91AFEB00228F33 /* TakeawayThaxView.m in Sources */,
+				B141C0A42136C7C000350BD4 /* HeaderCell.m in Sources */,
 				B15CED8F21317A920040EF69 /* HHContentTableView.m in Sources */,
 				B120439C1D789BE800095219 /* RestaurantHeaderView.m in Sources */,
 				5301AF471D76A83C00F16656 /* AFHTTPSessionManager.m in Sources */,

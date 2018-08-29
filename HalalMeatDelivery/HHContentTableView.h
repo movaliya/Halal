@@ -23,11 +23,19 @@
 {
     
 }
+@property (strong, nonatomic) NSMutableArray *arrSelectedSectionIndex;
+@property (assign)BOOL isMultipleExpansionAllowed;
+
 @property (strong, nonatomic) NSMutableArray *Cat_Arr,*ItemDic,*MainCount,*LoadArr,*arrData;
 
-@property ( nonatomic, assign) NSInteger expandedSectionHeaderNumber;
+//@property ( nonatomic, assign) NSInteger expandedSectionHeaderNumber;
 
 + (HHContentTableView *)contentTableView;
 @property (strong, nonatomic) id<HHContentTableViewDelegate> delegaterr;
+
+@property (assign) NSInteger expandedSectionHeaderNumber;
+@property (assign) UITableViewHeaderFooterView *expandedSectionHeader;
+@property (strong) NSArray *sectionItems;
+@property (strong) NSArray *sectionNames;
 
 @end
