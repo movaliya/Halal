@@ -791,6 +791,7 @@
     {
         [self reloadSections:[NSIndexSet indexSetWithIndex:sender.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
+    [self.delegaterr updateScroll];
 }
 
 -(void)AddToCardClick:(id)Sender
