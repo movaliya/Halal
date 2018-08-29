@@ -12,7 +12,6 @@
 
 static int const kHeaderSectionTag = 6900;
 
-
 @interface HHContentTableView ()<UITableViewDataSource, UITableViewDelegate>
 {
     UITableViewHeaderFooterView *expandedSectionHeader;
@@ -26,7 +25,7 @@ static int const kHeaderSectionTag = 6900;
 
 + (HHContentTableView *)contentTableView
 {
-    HHContentTableView *contentTV = [[HHContentTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    HHContentTableView *contentTV = [[HHContentTableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     contentTV.rowHeight = UITableViewAutomaticDimension;
     
     contentTV.backgroundColor = [UIColor clearColor];
@@ -77,6 +76,7 @@ static int const kHeaderSectionTag = 6900;
     if (Cat_Arr.count > 0)
     {
         self.backgroundView = nil;
+        
         return Cat_Arr.count;
     }
     return 0;
@@ -152,9 +152,7 @@ static int const kHeaderSectionTag = 6900;
     //LoadArr = [[arrData objectAtIndex:tableView.tag] mutableCopy];
     LoadArr = [[arrData objectAtIndex:indexPath.section] mutableCopy];
     
-    NSDictionary *section = [ItemDic  objectAtIndex:indexPath.section];
     cell.Title_LBL.text = [[LoadArr valueForKey:@"name"]objectAtIndex:indexPath.row];
-    
     cell.Price_LBL.text=[NSString stringWithFormat:@"£%@",[[LoadArr valueForKey:@"sell_price"] objectAtIndex:indexPath.row]];
     cell.Cat_LBL.text=[[LoadArr valueForKey:@"category"] objectAtIndex:indexPath.row];
     
@@ -193,13 +191,14 @@ static int const kHeaderSectionTag = 6900;
     
     header.textLabel.textColor = [UIColor whiteColor];
     header.textLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
-    UIImageView *viewWithTag = [self viewWithTag:kHeaderSectionTag + section];
+    UIImageView *viewWithTag = [view viewWithTag:kHeaderSectionTag + section];
     if (viewWithTag)
     {
         [viewWithTag removeFromSuperview];
     }
+    
     // add the arrow image
-    CGSize headerFrame = self.frame.size;
+    CGSize headerFrame = view.frame.size;
     UIImageView *theImageView = [[UIImageView alloc] initWithFrame:CGRectMake(headerFrame.width - 32, 13, 18, 18)];
     theImageView.image = [UIImage imageNamed:@"Tbl_Arrow_white"];
     theImageView.tag = kHeaderSectionTag + section;
@@ -237,9 +236,12 @@ static int const kHeaderSectionTag = 6900;
 - (void)sectionItems:(UITapGestureRecognizer *)sender
 {
     UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)sender.view;
+    
     NSInteger section = headerView.tag;
     UIImageView *eImageView = (UIImageView *)[headerView viewWithTag:kHeaderSectionTag + section];
+    
     expandedSectionHeader = headerView;
+    
     
     if (expandedSectionHeaderNumber == -1)
     {

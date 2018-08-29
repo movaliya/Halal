@@ -26,6 +26,7 @@
 @property (strong, nonatomic) NSMutableArray *Cat_Arr,*ItemDic,*MainCount,*LoadArr,*arrData;
 
 @property ( nonatomic, assign) NSInteger expandedSectionHeaderNumber;
+//@property (assign) NSInteger expandedSectionHeaderNumber;
 
 + (HHContentTableView *)contentTableView;
 @property (strong, nonatomic) id<HHContentTableViewDelegate> delegaterr;
