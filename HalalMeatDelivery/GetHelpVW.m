@@ -117,6 +117,10 @@ static int const kHeaderSectionTag = 6900;
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section; {
     return 44.0;
 }
+-(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 2.0;
+}
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     // recast your view as a UITableViewHeaderFooterView

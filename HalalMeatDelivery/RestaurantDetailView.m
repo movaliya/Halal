@@ -719,7 +719,6 @@ static int const kHeaderSectionTag = 6900;
     
     headerView.ImageScroll.scrollEnabled=YES;
     
-    
     tableView = [HHContentTableView contentTableView];
     tableView.delegaterr=self;
     
