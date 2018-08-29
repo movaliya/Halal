@@ -1369,6 +1369,7 @@ static int const kHeaderSectionTag = 6900;
             [view reloadData];
         }
     }
+     [tableView reloadData];
 }
 
 
