@@ -161,6 +161,8 @@
 		B1460FCB1EFF798400BBF912 /* RecentAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = B1460FC91EFF798400BBF912 /* RecentAddress.m */; };
 		B1460FCC1EFF798400BBF912 /* RecentAddress.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1460FCA1EFF798400BBF912 /* RecentAddress.xib */; };
 		B148B2151EBF62BD009E9346 /* BlankTxtFildwithframe.png in Resources */ = {isa = PBXBuildFile; fileRef = B148B2141EBF62BD009E9346 /* BlankTxtFildwithframe.png */; };
+		B151C40721384C5600A6DE20 /* WhiteBackArrowWithBlackborder.png in Resources */ = {isa = PBXBuildFile; fileRef = B151C40621384C5600A6DE20 /* WhiteBackArrowWithBlackborder.png */; };
+		B151C40921384DB100A6DE20 /* black-border_WhiteBackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B151C40821384DB100A6DE20 /* black-border_WhiteBackArrow.png */; };
 		B15330A51EB8FD5200E96C28 /* PaymentView1.m in Sources */ = {isa = PBXBuildFile; fileRef = B15330A41EB8FD5200E96C28 /* PaymentView1.m */; };
 		B15330A81EB9025300E96C28 /* PaymentView2.m in Sources */ = {isa = PBXBuildFile; fileRef = B15330A71EB9025300E96C28 /* PaymentView2.m */; };
 		B15330AB1EB9060100E96C28 /* DeliveryView1.m in Sources */ = {isa = PBXBuildFile; fileRef = B15330AA1EB9060100E96C28 /* DeliveryView1.m */; };
@@ -479,6 +481,8 @@
 		B1460FC91EFF798400BBF912 /* RecentAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentAddress.m; sourceTree = "<group>"; };
 		B1460FCA1EFF798400BBF912 /* RecentAddress.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentAddress.xib; sourceTree = "<group>"; };
 		B148B2141EBF62BD009E9346 /* BlankTxtFildwithframe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlankTxtFildwithframe.png; sourceTree = "<group>"; };
+		B151C40621384C5600A6DE20 /* WhiteBackArrowWithBlackborder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteBackArrowWithBlackborder.png; sourceTree = "<group>"; };
+		B151C40821384DB100A6DE20 /* black-border_WhiteBackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "black-border_WhiteBackArrow.png"; sourceTree = "<group>"; };
 		B15330A31EB8FD5200E96C28 /* PaymentView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentView1.h; sourceTree = "<group>"; };
 		B15330A41EB8FD5200E96C28 /* PaymentView1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentView1.m; sourceTree = "<group>"; };
 		B15330A61EB9025300E96C28 /* PaymentView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentView2.h; sourceTree = "<group>"; };
@@ -837,6 +841,8 @@
 		B109C6521D6C9FC9000936A2 /* HalalMeatDelivery */ = {
 			isa = PBXGroup;
 			children = (
+				B151C40821384DB100A6DE20 /* black-border_WhiteBackArrow.png */,
+				B151C40621384C5600A6DE20 /* WhiteBackArrowWithBlackborder.png */,
 				C5EDA87C2136DF42004A37B1 /* ArrowDown.png */,
 				C5EDA87D2136DF43004A37B1 /* ArrowRight.png */,
 				B15CED8821317A920040EF69 /* HHHeaderView.h */,
@@ -1313,6 +1319,8 @@
 				534D02AC1ED6BD660007F0C6 /* Stripe.bundle in Resources */,
 				B15662F41EB9F03D005791FE /* AddressListCell.xib in Resources */,
 				B111C73E1D93093A00DE70B6 /* DateAlert.xib in Resources */,
+				B151C40921384DB100A6DE20 /* black-border_WhiteBackArrow.png in Resources */,
+				B151C40721384C5600A6DE20 /* WhiteBackArrowWithBlackborder.png in Resources */,
 				530793301D7097AD0028BF53 /* pin_pop_Red.png in Resources */,
 				535EA4AD1EBB551600A1AA23 /* user1.png in Resources */,
 				C51615322129533A0048175F /* Logo 2.png in Resources */,
