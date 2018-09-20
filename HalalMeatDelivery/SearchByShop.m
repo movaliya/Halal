@@ -51,6 +51,7 @@ static dispatch_once_t predicate;
     NSMutableArray *FreDelParsingArr;
     
     NSString *MaxPriceSTR;
+    NSInteger FilterBOOL;
     
 }
 @property AppDelegate *appDelegate;
@@ -66,7 +67,7 @@ static dispatch_once_t predicate;
 {
     [super viewDidLoad];
     
-    
+    FilterBOOL=0;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(Getlocationuser:)
                                                  name:@"GetLocation" object:nil];
@@ -112,21 +113,7 @@ static dispatch_once_t predicate;
     
     limit_only=0;
     // Do any additional setup after loading the view.
-    
-    
-    BOOL internet=[AppDelegate connectedToNetwork];
-    if (internet)
-    {
-        // [self getFilterData];
-         [self performSelector:@selector(getFilterData) withObject:nil afterDelay:0.0];
-    }
-    else
-    {
-        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
-    }
-    
-   
-    
+ 
     catParsingArr=[[NSMutableArray alloc]init];
     PriceParsingArr=[[NSMutableArray alloc]init];
     RatingParsingArr=[[NSMutableArray alloc]init];
@@ -171,6 +158,7 @@ static dispatch_once_t predicate;
     NSLog(@"GetFilterResponse ===%@",response);
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
+        FilterBOOL=1;
         FilterDict=[response valueForKey:@"result"];
         filter_idArry=[[NSMutableArray alloc]init];
         filter_idArry=[FilterDict valueForKey:@"filter_id"];
@@ -258,7 +246,7 @@ static dispatch_once_t predicate;
     [dictParams setObject:[NSString stringWithFormat:@"%.8f", Latitude]  forKey:@"lat"];
     [dictParams setObject:[NSString stringWithFormat:@"%.8f", Logitude]  forKey:@"long"];
     [dictParams setObject:[NSString stringWithFormat:@"%ld", (long)limit_only]  forKey:@"limit_only"];
-    NSLog(@"dictParams===%@",dictParams);
+    //NSLog(@"dictParams===%@",dictParams);
     
     
     
@@ -272,6 +260,7 @@ static dispatch_once_t predicate;
 - (void)handleCategoryResponse:(NSDictionary*)response
 {
     //NSLog(@"response ===%@",response);
+    [KVNProgress dismiss];
     if ([[[response objectForKey:@"ack"]stringValue ] isEqualToString:@"1"])
     {
         DataDic=[response valueForKey:@"result"];
@@ -285,6 +274,21 @@ static dispatch_once_t predicate;
         limit_only=limit_only+DataDic.count;
         NoResponseInt=1;
         [Table reloadData];
+        
+        if (FilterBOOL==0)
+        {
+            BOOL internet=[AppDelegate connectedToNetwork];
+            if (internet)
+            {
+                // [self getFilterData];
+                [self performSelector:@selector(getFilterData) withObject:nil afterDelay:0.0];
+            }
+            else
+            {
+                [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+            }
+        }
+       
     }
     else
     {
@@ -697,6 +701,17 @@ static dispatch_once_t predicate;
                                                      cancelButtonTitle:@"OK"
                                                      otherButtonTitles:nil];
             [alert show];
+            
+            BOOL internet=[AppDelegate connectedToNetwork];
+            if (internet)
+            {
+                // [self getFilterData];
+                [self performSelector:@selector(getFilterData) withObject:nil afterDelay:0.0];
+            }
+            else
+            {
+                [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+            }
         }
     }
     
