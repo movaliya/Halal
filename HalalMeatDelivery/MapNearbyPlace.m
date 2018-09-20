@@ -232,6 +232,9 @@
         [NearbydictParams setObject:Nearby_restorantsServiceName  forKey:@"service"];
         [NearbydictParams setObject:[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude]  forKey:@"lat"];
         [NearbydictParams setObject:[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude]  forKey:@"long"];
+        
+        LATITUDESTR=[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
+        LONGITUDESTR=[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
         //[NearbydictParams setObject:@"22.274051"  forKey:@"lat"];
         //[NearbydictParams setObject:@"70.757931"  forKey:@"long"];
         UIAlertView *alert;
@@ -273,6 +276,8 @@
         
         vcr.R_ID=Rest_ID;
         vcr.Pin=Rest_PIN;
+        vcr.LATPASS=LATITUDESTR;
+        vcr.LONPASS=LONGITUDESTR;
         [self.navigationController pushViewController:vcr animated:YES];
     }
     else

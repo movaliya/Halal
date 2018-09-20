@@ -12,6 +12,7 @@
 @interface MapNearbyPlace : UIViewController<CCKFNavDrawerDelegate>
 {
     NSMutableDictionary *NearbydictParams;
+    NSString *LATITUDESTR,*LONGITUDESTR;
 }
 @property (strong, nonatomic) CCKFNavDrawer *rootNav;
 

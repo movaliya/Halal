@@ -11,12 +11,15 @@
 #import "HalalMeatDelivery.pch"
 #import "RestaurantDetailView.h"
 #import "UIImageView+WebCache.h"
+#import <CoreLocation/CoreLocation.h>
 
-@interface NearByView ()
+@interface NearByView ()<CLLocationManagerDelegate,UIScrollViewDelegate,UISearchBarDelegate>
 {
     NSMutableDictionary *MainDic;
     NSMutableArray *resultObjectsArray;
     NSMutableDictionary *SearchDictnory;
+    CLLocationManager *locationManager;
+    double Latitude,Logitude;
 }
 
 @property AppDelegate *appDelegate;
@@ -31,8 +34,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.appDelegate = [AppDelegate sharedInstance];
 
+    
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.distanceFilter = kCLDistanceFilterNone;
+    [locationManager requestWhenInUseAuthorization];
+    [locationManager startUpdatingLocation];
+    
     SearchBar.hidden=YES;
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor whiteColor]];
     [SearchBar setImage:[UIImage imageNamed:@"SearchIcon.png"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
@@ -193,6 +205,11 @@
             vcr.RestraorntDic=[arr objectAtIndex:indexPath.row];
         }
         
+        vcr.R_ID=[[SearchDictnory valueForKey:@"id"]objectAtIndex:indexPath.row];
+        vcr.Pin=[[SearchDictnory valueForKey:@"pin"]objectAtIndex:indexPath.row];
+        vcr.LATPASS=LATITUDESTR;
+        vcr.LONPASS=LONGITUDESTR;
+        
         [self.navigationController pushViewController:vcr animated:YES];
     }
     else
@@ -301,7 +318,60 @@
     [TableView reloadData];
     [SearchBar resignFirstResponder];
 }
+#pragma mark - CLLocationManagerDelegate
 
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"didFailWithError: %@", error);
+    
+    NSLog(@"%@",error.userInfo);
+    if([CLLocationManager locationServicesEnabled]){
+        
+        NSLog(@"Location Services Enabled");
+        
+        if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusDenied){
+            UIAlertView    *alert = [[UIAlertView alloc] initWithTitle:@"App Permission Denied"
+                                                               message:@"To re-enable, please go to Settings and turn on Location Service for this app."
+                                                              delegate:nil
+                                                     cancelButtonTitle:@"OK"
+                                                     otherButtonTitles:nil];
+            [alert show];
+        }
+    }
+    
+    
+    // [AppDelegate showErrorMessageWithTitle:@"Warning." message:@"To re-enable, please go to Settings and turn on Location Service for this app." delegate:nil];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    //NSLog(@"didUpdateToLocation: %@", newLocation);
+    CLLocation *currentLocation = newLocation;
+    
+    if (currentLocation != nil)
+    {
+        
+        Latitude= currentLocation.coordinate.latitude;
+        Logitude= currentLocation.coordinate.longitude;
+        LATITUDESTR=[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
+        LONGITUDESTR=[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
+        
+        BOOL internet=[AppDelegate connectedToNetwork];
+        if (internet)
+        {
+            [locationManager stopUpdatingLocation];
+            locationManager=nil;
+        }
+        else
+        {
+            //your code here
+            [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+            [locationManager stopUpdatingLocation];
+            locationManager=nil;
+        }
+    }
+    
+}
 
 
 

@@ -12,6 +12,7 @@
 @interface NearByView : UIViewController<CCKFNavDrawerDelegate>
 {
     NSString *PincodeSTR,*Cat_IDSTR,*R_disStr;
+    NSString *LATITUDESTR,*LONGITUDESTR;
 }
 @property (strong, nonatomic) CCKFNavDrawer *rootNav;
 

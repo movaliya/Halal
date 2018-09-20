@@ -1248,7 +1248,7 @@
 				TargetAttributes = {
 					B109C64F1D6C9FC9000936A2 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 7PFD68G63X;
+						DevelopmentTeam = 82MF3E6LT7;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -1604,8 +1604,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Faraz Mahadik (PHT4KDYA23)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7PFD68G63X;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 82MF3E6LT7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1627,10 +1627,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jkinfoway.halalmeat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.feedmemeat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f07e8df3-3d40-4dff-992b-107d69dc6230";
-				PROVISIONING_PROFILE_SPECIFIER = halalmeat_dev;
+				PROVISIONING_PROFILE = "b681a22a-72f2-4930-9809-9b559cba8fe7";
+				PROVISIONING_PROFILE_SPECIFIER = feedmemeat_Distri;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
 			};
@@ -1641,8 +1641,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Faraz Mahadik (PHT4KDYA23)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7PFD68G63X;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 82MF3E6LT7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1664,10 +1664,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jkinfoway.halalmeat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.feedmemeat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f07e8df3-3d40-4dff-992b-107d69dc6230";
-				PROVISIONING_PROFILE_SPECIFIER = halalmeat_dev;
+				PROVISIONING_PROFILE = "b681a22a-72f2-4930-9809-9b559cba8fe7";
+				PROVISIONING_PROFILE_SPECIFIER = feedmemeat_Distri;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
 			};
