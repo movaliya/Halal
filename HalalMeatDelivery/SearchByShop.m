@@ -281,7 +281,7 @@ static dispatch_once_t predicate;
             if (internet)
             {
                 // [self getFilterData];
-                [self performSelector:@selector(getFilterData) withObject:nil afterDelay:0.0];
+                //[self performSelector:@selector(getFilterData) withObject:nil afterDelay:0.0];
             }
             else
             {
@@ -706,7 +706,7 @@ static dispatch_once_t predicate;
             if (internet)
             {
                 // [self getFilterData];
-                [self performSelector:@selector(getFilterData) withObject:nil afterDelay:0.0];
+                //[self performSelector:@selector(getFilterData) withObject:nil afterDelay:0.0];
             }
             else
             {
@@ -848,7 +848,7 @@ static dispatch_once_t predicate;
     {
         if (!FilterDict)
         {
-            [self performSelector:@selector(getFilterData) withObject:nil afterDelay:0.0];
+           // [self performSelector:@selector(getFilterData) withObject:nil afterDelay:0.0];
             //[self getFilterData];
         }
         PriceView.hidden=YES;

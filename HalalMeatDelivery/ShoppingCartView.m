@@ -321,7 +321,7 @@
     if (Main==Second)
     {
         cell.Update_View.hidden=YES;
-        cell.Qunt_LBL.text=[NSString stringWithFormat:@"%ld",Main];
+        cell.Qunt_LBL.text=[NSString stringWithFormat:@"%ld",(long)Main];
         
         
     }
@@ -422,7 +422,7 @@
     ButtonTag=senderButton.tag;
     chechPlusMinus=1;
     cell.Update_View.hidden=NO;
-    //[TableView reloadData];
+    [TableView reloadData];
     
 }
 
@@ -437,8 +437,9 @@
     ProductDetailCell *cell = (ProductDetailCell *)[TableView cellForRowAtIndexPath:pathOfTheCell];
     
     NSInteger count = [cell.Qunt_LBL.text integerValue];
+    NSLog(@"cell.Qunt_LBL.text=%@",cell.Qunt_LBL.text);
     count = count - 1;
-    if (count!=0)
+    if (count>0)
     {
         cell.Qunt_LBL.text = [NSString stringWithFormat:@"%ld",count];
         [arr replaceObjectAtIndex:senderButton.tag withObject:[NSString stringWithFormat:@"%ld",count]];
