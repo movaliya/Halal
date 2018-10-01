@@ -180,7 +180,7 @@
         itemDetailDic=[[CardDicnory valueForKey:@"items"] valueForKey:@"product_detail"];
         deleteproductDic=[CardDicnory valueForKey:@"items"];
         
-        NSString *TotalQTY=[NSString stringWithFormat:@"%d",itemDetailDic.count];
+        NSString *TotalQTY=[NSString stringWithFormat:@"%lu",(unsigned long)itemDetailDic.count];
         [[NSUserDefaults standardUserDefaults] setObject:TotalQTY forKey:@"QUANTITYCOUNT"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
@@ -376,13 +376,14 @@
 -(void)UpdateCellClick:(id)sender
 {
     
-    NSLog(@"update Method Call");
     UIButton *senderButton = (UIButton *)sender;
-    UIView *cellContentView = (UIView *)senderButton.superview;
-    UITableViewCell *buttonCell = (UITableViewCell *)[[cellContentView superview] superview];
-    UITableView* table = (UITableView *)[[buttonCell superview] superview];
-    NSIndexPath* pathOfTheCell = [table indexPathForCell:buttonCell];
+    
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:TableView];
+    NSIndexPath *pathOfTheCell = [TableView indexPathForRowAtPoint:buttonPosition];
+    
+    
     ProductDetailCell *cell = (ProductDetailCell *)[TableView cellForRowAtIndexPath:pathOfTheCell];
+    NSLog(@"senderButton.tag=%ld",(long)senderButton.tag);
    
     [self UpdatecardDetail:cell.Qunt_LBL.text CatgoryId:[[[CardDicnory valueForKey:@"items"] valueForKey:@"id"] objectAtIndex:senderButton.tag]];
     
@@ -400,11 +401,11 @@
 -(void)PlushClick:(id)sender
 {
     UIButton *senderButton = (UIButton *)sender;
-    UIView *cellContentView = (UIView *)senderButton.superview;
-    UITableViewCell *buttonCell = (UITableViewCell *)[[cellContentView superview] superview];
-    UITableView* table = (UITableView *)[[buttonCell superview] superview];
-    NSIndexPath* pathOfTheCell = [table indexPathForCell:buttonCell];
-    //NSDictionary *item = sortedItems[sortedItems.allKeys[pathOfTheCell.row]];
+    
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:TableView];
+    NSIndexPath *pathOfTheCell = [TableView indexPathForRowAtPoint:buttonPosition];
+    
+    
     ProductDetailCell *cell = (ProductDetailCell *)[TableView cellForRowAtIndexPath:pathOfTheCell];
     NSLog(@"senderButton.tag=%ld",(long)senderButton.tag);
     cell.Update_View.hidden=NO;
@@ -429,17 +430,17 @@
 -(void)MinushClick:(id)sender
 {
     UIButton *senderButton = (UIButton *)sender;
-    UIView *cellContentView = (UIView *)senderButton.superview;
-    UITableViewCell *buttonCell = (UITableViewCell *)[[cellContentView superview] superview];
-    UITableView* table = (UITableView *)[[buttonCell superview] superview];
-    NSIndexPath* pathOfTheCell = [table indexPathForCell:buttonCell];
-    //NSDictionary *item = sortedItems[sortedItems.allKeys[pathOfTheCell.row]];
+    
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:TableView];
+    NSIndexPath *pathOfTheCell = [TableView indexPathForRowAtPoint:buttonPosition];
+    
+    
     ProductDetailCell *cell = (ProductDetailCell *)[TableView cellForRowAtIndexPath:pathOfTheCell];
     
     NSInteger count = [cell.Qunt_LBL.text integerValue];
     NSLog(@"cell.Qunt_LBL.text=%@",cell.Qunt_LBL.text);
     count = count - 1;
-    if (count>0)
+    if (count!=0)
     {
         cell.Qunt_LBL.text = [NSString stringWithFormat:@"%ld",count];
         [arr replaceObjectAtIndex:senderButton.tag withObject:[NSString stringWithFormat:@"%ld",count]];

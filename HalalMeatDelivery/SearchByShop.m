@@ -63,23 +63,14 @@ static dispatch_once_t predicate;
 @synthesize FilterView,SearchByCatBTN,SearchByRatBTN,SearchByDistBTN,SearchByPriceBTN,FreeDelevBTN;
 @synthesize CatTBL,PriceView;
 
-- (void)viewDidLoad
+-(void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewWillAppear:animated];
     
-    FilterBOOL=0;
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(Getlocationuser:)
-                                                 name:@"GetLocation" object:nil];
-    
-    self.rangeSliderCurrency.hidden=YES;
-    SelectedShort=0;
-    CatTBL.hidden=NO;
-    [SearchByCatBTN setBackgroundColor:SelectedButtonColor];
-    [SearchByCatBTN setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    
-    
-    FilterView.hidden=YES;
+    self.rootNav = (CCKFNavDrawer *)self.navigationController;
+    [self.rootNav setCCKFNavDrawerDelegate:self];
+    [self.rootNav CheckLoginArr];
+    [self.rootNav.pan_gr setEnabled:NO];
     
     // Getting Lat Log
     locationManager = [[CLLocationManager alloc] init];
@@ -93,7 +84,29 @@ static dispatch_once_t predicate;
     
     SearchDictnory=[[NSMutableArray alloc]init];
     NewArr=[[NSMutableArray alloc]init];
+    DataDic=[[NSDictionary alloc]init];
     
+}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    FilterBOOL=0;
+   // [[NSNotificationCenter defaultCenter] addObserver:self
+                                            // selector:@selector(Getlocationuser:)
+                                               //  name:@"GetLocation" object:nil];
+    
+    self.rangeSliderCurrency.hidden=YES;
+    SelectedShort=0;
+    CatTBL.hidden=NO;
+    [SearchByCatBTN setBackgroundColor:SelectedButtonColor];
+    [SearchByCatBTN setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    
+    FilterView.hidden=YES;
+    
+   
+
     SearchBar.hidden=YES;
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor whiteColor]];
     [SearchBar setImage:[UIImage imageNamed:@"SearchIcon.png"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
@@ -122,6 +135,11 @@ static dispatch_once_t predicate;
 }
 -(void)Getlocationuser:(NSNotification *)notification
 {
+    limit_only=0;
+    SearchDictnory=[[NSMutableArray alloc]init];
+    NewArr=[[NSMutableArray alloc]init];
+    DataDic=[[NSDictionary alloc]init];
+    
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -131,15 +149,7 @@ static dispatch_once_t predicate;
     [locationManager startUpdatingLocation];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    self.rootNav = (CCKFNavDrawer *)self.navigationController;
-    [self.rootNav setCCKFNavDrawerDelegate:self];
-    [self.rootNav CheckLoginArr];
-    [self.rootNav.pan_gr setEnabled:NO];
-    
-}
+
 
 -(void)getFilterData
 {
@@ -293,6 +303,7 @@ static dispatch_once_t predicate;
     else
     {
         NoResponseInt=0;
+          [Table reloadData];
        // oldLimit_ony=limit_only;
     }
     
@@ -701,7 +712,9 @@ static dispatch_once_t predicate;
                                                      cancelButtonTitle:@"OK"
                                                      otherButtonTitles:nil];
             [alert show];
-            
+            limit_only=0;
+            SearchDictnory=[[NSMutableArray alloc]init];
+            NewArr=[[NSMutableArray alloc]init];
             BOOL internet=[AppDelegate connectedToNetwork];
             if (internet)
             {
@@ -756,6 +769,12 @@ static dispatch_once_t predicate;
        // NSLog(@"longitude=%.8f",currentLocation.coordinate.longitude);
         //NSLog(@"latitude=%.8f",currentLocation.coordinate.latitude);
         
+    }
+    else
+    {
+        SearchDictnory=[[NSMutableArray alloc]init];
+        NewArr=[[NSMutableArray alloc]init];
+        limit_only=0;
     }
     
 }

@@ -201,7 +201,7 @@
     
     [FBAppCall handleDidBecomeActive];
    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"GetLocation" object:nil];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:@"GetLocation" object:nil];
 
 }
 
